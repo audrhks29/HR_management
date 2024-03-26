@@ -1,22 +1,12 @@
-import { HashRouter, Route, Routes } from "react-router-dom";
-import Main from "./pages/Main";
-import Header from "./components/layout/Header";
-import Hr from "./pages/Hr";
-import Salary from "./pages/Salary";
+import './App.css'
 
-const App = () => {
+function App() {
+
   return (
     <>
-      <HashRouter>
-        <Header />
-        <Routes>
-          <Route path="/" index element={<Main />} />
-          <Route path="/hr" index element={<Hr />} />
-          <Route path="/salary" index element={<Salary />} />
-        </Routes>
-      </HashRouter>
+      <p className='text-[50px]'>이원철</p>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App
