@@ -1,9 +1,17 @@
 import { HashRouter, Route, Routes } from 'react-router-dom'
+
+import Header from './layout/header/Header'
+
 import Home from './pages/Home'
-import Hr from './pages/Hr'
-import Salary from './pages/Salaly'
-import Header from './components/layout/header/Header'
+import Hr_register from './pages/hr/Hr_register'
+import Hr_record from './pages/hr/Hr_record'
+import Salary from './pages/Salary'
+import Login from './pages/Login'
+
 import { ThemeProvider } from "@/components/mode/theme-provider"
+import Hr_appointments from './pages/hr/Hr_appointments'
+import Hr_organization_chart from './pages/hr/Hr_organization_chart'
+
 function App() {
 
   return (
@@ -13,8 +21,16 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" index element={<Home />} />
-            <Route path="/hr" index element={<Hr />} />
+
+            {/* hr */}
+            <Route path="/hr_register" index element={<Hr_register />} />
+            <Route path="/hr_record" index element={<Hr_record />} />
+            <Route path="/hr_organization_chart" index element={<Hr_organization_chart />} />
+            <Route path="/hr_appointments" index element={<Hr_appointments />} />
+
+            {/* salary */}
             <Route path="/salary" index element={<Salary />} />
+            <Route path="/login" index element={<Login />} />
           </Routes>
         </HashRouter>
       </ThemeProvider>

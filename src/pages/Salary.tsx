@@ -2,12 +2,13 @@ import { memo } from "react";
 
 import PageTitle from "@/shared/PageTitle";
 
-const Home = memo(() => {
+const Salary = memo(() => {
   return (
     <main>
-      <PageTitle title="홈" />
+      <PageTitle title="급여관리" />
+
     </main>
   );
 });
 
-export default Home;
+export default Salary;

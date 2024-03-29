@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "title": "인사",
+    "submenu": [
+      {
+        "id": 1,
+        "title": "구성원 추가",
+        "link": "/hr_register"
+      },
+      {
+        "id": 2,
+        "title": "구성원 조회",
+        "link": "/hr_record"
+      },
+      {
+        "id": 3,
+        "title": "조직도 구성",
+        "link": "/hr_organization_chart"
+      },
+      {
+        "id": 4,
+        "title": "인사발령",
+        "link": "/hr_appointments"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "급여",
+    "submenu": [
+      {
+        "id": 1,
+        "title": "인사카드 등록",
+        "link": "/hr_card"
+      },
+      {
+        "id": 2,
+        "title": "인사카드 등록",
+        "link": "/hr_card"
+      },
+      {
+        "id": 3,
+        "title": "인사카드 등록",
+        "link": "/hr_card"
+      },
+      {
+        "id": 4,
+        "title": "인사카드 등록",
+        "link": "/hr_card"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "근태",
+    "submenu": [
+      {
+        "id": 1,
+        "title": "출퇴근시간 등록",
+        "link": "/hr_card"
+      },
+      {
+        "id": 2,
+        "title": "근태 조회",
+        "link": "/hr_card"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "연차",
+    "submenu": [
+      {
+        "id": 1,
+        "title": "연차 사용 내역",
+        "link": "/hr_card"
+      },
+      {
+        "id": 2,
+        "title": "연차 보유 현황",
+        "link": "/hr_card"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "기타 서식",
+    "submenu": [
+      {
+        "id": 1,
+        "title": "연차 사용 내역",
+        "link": "/hr_card"
+      },
+      {
+        "id": 2,
+        "title": "연차 보유 현황",
+        "link": "/hr_card"
+      }
+    ]
+  }
+]

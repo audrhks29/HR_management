@@ -27,7 +27,6 @@ function createWindow() {
     autoHideMenuBar: true,
     width: 1680,
     height: 1000,
-    backgroundColor: '#2e2c29'
   })
 
   // Test active push message to Renderer-process.

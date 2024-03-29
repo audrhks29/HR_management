@@ -2,12 +2,12 @@ import { memo } from "react";
 
 import PageTitle from "@/shared/PageTitle";
 
-const Home = memo(() => {
+const Hr_register = memo(() => {
   return (
     <main>
-      <PageTitle title="홈" />
+      <PageTitle title="구성원 추가" />
     </main>
   );
 });
 
-export default Home;
+export default Hr_register;
