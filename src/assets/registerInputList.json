@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "eng_text": "employee_number",
+    "kor_text": "사원번호",
+    "type": "department"
+  },
+  {
+    "id": 2,
+    "eng_text": "kor_name",
+    "kor_text": "한글 이름",
+    "type": "privacy"
+  },
+  {
+    "id": 3,
+    "eng_text": "eng_name",
+    "kor_text": "영문 이름",
+    "type": "privacy"
+  },
+  {
+    "id": 4,
+    "eng_text": "rrn",
+    "kor_text": "주민등록번호",
+    "type": "privacy"
+  },
+  {
+    "id": 5,
+    "eng_text": "sex",
+    "kor_text": "성별",
+    "type": "privacy"
+  },
+  {
+    "id": 6,
+    "eng_text": "phone_number",
+    "kor_text": "핸드폰 번호",
+    "type": "privacy"
+  },
+  {
+    "id": 7,
+    "eng_text": "address",
+    "kor_text": "주소",
+    "type": "privacy"
+  },
+  {
+    "id": 8,
+    "eng_text": "birthday",
+    "kor_text": "생년월일",
+    "type": "privacy"
+  },
+  {
+    "id": 9,
+    "eng_text": "quarter",
+    "kor_text": "소속 관할",
+    "type": "department"
+  },
+  {
+    "id": 10,
+    "eng_text": "department",
+    "kor_text": "소속 부서",
+    "type": "department"
+  },
+  {
+    "id": 11,
+    "eng_text": "team",
+    "kor_text": "소속 팀",
+    "type": "department"
+  },
+  {
+    "id": 12,
+    "eng_text": "position",
+    "kor_text": "직책",
+    "type": "department"
+  },
+  {
+    "id": 13,
+    "eng_text": "rank",
+    "kor_text": "직급",
+    "type": "department"
+  },
+  {
+    "id": 14,
+    "eng_text": "date_of_joining",
+    "kor_text": "입사일",
+    "type": "department"
+  }
+]

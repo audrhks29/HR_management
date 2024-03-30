@@ -11,14 +11,16 @@ import Login from './pages/Login'
 import { ThemeProvider } from "@/components/mode/theme-provider"
 import Hr_appointments from './pages/hr/Hr_appointments'
 import Hr_organization_chart from './pages/hr/Hr_organization_chart'
+import Menu from './layout/header/Menu'
 
 function App() {
 
   return (
-    <>
+    <div className='grid grid-cols-[250px_1fr]'>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <HashRouter>
           <Header />
+          <Menu />
           <Routes>
             <Route path="/" index element={<Home />} />
 
@@ -34,7 +36,7 @@ function App() {
           </Routes>
         </HashRouter>
       </ThemeProvider>
-    </>
+    </div>
   )
 }
 

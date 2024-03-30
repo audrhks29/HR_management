@@ -1,22 +1,29 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import menuList from '../../assets/menuList.json'
 import { IoMdArrowDropdown } from "react-icons/io";
 
+
 const Menu = memo(() => {
   const [activeMenus, setActiveMenus] = useState<number[]>([]);
+  const [height, setHeight] = useState(window.innerHeight)
+
+  useEffect(() => {
+    setHeight(window.innerHeight)
+  }, [])
 
   const handleClickMenu = (id: number) => {
-    if (activeMenus.includes(id)) {
-      setActiveMenus(activeMenus.filter(item => item !== id));
-    } else {
-      setActiveMenus([...activeMenus, id]);
-    }
+    activeMenus.includes(id)
+      ? setActiveMenus(activeMenus.filter(item => item !== id))
+      : setActiveMenus([...activeMenus, id]);
   }
 
   return (
-    <nav>
-      <div className="w-full grid gap-1 py-2">
+    <div
+      className="border-r border-primary/40"
+      style={{ height: height - 60 }}
+    >
+      <nav className="text-sm font-medium px-4">
         {menuList.map(menu => (
           <React.Fragment key={menu.id}>
             <div
@@ -50,8 +57,8 @@ const Menu = memo(() => {
           </React.Fragment>
         )
         )}
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 });
 

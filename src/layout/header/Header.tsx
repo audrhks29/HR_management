@@ -1,13 +1,13 @@
 import { memo } from 'react';
 
-import Menu from "./Menu";
 import User from './user/User';
+import PageTitle from '@/shared/PageTitle';
 
 const Header = memo(() => {
   return (
-    <header className="h-screen p-4 bg-background border-r border-r-border rounded-r-md">
+    <header className='col-span-2 h-[60px] flex border-b border-primary/40'>
       <User />
-      <Menu />
+      <PageTitle />
     </header>
   );
 });

@@ -1,6 +1,6 @@
 [
   {
-    "employee_number": 160401,
+    "employee_number": "160301",
     "kor_name": "지은호",
     "eng_name": "Ji eunho",
     "sex": "male",
@@ -8,10 +8,11 @@
     "department": "",
     "team": "",
     "position": "대표이사",
-    "rank": "CEO"
+    "rank": "CEO",
+    "date_of_joining": "20160305"
   },
   {
-    "employee_number": 160303,
+    "employee_number": "160401",
     "kor_name": "소영미",
     "eng_name": "So yeongmi",
     "sex": "female",
@@ -19,43 +20,11 @@
     "department": "영업부",
     "team": "",
     "position": "영업부장",
-    "rank": "상무"
+    "rank": "상무",
+    "date_of_joining": "20160408"
   },
   {
-    "employee_number": 180901,
-    "kor_name": "성민재",
-    "eng_name": "Seong minjae",
-    "sex": "male",
-    "quarter": "본사",
-    "department": "개발부",
-    "team": "",
-    "position": "개발부장",
-    "rank": "부장"
-  },
-  {
-    "employee_number": 181001,
-    "kor_name": "지혜원",
-    "eng_name": "Ji hyewon",
-    "sex": "female",
-    "quarter": "본사",
-    "department": "경영지원부",
-    "team": "",
-    "position": "경영지원부장",
-    "rank": "부장"
-  },
-  {
-    "employee_number": 170302,
-    "kor_name": "도윤석",
-    "eng_name": "Do yunseok",
-    "sex": "male",
-    "quarter": "본사",
-    "department": "개발부",
-    "team": "서버팀",
-    "position": "서버팀장",
-    "rank": "차장"
-  },
-  {
-    "employee_number": 160403,
+    "employee_number": "160403",
     "kor_name": "현주희",
     "eng_name": "Hyun joohee",
     "sex": "female",
@@ -63,10 +32,11 @@
     "department": "개발부",
     "team": "프론트엔드팀",
     "position": "프론트팀장",
-    "rank": "차장"
+    "rank": "차장",
+    "date_of_joining": "20160421"
   },
   {
-    "employee_number": 160406,
+    "employee_number": "160406",
     "kor_name": "성호준",
     "eng_name": "Sung hojun",
     "sex": "male",
@@ -74,10 +44,47 @@
     "department": "개발부",
     "team": "디자인팀",
     "position": "디자인팀장",
-    "rank": "차장"
+    "rank": "차장",
+    "date_of_joining": "20160428"
   },
   {
-    "employee_number": 190701,
+    "employee_number": "170302",
+    "kor_name": "도윤석",
+    "eng_name": "Do yunseok",
+    "sex": "male",
+    "quarter": "본사",
+    "department": "개발부",
+    "team": "서버팀",
+    "position": "서버팀장",
+    "rank": "차장",
+    "date_of_joining": "20170303"
+  },
+  {
+    "employee_number": "180901",
+    "kor_name": "성민재",
+    "eng_name": "Seong minjae",
+    "sex": "male",
+    "quarter": "본사",
+    "department": "개발부",
+    "team": "",
+    "position": "개발부장",
+    "rank": "부장",
+    "date_of_joining": "20180914"
+  },
+  {
+    "employee_number": "181001",
+    "kor_name": "지혜원",
+    "eng_name": "Ji hyewon",
+    "sex": "female",
+    "quarter": "본사",
+    "department": "경영지원부",
+    "team": "",
+    "position": "경영지원부장",
+    "rank": "부장",
+    "date_of_joining": "20181022"
+  },
+  {
+    "employee_number": "190701",
     "kor_name": "지우진",
     "eng_name": "Ji woojin",
     "sex": "male",
@@ -85,10 +92,11 @@
     "department": "경영지원부",
     "team": "인사팀",
     "position": "인사팀장",
-    "rank": "차장"
+    "rank": "차장",
+    "date_of_joining": "20190709"
   },
   {
-    "employee_number": 200302,
+    "employee_number": "200302",
     "kor_name": "민서영",
     "eng_name": "Min seoyoung",
     "sex": "female",
@@ -96,65 +104,11 @@
     "department": "경영지원부",
     "team": "회계팀",
     "position": "회계팀장",
-    "rank": "과장"
+    "rank": "과장",
+    "date_of_joining": "20200306"
   },
   {
-    "employee_number": 231002,
-    "kor_name": "현우진",
-    "eng_name": "Hyun woojin",
-    "sex": "male",
-    "quarter": "본사",
-    "department": "영업부",
-    "team": "국내영업팀",
-    "position": "국내영업팀장",
-    "rank": "이사"
-  },
-  {
-    "employee_number": 211201,
-    "kor_name": "은지윤",
-    "eng_name": "Eun jieun",
-    "sex": "female",
-    "quarter": "본사",
-    "department": "경영지원부",
-    "team": "인사팀",
-    "position": "",
-    "rank": "과장"
-  },
-  {
-    "employee_number": 231001,
-    "kor_name": "선우현",
-    "eng_name": "Sun woohyun",
-    "sex": "male",
-    "quarter": "본사",
-    "department": "경영지원부",
-    "team": "정보보안팀",
-    "position": "정보보안팀장",
-    "rank": "대리"
-  },
-  {
-    "employee_number": 231003,
-    "kor_name": "지민우",
-    "eng_name": "Ji minwoo",
-    "sex": "male",
-    "quarter": "본사",
-    "department": "개발부",
-    "team": "프론트엔드팀",
-    "position": "",
-    "rank": "대리"
-  },
-  {
-    "employee_number": 240101,
-    "kor_name": "서연우",
-    "eng_name": "Seo yeonwoo",
-    "sex": "male",
-    "quarter": "본사",
-    "department": "영업부",
-    "team": "국내영업팀",
-    "position": "",
-    "rank": "대리"
-  },
-  {
-    "employee_number": 200801,
+    "employee_number": "200801",
     "kor_name": "지원준",
     "eng_name": "Ji wonjun",
     "sex": "male",
@@ -162,21 +116,11 @@
     "department": "영업부",
     "team": "해외영업팀",
     "position": "해외영업팀장",
-    "rank": "대리"
+    "rank": "대리",
+    "date_of_joining": "20200806"
   },
   {
-    "employee_number": 200902,
-    "kor_name": "현정민",
-    "eng_name": "Hyun jungmin",
-    "sex": "male",
-    "quarter": "본사",
-    "department": "영업부",
-    "team": "국내영업팀",
-    "position": "",
-    "rank": "대리"
-  },
-  {
-    "employee_number": 200802,
+    "employee_number": "200802",
     "kor_name": "민재윤",
     "eng_name": "Min jaeyoon",
     "sex": "male",
@@ -184,10 +128,23 @@
     "department": "영업부",
     "team": "국내영업팀",
     "position": "",
-    "rank": "대리"
+    "rank": "대리",
+    "date_of_joining": "20200806"
   },
   {
-    "employee_number": 210501,
+    "employee_number": "200902",
+    "kor_name": "현정민",
+    "eng_name": "Hyun jungmin",
+    "sex": "male",
+    "quarter": "본사",
+    "department": "영업부",
+    "team": "국내영업팀",
+    "position": "",
+    "rank": "대리",
+    "date_of_joining": "20200911"
+  },
+  {
+    "employee_number": "210501",
     "kor_name": "김지연",
     "eng_name": "Kim jiyeon",
     "sex": "female",
@@ -195,43 +152,23 @@
     "department": "CEO직속",
     "team": "감사팀",
     "position": "감사팀장",
-    "rank": "주임"
+    "rank": "주임",
+    "date_of_joining": "20210510"
   },
   {
-    "employee_number": 230201,
-    "kor_name": "이승민",
-    "eng_name": "Lee seungmin",
-    "sex": "male",
-    "quarter": "본사",
-    "department": "CEO직속",
-    "team": "감사팀",
-    "position": "",
-    "rank": "주임"
-  },
-  {
-    "employee_number": 230601,
-    "kor_name": "박민준",
-    "eng_name": "Park minjun",
-    "sex": "male",
+    "employee_number": "211201",
+    "kor_name": "은지윤",
+    "eng_name": "Eun jieun",
+    "sex": "female",
     "quarter": "본사",
     "department": "경영지원부",
     "team": "인사팀",
     "position": "",
-    "rank": "주임"
+    "rank": "과장",
+    "date_of_joining": "20211206"
   },
   {
-    "employee_number": 230602,
-    "kor_name": "최지원",
-    "eng_name": "Choi jiwon",
-    "sex": "female",
-    "quarter": "본사",
-    "department": "경영지원부",
-    "team": "회계팀",
-    "position": "",
-    "rank": "주임"
-  },
-  {
-    "employee_number": 230102,
+    "employee_number": "230102",
     "kor_name": "정은주",
     "eng_name": "Jeong eunju",
     "sex": "female",
@@ -239,10 +176,23 @@
     "department": "영업부",
     "team": "해외영업팀",
     "position": "",
-    "rank": "사원"
+    "rank": "사원",
+    "date_of_joining": "20230105"
   },
   {
-    "employee_number": 230501,
+    "employee_number": "230201",
+    "kor_name": "이승민",
+    "eng_name": "Lee seungmin",
+    "sex": "male",
+    "quarter": "본사",
+    "department": "CEO직속",
+    "team": "감사팀",
+    "position": "",
+    "rank": "주임",
+    "date_of_joining": "20230206"
+  },
+  {
+    "employee_number": "230501",
     "kor_name": "강준호",
     "eng_name": "Kang junho",
     "sex": "male",
@@ -250,10 +200,11 @@
     "department": "영업부",
     "team": "해외영업팀",
     "position": "",
-    "rank": "사원"
+    "rank": "사원",
+    "date_of_joining": "20230507"
   },
   {
-    "employee_number": 230502,
+    "employee_number": "230502",
     "kor_name": "윤서현",
     "eng_name": "Yoon seohyun",
     "sex": "female",
@@ -261,10 +212,35 @@
     "department": "개발부",
     "team": "프론트엔드팀",
     "position": "",
-    "rank": "사원"
+    "rank": "사원",
+    "date_of_joining": "20230507"
   },
   {
-    "employee_number": 230901,
+    "employee_number": "230601",
+    "kor_name": "박민준",
+    "eng_name": "Park minjun",
+    "sex": "male",
+    "quarter": "본사",
+    "department": "경영지원부",
+    "team": "인사팀",
+    "position": "",
+    "rank": "주임",
+    "date_of_joining": "20230612"
+  },
+  {
+    "employee_number": "230602",
+    "kor_name": "최지원",
+    "eng_name": "Choi jiwon",
+    "sex": "female",
+    "quarter": "본사",
+    "department": "경영지원부",
+    "team": "회계팀",
+    "position": "",
+    "rank": "주임",
+    "date_of_joining": "20230615"
+  },
+  {
+    "employee_number": "230901",
     "kor_name": "장민석",
     "eng_name": "Jang minseok",
     "sex": "male",
@@ -272,10 +248,11 @@
     "department": "개발부",
     "team": "디자인팀",
     "position": "",
-    "rank": "사원"
+    "rank": "사원",
+    "date_of_joining": "20230917"
   },
   {
-    "employee_number": 230902,
+    "employee_number": "230902",
     "kor_name": "오지현",
     "eng_name": "Oh jihyun",
     "sex": "female",
@@ -283,10 +260,23 @@
     "department": "개발부",
     "team": "서버팀",
     "position": "",
-    "rank": "사원"
+    "rank": "사원",
+    "date_of_joining": "20230917"
   },
   {
-    "employee_number": 231002,
+    "employee_number": "231001",
+    "kor_name": "선우현",
+    "eng_name": "Sun woohyun",
+    "sex": "male",
+    "quarter": "본사",
+    "department": "경영지원부",
+    "team": "정보보안팀",
+    "position": "정보보안팀장",
+    "rank": "대리",
+    "date_of_joining": "20231002"
+  },
+  {
+    "employee_number": "231002",
     "kor_name": "황성우",
     "eng_name": "Hwang sungwoo",
     "sex": "male",
@@ -294,10 +284,47 @@
     "department": "개발부",
     "team": "프론트엔드팀",
     "position": "",
-    "rank": "사원"
+    "rank": "사원",
+    "date_of_joining": "20231002"
   },
   {
-    "employee_number": 240102,
+    "employee_number": "231003",
+    "kor_name": "지민우",
+    "eng_name": "Ji minwoo",
+    "sex": "male",
+    "quarter": "본사",
+    "department": "개발부",
+    "team": "프론트엔드팀",
+    "position": "",
+    "rank": "대리",
+    "date_of_joining": "20231002"
+  },
+  {
+    "employee_number": "231004",
+    "kor_name": "현우진",
+    "eng_name": "Hyun woojin",
+    "sex": "male",
+    "quarter": "본사",
+    "department": "영업부",
+    "team": "국내영업팀",
+    "position": "국내영업팀장",
+    "rank": "이사",
+    "date_of_joining": "20231002"
+  },
+  {
+    "employee_number": "240101",
+    "kor_name": "서연우",
+    "eng_name": "Seo yeonwoo",
+    "sex": "male",
+    "quarter": "본사",
+    "department": "영업부",
+    "team": "국내영업팀",
+    "position": "",
+    "rank": "대리",
+    "date_of_joining": "20240106"
+  },
+  {
+    "employee_number": "240102",
     "kor_name": "신지호",
     "eng_name": "Shin jiho",
     "sex": "male",
@@ -305,10 +332,11 @@
     "department": "개발부",
     "team": "프론트엔드팀",
     "position": "",
-    "rank": "사원"
+    "rank": "사원",
+    "date_of_joining": "20240106"
   },
   {
-    "employee_number": 240201,
+    "employee_number": "240201",
     "kor_name": "박지원",
     "eng_name": "Park jiwon",
     "sex": "female",
@@ -316,10 +344,11 @@
     "department": "개발부",
     "team": "디자인팀",
     "position": "",
-    "rank": "사원"
+    "rank": "사원",
+    "date_of_joining": "20240208"
   },
   {
-    "employee_number": 240202,
+    "employee_number": "240202",
     "kor_name": "정승연",
     "eng_name": "Jeong seungyeon",
     "sex": "female",
@@ -327,6 +356,7 @@
     "department": "개발부",
     "team": "서버팀",
     "position": "",
-    "rank": "사원"
+    "rank": "사원",
+    "date_of_joining": "20240221"
   }
 ]
