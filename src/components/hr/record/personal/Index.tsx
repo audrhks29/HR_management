@@ -15,7 +15,6 @@ const Index = memo(() => {
         </TabsList>
 
         <Contents />
-
       </Tabs>
     </div>
   );
