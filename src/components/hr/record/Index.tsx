@@ -5,27 +5,28 @@ import { Badge } from '@/components/ui/badge';
 
 import memberData from '../../../assets/sampleData/memberData.json'
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { useNavigate } from 'react-router-dom';
 
 const Index = memo(() => {
   const [currentPage, setCurrentPage] = useState(1)
   const [data, setData] = useState<MemberDataTypes[]>([])
 
-  const displayAmount = 12;
-  const lastPage = Math.ceil(memberData.length / displayAmount);
-  const pageIndex = Array.from({ length: lastPage }, (_, i) => i + 1)
+  const navigate = useNavigate()
+
+  const displayAmount = 12; // 페이지 당 index 갯수
+  const lastPage = Math.ceil(memberData.length / displayAmount); //마지막 페이지 번호
+  const pageIndex = Array.from({ length: lastPage }, (_, i) => i + 1) // 페이지 번호 배열
 
   useEffect(() => {
     const slicedData = memberData.slice((currentPage - 1) * displayAmount, currentPage * displayAmount)
     setData(slicedData)
   }, [currentPage])
 
-  const handleClickPrev = () => {
-    if (currentPage !== 1) setCurrentPage(currentPage - 1)
-  }
+  // 페이지 이전, 다음 버튼 클릭
+  const handleClickPrev = () => currentPage !== 1 ? setCurrentPage(currentPage - 1) : ""
+  const handleClickNext = () => currentPage !== lastPage ? setCurrentPage(currentPage + 1) : ""
 
-  const handleClickNext = () => {
-    if (currentPage !== lastPage) setCurrentPage(currentPage + 1)
-  }
+  const handleClickRow = (id: string) => navigate(`${id}`)
 
   return (
     <Card className='h-full relative'>
@@ -47,7 +48,11 @@ const Index = memo(() => {
 
           <TableBody>
             {data.map(member => (
-              <TableRow key={member.employee_number} className='cursor-pointer'>
+              <TableRow
+                key={member.employee_number}
+                className='cursor-pointer'
+                onClick={() => handleClickRow(member.employee_number)}
+              >
                 <TableCell>{member.employee_number}</TableCell>
                 <TableCell className="text-left">
                   {member.kor_name} ({member.eng_name})

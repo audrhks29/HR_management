@@ -12,6 +12,7 @@ import { ThemeProvider } from "@/components/mode/theme-provider"
 import Hr_appointments from './pages/hr/Hr_appointments'
 import Hr_organization_chart from './pages/hr/Hr_organization_chart'
 import Menu from './layout/header/Menu'
+import Personal from './pages/hr/record/Personal'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             {/* hr */}
             <Route path="/hr_register" index element={<Hr_register />} />
             <Route path="/hr_record" index element={<Hr_record />} />
+            <Route path="/hr_record/:employee_number" element={<Personal />} />
             <Route path="/hr_organization_chart" index element={<Hr_organization_chart />} />
             <Route path="/hr_appointments" index element={<Hr_appointments />} />
 
