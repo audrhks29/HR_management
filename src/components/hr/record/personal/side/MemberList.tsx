@@ -1,12 +1,12 @@
 import { memo, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
 
 import memberList from '@/assets/sampleData/memberData.json'
-import { Badge } from '@/components/ui/badge';
-import { useNavigate } from 'react-router-dom';
-import { Input } from '@/components/ui/input';
 
 const MemberList = memo(() => {
   const navigate = useNavigate();

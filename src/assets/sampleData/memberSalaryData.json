@@ -1,0 +1,122 @@
+[
+  {
+    "employee_number": "160301",
+    "wage": 120000000
+  },
+  {
+    "employee_number": "160401",
+    "wage": 80000000
+  },
+  {
+    "employee_number": "160403",
+    "wage": 76000000
+  },
+  {
+    "employee_number": "160406",
+    "wage": 78000000
+  },
+  {
+    "employee_number": "170302",
+    "wage": 76000000
+  },
+  {
+    "employee_number": "180901",
+    "wage": 71000000
+  },
+  {
+    "employee_number": "181001",
+    "wage": 52000000
+  },
+  {
+    "employee_number": "190701",
+    "wage": 48000000
+  },
+  {
+    "employee_number": "200302",
+    "wage": 49000000
+  },
+  {
+    "employee_number": "200801",
+    "wage": 35000000
+  },
+  {
+    "employee_number": "200802",
+    "wage": 33000000
+  },
+  {
+    "employee_number": "200902",
+    "wage": 33000000
+  },
+  {
+    "employee_number": "210501",
+    "wage": 40000000
+  },
+  {
+    "employee_number": "211201",
+    "wage": 42000000
+  },
+  {
+    "employee_number": "230102",
+    "wage": 32000000
+  },
+  {
+    "employee_number": "230201",
+    "wage": 35000000
+  },
+  {
+    "employee_number": "230501",
+    "wage": 38000000
+  },
+  {
+    "employee_number": "230502",
+    "wage": 40000000
+  },
+  {
+    "employee_number": "230601",
+    "wage": 30000000
+  },
+  {
+    "employee_number": "230602",
+    "wage": 32000000
+  },
+  {
+    "employee_number": "230901",
+    "wage": 31000000
+  },
+  {
+    "employee_number": "230902",
+    "wage": 42000000
+  },
+  {
+    "employee_number": "231001",
+    "wage": 31000000
+  },
+  {
+    "employee_number": "231002",
+    "wage": 31000000
+  },
+  {
+    "employee_number": "231003",
+    "wage": 48000000
+  },
+  {
+    "employee_number": "231004",
+    "wage": 60000000
+  },
+  {
+    "employee_number": "240101",
+    "wage": 35000000
+  },
+  {
+    "employee_number": "240102",
+    "wage": 31000000
+  },
+  {
+    "employee_number": "240201",
+    "wage": 30000000
+  },
+  {
+    "employee_number": "240202",
+    "wage": 33000000
+  }
+]

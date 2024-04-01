@@ -1,9 +1,10 @@
+import Index from '@/components/salary/history/Index';
 import { memo } from 'react';
 
 const Salary_status = memo(() => {
   return (
     <main>
-      급여 현황
+      <Index />
     </main>
   );
 });
