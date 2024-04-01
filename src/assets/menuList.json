@@ -10,7 +10,7 @@
       },
       {
         "id": 2,
-        "title": "구성원 조회",
+        "title": "구성원 기록",
         "link": "/hr_record"
       },
       {
@@ -31,23 +31,13 @@
     "submenu": [
       {
         "id": 1,
-        "title": "인사카드 등록",
-        "link": "/hr_card"
+        "title": "급여 현황",
+        "link": "/salary_status"
       },
       {
         "id": 2,
-        "title": "인사카드 등록",
-        "link": "/hr_card"
-      },
-      {
-        "id": 3,
-        "title": "인사카드 등록",
-        "link": "/hr_card"
-      },
-      {
-        "id": 4,
-        "title": "인사카드 등록",
-        "link": "/hr_card"
+        "title": "급여 지급 내역",
+        "link": "/salary_history"
       }
     ]
   },
@@ -58,12 +48,12 @@
       {
         "id": 1,
         "title": "출퇴근시간 등록",
-        "link": "/hr_card"
+        "link": "/attitude_commute_time"
       },
       {
         "id": 2,
-        "title": "근태 조회",
-        "link": "/hr_card"
+        "title": "근태 기록",
+        "link": "/attitude_record"
       }
     ]
   },

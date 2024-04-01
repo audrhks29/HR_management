@@ -21,7 +21,7 @@ const MemberList = memo(() => {
     const filteredData = memberList.filter(member => member.kor_name.includes(searchKeyword))
     searchKeyword !== "" ? setSearchData(filteredData) : setSearchData(memberList)
   }, [searchKeyword])
-  console.log(searchKeyword);
+
   return (
     <Card className='max-h-[780px] overflow-y-auto'>
       <CardContent className="mt-5">

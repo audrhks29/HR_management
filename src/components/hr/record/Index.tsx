@@ -1,11 +1,12 @@
 import { memo, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Badge } from '@/components/ui/badge';
 
 import memberData from '../../../assets/sampleData/memberData.json'
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
-import { useNavigate } from 'react-router-dom';
 
 const Index = memo(() => {
   const [currentPage, setCurrentPage] = useState(1)
