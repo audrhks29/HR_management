@@ -13,7 +13,7 @@ const Privacy = memo(() => {
   const personalData = memberData.find(member => member.employee_number === employee_number)
 
   return (
-    <Card className='min-h-[780px] p-8'>
+    <Card className='h-[800px] p-8'>
       <CardHeader className='border-b-2'>
         <CardTitle>
           <div className='flex items-center mb-3'>
@@ -49,12 +49,12 @@ const Privacy = memo(() => {
         <Table className='text-center w-80'>
           <TableBody>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-32 text-left'>이름</TableHead>
               <TableCell>{personalData?.kor_name}</TableCell>
             </TableRow>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-32 text-left'>성별</TableHead>
               <TableCell className='flex items-center justify-center'>
                 {personalData?.sex === "남성"
@@ -63,22 +63,22 @@ const Privacy = memo(() => {
               </TableCell>
             </TableRow>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-32 text-left'>핸드폰 번호</TableHead>
               <TableCell></TableCell>
             </TableRow>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-32 text-left'>주민등록번호</TableHead>
               <TableCell></TableCell>
             </TableRow>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-32 text-left'>주소</TableHead>
               <TableCell></TableCell>
             </TableRow>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-32 text-left'>이메일</TableHead>
               <TableCell></TableCell>
             </TableRow>
@@ -88,32 +88,32 @@ const Privacy = memo(() => {
         <Table className='text-center w-80'>
           <TableBody>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-24 text-left'>사원번호</TableHead>
               <TableCell>{personalData?.employee_number}</TableCell>
             </TableRow>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-24 text-left'>소속 관할</TableHead>
               <TableCell>{personalData?.quarter}</TableCell>
             </TableRow>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-24 text-left'>소속 부서</TableHead>
               <TableCell>{personalData?.department}</TableCell>
             </TableRow>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-24 text-left'>소속 팀</TableHead>
               <TableCell>{personalData?.team}</TableCell>
             </TableRow>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-24 text-left'>직책</TableHead>
               <TableCell>없음</TableCell>
             </TableRow>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-24 text-left'>직급</TableHead>
               <TableCell>
                 <Badge
@@ -124,7 +124,7 @@ const Privacy = memo(() => {
               </TableCell>
             </TableRow>
 
-            <TableRow className='cursor-pointer'>
+            <TableRow className='cursor-pointer h-[53px]'>
               <TableHead className='w-24 text-left'>입사일</TableHead>
               <TableCell>{personalData?.date_of_joining}</TableCell>
             </TableRow>

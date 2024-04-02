@@ -1,9 +1,10 @@
 import { memo } from 'react';
+import Index from '@/components/salary/history/Index';
 
 const Salary_history = memo(() => {
   return (
     <main>
-      급여지급내역
+      <Index />
     </main>
   );
 });

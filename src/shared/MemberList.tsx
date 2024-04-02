@@ -1,65 +1,65 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
 
-import memberList from '@/assets/sampleData/memberData.json'
+import FilterCondition from '@/shared/FilterCondition';
+import Paging from '@/shared/Paging';
 
-const MemberList = memo(() => {
+const MemberList = memo(({ menuLink, height, displayAmount }: {
+  menuLink: string;
+  height: string;
+  displayAmount: number;
+}) => {
+  const [data, setData] = useState<MemberDataTypes[]>([])
+  const [searchData, setSearchData] = useState<MemberDataTypes[]>([])
+
   const navigate = useNavigate();
 
   const handleClickRow = (link: string) => navigate(link)
-  const [searchData, setSearchData] = useState(memberList)
-  const [searchKeyword, setSearchKeyword] = useState("")
-
-  const handleInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearchKeyword(e.target.value);
-
-  useEffect(() => {
-    const filteredData = memberList.filter(member => member.kor_name.includes(searchKeyword))
-    searchKeyword !== "" ? setSearchData(filteredData) : setSearchData(memberList)
-  }, [searchKeyword])
 
   return (
-    <Card className='max-h-[780px] overflow-y-auto'>
+    <Card
+      className='overflow-hidden relative'
+      style={{ height: height }}
+    >
       <CardContent className="mt-5">
-        <Input
-          className="w-full my-3"
-          value={searchKeyword}
-          onChange={(e) => handleInputSearch(e)}
-          placeholder='이름으로 검색' />
+        <FilterCondition setSearchData={setSearchData} />
+
         <Table className='text-center'>
           <TableHeader className='bg-muted'>
             <TableRow>
               <TableHead className='w-[130px]'>직급</TableHead>
-              <TableHead className="w-[100px] text-left">이름</TableHead>
+              <TableHead className="w-[100px]">이름</TableHead>
               <TableHead className='w-[200px]'>직책</TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody>
-            {searchData.map(member => (
+            {data.map(member => (
               <TableRow
                 key={member.employee_number}
                 className='cursor-pointer'
-                onClick={() => handleClickRow(`/hr_record/${member.employee_number}`)}
-              >
+                onClick={() => handleClickRow(`/${menuLink}/${member.employee_number}`)}>
+
                 <TableCell className="hidden sm:table-cell">
                   <Badge className="text-xs" variant="secondary">
                     {member.rank}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-left">
-                  {member.kor_name}
-                </TableCell>
+                <TableCell>{member.kor_name}</TableCell>
                 <TableCell>{member.position}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
-
+        <Paging
+          beforePagingData={searchData}
+          setData={setData}
+          displayAmount={displayAmount}
+        />
       </CardContent>
     </Card>
   );

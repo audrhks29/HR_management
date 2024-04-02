@@ -1,7 +1,7 @@
 
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { memo } from 'react';
-import Content from './Content';
+import Contents from './Contents';
 
 const Index = memo(() => {
   return (
@@ -11,7 +11,7 @@ const Index = memo(() => {
         <TabsTrigger value="edu_career">학력&경력</TabsTrigger>
       </TabsList>
 
-      <Content />
+      <Contents />
 
     </Tabs>
   );

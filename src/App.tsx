@@ -41,6 +41,7 @@ function App() {
             {/* salary */}
             <Route path="/salary_status" index element={<Salary_status />} />
             <Route path="/salary_history" index element={<Salary_history />} />
+            <Route path="/salary_history/:employee_number" index element={<Salary_history />} />
 
             {/* attitude */}
             <Route path="/attitude_commute_time" index element={<Attitude_commute_time />} />

@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import Career from './menu/career/Career';
 import Education from './menu/career/Education';
 
-const Content = memo(() => {
+const Contents = memo(() => {
   return (
     <div className='mt-5'>
       <TabsContent
@@ -35,4 +35,4 @@ const Content = memo(() => {
   );
 });
 
-export default Content;
+export default Contents;

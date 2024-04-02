@@ -12,7 +12,7 @@ const Career = memo(() => {
 
   const personalData = memberData.find(member => member.employee_number === employee_number)
   return (
-    <Card className='min-h-[700px] p-8'>
+    <Card className='h-[800px] p-8'>
       <CardHeader className='border-b-2'>
         <CardTitle>
           <div className='flex items-center mb-3'>

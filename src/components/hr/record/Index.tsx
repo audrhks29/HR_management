@@ -1,37 +1,27 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Badge } from '@/components/ui/badge';
 
-import memberData from '../../../assets/sampleData/memberData.json'
+import memberList from '../../../assets/sampleData/memberData.json'
+import Paging from '@/shared/Paging';
+import FilterCondition from '@/shared/FilterCondition';
 
 const Index = memo(() => {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [data, setData] = useState<MemberDataTypes[]>([])
+  const [data, setData] = useState<MemberDataTypes[]>([]);
+  const [searchData, setSearchData] = useState(memberList);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const displayAmount = 12; // 페이지 당 index 갯수
-  const lastPage = Math.ceil(memberData.length / displayAmount); //마지막 페이지 번호
-  const pageIndex = Array.from({ length: lastPage }, (_, i) => i + 1) // 페이지 번호 배열
-
-  useEffect(() => {
-    const slicedData = memberData.slice((currentPage - 1) * displayAmount, currentPage * displayAmount)
-    setData(slicedData)
-  }, [currentPage])
-
-  // 페이지 이전, 다음 버튼 클릭
-  const handleClickPrev = () => currentPage !== 1 ? setCurrentPage(currentPage - 1) : ""
-  const handleClickNext = () => currentPage !== lastPage ? setCurrentPage(currentPage + 1) : ""
-
-  const handleClickRow = (id: string) => navigate(`${id}`)
+  const handleClickRow = (id: string) => navigate(`${id}`);
 
   return (
-    <Card className='h-full relative'>
+    <Card className='h-[850px] relative'>
       <CardContent className='py-8'>
+        <FilterCondition setSearchData={setSearchData} />
+
         <Table className='text-center'>
           <TableHeader className='bg-muted'>
             <TableRow>
@@ -74,36 +64,11 @@ const Index = memo(() => {
           </TableBody>
         </Table>
 
-        <Pagination className='absolute bottom-8 w-full'>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious
-                onClick={handleClickPrev}
-                className="cursor-pointer" />
-            </PaginationItem>
-
-            <PaginationItem>
-              {pageIndex.map((page, index) => {
-                const isCurrent = currentPage === index + 1
-                return (
-                  <PaginationLink
-                    key={index}
-                    onClick={() => setCurrentPage(page)}
-                    style={{ background: isCurrent ? "#1f2937" : "" }}
-                    className='cursor-pointer'
-                  >
-                    {page}
-                  </PaginationLink>
-                )
-              })}
-            </PaginationItem>
-
-            <PaginationItem>
-              <PaginationNext onClick={handleClickNext} className="cursor-pointer" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-
+        <Paging
+          beforePagingData={searchData}
+          setData={setData}
+          displayAmount={11}
+        />
       </CardContent>
     </Card>
   );

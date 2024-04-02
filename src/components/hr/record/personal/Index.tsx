@@ -4,8 +4,6 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Contents from './Contents';
 
 const Index = memo(() => {
-
-
   return (
     <Tabs defaultValue="info" className="w-full">
       <TabsList className="grid grid-cols-2 w-[400px]">
