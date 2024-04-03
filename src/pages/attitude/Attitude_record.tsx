@@ -1,9 +1,10 @@
 import { memo } from 'react';
+import Index from './record/Index';
 
 const Attitude_record = memo(() => {
   return (
     <main>
-      근태 기록
+      <Index />
     </main>
   );
 });

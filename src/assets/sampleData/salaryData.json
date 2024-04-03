@@ -1,0 +1,77 @@
+[
+  {
+    "employee_number": "160301",
+    "data": [
+      {
+        "year": 2024,
+        "salary": [
+          {
+            "month": 1,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 0
+          },
+          {
+            "month": 2,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 0
+          },
+          {
+            "month": 3,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 3000000,
+            "saturday_work_allowance": 600000,
+            "night_work_allowance": 200000,
+            "annual_leave_allowance": 0,
+            "meals": 0
+          }
+        ]
+      },
+      {
+        "year": 2023,
+        "salary": [
+          {
+            "month": 1,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 160000,
+            "annual_leave_allowance": 790000,
+            "meals": 0
+          },
+          {
+            "month": 2,
+            "salary": 10000000,
+            "overtime_pay": 1600000,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 200000
+          },
+          {
+            "month": 3,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 3000000,
+            "saturday_work_allowance": 600000,
+            "night_work_allowance": 200000,
+            "annual_leave_allowance": 0,
+            "meals": 0
+          }
+        ]
+      }
+    ]
+  }
+]
