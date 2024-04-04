@@ -9,7 +9,7 @@
     "team": "",
     "position": "대표이사",
     "rank": "CEO",
-    "date_of_joining": "20160305"
+    "date_of_joining": "2016년 03월 05일"
   },
   {
     "employee_number": "160401",
@@ -21,7 +21,7 @@
     "team": "",
     "position": "영업부장",
     "rank": "상무",
-    "date_of_joining": "20160408"
+    "date_of_joining": "2016년 04월 08일"
   },
   {
     "employee_number": "160403",
@@ -33,7 +33,7 @@
     "team": "프론트엔드팀",
     "position": "프론트팀장",
     "rank": "차장",
-    "date_of_joining": "20160421"
+    "date_of_joining": "2016년 04월 21일"
   },
   {
     "employee_number": "160406",
@@ -45,7 +45,7 @@
     "team": "디자인팀",
     "position": "디자인팀장",
     "rank": "차장",
-    "date_of_joining": "20160428"
+    "date_of_joining": "2016년 04월 28일"
   },
   {
     "employee_number": "170302",
@@ -57,7 +57,7 @@
     "team": "서버팀",
     "position": "서버팀장",
     "rank": "차장",
-    "date_of_joining": "20170303"
+    "date_of_joining": "2017년 03월 03일"
   },
   {
     "employee_number": "180901",
@@ -69,7 +69,7 @@
     "team": "",
     "position": "개발부장",
     "rank": "부장",
-    "date_of_joining": "20180914"
+    "date_of_joining": "2018년 09월 14일"
   },
   {
     "employee_number": "181001",
@@ -81,7 +81,7 @@
     "team": "",
     "position": "경영지원부장",
     "rank": "부장",
-    "date_of_joining": "20181022"
+    "date_of_joining": "2018년 10월 22일"
   },
   {
     "employee_number": "190701",
@@ -93,7 +93,7 @@
     "team": "인사팀",
     "position": "인사팀장",
     "rank": "차장",
-    "date_of_joining": "20190709"
+    "date_of_joining": "2019년 07월 09일"
   },
   {
     "employee_number": "200302",
@@ -105,7 +105,7 @@
     "team": "회계팀",
     "position": "회계팀장",
     "rank": "과장",
-    "date_of_joining": "20200306"
+    "date_of_joining": "2020년 03월 06일"
   },
   {
     "employee_number": "200801",
@@ -117,7 +117,7 @@
     "team": "해외영업팀",
     "position": "해외영업팀장",
     "rank": "대리",
-    "date_of_joining": "20200806"
+    "date_of_joining": "2020년 08월 06일"
   },
   {
     "employee_number": "200802",
@@ -129,7 +129,7 @@
     "team": "국내영업팀",
     "position": "",
     "rank": "대리",
-    "date_of_joining": "20200806"
+    "date_of_joining": "2020년 08월 06일"
   },
   {
     "employee_number": "200902",
@@ -141,7 +141,7 @@
     "team": "국내영업팀",
     "position": "",
     "rank": "대리",
-    "date_of_joining": "20200911"
+    "date_of_joining": "2020년 09월 11일"
   },
   {
     "employee_number": "210501",
@@ -153,7 +153,7 @@
     "team": "감사팀",
     "position": "감사팀장",
     "rank": "주임",
-    "date_of_joining": "20210510"
+    "date_of_joining": "2021년 05월 10일"
   },
   {
     "employee_number": "211201",
@@ -165,7 +165,7 @@
     "team": "인사팀",
     "position": "",
     "rank": "과장",
-    "date_of_joining": "20211206"
+    "date_of_joining": "2021년 12월 06일"
   },
   {
     "employee_number": "230102",
@@ -177,7 +177,7 @@
     "team": "해외영업팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "20230105"
+    "date_of_joining": "2023년 01월 05일"
   },
   {
     "employee_number": "230201",
@@ -189,7 +189,7 @@
     "team": "감사팀",
     "position": "",
     "rank": "주임",
-    "date_of_joining": "20230206"
+    "date_of_joining": "2023년 02월 06일"
   },
   {
     "employee_number": "230501",
@@ -201,7 +201,7 @@
     "team": "해외영업팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "20230507"
+    "date_of_joining": "2023년 05월 07일"
   },
   {
     "employee_number": "230502",
@@ -213,7 +213,7 @@
     "team": "프론트엔드팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "20230507"
+    "date_of_joining": "2023년 05월 07일"
   },
   {
     "employee_number": "230601",
@@ -225,7 +225,7 @@
     "team": "인사팀",
     "position": "",
     "rank": "주임",
-    "date_of_joining": "20230612"
+    "date_of_joining": "2023년 06월 12일"
   },
   {
     "employee_number": "230602",
@@ -237,7 +237,7 @@
     "team": "회계팀",
     "position": "",
     "rank": "주임",
-    "date_of_joining": "20230615"
+    "date_of_joining": "2023년 06월 15일"
   },
   {
     "employee_number": "230901",
@@ -249,7 +249,7 @@
     "team": "디자인팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "20230917"
+    "date_of_joining": "2023년 09월 17일"
   },
   {
     "employee_number": "230902",
@@ -261,7 +261,7 @@
     "team": "서버팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "20230917"
+    "date_of_joining": "2023년 09월 17일"
   },
   {
     "employee_number": "231001",
@@ -273,7 +273,7 @@
     "team": "정보보안팀",
     "position": "정보보안팀장",
     "rank": "대리",
-    "date_of_joining": "20231002"
+    "date_of_joining": "2023년 10월 02일"
   },
   {
     "employee_number": "231002",
@@ -285,7 +285,7 @@
     "team": "프론트엔드팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "20231002"
+    "date_of_joining": "2023년 10월 02일"
   },
   {
     "employee_number": "231003",
@@ -297,7 +297,7 @@
     "team": "프론트엔드팀",
     "position": "",
     "rank": "대리",
-    "date_of_joining": "20231002"
+    "date_of_joining": "2023년 10월 02일"
   },
   {
     "employee_number": "231004",
@@ -309,7 +309,7 @@
     "team": "국내영업팀",
     "position": "국내영업팀장",
     "rank": "이사",
-    "date_of_joining": "20231002"
+    "date_of_joining": "2023년 10월 02일"
   },
   {
     "employee_number": "240101",
@@ -321,7 +321,7 @@
     "team": "국내영업팀",
     "position": "",
     "rank": "대리",
-    "date_of_joining": "20240106"
+    "date_of_joining": "2024년 01월 06일"
   },
   {
     "employee_number": "240102",
@@ -333,7 +333,7 @@
     "team": "프론트엔드팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "20240106"
+    "date_of_joining": "2024년 01월 06일"
   },
   {
     "employee_number": "240201",
@@ -345,7 +345,7 @@
     "team": "디자인팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "20240208"
+    "date_of_joining": "2024년 02월 08일"
   },
   {
     "employee_number": "240202",
@@ -357,6 +357,6 @@
     "team": "서버팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "20240221"
+    "date_of_joining": "2024년 02월 21일"
   }
 ]

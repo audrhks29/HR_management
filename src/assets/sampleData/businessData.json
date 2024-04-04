@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "kor_desc": "상호",
+    "eng_desc": "name of company",
+    "displayText": "00산업"
+  },
+  {
+    "id": 2,
+    "kor_desc": "사업자등록번호",
+    "eng_desc": "business registration number",
+    "displayText": "000-00-00000"
+  },
+  {
+    "id": 3,
+    "kor_desc": "대표자",
+    "eng_desc": "name of representative",
+    "displayText": "지은호"
+  },
+  {
+    "id": 4,
+    "kor_desc": "법인등록번호",
+    "eng_desc": "resident registration number",
+    "displayText": "111111-2222222"
+  },
+  {
+    "id": 5,
+    "kor_desc": "주소",
+    "eng_desc": "business address",
+    "displayText": "경기도 성남시 분당구 대왕판교로 670 유스페이스2 A동 000호"
+  },
+  {
+    "id": 6,
+    "kor_desc": "개업일",
+    "eng_desc": "date of business commencement",
+    "displayText": "2020년 10월 14일"
+  },
+  {
+    "id": 7,
+    "kor_desc": "업종",
+    "eng_desc": "type of business",
+    "displayText": "정보통신업/시스템 소프트웨어 개발 및 공급업"
+  },
+  {
+    "id": 8,
+    "kor_desc": "대표번호",
+    "eng_desc": "main number",
+    "displayText": "031-000-0000"
+  }
+]

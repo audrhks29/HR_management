@@ -26,8 +26,8 @@ const Index = memo(() => {
           <TableHeader className='bg-muted'>
             <TableRow>
               <TableHead className='w-[140px]'>사원번호</TableHead>
-              <TableHead className="w-[260px] text-left">이름</TableHead>
-              <TableHead className='w-[108px]'>성별</TableHead>
+              <TableHead className="w-[230px] text-left">이름</TableHead>
+              <TableHead className='w-[80px]'>성별</TableHead>
               <TableHead className='w-[90px]'>관할</TableHead>
               <TableHead className='w-[160px]'>부서</TableHead>
               <TableHead className='w-[160px]'>팀</TableHead>

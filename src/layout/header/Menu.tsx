@@ -6,11 +6,16 @@ import { IoMdArrowDropdown } from "react-icons/io";
 
 const Menu = memo(() => {
   const [activeMenus, setActiveMenus] = useState<number[]>([]);
-  const [height, setHeight] = useState(window.innerHeight)
+  const [height, setHeight] = useState(window.innerHeight);
+
+  const location = window.location.hash;
+  const [hashName, setHashName] = useState(location)
+
+  const screenHeight = window.innerHeight;
 
   useEffect(() => {
-    setHeight(window.innerHeight)
-  }, [])
+    setHeight(screenHeight)
+  }, [screenHeight])
 
   const handleClickMenu = (id: number) => {
     activeMenus.includes(id)
@@ -18,18 +23,18 @@ const Menu = memo(() => {
       : setActiveMenus([...activeMenus, id]);
   }
 
+  const handleClickSubMenu = (link: React.SetStateAction<string>) => setHashName(link)
+
   return (
     <div
       className="border-r border-primary/40"
-      style={{ height: height - 60 }}
-    >
+      style={{ height: height - 60 }}>
       <nav className="text-sm font-medium px-4">
         {menuList.map(menu => (
           <React.Fragment key={menu.id}>
             <div
               className="h-10 flex justify-between items-center border px-3 hover:bg-secondary rounded-md cursor-pointer"
-              onClick={() => handleClickMenu(menu.id)}
-            >
+              onClick={() => handleClickMenu(menu.id)}>
               <span>{menu.title}</span>
               <i
                 className="text-[25px] duration-500"
@@ -44,11 +49,13 @@ const Menu = memo(() => {
                   key={submenu.id}
                   to={submenu.link}
                   className="h-10 flex flex-col justify-center px-6 duration-1000 hover:bg-secondary rounded-md"
+                  onClick={() => handleClickSubMenu(submenu.link)}
                   style={{
                     opacity: activeMenus.includes(menu.id) ? "100%" : "0%",
                     maxHeight: activeMenus.includes(menu.id) ? "80px" : "0px",
                     overflow: "hidden",
-                    transition: "opacity 0.7s ease"
+                    transition: "opacity 0.7s ease",
+                    backgroundColor: hashName.includes(submenu.link) ? "rgba(0,0,0,0.5)" : ""
                   }}>
                   <li>{submenu.title}</li>
                 </Link>

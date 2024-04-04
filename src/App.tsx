@@ -10,7 +10,6 @@ import Login from './pages/Login'
 
 import Hr_register from './pages/hr/Hr_register'
 import Hr_record from './pages/hr/Hr_record'
-import Hr_appointments from './pages/hr/Hr_appointments'
 import Hr_organization_chart from './pages/hr/Hr_organization_chart'
 import Personal from './pages/hr/record/Personal'
 
@@ -36,7 +35,6 @@ function App() {
             <Route path="/hr_record" index element={<Hr_record />} />
             <Route path="/hr_record/:employee_number" element={<Personal />} />
             <Route path="/hr_organization_chart" index element={<Hr_organization_chart />} />
-            <Route path="/hr_appointments" index element={<Hr_appointments />} />
 
             {/* salary */}
             <Route path="/salary_status" index element={<Salary_status />} />

@@ -4,44 +4,35 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 
-import salaryList from '@/assets/sampleData/memberSalaryData.json'
-
 import FilterCondition from '../../../shared/FilterCondition';
 import Paging from '@/shared/Paging';
-import { Button } from '@/components/ui/button';
-import { Calendar } from 'lucide-react';
+import MonthPicker from '@/shared/MonthPicker';
 
 const Index = memo(() => {
   const [data, setData] = useState<MemberDataTypes[]>([])
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([])
 
+  const date = new Date()
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
 
-  // const [isMonthPicker, setIsMonthPicker] = useState(new Date());
-  // console.log(isMonthPicker);
+  const [isMonthPicker, setIsMonthPicker] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState({
+    year: year.toString(),
+    month: month.toString()
+  });
+
   return (
     <Card className='h-[850px] relative'>
-      {/* <Button variant="outline">
-        <Calendar />
-      </Button>
-      <Card className='w-[500px]'>
-        <CardContent className='grid grid-cols-3 gap-3'>
-          <Button variant="secondary" value={1}>Jan.</Button>
-          <Button variant="secondary" value={2}>Feb.</Button>
-          <Button variant="secondary" value={3}>Mar.</Button>
-          <Button variant="secondary" value={4}>Apr.</Button>
-          <Button variant="secondary" value={5}>May.</Button>
-          <Button variant="secondary" value={6}>Jun.</Button>
-          <Button variant="secondary" value={7}>Jul.</Button>
-          <Button variant="secondary" value={8}>Aug.</Button>
-          <Button variant="secondary" value={9}>Sep.</Button>
-          <Button variant="secondary" value={10}>Oct.</Button>
-          <Button variant="secondary" value={11}>Nov.</Button>
-          <Button variant="secondary" value={12}>Dec.</Button>
-        </CardContent>
-      </Card> */}
       <CardContent className='py-8'>
         <FilterCondition setSearchData={setSearchData} />
 
+        <MonthPicker
+          isMonthPicker={isMonthPicker}
+          setIsMonthPicker={setIsMonthPicker}
+          selectedMonth={selectedMonth}
+          setSelectedMonth={setSelectedMonth}
+        />
         <Table className='text-center'>
           <TableHeader className='bg-muted'>
             <TableRow>
