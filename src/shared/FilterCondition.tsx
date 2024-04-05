@@ -60,6 +60,7 @@ const FilterCondition = memo(({ setSearchData }: {
       position: "",
       quarter: ""
     })
+    setIsFilterPopup(false)
   }
 
   useEffect(() => {
@@ -88,7 +89,7 @@ const FilterCondition = memo(({ setSearchData }: {
           <Button
             className='w-28'
             onClick={() => setIsFilterPopup(!isFilterPopup)}>
-            <i><FaFilter /></i>
+            <i className='mr-2'><FaFilter /></i>
             <span>검색조건</span>
           </Button>
         </div>

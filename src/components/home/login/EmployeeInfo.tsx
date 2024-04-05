@@ -7,6 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import memberData from '@/assets/sampleData/memberData.json'
 import { Button } from '@/components/ui/button';
+import CommuteTime from './CommuteTime';
+import { Separator } from '@/components/ui/separator';
 
 const EmployeeInfo = memo(() => {
   const loggedInUserData = memberData.find(member => member.employee_number === "160301")
@@ -52,8 +54,23 @@ const EmployeeInfo = memo(() => {
           <Mail />
           <Settings />
         </CardContent>
-        <CardContent className='p-0 m-0 bg-muted/50'>
-          dd
+        <Separator />
+        <CardContent className='p-6 m-0 text-[14px]'>
+          <CardTitle className='text-[16px] pb-3'>
+            <span>연차 내역</span>
+          </CardTitle>
+          <Separator />
+          <div className='grid gap-3 grid-cols-2 pt-3 text-muted-foreground'>
+            <p>연차 수</p>
+            <p className='text-right'>15일</p>
+            <p>남은 연차 수</p>
+            <p className='text-right'>6일</p>
+          </div>
+        </CardContent>
+        <Separator />
+        <CardContent className='p-6 m-0'>
+
+          <CommuteTime />
         </CardContent>
       </CardContent>
     </Card>

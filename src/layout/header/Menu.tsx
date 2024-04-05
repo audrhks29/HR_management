@@ -1,8 +1,9 @@
 import React, { memo, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import menuList from '../../assets/menuList.json'
+
 import { IoMdArrowDropdown } from "react-icons/io";
 
+import menuList from '../../assets/menuList.json'
 
 const Menu = memo(() => {
   const [activeMenus, setActiveMenus] = useState<number[]>([]);
@@ -24,16 +25,15 @@ const Menu = memo(() => {
   }
 
   const handleClickSubMenu = (link: React.SetStateAction<string>) => setHashName(link)
-
   return (
     <div
       className="border-r border-primary/40"
       style={{ height: height - 60 }}>
-      <nav className="text-sm font-medium px-4">
+      <nav className="text-sm font-medium px-4 grid gap-1 pt-2">
         {menuList.map(menu => (
           <React.Fragment key={menu.id}>
             <div
-              className="h-10 flex justify-between items-center border px-3 hover:bg-secondary rounded-md cursor-pointer"
+              className="h-10 flex justify-between items-center border dark:border-primary/20 px-3 hover:bg-secondary rounded-md cursor-pointer"
               onClick={() => handleClickMenu(menu.id)}>
               <span>{menu.title}</span>
               <i
