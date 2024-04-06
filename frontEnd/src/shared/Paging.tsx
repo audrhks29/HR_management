@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useLayoutEffect, useState } from 'react';
 
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 
@@ -15,7 +15,7 @@ const Paging = memo(({ beforePagingData, setData, displayAmount }: {
   const handleClickPrev = () => currentPage !== 1 ? setCurrentPage(currentPage - 1) : ""
   const handleClickNext = () => currentPage !== lastPage ? setCurrentPage(currentPage + 1) : ""
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const slicedData = beforePagingData.slice((currentPage - 1) * displayAmount, currentPage * displayAmount)
     setData(slicedData)
   }, [currentPage, beforePagingData, setData, displayAmount])

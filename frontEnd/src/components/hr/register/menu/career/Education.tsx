@@ -15,6 +15,7 @@ import { Calendar } from '@/components/ui/calendar';
 const Education = memo(() => {
   const [date, setDate] = useState<Date | undefined>(new Date())
 
+  const [grade, setGrade] = useState("")
   return (
     <Card className='w-full p-8'>
       <CardHeader>
@@ -26,7 +27,9 @@ const Education = memo(() => {
 
           {/* 졸업구분 */}
           <div className='space-y-1'>
-            <Select>
+            <Select
+              value={grade}
+              onValueChange={(value) => setGrade(value)}>
               <Label>졸업 구분</Label>
               <SelectTrigger>
                 <SelectValue placeholder="졸업 구분" />

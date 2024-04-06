@@ -1,10 +1,12 @@
 import axios from "axios";
-// const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({
-//   queryKey: ["memberData"],
-//   queryFn: getMemberData,
-// });
+
 export const getMemberData = async () => {
   const response = await axios.get("http://localhost:5000/member");
+  return response.data
+};
+
+export const getPersonalData = async (employee_number: string | undefined) => {
+  const response = await axios.get(`http://localhost:5000/member/${employee_number}`);
   return response.data
 };
 

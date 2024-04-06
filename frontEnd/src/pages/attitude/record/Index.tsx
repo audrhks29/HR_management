@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import FilterCondition from '../../../shared/FilterCondition';
 import Paging from '@/shared/Paging';
 import MonthPicker from '@/shared/MonthPicker';
-import { getMemberData } from '@/server/fatchData';
+import { getMemberData } from '@/server/fetchReadData';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 const Index = memo(() => {

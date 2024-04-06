@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { getBusinessData } from '@/server/fatchData';
+import { getBusinessData } from '@/server/fetchReadData';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 

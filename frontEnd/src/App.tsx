@@ -23,6 +23,7 @@ import Salary_history from './pages/salary/Salary_history'
 import Attitude_commute_time from './pages/attitude/Attitude_commute_time'
 import Attitude_record from './pages/attitude/Attitude_record'
 import { Suspense } from 'react';
+import Loading from './shared/Loading';
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
           <HashRouter>
             <Header />
             <Menu />
-            <Suspense fallback={<h2>loading</h2>}>
+            <Suspense fallback={<Loading />}>
               <Routes>
                 <Route path="/" index element={<Home />} />
 

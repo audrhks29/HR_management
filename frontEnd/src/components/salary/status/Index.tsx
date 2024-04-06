@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 
 import FilterCondition from '../../../shared/FilterCondition';
 import Paging from '@/shared/Paging';
-import { getMemberData, getMemberSalaryData } from '@/server/fatchData';
+import { getMemberData, getMemberSalaryData } from '@/server/fetchReadData';
 
 type QueryResult<T> = {
   data: T;

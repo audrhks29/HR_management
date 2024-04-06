@@ -18,4 +18,15 @@ module.exports = function (app: any, MemberSalary: any) {
       res.status(500).json({ error: err.message });
     }
   });
+
+  // 데이터 삽입
+  app.post('/memberSalary', async (req: any, res: any) => {
+    try {
+      const newMemberSalary = new MemberSalary(req.body);
+      const result = await newMemberSalary.save();
+      res.status(201).json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
 };

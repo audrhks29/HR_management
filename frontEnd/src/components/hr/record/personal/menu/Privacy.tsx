@@ -1,18 +1,13 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { memo } from 'react';
-
-
-import { useParams } from 'react-router-dom';
-import { Badge } from '@/components/ui/badge';
 import { IoMdFemale, IoMdMale } from 'react-icons/io';
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/ui/table';
 
-const Privacy = memo(({ data }: {
-  data: MemberDataTypes[];
+const Privacy = memo(({ personalData }: {
+  personalData: MemberDataTypes | undefined;
 }) => {
-  const { employee_number } = useParams();
-
-  const personalData = data.find(member => member.employee_number === employee_number)
 
   return (
     <Card className='h-[800px] p-8'>

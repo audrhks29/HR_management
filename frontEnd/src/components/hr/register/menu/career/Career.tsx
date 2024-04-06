@@ -105,7 +105,6 @@ const Career = memo(() => {
           </div>
         </div>
 
-
       </CardContent >
     </Card >
   );

@@ -7,15 +7,4 @@ module.exports = function (app: any, Salary: any) {
       res.status(500).json({ error: err.message });
     }
   });
-
-  app.get('/salary/:id', async (req: any, res: any) => {
-    try {
-      const data = await Salary.find({});
-      const { id } = req.params;
-      const filteredData = data.filter((item: SalaryDataTypes) => item.employee_number === id);
-      res.json(filteredData);
-    } catch (err: any) {
-      res.status(500).json({ error: err.message });
-    }
-  });
 };

@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import FilterCondition from '@/shared/FilterCondition';
 import Paging from '@/shared/Paging';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { getMemberData } from '@/server/fatchData';
+import { getMemberData } from '@/server/fetchReadData';
 
 const MemberList = memo(({ menuLink, height, displayAmount }: {
   menuLink: string;

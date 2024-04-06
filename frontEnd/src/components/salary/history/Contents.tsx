@@ -4,7 +4,7 @@ import MemberList from '@/shared/MemberList';
 import { useParams } from 'react-router-dom';
 import Select from './SelectMember/Select';
 import None from './SelectMember/None';
-import { getMemberData, getSalaryData } from '@/server/fatchData';
+import { getPersonalData, getSalaryData } from '@/server/fetchReadData';
 import { useSuspenseQueries } from '@tanstack/react-query';
 
 type QueryResult<T> = {
@@ -12,27 +12,25 @@ type QueryResult<T> = {
 };
 
 type SuspenseQueriesResult = [
-  QueryResult<MemberDataTypes[]>,
-  QueryResult<SalaryDataTypes[]>
+  QueryResult<SalaryDataTypes[]>,
+  QueryResult<MemberDataTypes>,
 ];
 
 const Contents = memo(() => {
   const { employee_number } = useParams();
 
-  const [{ data: memberData }, { data: salaryData }] = useSuspenseQueries<SuspenseQueriesResult>({
+  const [{ data: salaryData }, { data: personalData }] = useSuspenseQueries<SuspenseQueriesResult>({
     queries: [
-      {
-        queryKey: ["memberData"],
-        queryFn: getMemberData,
-      },
       {
         queryKey: ["salaryData"],
         queryFn: getSalaryData,
+      },
+      {
+        queryKey: [`personalData/${employee_number}`],
+        queryFn: () => getPersonalData(employee_number),
       }
     ]
   });
-
-  const personalData = memberData.find(member => member.employee_number === employee_number)
 
   return (
     <div className='grid grid-cols-[2fr_1fr] gap-6'>

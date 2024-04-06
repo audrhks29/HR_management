@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import Paging from '@/shared/Paging';
 import FilterCondition from '@/shared/FilterCondition';
 
-import { getMemberData } from '@/server/fatchData';
+import { getMemberData } from '@/server/fetchReadData';
 
 const Index = memo(() => {
   const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({

@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import CommuteTime from './CommuteTime';
 import { Separator } from '@/components/ui/separator';
 
-import { getMemberData } from '@/server/fatchData';
+import { getMemberData } from '@/server/fetchReadData';
 
 const EmployeeInfo = memo(() => {
   const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({
