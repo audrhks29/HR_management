@@ -29,3 +29,8 @@ export const getMemberSalaryData = async () => {
   const response = await axios.get("http://localhost:5000/memberSalary");
   return response.data
 };
+
+export const getRankData = async () => {
+  const response = await axios.get("http://localhost:5000/rank");
+  return response.data
+};

@@ -2,6 +2,9 @@ interface MemberDataTypes {
   employee_number: string;
   kor_name: string;
   eng_name: string;
+  phone_number: string;
+  rrn_front: string;
+  rrn_back: string;
   sex: string;
   quarter: string;
   department: string;
@@ -51,4 +54,10 @@ interface BusinessDataTypes {
   kor_desc: string;
   eng_desc: string;
   displayText: string;
+}
+
+interface RankDataTypes {
+  id: number;
+  rank: string;
+  order: number;
 }

@@ -11,8 +11,19 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { getRankData } from '@/server/fetchReadData';
 
-const Department = memo(() => {
+const Department = memo(({ formData, handleChange, handleChangeSelect }: {
+  formData: MemberDataTypes;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeSelect: (name: string, value: string) => void;
+}) => {
+  const { data: rankData }: { data: RankDataTypes[] } = useSuspenseQuery({
+    queryKey: ["rankData"],
+    queryFn: getRankData,
+  });
+
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   return (
@@ -25,7 +36,11 @@ const Department = memo(() => {
         {/* 사원번호 입력 */}
         <div className="space-y-1 w-3/5">
           <Label htmlFor="employee_number">사원번호</Label>
-          <Input id="employee_number" />
+          <Input
+            id="employee_number"
+            name="employee_number"
+            value={formData.employee_number}
+            onChange={handleChange} />
         </div>
 
         {/* 소속 관할, 부서, 팀  */}
@@ -86,31 +101,28 @@ const Department = memo(() => {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="position1">00부장</SelectItem>
-                  <SelectItem value="position2">00부장</SelectItem>
+                  <SelectItem value="00부장">00부장</SelectItem>
+                  <SelectItem value="00팀장">00팀장</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
           </div>
 
           <div>
-            <Select>
+            <Select
+              value={formData.rank}
+              onValueChange={(value) => handleChangeSelect("rank", value)}>
               <Label>직급</Label>
               <SelectTrigger>
                 <SelectValue placeholder="직급" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="rank1">CEO</SelectItem>
-                  <SelectItem value="rank2">부사장</SelectItem>
-                  <SelectItem value="rank3">상무</SelectItem>
-                  <SelectItem value="rank4">이사</SelectItem>
-                  <SelectItem value="rank5">부장</SelectItem>
-                  <SelectItem value="rank6">차장</SelectItem>
-                  <SelectItem value="rank7">과장</SelectItem>
-                  <SelectItem value="rank7">대리</SelectItem>
-                  <SelectItem value="rank7">주임</SelectItem>
-                  <SelectItem value="rank7">사원</SelectItem>
+                  {rankData.map(rank => (
+                    <SelectItem
+                      key={rank.id}
+                      value={rank.rank}>{rank.rank}</SelectItem>
+                  ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -128,8 +140,7 @@ const Department = memo(() => {
               className={cn(
                 "w-[280px] justify-start text-left font-normal",
                 !date && "text-muted-foreground"
-              )}
-            >
+              )}>
               <CalendarIcon className="mr-2 h-4 w-4" />
               {date ? format(date, "PPP") : <span>Pick a date</span>}
             </Button>

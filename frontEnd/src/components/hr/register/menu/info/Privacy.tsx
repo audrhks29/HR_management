@@ -1,34 +1,14 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
-const Privacy = memo(() => {
-  const [formData, setFormData] = useState({
-    korName: '',
-    engName: '',
-    phoneNumber: '',
-    rrn: '',
-    rrnBack: '',
-    sex: 'male',
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSexChange = (value: string) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      sex: value,
-    }));
-  };
-
+const Privacy = memo(({ formData, handleChange, handleSexChange }: {
+  formData: MemberDataTypes;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSexChange: (value: string) => void;
+}) => {
   return (
     <Card className="min-h-[700px] p-8">
       <CardHeader>
@@ -38,33 +18,33 @@ const Privacy = memo(() => {
 
         {/* 한글 이름 입력 */}
         <div className="space-y-1 w-3/5">
-          <Label htmlFor="korName">한글 이름</Label>
+          <Label htmlFor="kor_name">한글 이름</Label>
           <Input
-            id="korName"
-            name="korName"
-            value={formData.korName}
+            id="kor_name"
+            name="kor_name"
+            value={formData.kor_name}
             onChange={handleChange} />
         </div>
 
         {/* 영문 이름 입력 */}
         <div className="space-y-1 w-3/5">
-          <Label htmlFor="engName">영문 이름</Label>
+          <Label htmlFor="eng_name">영문 이름</Label>
           <Input
-            id="engName"
-            name="engName"
-            value={formData.engName}
+            id="eng_name"
+            name="eng_name"
+            value={formData.eng_name}
             onChange={handleChange} />
         </div>
 
         {/* 핸드폰 번호 입력 */}
         <div className="space-y-1 w-3/5">
-          <Label htmlFor="phoneNumber">
+          <Label htmlFor="phone_number">
             핸드폰 번호<span className="text-[12px]"> ( '-' 를 제외하고 입력)</span>
           </Label>
           <Input
-            id="phoneNumber"
-            name="phoneNumber"
-            value={formData.phoneNumber}
+            id="phone_number"
+            name="phone_number"
+            value={formData.phone_number}
             onChange={handleChange} />
         </div>
 
@@ -73,16 +53,16 @@ const Privacy = memo(() => {
           <Label htmlFor="rrn">주민등록번호</Label>
           <div className="flex items-center gap-3">
             <Input
-              id="rrn"
-              name="rrn"
-              value={formData.rrn}
+              id="rrn_front"
+              name="rrn_front"
+              value={formData.rrn_front}
               onChange={handleChange} />
             <span> - </span>
             <Input
               type="password"
-              id="rrnBack"
-              name="rrnBack"
-              value={formData.rrnBack}
+              id="rrn_back"
+              name="rrn_back"
+              value={formData.rrn_back}
               onChange={handleChange}
             />
           </div>

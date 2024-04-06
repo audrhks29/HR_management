@@ -53,3 +53,9 @@ interface BusinessDataTypes {
   eng_desc: string;
   displayText: string;
 }
+
+interface RankDataTypes {
+  "id": number;
+  "rank": string
+  "order": number;
+}
