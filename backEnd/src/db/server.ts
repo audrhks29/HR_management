@@ -19,68 +19,12 @@ app.use(cors());
 // 미들웨어 설정
 app.use(express.json());
 
-// 스키마 설정
-const salaryDBSchema = new mongoose.Schema({
-  employee_number: String,
-  data: {
-    year: Number,
-    salary: {
-      month: Number,
-      salary: Number,
-      overtime_pay: Number,
-      bonus: Number,
-      saturday_work_allowance: Number,
-      night_work_allowance: Number,
-      annual_leave_allowance: Number,
-      meals: Number
-    }
-  }
-});
-
-const memberDBSchema = new mongoose.Schema({
-  id: String,
-  employee_number: String,
-  kor_name: String,
-  eng_name: String,
-  sex: String,
-  quarter: String,
-  department: String,
-  team: String,
-  position: String,
-  rank: String,
-  date_of_joining: String
-});
-
-const memberSalaryDBSchema = new mongoose.Schema({
-  employee_number: String,
-  wage: Number
-});
-
-const organizationDBSchema = new mongoose.Schema({
-  id: Number,
-  quarter: String,
-  depart: {
-    id: Number,
-    name: String,
-    team: {
-      id: Number,
-      name: String
-    }
-  }
-})
-
-const businessDBSchema = new mongoose.Schema({
-  id: Number,
-  kor_desc: String,
-  eng_desc: String,
-  displayText: String
-})
-
-const Salary = mongoose.model('Salary', salaryDBSchema, 'salaryDB');
-const Member = mongoose.model('Member', memberDBSchema, 'memberDB');
-const MemberSalary = mongoose.model('MemberSalary', memberSalaryDBSchema, 'memberSalaryDB');
-const Organization = mongoose.model('Organization', organizationDBSchema, 'organizationDB');
-const Business = mongoose.model('Business', businessDBSchema, 'businessDB');
+// 스키마 require
+const Salary = require('../models/schemas/salary').default;
+const Member = require('../models/schemas/member').default;
+const MemberSalary = require('../models/schemas/memberSalary').default;
+const Organization = require('../models/schemas/organization').default;
+const Business = require('../models/schemas/business').default;
 
 // 라우트 설정
 require('../routes/salary')(app, Salary);
