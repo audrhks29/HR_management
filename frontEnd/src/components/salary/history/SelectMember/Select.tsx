@@ -5,12 +5,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { IoMdFemale, IoMdMale } from 'react-icons/io';
 
-import salaryData from '@/assets/sampleData/salaryData.json'
 import { useParams } from 'react-router-dom';
 
-const Select = memo(({ personalData }: {
+const Select = memo(({ personalData, salaryData }: {
   personalData: MemberDataTypes;
+  salaryData: SalaryDataTypes[];
 }) => {
+
   const [data, setData] = useState<SalaryDataTypes | null>(null);
   const [isOpenDetailYear, setIsOpenDetailYear] = useState<number[]>([]);
 
@@ -25,7 +26,7 @@ const Select = memo(({ personalData }: {
   useEffect(() => {
     const foundData = salaryData.find(item => item.employee_number === employee_number);
     foundData ? setData(foundData) : setData(null)
-  }, [employee_number])
+  }, [employee_number, salaryData])
 
   return (
     <Card className='h-[850px] p-8'>

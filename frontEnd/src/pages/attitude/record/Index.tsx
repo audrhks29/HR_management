@@ -7,9 +7,16 @@ import { Badge } from '@/components/ui/badge';
 import FilterCondition from '../../../shared/FilterCondition';
 import Paging from '@/shared/Paging';
 import MonthPicker from '@/shared/MonthPicker';
+import { getMemberData } from '@/server/fatchData';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 const Index = memo(() => {
-  const [data, setData] = useState<MemberDataTypes[]>([])
+  const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({
+    queryKey: ["memberData"],
+    queryFn: getMemberData,
+  });
+
+  const [data, setData] = useState<MemberDataTypes[]>(memberData)
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([])
 
   const date = new Date()
@@ -25,7 +32,9 @@ const Index = memo(() => {
   return (
     <Card className='h-[850px] relative'>
       <CardContent className='py-8'>
-        <FilterCondition setSearchData={setSearchData} />
+        <FilterCondition
+          data={memberData}
+          setSearchData={setSearchData} />
 
         <MonthPicker
           isMonthPicker={isMonthPicker}

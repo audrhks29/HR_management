@@ -1,22 +1,46 @@
 import { memo, useState } from 'react';
+import { useSuspenseQueries } from '@tanstack/react-query';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 
-import salaryList from '@/assets/sampleData/memberSalaryData.json'
-
 import FilterCondition from '../../../shared/FilterCondition';
 import Paging from '@/shared/Paging';
+import { getMemberData, getMemberSalaryData } from '@/server/fatchData';
+
+type QueryResult<T> = {
+  data: T;
+};
+
+type SuspenseQueriesResult = [
+  QueryResult<MemberDataTypes[]>,
+  QueryResult<MemberSalaryDataTypes[]>
+];
 
 const Index = memo(() => {
-  const [data, setData] = useState<MemberDataTypes[]>([])
+  const [{ data: memberData }, { data: memberSalaryData }] = useSuspenseQueries<SuspenseQueriesResult>({
+    queries: [
+      {
+        queryKey: ["memberData"],
+        queryFn: getMemberData,
+      },
+      {
+        queryKey: ["memberSalaryData"],
+        queryFn: getMemberSalaryData,
+      }
+    ]
+  });
+
+  const [data, setData] = useState<MemberDataTypes[]>(memberData)
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([])
 
   return (
     <Card className='h-[850px] relative'>
       <CardContent className='py-8'>
-        <FilterCondition setSearchData={setSearchData} />
+        <FilterCondition
+          data={memberData}
+          setSearchData={setSearchData} />
 
         <Table className='text-center'>
           <TableHeader className='bg-muted'>
@@ -33,7 +57,7 @@ const Index = memo(() => {
 
           <TableBody>
             {data.map(member => {
-              const salary = salaryList.find(salary => salary.employee_number === member.employee_number)
+              const salary = memberSalaryData.find(salary => salary.employee_number === member.employee_number)
 
               return (
                 <TableRow

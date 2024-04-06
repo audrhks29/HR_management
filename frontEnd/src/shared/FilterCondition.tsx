@@ -5,10 +5,10 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/u
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-import memberList from '@/assets/sampleData/memberData.json'
 import { FaFilter } from 'react-icons/fa';
 
-const FilterCondition = memo(({ setSearchData }: {
+const FilterCondition = memo(({ data, setSearchData }: {
+  data: MemberDataTypes[];
   setSearchData: React.Dispatch<React.SetStateAction<MemberDataTypes[]>>;
 }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -64,7 +64,7 @@ const FilterCondition = memo(({ setSearchData }: {
   }
 
   useEffect(() => {
-    const filteredData = memberList.filter(member => {
+    const filteredData = data.filter(member => {
       const nameIncludesKeyword = searchKeyword !== "" ? member.kor_name.includes(searchKeyword) : true;
       const matchesQuarter = category.quarter !== "" ? member.quarter === category.quarter : true;
       const matchesDepartment = category.department !== "" ? member.department === category.department : true;
@@ -74,7 +74,7 @@ const FilterCondition = memo(({ setSearchData }: {
       return nameIncludesKeyword && matchesQuarter && matchesDepartment && matchesRank && matchesPosition;
     });
     setSearchData(filteredData)
-  }, [category, searchKeyword, setSearchData])
+  }, [category, searchKeyword, setSearchData, data])
 
   return (
     <div className='flex mb-4'>

@@ -1,17 +1,25 @@
+
 import { memo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 
-import memberList from '../../../assets/sampleData/memberData.json'
 import Paging from '@/shared/Paging';
 import FilterCondition from '@/shared/FilterCondition';
 
+import { getMemberData } from '@/server/fatchData';
+
 const Index = memo(() => {
-  const [data, setData] = useState<MemberDataTypes[]>([]);
-  const [searchData, setSearchData] = useState(memberList);
+  const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({
+    queryKey: ["memberData"],
+    queryFn: getMemberData,
+  });
+
+  const [data, setData] = useState<MemberDataTypes[]>(memberData);
+  const [searchData, setSearchData] = useState<MemberDataTypes[]>([]);
 
   const navigate = useNavigate();
 
@@ -20,7 +28,9 @@ const Index = memo(() => {
   return (
     <Card className='h-[850px] relative'>
       <CardContent className='py-8'>
-        <FilterCondition setSearchData={setSearchData} />
+        <FilterCondition
+          data={memberData}
+          setSearchData={setSearchData} />
 
         <Table className='text-center'>
           <TableHeader className='bg-muted'>

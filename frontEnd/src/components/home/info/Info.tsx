@@ -1,11 +1,20 @@
 import { memo } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
+
+import { getBusinessData } from '@/server/fatchData';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-import businessData from '@/assets/sampleData/businessData.json'
 import Notification from './notification/Notification';
 
 const Info = memo(() => {
+  const { data: businessData }: { data: BusinessDataTypes[] } = useSuspenseQuery({
+    queryKey: ["businessData"],
+    queryFn: getBusinessData,
+  });
+
   const companyName = businessData.find(business => business.kor_desc === "상호")
+
   return (
     <Card className='col-span-2'>
       <CardHeader>

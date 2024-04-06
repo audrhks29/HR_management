@@ -7,13 +7,20 @@ import { Badge } from '@/components/ui/badge';
 
 import FilterCondition from '@/shared/FilterCondition';
 import Paging from '@/shared/Paging';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { getMemberData } from '@/server/fatchData';
 
 const MemberList = memo(({ menuLink, height, displayAmount }: {
   menuLink: string;
   height: string;
   displayAmount: number;
 }) => {
-  const [data, setData] = useState<MemberDataTypes[]>([])
+  const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({
+    queryKey: ["memberData"],
+    queryFn: getMemberData,
+  });
+
+  const [data, setData] = useState<MemberDataTypes[]>(memberData)
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([])
 
   const navigate = useNavigate();
@@ -26,7 +33,9 @@ const MemberList = memo(({ menuLink, height, displayAmount }: {
       style={{ height: height }}
     >
       <CardContent className="mt-5">
-        <FilterCondition setSearchData={setSearchData} />
+        <FilterCondition
+          data={memberData}
+          setSearchData={setSearchData} />
 
         <Table className='text-center'>
           <TableHeader className='bg-muted'>
@@ -55,6 +64,7 @@ const MemberList = memo(({ menuLink, height, displayAmount }: {
             ))}
           </TableBody>
         </Table>
+
         <Paging
           beforePagingData={searchData}
           setData={setData}

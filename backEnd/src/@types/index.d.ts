@@ -1,4 +1,5 @@
 interface MemberDataTypes {
+  id: string;
   employee_number: string;
   kor_name: string;
   eng_name: string;

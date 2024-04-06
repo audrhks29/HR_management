@@ -1,16 +1,23 @@
 import { memo } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Mail, Settings } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-import memberData from '@/assets/sampleData/memberData.json'
 import { Button } from '@/components/ui/button';
 import CommuteTime from './CommuteTime';
 import { Separator } from '@/components/ui/separator';
 
+import { getMemberData } from '@/server/fatchData';
+
 const EmployeeInfo = memo(() => {
+  const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({
+    queryKey: ["memberData"],
+    queryFn: getMemberData,
+  });
+
   const loggedInUserData = memberData.find(member => member.employee_number === "160301")
 
   return (

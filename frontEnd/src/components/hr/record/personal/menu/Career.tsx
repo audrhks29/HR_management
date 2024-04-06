@@ -1,16 +1,18 @@
 import { memo } from 'react';
 
 import { useParams } from 'react-router-dom';
-import memberData from '@/assets/sampleData/memberData.json'
 import { Badge } from '@/components/ui/badge';
 import { IoMdFemale, IoMdMale } from 'react-icons/io';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
-const Career = memo(() => {
+const Career = memo(({ data }: {
+  data: MemberDataTypes[];
+}) => {
   const { employee_number } = useParams();
 
-  const personalData = memberData.find(member => member.employee_number === employee_number)
+  const personalData = data.find(member => member.employee_number === employee_number)
+
   return (
     <Card className='h-[800px] p-8'>
       <CardHeader className='border-b-2'>

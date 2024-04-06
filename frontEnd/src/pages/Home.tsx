@@ -1,4 +1,3 @@
-
 import { memo } from "react";
 import Index from "@/components/home/Index";
 
