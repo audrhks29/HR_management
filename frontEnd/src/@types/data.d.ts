@@ -12,6 +12,13 @@ interface MemberDataTypes {
   position: string;
   rank: string;
   date_of_joining: string;
+  // edu: {
+  //   id: number;
+  //   school_classification: string;
+  //   school_name: string;
+  //   collage: string;
+  //   graduation_status: string;
+  // }[]
 }
 
 interface SalaryDataTypes {
@@ -60,4 +67,9 @@ interface RankDataTypes {
   id: number;
   rank: string;
   order: number;
+}
+
+interface PositionDataTypes {
+  id: number;
+  name: string;
 }

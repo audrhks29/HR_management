@@ -34,3 +34,8 @@ export const getRankData = async () => {
   const response = await axios.get("http://localhost:5000/rank");
   return response.data
 };
+
+export const getPositionData = async () => {
+  const response = await axios.get("http://localhost:5000/position");
+  return response.data
+};

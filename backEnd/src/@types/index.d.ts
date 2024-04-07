@@ -55,7 +55,12 @@ interface BusinessDataTypes {
 }
 
 interface RankDataTypes {
-  "id": number;
-  "rank": string
-  "order": number;
+  id: number;
+  rank: string;
+  order: number;
+}
+
+interface PositionDataTypes {
+  id: number;
+  name: string;
 }

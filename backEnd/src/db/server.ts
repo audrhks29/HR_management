@@ -26,6 +26,7 @@ const MemberSalary = require('../models/schemas/memberSalary').default;
 const Organization = require('../models/schemas/organization').default;
 const Business = require('../models/schemas/business').default;
 const Rank = require('../models/schemas/rank').default;
+const Position = require('../models/schemas/position').default;
 
 // 라우트 설정
 require('../routes/salary')(app, Salary);
@@ -34,6 +35,7 @@ require('../routes/memberSalary')(app, MemberSalary);
 require('../routes/organization')(app, Organization);
 require('../routes/business')(app, Business);
 require('../routes/rank')(app, Rank);
+require('../routes/position')(app, Position);
 
 // 서버 시작
 app.listen(port, () => {

@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import Career from './menu/career/Career';
 import Education from './menu/career/Education';
 
-const Contents = memo(() => {
+const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => {
   const [formData, setFormData] = useState({
     employee_number: '',
     kor_name: '',
@@ -22,9 +22,10 @@ const Contents = memo(() => {
     team: '',
     position: '',
     rank: '',
-    date_of_joining: '',
+    date_of_joining: ''
   });
-  console.log(formData);
+
+  // input 변경시 동작
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -33,6 +34,7 @@ const Contents = memo(() => {
     }));
   };
 
+  // 성별 체크박스 변경시 동작
   const handleSexChange = (value: string) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -40,6 +42,7 @@ const Contents = memo(() => {
     }));
   };
 
+  // select 변경시 동작
   const handleChangeSelect = (name: string, value: string) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -47,11 +50,28 @@ const Contents = memo(() => {
     }));
   }
 
+  // date 변경시 동작
+  const handleSelectDate = (value: Date | undefined) => {
+    if (value) {
+      const date = new Date(value);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const formatData = `${year}년 ${month}월 ${day}일`;
+
+      setFormData((prevData) => ({
+        ...prevData,
+        date: formatData
+      }));
+    }
+  };
+
   return (
     <div className='mt-5'>
       <TabsContent
         value="info"
         className='grid grid-cols-2 gap-6'>
+
         <Privacy
           formData={formData}
           handleChange={handleChange}
@@ -59,9 +79,11 @@ const Contents = memo(() => {
         <Department
           formData={formData}
           handleChange={handleChange}
-          handleChangeSelect={handleChangeSelect} />
+          handleChangeSelect={handleChangeSelect}
+          handleSelectDate={handleSelectDate} />
+
         <div className='text-right col-span-2'>
-          <Button>다음</Button>
+          <Button onClick={handleNextClick}>다음</Button>
         </div>
       </TabsContent>
 

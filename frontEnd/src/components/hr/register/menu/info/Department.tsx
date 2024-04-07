@@ -11,18 +11,46 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { getRankData } from '@/server/fetchReadData';
+import { useSuspenseQueries } from '@tanstack/react-query';
 
-const Department = memo(({ formData, handleChange, handleChangeSelect }: {
+import { getOrganizationData, getPositionData, getRankData } from '@/server/fetchReadData';
+
+type QueryResult<T> = {
+  data: T;
+};
+
+type SuspenseQueriesResult = [
+  QueryResult<RankDataTypes[]>,
+  QueryResult<OrganizationDataTypes[]>,
+  QueryResult<PositionDataTypes[]>,
+];
+
+const Department = memo(({ formData, handleChange, handleChangeSelect, handleSelectDate }: {
   formData: MemberDataTypes;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleChangeSelect: (name: string, value: string) => void;
+  handleSelectDate: (value: Date | undefined) => void;
 }) => {
-  const { data: rankData }: { data: RankDataTypes[] } = useSuspenseQuery({
-    queryKey: ["rankData"],
-    queryFn: getRankData,
-  });
+  const [
+    { data: rankData },
+    { data: organizationData },
+    { data: positionData }] = useSuspenseQueries<SuspenseQueriesResult>({
+      queries: [
+        {
+          queryKey: ["rankData"],
+          queryFn: getRankData
+        },
+        {
+          queryKey: ["organizationData"],
+          queryFn: getOrganizationData
+        },
+        {
+          queryKey: ["positionData"],
+          queryFn: getPositionData
+        }
+      ]
+
+    });
 
   const [date, setDate] = useState<Date | undefined>(new Date());
 
@@ -46,45 +74,85 @@ const Department = memo(({ formData, handleChange, handleChangeSelect }: {
         {/* 소속 관할, 부서, 팀  */}
         <div className="space-y-1 grid grid-cols-3 gap-4">
           <div>
-            <Select>
+            <Select
+              value={formData.quarter}
+              onValueChange={(value) => handleChangeSelect("quarter", value)}>
               <Label>소속 관할</Label>
               <SelectTrigger>
                 <SelectValue placeholder="소속 관할" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="quarter1">본사</SelectItem>
-                  <SelectItem value="quarter2">인천지사</SelectItem>
+                  {organizationData.map(organization => (
+                    <SelectItem
+                      key={organization.id}
+                      value={organization.quarter}>
+                      {organization.quarter}
+                    </SelectItem>
+                  ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
           </div>
 
           <div>
-            <Select>
+            <Select
+              value={formData.department}
+              onValueChange={(value) => handleChangeSelect("department", value)}>
               <Label>소속 부서</Label>
               <SelectTrigger>
                 <SelectValue placeholder="소속 부서" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="depart1">경영지원부</SelectItem>
-                  <SelectItem value="depart2">개발부</SelectItem>
+                  {organizationData.map(organization => {
+                    const isDepart = organization.quarter === formData.quarter;
+                    if (isDepart) {
+                      return (
+                        organization.depart.map(depart => (
+                          <SelectItem
+                            key={depart.id}
+                            value={depart.name}>
+                            {depart.name}
+                          </SelectItem>
+                        ))
+                      )
+                    }
+                  })}
                 </SelectGroup>
               </SelectContent>
             </Select>
           </div>
 
           <div>
-            <Select>
+            <Select
+              value={formData.team}
+              onValueChange={(value) => handleChangeSelect("team", value)}>
               <Label>소속 팀</Label>
               <SelectTrigger>
                 <SelectValue placeholder="소속 팀" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="team1">00팀</SelectItem>
-                  <SelectItem value="team2">00팀</SelectItem>
+                  {organizationData.map(organization => {
+                    const isDepart = organization.quarter === formData.quarter;
+                    if (isDepart) {
+                      return organization.depart.map(depart => {
+                        const isTeam = depart.name === formData.department;
+                        if (isTeam) {
+                          return depart.team.map(team => (
+                            <SelectItem
+                              key={team.id}
+                              value={team.name}>
+                              {team.name}
+                            </SelectItem>
+                          ));
+                        }
+                        return null;
+                      });
+                    }
+                    return null;
+                  })}
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -94,15 +162,20 @@ const Department = memo(({ formData, handleChange, handleChangeSelect }: {
         {/* 직책, 직급 */}
         <div className="space-y-1 grid grid-cols-3 gap-4">
           <div>
-            <Select>
+            <Select
+              value={formData.position}
+              onValueChange={(value) => handleChangeSelect("position", value)}>
               <Label>직책</Label>
               <SelectTrigger>
                 <SelectValue placeholder="직책" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="00부장">00부장</SelectItem>
-                  <SelectItem value="00팀장">00팀장</SelectItem>
+                  {positionData.map(position => (
+                    <SelectItem
+                      key={position.id}
+                      value="00부장">{position.name}</SelectItem>
+                  ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -149,7 +222,10 @@ const Department = memo(({ formData, handleChange, handleChangeSelect }: {
             <Calendar
               mode="single"
               selected={date}
-              onSelect={setDate}
+              onSelect={(value) => {
+                setDate(value)
+                handleSelectDate(value)
+              }}
               initialFocus
             />
           </PopoverContent>

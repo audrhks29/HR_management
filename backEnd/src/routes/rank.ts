@@ -10,8 +10,8 @@ module.exports = function (app: any, Rank: any) {
 
   app.post('/rank', async (req: any, res: any) => {
     try {
-      const newMember = new Rank(req.body);
-      const result = await newMember.save();
+      const newRank = new Rank(req.body);
+      const result = await newRank.save();
       res.status(201).json(result);
     } catch (err: any) {
       res.status(500).json({ error: err.message });

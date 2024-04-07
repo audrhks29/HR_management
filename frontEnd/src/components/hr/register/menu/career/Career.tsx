@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { CalendarIcon } from 'lucide-react';
+import { CalendarIcon, Plus } from 'lucide-react';
 import { format } from 'date-fns';
 import { Calendar } from '@/components/ui/calendar';
 
@@ -15,10 +15,45 @@ const Career = memo(() => {
   const [joinDate, setJoinDate] = useState<Date | undefined>(new Date())
   const [leaveDate, setLeaveDate] = useState<Date | undefined>(new Date())
 
+  const [careerData, setCareerData] = useState({
+    company_name: "",
+    join_date: "",
+    leave_date: "",
+    job: "",
+    depart: "",
+    rank: ""
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setCareerData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectDate = (name: string, value: Date | undefined) => {
+    if (value) {
+      const date = new Date(value);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const formatData = `${year}년 ${month}월 ${day}일`;
+
+      setCareerData((prevData) => ({
+        ...prevData,
+        [name]: formatData
+      }));
+    }
+  };
+
   return (
     <Card className='w-full p-8'>
       <CardHeader>
-        <CardTitle>경력</CardTitle>
+        <CardTitle className='flex justify-between'>
+          <span>학력</span>
+          <Button><Plus className='w-3 h-3' /></Button>
+        </CardTitle>
       </CardHeader>
       <CardContent className="space-y-2">
 
@@ -27,7 +62,11 @@ const Career = memo(() => {
           {/* 회사명 */}
           <div className="space-y-1">
             <Label htmlFor="company_name">회사명</Label>
-            <Input id="company_name" />
+            <Input
+              id="company_name"
+              name="company_name"
+              value={careerData.company_name}
+              onChange={handleChange} />
           </div>
 
           {/* 입사일 */}
@@ -51,7 +90,10 @@ const Career = memo(() => {
                   <Calendar
                     mode="single"
                     selected={joinDate}
-                    onSelect={setJoinDate}
+                    onSelect={(value) => {
+                      setJoinDate(value)
+                      handleSelectDate("join_date", value)
+                    }}
                     initialFocus
                   />
                 </PopoverContent>
@@ -78,7 +120,10 @@ const Career = memo(() => {
                   <Calendar
                     mode="single"
                     selected={leaveDate}
-                    onSelect={setLeaveDate}
+                    onSelect={(value) => {
+                      setLeaveDate(value)
+                      handleSelectDate("leave_date", value)
+                    }}
                     initialFocus
                   />
                 </PopoverContent>
@@ -89,19 +134,31 @@ const Career = memo(() => {
           {/* 직무 */}
           <div className="space-y-1">
             <Label htmlFor="job">직무</Label>
-            <Input id="job" />
+            <Input
+              id="job"
+              name="job"
+              value={careerData.job}
+              onChange={handleChange} />
           </div>
 
           {/* 근무부서 */}
           <div className="space-y-1">
             <Label htmlFor="depart">근무부서</Label>
-            <Input id="depart" />
+            <Input
+              id="depart"
+              name="depart"
+              value={careerData.depart}
+              onChange={handleChange} />
           </div>
 
           {/* 직급 */}
           <div className="space-y-1">
             <Label htmlFor="rank">직급</Label>
-            <Input id="rank" />
+            <Input
+              id="rank"
+              name="rank"
+              value={careerData.rank}
+              onChange={handleChange} />
           </div>
         </div>
 
