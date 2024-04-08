@@ -82,10 +82,10 @@ const Privacy = memo(({ formData, handleChange, handleSexChange }: {
             onValueChange={handleSexChange}
             className="flex items-center space-x-2">
 
-            <RadioGroupItem value="male" id="male" />
+            <RadioGroupItem value="남성" id="male" />
             <Label htmlFor="male">남성</Label>
 
-            <RadioGroupItem value="female" id="female" />
+            <RadioGroupItem value="여성" id="female" />
             <Label htmlFor="female">여성</Label>
           </RadioGroup>
         </div>
