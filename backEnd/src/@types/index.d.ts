@@ -1,8 +1,10 @@
 interface MemberDataTypes {
-  id: string;
   employee_number: string;
   kor_name: string;
   eng_name: string;
+  phone_number: string;
+  rrn_front: string;
+  rrn_back: string;
   sex: string;
   quarter: string;
   department: string;
@@ -10,6 +12,8 @@ interface MemberDataTypes {
   position: string;
   rank: string;
   date_of_joining: string;
+  career: CareerDataTypes[];
+  edu: EduDataTypes[];
 }
 
 interface SalaryDataTypes {

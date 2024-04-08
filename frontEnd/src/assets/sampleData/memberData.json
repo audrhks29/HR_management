@@ -4,359 +4,1267 @@
     "kor_name": "지은호",
     "eng_name": "Ji eunho",
     "sex": "남성",
+    "phone_number": "01064856411",
+    "address": "",
+    "rrn_front": "701216",
+    "rrn_back": "1356441",
+    "military": {
+      "division": "군필",
+      "army": "육군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "",
     "team": "",
     "position": "대표이사",
     "rank": "CEO",
-    "date_of_joining": "2016년 03월 05일"
+    "date_of_joining": "2016년 03월 05일",
+    "career": [
+      {
+        "company_name": "YS컴퍼니",
+        "join_date": "1998년 10월 23일",
+        "leave_date": "2004년 12월 03일",
+        "job": "백엔드 개발",
+        "depart": "개발부",
+        "rank": "대리"
+      },
+      {
+        "company_name": "Naver",
+        "join_date": "2005년 02월 06일",
+        "leave_date": "2020년 07월 08일",
+        "job": "백엔드 개발자",
+        "depart": "개발부",
+        "rank": "부장"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "고등학교",
+        "school_name": "서강고등학교",
+        "collage": "이과",
+        "graduation_status": "졸업",
+        "admission_date": "1986년 03월 02일",
+        "graduation_date": "1989년 02월 03일"
+      },
+      {
+        "school_classification": "대학교",
+        "school_name": "서강대학교",
+        "collage": "컴퓨터공학과",
+        "graduation_status": "졸업",
+        "admission_date": "1989년 03월 02일",
+        "graduation_date": "1997년 02월 13일"
+      }
+    ]
   },
   {
     "employee_number": "160401",
     "kor_name": "소영미",
     "eng_name": "So yeongmi",
     "sex": "여성",
+    "phone_number": "01075112658",
+    "address": "",
+    "rrn_front": "760102",
+    "rrn_back": "2311258",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "영업부",
     "team": "",
     "position": "영업부장",
     "rank": "상무",
-    "date_of_joining": "2016년 04월 08일"
+    "date_of_joining": "2016년 04월 08일",
+    "career": [
+      {
+        "company_name": "와이에스 주식회사",
+        "join_date": "2000년 03월 19일",
+        "leave_date": "2002년 08월 20일",
+        "job": "영업",
+        "depart": "해외영업부",
+        "rank": "주임"
+      },
+      {
+        "company_name": "진리컴퍼니",
+        "join_date": "2002년 10월 18일",
+        "leave_date": "2008년 10월 19일",
+        "job": "영업",
+        "depart": "해외영업부",
+        "rank": "과장"
+      },
+      {
+        "company_name": "디펀트",
+        "join_date": "2008년 12월 10일",
+        "leave_date": "2012년 02월 03일",
+        "job": "영업",
+        "depart": "해외영업부",
+        "rank": "차장"
+      },
+      {
+        "company_name": "디펀트",
+        "join_date": "2013년 04월 05일",
+        "leave_date": "2016년 01월 31일",
+        "job": "영업",
+        "depart": "해외영업부",
+        "rank": "이사"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "한국대학교",
+        "collage": "경영학과",
+        "graduation_status": "졸업",
+        "admission_date": "1995년 03월 02일",
+        "graduation_date": "2000년 02월 10일"
+      }
+    ]
   },
   {
     "employee_number": "160403",
     "kor_name": "현주희",
     "eng_name": "Hyun joohee",
     "sex": "여성",
+    "phone_number": "01076205699",
+    "address": "",
+    "rrn_front": "730608",
+    "rrn_back": "2152017",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "프론트엔드팀",
     "position": "프론트팀장",
     "rank": "차장",
-    "date_of_joining": "2016년 04월 21일"
+    "date_of_joining": "2016년 04월 21일",
+    "career": [
+      {
+        "company_name": "JUST",
+        "join_date": "2008년 03월 20일",
+        "leave_date": "2014년 09월 17일",
+        "job": "프론트 개발",
+        "depart": "개발부",
+        "rank": "과장"
+      },
+      {
+        "company_name": "JUST",
+        "join_date": "2014년 09월 30일",
+        "leave_date": "2016년 03월 03일",
+        "job": "프론트 개발",
+        "depart": "개발부",
+        "rank": "과장"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "고등학교",
+        "school_name": "충주고등학교",
+        "collage": "문과",
+        "graduation_status": "졸업",
+        "admission_date": "1999년 03월 03일",
+        "graduation_date": "2003년 02월 10일"
+      }
+    ]
   },
   {
     "employee_number": "160406",
     "kor_name": "성호준",
     "eng_name": "Sung hojun",
     "sex": "남성",
+    "phone_number": "01089562487",
+    "address": "",
+    "rrn_front": "791025",
+    "rrn_back": "1258887",
+    "military": {
+      "division": "군필",
+      "army": "육군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "디자인팀",
     "position": "디자인팀장",
     "rank": "차장",
-    "date_of_joining": "2016년 04월 28일"
+    "date_of_joining": "2016년 04월 28일",
+    "career": [
+      {
+        "company_name": "하이브",
+        "join_date": "2008년 06월 12일",
+        "leave_date": "2009년 03월 08일",
+        "job": "웹 디자인",
+        "depart": "디자인부",
+        "rank": "사원"
+      },
+      {
+        "company_name": "클리너",
+        "join_date": "2009년 04월 19일",
+        "leave_date": "2014년 08월 06일",
+        "job": "웹 디자인",
+        "depart": "개발부",
+        "rank": "대리"
+      },
+      {
+        "company_name": "클리너",
+        "join_date": "2014년 08월 10일",
+        "leave_date": "2016년 04월 20일",
+        "job": "프론트엔드 개발",
+        "depart": "개발부",
+        "rank": "대리"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "백석대학교",
+        "collage": "패션디자인학과",
+        "graduation_status": "졸업",
+        "admission_date": "1998년 03월 02일",
+        "graduation_date": "2004년 02월 09일"
+      }
+    ]
   },
   {
     "employee_number": "170302",
     "kor_name": "도윤석",
     "eng_name": "Do yunseok",
     "sex": "남성",
+    "phone_number": "01023586647",
+    "address": "",
+    "rrn_front": "830723",
+    "rrn_back": "1388654",
+    "military": {
+      "division": "군필",
+      "army": "해군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "서버팀",
     "position": "서버팀장",
     "rank": "차장",
-    "date_of_joining": "2017년 03월 03일"
+    "date_of_joining": "2017년 03월 03일",
+    "career": [
+      {
+        "company_name": "모멘트리",
+        "join_date": "2009년 05월 20일",
+        "leave_date": "2012년 10월 18일",
+        "job": "보안",
+        "depart": "정보보안부",
+        "rank": "대리"
+      },
+      {
+        "company_name": "사이온 주식회사",
+        "join_date": "2012년 12월 02일",
+        "leave_date": "2016년 12월 31일",
+        "job": "서버 개발",
+        "depart": "개발부",
+        "rank": "과장"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "한남대학교",
+        "collage": "컴퓨터공학과",
+        "graduation_status": "졸업",
+        "admission_date": "2002년 03월 02일",
+        "graduation_date": "2009년 02월 17일"
+      }
+    ]
   },
   {
     "employee_number": "180901",
     "kor_name": "성민재",
     "eng_name": "Seong minjae",
     "sex": "남성",
+    "phone_number": "01051235477",
+    "address": "",
+    "rrn_front": "811201",
+    "rrn_back": "1125445",
+    "military": {
+      "division": "군필",
+      "army": "육군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "",
     "position": "개발부장",
     "rank": "부장",
-    "date_of_joining": "2018년 09월 14일"
+    "date_of_joining": "2018년 09월 14일",
+    "career": [
+      {
+        "company_name": "넷마블",
+        "join_date": "2008년 10월 10일",
+        "leave_date": "2017년 12월 13일",
+        "job": "프론트엔드 개발",
+        "depart": "개발부",
+        "rank": "과장"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "연성대학교",
+        "collage": "기계공학과",
+        "graduation_status": "중퇴",
+        "admission_date": "2000년 03월 02일",
+        "graduation_date": "2003년 08월 10일"
+      }
+    ]
   },
   {
     "employee_number": "181001",
     "kor_name": "지혜원",
     "eng_name": "Ji hyewon",
     "sex": "여성",
+    "phone_number": "01035442377",
+    "address": "",
+    "rrn_front": "850320",
+    "rrn_back": "2341569",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "경영지원부",
     "team": "",
     "position": "경영지원부장",
     "rank": "부장",
-    "date_of_joining": "2018년 10월 22일"
+    "date_of_joining": "2018년 10월 22일",
+    "career": [
+      {
+        "company_name": "KWA산업",
+        "join_date": "2003년 10월 23일",
+        "leave_date": "2004년 12월 21일",
+        "job": "회계",
+        "depart": "경영지원부",
+        "rank": "주임"
+      },
+      {
+        "company_name": "코르코르",
+        "join_date": "2005년 02월 16일",
+        "leave_date": "2008년 11월 03일",
+        "job": "회계",
+        "depart": "재정관리부",
+        "rank": "대리"
+      },
+      {
+        "company_name": "두산중공업",
+        "join_date": "2009년 02월 02일",
+        "leave_date": "2015년 01월 12일",
+        "job": "회계",
+        "depart": "경영지원부",
+        "rank": "과장"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "고등학교",
+        "school_name": "선화여자고등학교",
+        "collage": "문과",
+        "graduation_status": "졸업",
+        "admission_date": "2001년 03월 02일",
+        "graduation_date": "2005년 02월 05일"
+      }
+    ]
   },
   {
     "employee_number": "190701",
     "kor_name": "지우진",
     "eng_name": "Ji woojin",
     "sex": "남성",
+    "phone_number": "01065891173",
+    "address": "",
+    "rrn_front": "840809",
+    "rrn_back": "1169132",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "경영지원부",
     "team": "인사팀",
     "position": "인사팀장",
     "rank": "차장",
-    "date_of_joining": "2019년 07월 09일"
+    "date_of_joining": "2019년 07월 09일",
+    "career": [
+      {
+        "company_name": "컴투스",
+        "join_date": "2010년 04월 10일",
+        "leave_date": "2019년 05월 20일",
+        "job": "인사",
+        "depart": "경영지원부",
+        "rank": "과장"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "도쿄대학교",
+        "collage": "경영학과",
+        "graduation_status": "졸업",
+        "admission_date": "2003년 03월 02일",
+        "graduation_date": "2010년 02월 21일"
+      }
+    ]
   },
   {
     "employee_number": "200302",
     "kor_name": "민서영",
     "eng_name": "Min seoyoung",
     "sex": "여성",
+    "phone_number": "01038436912",
+    "address": "",
+    "rrn_front": "900612",
+    "rrn_back": "2366571",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "경영지원부",
     "team": "회계팀",
     "position": "회계팀장",
     "rank": "과장",
-    "date_of_joining": "2020년 03월 06일"
+    "date_of_joining": "2020년 03월 06일",
+    "career": [
+      {
+        "company_name": "한울회계법인",
+        "join_date": "2010년 02월 21일",
+        "leave_date": "2012년 08월 31일",
+        "job": "회계",
+        "depart": "회계부",
+        "rank": "주임"
+      },
+      {
+        "company_name": "선월회계법인",
+        "join_date": "2012년 09월 20일",
+        "leave_date": "2014년 03월 10일",
+        "job": "회계",
+        "depart": "회계부",
+        "rank": "대리"
+      },
+      {
+        "company_name": "한울회계법인",
+        "join_date": "2014년 04월 01일",
+        "leave_date": "2013년 03월 10일",
+        "job": "회계",
+        "depart": "회계부",
+        "rank": "차장"
+      },
+      {
+        "company_name": "선월회계법인",
+        "join_date": "2013년 09월 20일",
+        "leave_date": "2019년 08월 10일",
+        "job": "회계",
+        "depart": "회계부",
+        "rank": "차장"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "고등학교",
+        "school_name": "한서고등학교",
+        "collage": "문과",
+        "graduation_status": "졸업",
+        "admission_date": "2006년 03월 02일",
+        "graduation_date": "2010년 02월 09일"
+      }
+    ]
   },
   {
     "employee_number": "200801",
     "kor_name": "지원준",
     "eng_name": "Ji wonjun",
     "sex": "남성",
+    "phone_number": "01088561247",
+    "address": "",
+    "rrn_front": "920406",
+    "rrn_back": "1135775",
+    "military": {
+      "division": "군필",
+      "army": "육군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "영업부",
     "team": "해외영업팀",
     "position": "해외영업팀장",
     "rank": "대리",
-    "date_of_joining": "2020년 08월 06일"
+    "date_of_joining": "2020년 08월 06일",
+    "career": [
+      {
+        "company_name": "파멕스 주식회사",
+        "join_date": "2014년 09월 12일",
+        "leave_date": "2020년 07월 02일",
+        "job": "영업",
+        "depart": "영업부",
+        "rank": "과장"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "고등학교",
+        "school_name": "영진고등학교",
+        "collage": "자동차정비학과",
+        "graduation_status": "졸업",
+        "admission_date": "2008년 03월 03일",
+        "graduation_date": "2012년 02월 12일"
+      }
+    ]
   },
   {
     "employee_number": "200802",
     "kor_name": "민재윤",
     "eng_name": "Min jaeyoon",
     "sex": "남성",
+    "phone_number": "01095884671",
+    "address": "",
+    "rrn_front": "960912",
+    "rrn_back": "1165881",
+    "military": {
+      "division": "군필",
+      "army": "육군",
+      "rank": "하사"
+    },
     "quarter": "본사",
     "department": "영업부",
     "team": "국내영업팀",
     "position": "",
     "rank": "대리",
-    "date_of_joining": "2020년 08월 06일"
+    "date_of_joining": "2020년 08월 06일",
+    "career": [],
+    "edu": [
+      {
+        "school_classification": "고등학교",
+        "school_name": "도화기계고등학교",
+        "collage": "자동차학과",
+        "graduation_status": "졸업",
+        "admission_date": "2012년 03월 02일",
+        "graduation_date": "2016년 02월 10일"
+      }
+    ]
   },
   {
     "employee_number": "200902",
     "kor_name": "현정민",
     "eng_name": "Hyun jungmin",
     "sex": "남성",
+    "phone_number": "01053168412",
+    "address": "",
+    "rrn_front": "930915",
+    "rrn_back": "1354842",
+    "military": {
+      "division": "군필",
+      "army": "육군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "영업부",
     "team": "국내영업팀",
     "position": "",
     "rank": "대리",
-    "date_of_joining": "2020년 09월 11일"
+    "date_of_joining": "2020년 09월 11일",
+    "career": [
+      {
+        "company_name": "두리화장품",
+        "join_date": "2017년 06월 04일",
+        "leave_date": "2020년 05월 12일",
+        "job": "영업",
+        "depart": "영업부",
+        "rank": "주임"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "계원예술대학교",
+        "collage": "광고미디어학과",
+        "graduation_status": "졸업",
+        "admission_date": "2012년 03월 02일",
+        "graduation_date": "2017년 02월 12일"
+      }
+    ]
   },
   {
     "employee_number": "210501",
     "kor_name": "김지연",
     "eng_name": "Kim jiyeon",
     "sex": "여성",
+    "phone_number": "01047118549",
+    "address": "",
+    "rrn_front": "960522",
+    "rrn_back": "2571356",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "CEO직속",
     "team": "감사팀",
     "position": "감사팀장",
     "rank": "주임",
-    "date_of_joining": "2021년 05월 10일"
+    "date_of_joining": "2021년 05월 10일",
+    "career": [],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "한양대학교",
+        "collage": "유아교육과",
+        "graduation_status": "졸업",
+        "admission_date": "2015년 03월 02일",
+        "graduation_date": "2020년 02월 20일"
+      }
+    ]
   },
   {
     "employee_number": "211201",
     "kor_name": "은지윤",
     "eng_name": "Eun jieun",
     "sex": "여성",
+    "phone_number": "01037112479",
+    "address": "",
+    "rrn_front": "980206",
+    "rrn_back": "2314613",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "경영지원부",
     "team": "인사팀",
     "position": "",
-    "rank": "과장",
-    "date_of_joining": "2021년 12월 06일"
+    "rank": "주임",
+    "date_of_joining": "2021년 12월 06일",
+    "career": [],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "부천대학교",
+        "collage": "생활스포츠학과",
+        "graduation_status": "졸업",
+        "admission_date": "2017년 03월 02일",
+        "graduation_date": "2019년 02월 08일"
+      }
+    ]
   },
   {
     "employee_number": "230102",
     "kor_name": "정은주",
     "eng_name": "Jeong eunju",
     "sex": "여성",
+    "phone_number": "01078115841",
+    "address": "",
+    "rrn_front": "970903",
+    "rrn_back": "2158412",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "영업부",
     "team": "해외영업팀",
     "position": "",
-    "rank": "사원",
-    "date_of_joining": "2023년 01월 05일"
+    "rank": "대리",
+    "date_of_joining": "2023년 01월 05일",
+    "career": [
+      {
+        "company_name": "메가커피",
+        "join_date": "2018년 06월 10일",
+        "leave_date": "2022년 10월 11일",
+        "job": "마케팅",
+        "depart": "마케팅부",
+        "rank": "주임"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "재능대학교",
+        "collage": "디지털바이오테크학과",
+        "graduation_status": "졸업",
+        "admission_date": "2016년 03월 02일",
+        "graduation_date": "2018년 02월 13일"
+      }
+    ]
   },
   {
     "employee_number": "230201",
     "kor_name": "이승민",
     "eng_name": "Lee seungmin",
     "sex": "남성",
+    "phone_number": "01034088801",
+    "address": "",
+    "rrn_front": "970513",
+    "rrn_back": "1611357",
+    "military": {
+      "division": "군필",
+      "army": "해군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "CEO직속",
     "team": "감사팀",
     "position": "",
     "rank": "주임",
-    "date_of_joining": "2023년 02월 06일"
+    "date_of_joining": "2023년 02월 06일",
+    "career": [
+      {
+        "company_name": "Audi Korea",
+        "join_date": "2023년 03월 07일",
+        "leave_date": "2023년 11월 28일",
+        "job": "영업",
+        "depart": "영업부",
+        "rank": "대리"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "호서대학교",
+        "collage": "기계공학과",
+        "graduation_status": "졸업",
+        "admission_date": "2016년 03월 02일",
+        "graduation_date": "2022년 02월 13일"
+      }
+    ]
   },
   {
     "employee_number": "230501",
     "kor_name": "강준호",
     "eng_name": "Kang junho",
     "sex": "남성",
+    "phone_number": "01075133518",
+    "address": "",
+    "rrn_front": "950613",
+    "rrn_back": "1511548",
+    "military": {
+      "division": "군필",
+      "army": "육군",
+      "rank": "하사"
+    },
     "quarter": "본사",
     "department": "영업부",
     "team": "해외영업팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "2023년 05월 07일"
+    "date_of_joining": "2023년 05월 07일",
+    "career": [],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "강원대학교",
+        "collage": "소방학과",
+        "graduation_status": "졸업",
+        "admission_date": "2018년 03월 02일",
+        "graduation_date": "2023년 02월 16일"
+      }
+    ]
   },
   {
     "employee_number": "230502",
     "kor_name": "윤서현",
     "eng_name": "Yoon seohyun",
     "sex": "여성",
+    "phone_number": "01042158865",
+    "address": "",
+    "rrn_front": "960815",
+    "rrn_back": "2812335",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "프론트엔드팀",
     "position": "",
-    "rank": "사원",
-    "date_of_joining": "2023년 05월 07일"
+    "rank": "주임",
+    "date_of_joining": "2023년 05월 07일",
+    "career": [
+      {
+        "company_name": "하이트진로",
+        "join_date": "2020년 08월 28일",
+        "leave_date": "2023년 01월 12일",
+        "job": "프론트엔드 개발",
+        "depart": "개발부",
+        "rank": "주임"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "한양대학교",
+        "collage": "컴퓨터공학과",
+        "graduation_status": "졸업",
+        "admission_date": "2015년 03월 02일",
+        "graduation_date": "2020년 02월 10일"
+      }
+    ]
   },
   {
     "employee_number": "230601",
     "kor_name": "박민준",
     "eng_name": "Park minjun",
     "sex": "남성",
+    "phone_number": "01058135645",
+    "address": "",
+    "rrn_front": "000715",
+    "rrn_back": "3152617",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "경영지원부",
     "team": "인사팀",
     "position": "",
     "rank": "주임",
-    "date_of_joining": "2023년 06월 12일"
+    "date_of_joining": "2023년 06월 12일",
+    "career": [],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "영남대학교",
+        "collage": "경제학과",
+        "graduation_status": "졸업",
+        "admission_date": "2019년 03월 02일",
+        "graduation_date": "2023년 02월 10일"
+      }
+    ]
   },
   {
     "employee_number": "230602",
     "kor_name": "최지원",
     "eng_name": "Choi jiwon",
     "sex": "여성",
+    "phone_number": "01037822614",
+    "address": "",
+    "rrn_front": "970531",
+    "rrn_back": "2416912",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "경영지원부",
     "team": "회계팀",
     "position": "",
     "rank": "주임",
-    "date_of_joining": "2023년 06월 15일"
+    "date_of_joining": "2023년 06월 15일",
+    "career": [
+      {
+        "company_name": "바이오다인",
+        "join_date": "2020년 06월 12일",
+        "leave_date": "2023년 04월 10일",
+        "job": "회계",
+        "depart": "회계부",
+        "rank": "주임"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "부산대학교",
+        "collage": "회계학과",
+        "graduation_status": "졸업",
+        "admission_date": "2016년 03월 02일",
+        "graduation_date": "2020년 02월 13일"
+      }
+    ]
   },
   {
     "employee_number": "230901",
     "kor_name": "장민석",
     "eng_name": "Jang minseok",
     "sex": "남성",
+    "phone_number": "01064775283",
+    "address": "",
+    "rrn_front": "970811",
+    "rrn_back": "1162845",
+    "military": {
+      "division": "군필",
+      "army": "공군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "디자인팀",
     "position": "",
-    "rank": "사원",
-    "date_of_joining": "2023년 09월 17일"
+    "rank": "주임",
+    "date_of_joining": "2023년 09월 17일",
+    "career": [
+      {
+        "company_name": "아메코젠 주식회사",
+        "join_date": "2020년 04월 08일",
+        "leave_date": "2023년 08월 10일",
+        "job": "웹 디자인",
+        "depart": "개발부",
+        "rank": "주임"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "인하대학교",
+        "collage": "스마트디지털엔지니어링과",
+        "graduation_status": "졸업",
+        "admission_date": "2016년 03월 02일",
+        "graduation_date": "2020년 02월 10일"
+      }
+    ]
   },
   {
     "employee_number": "230902",
     "kor_name": "오지현",
     "eng_name": "Oh jihyun",
     "sex": "여성",
+    "phone_number": "01055129984",
+    "address": "",
+    "rrn_front": "000430",
+    "rrn_back": "4129983",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "서버팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "2023년 09월 17일"
+    "date_of_joining": "2023년 09월 17일",
+    "career": [],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "인하대학교",
+        "collage": "미디어커뮤니케이션학과",
+        "graduation_status": "졸업",
+        "admission_date": "2019년 03월 02일",
+        "graduation_date": "2023년 02월 10일"
+      }
+    ]
   },
   {
     "employee_number": "231001",
     "kor_name": "선우현",
     "eng_name": "Sun woohyun",
     "sex": "남성",
+    "phone_number": "0106891546",
+    "address": "",
+    "rrn_front": "951202",
+    "rrn_back": "1689443",
+    "military": {
+      "division": "군필",
+      "army": "육군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "경영지원부",
     "team": "정보보안팀",
     "position": "정보보안팀장",
     "rank": "대리",
-    "date_of_joining": "2023년 10월 02일"
+    "date_of_joining": "2023년 10월 02일",
+    "career": [
+      {
+        "company_name": "동원테크",
+        "join_date": "2021년 03월 03일",
+        "leave_date": "2023년 06월 10일",
+        "job": "정보보안",
+        "depart": "보안팀",
+        "rank": "주임"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "구미대학교",
+        "collage": "정보보안학과",
+        "graduation_status": "졸업",
+        "admission_date": "2014년 03월 02일",
+        "graduation_date": "2021년 02월 04일"
+      }
+    ]
   },
   {
     "employee_number": "231002",
     "kor_name": "황성우",
     "eng_name": "Hwang sungwoo",
     "sex": "남성",
+    "phone_number": "01065843251",
+    "address": "",
+    "rrn_front": "980209",
+    "rrn_back": "1168235",
+    "military": {
+      "division": "군필",
+      "army": "공군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "프론트엔드팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "2023년 10월 02일"
+    "date_of_joining": "2023년 10월 02일",
+    "career": [],
+    "edu": [
+      {
+        "school_classification": "고등학교",
+        "school_name": "서울과학고등학교",
+        "collage": "",
+        "graduation_status": "졸업",
+        "admission_date": "2014년 03월 02일",
+        "graduation_date": "2017년 02월 10일"
+      },
+      {
+        "school_classification": "고려대학교",
+        "school_name": "서울과학고등학교",
+        "collage": "컴퓨터과학과",
+        "graduation_status": "졸업",
+        "admission_date": "2017년 03월 02일",
+        "graduation_date": "2023년 02월 06일"
+      }
+    ]
   },
   {
     "employee_number": "231003",
     "kor_name": "지민우",
     "eng_name": "Ji minwoo",
     "sex": "남성",
+    "phone_number": "01039495594",
+    "address": "",
+    "rrn_front": "950716",
+    "rrn_back": "1656135",
+    "military": {
+      "division": "군필",
+      "army": "육군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "프론트엔드팀",
     "position": "",
     "rank": "대리",
-    "date_of_joining": "2023년 10월 02일"
+    "date_of_joining": "2023년 10월 02일",
+    "career": [
+      {
+        "company_name": "영실업",
+        "join_date": "2018년 05월 29일",
+        "leave_date": "2023년 07월 10일",
+        "job": "프론트엔드 개발",
+        "depart": "개발부",
+        "rank": "대리"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "",
+        "school_name": "",
+        "collage": "",
+        "graduation_status": "",
+        "admission_date": "2014년 03월 02일",
+        "graduation_date": "2018년 02월 05일"
+      }
+    ]
   },
   {
     "employee_number": "231004",
     "kor_name": "현우진",
     "eng_name": "Hyun woojin",
     "sex": "남성",
+    "phone_number": "01045664358",
+    "address": "",
+    "rrn_front": "900612",
+    "rrn_back": "1569474",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "영업부",
     "team": "국내영업팀",
     "position": "국내영업팀장",
     "rank": "이사",
-    "date_of_joining": "2023년 10월 02일"
+    "date_of_joining": "2023년 10월 02일",
+    "career": [
+      {
+        "company_name": "카카오",
+        "join_date": "2013년 07월 02일",
+        "leave_date": "2023년 01월 06일",
+        "job": "프론트엔드 개발",
+        "depart": "개발부",
+        "rank": "과장"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "졸업",
+        "school_name": "경희대학교",
+        "collage": "컴퓨터공학과",
+        "graduation_status": "졸업",
+        "admission_date": "2009년 03월 02일",
+        "graduation_date": "2013년 02월 13일"
+      }
+    ]
   },
   {
     "employee_number": "240101",
     "kor_name": "서연우",
     "eng_name": "Seo yeonwoo",
     "sex": "남성",
+    "phone_number": "01096849743",
+    "address": "",
+    "rrn_front": "960823",
+    "rrn_back": "1694331",
+    "military": {
+      "division": "군필",
+      "army": "육군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "영업부",
     "team": "국내영업팀",
     "position": "",
     "rank": "대리",
-    "date_of_joining": "2024년 01월 06일"
+    "date_of_joining": "2024년 01월 06일",
+    "career": [
+      {
+        "company_name": "한샘인테리어",
+        "join_date": "2015년 08월 10일",
+        "leave_date": "2018년 10월 02일",
+        "job": "영업",
+        "depart": "영업부",
+        "rank": "주임"
+      },
+      {
+        "company_name": "KT",
+        "join_date": "2019년 01월 02일",
+        "leave_date": "2023년 09월 14일",
+        "job": "영업",
+        "depart": "영업부",
+        "rank": "대리"
+      }
+    ],
+    "edu": [
+      {
+        "school_classification": "고등학교",
+        "school_name": "한서고등학교",
+        "collage": "이과",
+        "graduation_status": "졸업",
+        "admission_date": "2012년 03월 02일",
+        "graduation_date": "2015년 02월 10일"
+      }
+    ]
   },
   {
     "employee_number": "240102",
     "kor_name": "신지호",
     "eng_name": "Shin jiho",
     "sex": "남성",
+    "phone_number": "01026884641",
+    "address": "",
+    "rrn_front": "970521",
+    "rrn_back": "1694457",
+    "military": {
+      "division": "군필",
+      "army": "육군",
+      "rank": "병장"
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "프론트엔드팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "2024년 01월 06일"
+    "date_of_joining": "2024년 01월 06일",
+    "career": [],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "동명대학교",
+        "collage": "컴퓨터공학과",
+        "graduation_status": "졸업",
+        "admission_date": "2017년 03월 02일",
+        "graduation_date": "2023년 02월 10일"
+      }
+    ]
   },
   {
     "employee_number": "240201",
     "kor_name": "박지원",
     "eng_name": "Park jiwon",
     "sex": "여성",
+    "phone_number": "01061334613",
+    "address": "",
+    "rrn_front": "030103",
+    "rrn_back": "4162325",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "디자인팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "2024년 02월 08일"
+    "date_of_joining": "2024년 02월 08일",
+    "career": [],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "신안산대학교",
+        "collage": "디자인과",
+        "graduation_status": "",
+        "admission_date": "2022년 03월 02일",
+        "graduation_date": "2024년 02월 07일"
+      }
+    ]
   },
   {
     "employee_number": "240202",
     "kor_name": "정승연",
     "eng_name": "Jeong seungyeon",
     "sex": "여성",
+    "phone_number": "01049669774",
+    "address": "",
+    "rrn_front": "000623",
+    "rrn_back": "4661915",
+    "military": {
+      "division": "미필",
+      "army": "",
+      "rank": ""
+    },
     "quarter": "본사",
     "department": "개발부",
     "team": "서버팀",
     "position": "",
     "rank": "사원",
-    "date_of_joining": "2024년 02월 21일"
+    "date_of_joining": "2024년 02월 21일",
+    "career": [],
+    "edu": [
+      {
+        "school_classification": "대학교",
+        "school_name": "명지대학교",
+        "collage": "컴퓨터공학과",
+        "graduation_status": "졸업",
+        "admission_date": "2020년 03월 02일",
+        "graduation_date": "2024년 02월 12일"
+      }
+    ]
   }
 ]
