@@ -3,9 +3,15 @@ interface MemberDataTypes {
   kor_name: string;
   eng_name: string;
   phone_number: string;
+  address: string;
   rrn_front: string;
   rrn_back: string;
   sex: string;
+  military: {
+    division: string;
+    army: string;
+    rank: string;
+  },
   quarter: string;
   department: string;
   team: string;
