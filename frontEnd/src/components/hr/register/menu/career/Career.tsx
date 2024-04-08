@@ -10,19 +10,16 @@ import { cn } from '@/lib/utils';
 import { CalendarIcon, Plus } from 'lucide-react';
 import { format } from 'date-fns';
 import { Calendar } from '@/components/ui/calendar';
+import CareerTable from './Table/CareerTable';
 
-const Career = memo(() => {
+const Career = memo(({ formData, careerData, setCareerData, handleClickCareerPlusButton }: {
+  formData: MemberDataTypes;
+  careerData: CareerDataTypes;
+  setCareerData: React.Dispatch<React.SetStateAction<CareerDataTypes>>;
+  handleClickCareerPlusButton: (name: string, data: CareerDataTypes) => void
+}) => {
   const [joinDate, setJoinDate] = useState<Date | undefined>(new Date())
   const [leaveDate, setLeaveDate] = useState<Date | undefined>(new Date())
-
-  const [careerData, setCareerData] = useState({
-    company_name: "",
-    join_date: "",
-    leave_date: "",
-    job: "",
-    depart: "",
-    rank: ""
-  })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -51,8 +48,8 @@ const Career = memo(() => {
     <Card className='w-full p-8'>
       <CardHeader>
         <CardTitle className='flex justify-between'>
-          <span>학력</span>
-          <Button><Plus className='w-3 h-3' /></Button>
+          <span>경력</span>
+          <Button onClick={() => handleClickCareerPlusButton("career", careerData)}><Plus className='w-3 h-3' /></Button>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-2">
@@ -162,6 +159,8 @@ const Career = memo(() => {
           </div>
         </div>
 
+        {formData.career.length > 0
+          && <CareerTable formData={formData} />}
       </CardContent >
     </Card >
   );

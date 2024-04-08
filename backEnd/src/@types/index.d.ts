@@ -64,3 +64,21 @@ interface PositionDataTypes {
   id: number;
   name: string;
 }
+
+interface CareerDataTypes {
+  company_name: string;
+  join_date: string;
+  leave_date: string;
+  job: string;
+  depart: string;
+  rank: string;
+}
+
+interface EduDataTypes {
+  school_classification: string;
+  school_name: string;
+  collage: string;
+  graduation_status: string;
+  admission_date: string;
+  graduation_date: string;
+}

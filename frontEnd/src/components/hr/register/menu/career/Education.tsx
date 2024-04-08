@@ -11,19 +11,16 @@ import { cn } from '@/lib/utils';
 import { CalendarIcon, Plus } from 'lucide-react';
 import { format } from 'date-fns';
 import { Calendar } from '@/components/ui/calendar';
+import EducationTable from './Table/EducationTable';
 
-const Education = memo(() => {
+const Education = memo(({ formData, eduData, setEduData, handleClickEduPlusButton }: {
+  formData: MemberDataTypes;
+  eduData: EduDataTypes;
+  setEduData: React.Dispatch<React.SetStateAction<EduDataTypes>>;
+  handleClickEduPlusButton: (name: string, data: EduDataTypes) => void;
+}) => {
   const [admission_date, setAdmission_date] = useState<Date | undefined>(new Date())
   const [graduation_date, setGraduation_date] = useState<Date | undefined>(new Date())
-
-  const [eduData, setEduData] = useState({
-    school_classification: "",
-    school_name: "",
-    collage: "",
-    graduation_status: "",
-    admission_date: "",
-    graduation_date: ""
-  })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -60,7 +57,7 @@ const Education = memo(() => {
       <CardHeader>
         <CardTitle className='flex justify-between'>
           <span>학력</span>
-          <Button><Plus className='w-3 h-3' /></Button>
+          <Button onClick={() => handleClickEduPlusButton("edu", eduData)}><Plus className='w-3 h-3' /></Button>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-2">
@@ -193,6 +190,8 @@ const Education = memo(() => {
           </div>
         </div>
 
+        {formData.edu.length > 0
+          && <EducationTable formData={formData} />}
 
       </CardContent >
     </Card >

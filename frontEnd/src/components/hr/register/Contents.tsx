@@ -7,9 +7,10 @@ import Department from './menu/info/Department';
 import { Button } from '@/components/ui/button';
 import Career from './menu/career/Career';
 import Education from './menu/career/Education';
+import { postMemberData } from '@/server/fetchCreateData';
 
 const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<MemberDataTypes>({
     employee_number: '',
     kor_name: '',
     eng_name: '',
@@ -22,8 +23,62 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
     team: '',
     position: '',
     rank: '',
-    date_of_joining: ''
+    date_of_joining: '',
+    career: [],
+    edu: []
   });
+
+  const [careerData, setCareerData] = useState({
+    company_name: "",
+    join_date: "",
+    leave_date: "",
+    job: "",
+    depart: "",
+    rank: "",
+  });
+
+  const [eduData, setEduData] = useState({
+    school_classification: "",
+    school_name: "",
+    collage: "",
+    graduation_status: "",
+    admission_date: "",
+    graduation_date: ""
+  })
+
+  // career plus버튼
+  const handleClickCareerPlusButton = (name: string, data: CareerDataTypes) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: [...prevData.career, data]
+    }));
+
+    setCareerData({
+      company_name: "",
+      join_date: "",
+      leave_date: "",
+      job: "",
+      depart: "",
+      rank: "",
+    })
+  };
+
+  // edu plus버튼
+  const handleClickEduPlusButton = (name: string, data: EduDataTypes) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: [...prevData.edu, data]
+    }));
+
+    setEduData({
+      school_classification: "",
+      school_name: "",
+      collage: "",
+      graduation_status: "",
+      admission_date: "",
+      graduation_date: ""
+    })
+  };
 
   // input 변경시 동작
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,11 +144,20 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
 
       <TabsContent
         value="edu_career"
-        className='grid grid-rows-2 gap-6'>
-        <Education />
-        <Career />
+        className='flex flex-col gap-6'>
+        <Education
+          formData={formData}
+          eduData={eduData}
+          setEduData={setEduData}
+          handleClickEduPlusButton={handleClickEduPlusButton} />
+        <Career
+          formData={formData}
+          careerData={careerData}
+          setCareerData={setCareerData}
+          handleClickCareerPlusButton={handleClickCareerPlusButton} />
+
         <div className='text-right'>
-          <Button>제출</Button>
+          <Button onClick={() => postMemberData(formData)}>제출</Button>
         </div>
       </TabsContent>
     </div>
