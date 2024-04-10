@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import Address from './Address';
 
 const Privacy = memo(({ formData, handleChange, handleSexChange }: {
   formData: MemberDataTypes;
@@ -69,10 +70,7 @@ const Privacy = memo(({ formData, handleChange, handleSexChange }: {
         </div>
 
         {/* !!! 카카오 주소 가져와야함!!! --> 임시로 대체중 */}
-        <div className="space-y-1">
-          <Label htmlFor="address">주소</Label>
-          <Input id="address" />
-        </div>
+        <Address />
 
         {/* 성별 체크 */}
         <div className="py-2">
