@@ -1,75 +1,98 @@
 import { Button } from '@/components/ui/button';
+// import { Dialog, DialogClose, DialogContent, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 // import { ipcRenderer } from 'electron';
 
 const Address = memo(() => {
-  // const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const [fullAddress, setFullAddress] = useState({
+    address: "",
+    jibun_address: "",
+    zone_code: "",
+    detail_address: ""
+  })
 
   // 팝업창 열기
-  // const openPostCode = () => {
-  //   setIsPopupOpen(true)
-  // }
+  const openPostCode = () => {
+    setIsPopupOpen(true)
+  }
 
-  // 팝업창 닫기
-  // const closePostCode = () => {
-  //   setIsPopupOpen(false)
-  // }
+  const closePostCode = () => {
+    setIsPopupOpen(false)
+  }
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFullAddress((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-  // let fullAddress = '';
-  // let extraAddress = '';
-  // const handlePostCode = (data) => {
-
-  //   if (data.addressType === 'R') {
-  //     if (data.bname !== '') {
-  //       extraAddress += data.bname;
-  //     }
-  //     if (data.buildingName !== '') {
-  //       extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
-  //     }
-  //     fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
-  //   }
-  //   console.log(data)
-
-  //   console.log(data.zonecode)
-  //   // props.onClose()
-  // }
-  // console.log(fullAddress)
+  const handlePostCode = (data) => {
+    setFullAddress({
+      address: data.address,
+      jibun_address: data.jibunAddress,
+      zone_code: data.zonecode,
+      detail_address: ""
+    });
+    // props.onClose()
+  }
   // const handleButtonClick = () => {
   //   ipcRenderer.send('create-post-window');
   // };
 
+  const postCodeStyle = {
+    width: '500px',
+    height: '500px',
+    background: '#000'
+  }; // 스타일 정의 code
   return (
     <div className="space-y-1">
       <Label htmlFor="address">주소</Label>
-      <Input id="address" />
-      <Input id="sample4_postcode" placeholder="우편번호" />
-      <DaumPostcode
-      // onComplete={handlePostCode}
-      ></DaumPostcode>
-      <Button
-        value="우편번호 찾기"
-      // onClick={openPostCode}
-      >우편번호 찾기</Button>
+      <Button onClick={() => setIsPopupOpen(!isPopupOpen)}>주소검색</Button>
+
+      {isPopupOpen
+        && <DaumPostcode
+          style={postCodeStyle}
+          onComplete={handlePostCode}
+        ></DaumPostcode>}
+
       <Input
         id="sample4_roadAddress"
+        name="address"
         placeholder="도로명주소"
-      />
+        disabled
+        value={fullAddress.address}
+        onChange={handleChange} />
+
       <Input
         id="sample4_jibunAddress"
-        placeholder="지번주소" />
+        name="jibun_adrress"
+        placeholder="지번주소"
+        disabled
+        value={fullAddress.jibun_address}
+        onChange={handleChange} />
+
       <Input
         id="sample4_detailAddress"
-        placeholder="상세주소" />
+        name='detail_address'
+        placeholder="상세주소"
+        value={fullAddress.detail_address}
+        onChange={handleChange} />
+
       <Input
-        id="sample4_extraAddress"
-        placeholder="참고항목" />
-      <Button
-      // onClick={handleButtonClick}
-      >자식 윈도우 생성</Button>
+        id="sample4_postcode"
+        name='zonecode'
+        placeholder="우편번호"
+        disabled
+        value={fullAddress.zone_code}
+        onChange={handleChange}
+      />
     </div>
   );
 });
