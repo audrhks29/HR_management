@@ -4,26 +4,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { memo, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
-// import { ipcRenderer } from 'electron';
 
-const Address = memo(() => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const [fullAddress, setFullAddress] = useState({
-    address: "",
-    jibun_address: "",
-    zone_code: "",
-    detail_address: ""
-  })
-
-  // 팝업창 열기
-  const openPostCode = () => {
-    setIsPopupOpen(true)
-  }
-
-  const closePostCode = () => {
-    setIsPopupOpen(false)
-  }
+const Address = memo(({ setFormData, fullAddress, setFullAddress }: {
+  setFormData: React.Dispatch<React.SetStateAction<MemberDataTypes>>;
+  fullAddress: AddressDataTypes;
+  setFullAddress: React.Dispatch<React.SetStateAction<AddressDataTypes>>;
+}) => {
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -31,9 +18,18 @@ const Address = memo(() => {
       ...prevData,
       [name]: value,
     }));
+
+    setFormData((prevData) => ({
+      ...prevData,
+      address: fullAddress
+    }));
   };
 
-  const handlePostCode = (data) => {
+  const handleSearchAddress = (data: {
+    address: string;
+    jibunAddress: string;
+    zonecode: string;
+  }) => {
     setFullAddress({
       address: data.address,
       jibun_address: data.jibunAddress,
@@ -42,15 +38,12 @@ const Address = memo(() => {
     });
     // props.onClose()
   }
-  // const handleButtonClick = () => {
-  //   ipcRenderer.send('create-post-window');
-  // };
 
   const postCodeStyle = {
     width: '500px',
     height: '500px',
-    background: '#000'
-  }; // 스타일 정의 code
+  };
+
   return (
     <div className="space-y-1">
       <Label htmlFor="address">주소</Label>
@@ -59,7 +52,7 @@ const Address = memo(() => {
       {isPopupOpen
         && <DaumPostcode
           style={postCodeStyle}
-          onComplete={handlePostCode}
+          onComplete={handleSearchAddress}
         ></DaumPostcode>}
 
       <Input

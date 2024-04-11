@@ -3,7 +3,12 @@ interface MemberDataTypes {
   kor_name: string;
   eng_name: string;
   phone_number: string;
-  address: string;
+  address: {
+    address: string;
+    jibun_address: string;
+    zone_code: string;
+    detail_address: string;
+  }
   rrn_front: string;
   rrn_back: string;
   sex: string;

@@ -6,10 +6,13 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import Address from './Address';
 // const Address = React.lazy(() => import('./Address'));
 
-const Privacy = memo(({ formData, handleChange, handleSexChange }: {
+const Privacy = memo(({ formData, setFormData, handleChange, handleSexChange, fullAddress, setFullAddress }: {
   formData: MemberDataTypes;
+  setFormData: React.Dispatch<React.SetStateAction<MemberDataTypes>>;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSexChange: (value: string) => void;
+  fullAddress: AddressDataTypes;
+  setFullAddress: React.Dispatch<React.SetStateAction<AddressDataTypes>>;
 }) => {
   return (
     <Card className="min-h-[700px] p-8">
@@ -72,7 +75,10 @@ const Privacy = memo(({ formData, handleChange, handleSexChange }: {
 
         {/* !!! 카카오 주소 가져와야함!!! --> 임시로 대체중 */}
 
-        <Address />
+        <Address
+          setFormData={setFormData}
+          fullAddress={fullAddress}
+          setFullAddress={setFullAddress} />
 
         {/* 성별 체크 */}
         <div className="py-2">

@@ -3,7 +3,7 @@ interface MemberDataTypes {
   kor_name: string;
   eng_name: string;
   phone_number: string;
-  address: string;
+  address: AddressDataTypes
   rrn_front: string;
   rrn_back: string;
   sex: string;
@@ -91,4 +91,11 @@ interface EduDataTypes {
   graduation_status: string;
   admission_date: string;
   graduation_date: string;
+}
+
+interface AddressDataTypes {
+  address: string;
+  jibun_address: string;
+  zone_code: string;
+  detail_address: string;
 }

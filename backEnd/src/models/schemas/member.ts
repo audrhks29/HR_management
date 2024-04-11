@@ -5,7 +5,12 @@ const memberDBSchema = new mongoose.Schema({
   kor_name: String,
   eng_name: String,
   phone_number: String,
-  address: String,
+  address: {
+    address: String,
+    jibun_address: String,
+    zone_code: String,
+    detail_address: String,
+  },
   rrn_front: String,
   rrn_back: String,
   sex: String,

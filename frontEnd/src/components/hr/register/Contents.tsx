@@ -15,7 +15,12 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
     kor_name: '',
     eng_name: '',
     phone_number: '',
-    address: "",
+    address: {
+      address: "",
+      jibun_address: "",
+      zone_code: "",
+      detail_address: ""
+    },
     rrn_front: '',
     rrn_back: '',
     sex: '남성',
@@ -50,6 +55,13 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
     graduation_status: "",
     admission_date: "",
     graduation_date: ""
+  })
+
+  const [fullAddress, setFullAddress] = useState({
+    address: "",
+    jibun_address: "",
+    zone_code: "",
+    detail_address: ""
   })
 
   // career plus버튼
@@ -135,8 +147,12 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
 
         <Privacy
           formData={formData}
+          setFormData={setFormData}
           handleChange={handleChange}
-          handleSexChange={handleSexChange} />
+          handleSexChange={handleSexChange}
+          fullAddress={fullAddress}
+          setFullAddress={setFullAddress} />
+
         <Department
           formData={formData}
           handleChange={handleChange}
@@ -151,6 +167,7 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
       <TabsContent
         value="edu_career"
         className='flex flex-col gap-6'>
+
         <Education
           formData={formData}
           eduData={eduData}
