@@ -48,9 +48,9 @@ const Index = memo(() => {
           </TableHeader>
 
           <TableBody>
-            {data.map(member => (
+            {data.map((member, index) => (
               <TableRow
-                key={member.employee_number}
+                key={index}
                 className='cursor-pointer'
                 onClick={() => handleClickRow(member.employee_number)}
               >

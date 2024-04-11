@@ -41,6 +41,16 @@ const Privacy = memo(({ formData, setFormData, handleChange, handleSexChange, fu
             onChange={handleChange} />
         </div>
 
+        {/* 이메일 입력 */}
+        <div className="space-y-1 w-3/5">
+          <Label htmlFor="phone_number">이메일</Label>
+          <Input
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange} />
+        </div>
+
         {/* 핸드폰 번호 입력 */}
         <div className="space-y-1 w-3/5">
           <Label htmlFor="phone_number">

@@ -12,6 +12,7 @@ interface MemberDataTypes {
   rrn_front: string;
   rrn_back: string;
   sex: string;
+  email: string;
   military: {
     division: string;
     army: string;

@@ -4,8 +4,14 @@
     "kor_name": "지은호",
     "eng_name": "Ji eunho",
     "sex": "남성",
+    "email": "yfpxoktd@example.com",
     "phone_number": "01064856411",
-    "address": "",
+    "address": {
+      "address": "서울특별시 종로구 삼청로 35-1",
+      "jibun_address": "서울특별시 종로구 삼청동 35-1",
+      "zone_code": "03061",
+      "detail_address": "경복궁 롯데캐슬 101동 503호"
+    },
     "rrn_front": "701216",
     "rrn_back": "1356441",
     "military": {
@@ -61,8 +67,14 @@
     "kor_name": "소영미",
     "eng_name": "So yeongmi",
     "sex": "여성",
+    "email": "hbszjlrg@example.com",
     "phone_number": "01075112658",
-    "address": "",
+    "address": {
+      "address": "서울특별시 중구 세종대로 110",
+      "jibun_address": "서울시청 별관 1동 305호",
+      "zone_code": "04524",
+      "detail_address": "서울특별시 중구 태평로1가 31"
+    },
     "rrn_front": "760102",
     "rrn_back": "2311258",
     "military": {
@@ -126,8 +138,14 @@
     "kor_name": "현주희",
     "eng_name": "Hyun joohee",
     "sex": "여성",
+    "email": "mpqwaiue@example.com",
     "phone_number": "01076205699",
-    "address": "",
+    "address": {
+      "address": "서울특별시 용산구 이태원로 294",
+      "jibun_address": "서울특별시 용산구 한남동 657-1",
+      "zone_code": "04350",
+      "detail_address": "해밀턴호텔 1203호"
+    },
     "rrn_front": "730608",
     "rrn_back": "2152017",
     "military": {
@@ -175,8 +193,14 @@
     "kor_name": "성호준",
     "eng_name": "Sung hojun",
     "sex": "남성",
+    "email": "lnjvdcko@example.com",
     "phone_number": "01089562487",
-    "address": "",
+    "address": {
+      "address": "서울특별시 성동구 왕십리로 410",
+      "jibun_address": "서울특별시 성동구 행당동 192",
+      "zone_code": "04769",
+      "detail_address": "센트럴자이 102동 1804호"
+    },
     "rrn_front": "791025",
     "rrn_back": "1258887",
     "military": {
@@ -232,8 +256,14 @@
     "kor_name": "도윤석",
     "eng_name": "Do yunseok",
     "sex": "남성",
+    "email": "xrtgqhsb@example.com",
     "phone_number": "01023586647",
-    "address": "",
+    "address": {
+      "address": "서울특별시 광진구 능동로 209",
+      "jibun_address": "서울특별시 광진구 화양동 1",
+      "zone_code": "05029",
+      "detail_address": "건국대학교 행정관 407호"
+    },
     "rrn_front": "830723",
     "rrn_back": "1388654",
     "military": {
@@ -281,8 +311,14 @@
     "kor_name": "성민재",
     "eng_name": "Seong minjae",
     "sex": "남성",
+    "email": "ezawputf@example.com",
     "phone_number": "01051235477",
-    "address": "",
+    "address": {
+      "address": "서울특별시 동대문구 천호대로 145",
+      "jibun_address": "서울특별시 동대문구 회기동 14-1",
+      "zone_code": "02450",
+      "detail_address": "회기역 푸르지오 시티 203동 708호"
+    },
     "rrn_front": "811201",
     "rrn_back": "1125445",
     "military": {
@@ -322,8 +358,14 @@
     "kor_name": "지혜원",
     "eng_name": "Ji hyewon",
     "sex": "여성",
+    "email": "bkimlcjh@example.com",
     "phone_number": "01035442377",
-    "address": "",
+    "address": {
+      "address": "서울특별시 중랑구 봉화산로 179",
+      "jibun_address": "서울특별시 중랑구 신내동 647",
+      "zone_code": "02121",
+      "detail_address": "중랑구청 인근 래미안 105동 1102호"
+    },
     "rrn_front": "850320",
     "rrn_back": "2341569",
     "military": {
@@ -379,8 +421,14 @@
     "kor_name": "지우진",
     "eng_name": "Ji woojin",
     "sex": "남성",
+    "email": "qsxgdnrt@example.com",
     "phone_number": "01065891173",
-    "address": "",
+    "address": {
+      "address": "서울특별시 성북구 동소문로 315",
+      "jibun_address": "서울특별시 성북구 동선동1가 12",
+      "zone_code": "02826",
+      "detail_address": "돈암현대아파트 103동 201호"
+    },
     "rrn_front": "840809",
     "rrn_back": "1169132",
     "military": {
@@ -420,8 +468,14 @@
     "kor_name": "민서영",
     "eng_name": "Min seoyoung",
     "sex": "여성",
+    "email": "oapvuwiy@example.com",
     "phone_number": "01038436912",
-    "address": "",
+    "address": {
+      "address": "서울특별시 강북구 도봉로 328",
+      "jibun_address": "서울특별시 강북구 수유동 280",
+      "zone_code": "01071",
+      "detail_address": "수유동 벽산아파트 508동 1203호"
+    },
     "rrn_front": "900612",
     "rrn_back": "2366571",
     "military": {
@@ -485,8 +539,14 @@
     "kor_name": "지원준",
     "eng_name": "Ji wonjun",
     "sex": "남성",
+    "email": "jcmrhfke@example.com",
     "phone_number": "01088561247",
-    "address": "",
+    "address": {
+      "address": "서울특별시 도봉구 도봉로 666",
+      "jibun_address": "서울특별시 도봉구 방학동 704",
+      "zone_code": "01455",
+      "detail_address": "도봉 신원아파트 108동 1702호"
+    },
     "rrn_front": "920406",
     "rrn_back": "1135775",
     "military": {
@@ -526,8 +586,14 @@
     "kor_name": "민재윤",
     "eng_name": "Min jaeyoon",
     "sex": "남성",
+    "email": "dtsgznbx@example.com",
     "phone_number": "01095884671",
-    "address": "",
+    "address": {
+      "address": "서울특별시 노원구 노해로 502",
+      "jibun_address": "서울특별시 노원구 중계동 503",
+      "zone_code": "01811",
+      "detail_address": "중계동 은빛마을 201동 603호"
+    },
     "rrn_front": "960912",
     "rrn_back": "1165881",
     "military": {
@@ -558,8 +624,14 @@
     "kor_name": "현정민",
     "eng_name": "Hyun jungmin",
     "sex": "남성",
+    "email": "fvyqiulw@example.com",
     "phone_number": "01053168412",
-    "address": "",
+    "address": {
+      "address": "서울특별시 은평구 은평로 195",
+      "jibun_address": "서울특별시 은평구 구산동 4",
+      "zone_code": "03306",
+      "detail_address": "구산역 코오롱 하늘채 106동 1401호"
+    },
     "rrn_front": "930915",
     "rrn_back": "1354842",
     "military": {
@@ -599,8 +671,14 @@
     "kor_name": "김지연",
     "eng_name": "Kim jiyeon",
     "sex": "여성",
+    "email": "hkrxamjc@example.com",
     "phone_number": "01047118549",
-    "address": "",
+    "address": {
+      "address": "서울특별시 서대문구 통일로 360",
+      "jibun_address": "서울특별시 서대문구 홍은동 5-1",
+      "zone_code": "03740",
+      "detail_address": "홍은동 래미안 루센티아 103동 302호"
+    },
     "rrn_front": "960522",
     "rrn_back": "2571356",
     "military": {
@@ -631,8 +709,14 @@
     "kor_name": "은지윤",
     "eng_name": "Eun jieun",
     "sex": "여성",
+    "email": "bpzsguyl@example.com",
     "phone_number": "01037112479",
-    "address": "",
+    "address": {
+      "address": "서울특별시 마포구 마포대로 109",
+      "jibun_address": "서울특별시 마포구 공덕동 370",
+      "zone_code": "04196",
+      "detail_address": "마포한화오벨리스크 3차 2507호"
+    },
     "rrn_front": "980206",
     "rrn_back": "2314613",
     "military": {
@@ -663,8 +747,14 @@
     "kor_name": "정은주",
     "eng_name": "Jeong eunju",
     "sex": "여성",
+    "email": "nqwtfijo@example.com",
     "phone_number": "01078115841",
-    "address": "",
+    "address": {
+      "address": "서울특별시 양천구 오목로 326",
+      "jibun_address": "서울특별시 양천구 목동 409",
+      "zone_code": "08089",
+      "detail_address": "목동 트라팰리스 104동 803호"
+    },
     "rrn_front": "970903",
     "rrn_back": "2158412",
     "military": {
@@ -704,8 +794,14 @@
     "kor_name": "이승민",
     "eng_name": "Lee seungmin",
     "sex": "남성",
+    "email": "ckshvaex@example.com",
     "phone_number": "01034088801",
-    "address": "",
+    "address": {
+      "address": "서울특별시 강서구 강서로 388",
+      "jibun_address": "서울특별시 강서구 등촌동 647-2",
+      "zone_code": "07647",
+      "detail_address": "등촌 자이아파트 207동 1601호"
+    },
     "rrn_front": "970513",
     "rrn_back": "1611357",
     "military": {
@@ -745,8 +841,14 @@
     "kor_name": "강준호",
     "eng_name": "Kang junho",
     "sex": "남성",
+    "email": "jpugybfq@example.com",
     "phone_number": "01075133518",
-    "address": "",
+    "address": {
+      "address": "서울특별시 구로구 디지털로 306",
+      "jibun_address": "서울특별시 구로구 구로동 642",
+      "zone_code": "08378",
+      "detail_address": "구로 푸르지오 102동 1105호"
+    },
     "rrn_front": "950613",
     "rrn_back": "1511548",
     "military": {
@@ -777,8 +879,14 @@
     "kor_name": "윤서현",
     "eng_name": "Yoon seohyun",
     "sex": "여성",
+    "email": "wrtzlxdh@example.com",
     "phone_number": "01042158865",
-    "address": "",
+    "address": {
+      "address": "서울특별시 금천구 시흥대로 399",
+      "jibun_address": "서울특별시 금천구 독산동 291",
+      "zone_code": "08608",
+      "detail_address": "독산동 위브 센트럴파크 1603호"
+    },
     "rrn_front": "960815",
     "rrn_back": "2812335",
     "military": {
@@ -818,8 +926,14 @@
     "kor_name": "박민준",
     "eng_name": "Park minjun",
     "sex": "남성",
+    "email": "mvsiakgc@example.com",
     "phone_number": "01058135645",
-    "address": "",
+    "address": {
+      "address": "서울특별시 영등포구 국제금융로 52",
+      "jibun_address": "서울특별시 영등포구 여의도동 23",
+      "zone_code": "07329",
+      "detail_address": "여의도 리버뷰 트윈 1002호"
+    },
     "rrn_front": "000715",
     "rrn_back": "3152617",
     "military": {
@@ -850,8 +964,14 @@
     "kor_name": "최지원",
     "eng_name": "Choi jiwon",
     "sex": "여성",
+    "email": "epxuqhrt@example.com",
     "phone_number": "01037822614",
-    "address": "",
+    "address": {
+      "address": "서울특별시 동작구 노량진로 148",
+      "jibun_address": "서울특별시 동작구 노량진동 332",
+      "zone_code": "06939",
+      "detail_address": "노량진 한강로얄파크 1005호"
+    },
     "rrn_front": "970531",
     "rrn_back": "2416912",
     "military": {
@@ -891,8 +1011,14 @@
     "kor_name": "장민석",
     "eng_name": "Jang minseok",
     "sex": "남성",
+    "email": "gybjhzfx@example.com",
     "phone_number": "01064775283",
-    "address": "",
+    "address": {
+      "address": "서울특별시 관악구 남부순환로 1820",
+      "jibun_address": "서울특별시 관악구 신림동 1430-7",
+      "zone_code": "08788",
+      "detail_address": "신림동 래미안 블레스티지 302동 1208호"
+    },
     "rrn_front": "970811",
     "rrn_back": "1162845",
     "military": {
@@ -932,8 +1058,14 @@
     "kor_name": "오지현",
     "eng_name": "Oh jihyun",
     "sex": "여성",
+    "email": "ufqkltwa@example.com",
     "phone_number": "01055129984",
-    "address": "",
+    "address": {
+      "address": "서울특별시 서초구 강남대로 369",
+      "jibun_address": "서울특별시 서초구 서초동 1305-3",
+      "zone_code": "06611",
+      "detail_address": "서초동 하이브랜드 501호"
+    },
     "rrn_front": "000430",
     "rrn_back": "4129983",
     "military": {
@@ -964,8 +1096,14 @@
     "kor_name": "선우현",
     "eng_name": "Sun woohyun",
     "sex": "남성",
+    "email": "nrpojcvi@example.com",
     "phone_number": "0106891546",
-    "address": "",
+    "address": {
+      "address": "서울특별시 강남구 도산대로 514",
+      "jibun_address": "서울특별시 강남구 청담동 95-15",
+      "zone_code": "06015",
+      "detail_address": "청담 에스티마 103동 3004호"
+    },
     "rrn_front": "951202",
     "rrn_back": "1689443",
     "military": {
@@ -1005,8 +1143,14 @@
     "kor_name": "황성우",
     "eng_name": "Hwang sungwoo",
     "sex": "남성",
+    "email": "xthaywsq@example.com",
     "phone_number": "01065843251",
-    "address": "",
+    "address": {
+      "address": "서울특별시 송파구 백제고분로 426",
+      "jibun_address": "서울특별시 송파구 신천동 7",
+      "zone_code": "05699",
+      "detail_address": "송파파크 데일 103동 2702호"
+    },
     "rrn_front": "980209",
     "rrn_back": "1168235",
     "military": {
@@ -1045,8 +1189,14 @@
     "kor_name": "지민우",
     "eng_name": "Ji minwoo",
     "sex": "남성",
+    "email": "iklhzfbo@example.com",
     "phone_number": "01039495594",
-    "address": "",
+    "address": {
+      "address": "서울특별시 강동구 천호대로 1017",
+      "jibun_address": "서울특별시 강동구 성내동 434",
+      "zone_code": "05359",
+      "detail_address": "강동구청역 롯데캐슬 502동 804호"
+    },
     "rrn_front": "950716",
     "rrn_back": "1656135",
     "military": {
@@ -1072,10 +1222,10 @@
     ],
     "edu": [
       {
-        "school_classification": "",
-        "school_name": "",
-        "collage": "",
-        "graduation_status": "",
+        "school_classification": "대학교",
+        "school_name": "한국대학교",
+        "collage": "전기공학과",
+        "graduation_status": "졸업",
         "admission_date": "2014년 03월 02일",
         "graduation_date": "2018년 02월 05일"
       }
@@ -1086,8 +1236,14 @@
     "kor_name": "현우진",
     "eng_name": "Hyun woojin",
     "sex": "남성",
+    "email": "aqjgxdsc@example.com",
     "phone_number": "01045664358",
-    "address": "",
+    "address": {
+      "address": "인천광역시 중구 차이나타운로 59",
+      "jibun_address": "인천광역시 중구 북성동1가 97-1",
+      "zone_code": "22332",
+      "detail_address": "개항장 현대아파트 102동 1103호"
+    },
     "rrn_front": "900612",
     "rrn_back": "1569474",
     "military": {
@@ -1127,8 +1283,14 @@
     "kor_name": "서연우",
     "eng_name": "Seo yeonwoo",
     "sex": "남성",
+    "email": "rvfunezt@example.com",
     "phone_number": "01096849743",
-    "address": "",
+    "address": {
+      "address": "인천광역시 동구 화도진로 155",
+      "jibun_address": "인천광역시 동구 송림동 77",
+      "zone_code": "22573",
+      "detail_address": "송림동 풍림아이원 1204동 901호"
+    },
     "rrn_front": "960823",
     "rrn_back": "1694331",
     "military": {
@@ -1176,8 +1338,14 @@
     "kor_name": "신지호",
     "eng_name": "Shin jiho",
     "sex": "남성",
+    "email": "pwsoibjh@example.com",
     "phone_number": "01026884641",
-    "address": "",
+    "address": {
+      "address": "인천광역시 미추홀구 인하로 497-24",
+      "jibun_address": "인천광역시 미추홀구 주안동 873",
+      "zone_code": "22146",
+      "detail_address": "주안 현대 3차 1002동 203호"
+    },
     "rrn_front": "970521",
     "rrn_back": "1694457",
     "military": {
@@ -1208,8 +1376,14 @@
     "kor_name": "박지원",
     "eng_name": "Park jiwon",
     "sex": "여성",
+    "email": "tmlqgzck@example.com",
     "phone_number": "01061334613",
-    "address": "",
+    "address": {
+      "address": "인천광역시 연수구 청학동 423",
+      "jibun_address": "인천광역시 연수구 청학동 145-5",
+      "zone_code": "21988",
+      "detail_address": "송도 센트럴파크 푸르지오 204동 2701호"
+    },
     "rrn_front": "030103",
     "rrn_back": "4162325",
     "military": {
@@ -1240,8 +1414,14 @@
     "kor_name": "정승연",
     "eng_name": "Jeong seungyeon",
     "sex": "여성",
+    "email": "hbxwfsev@example.com",
     "phone_number": "01049669774",
-    "address": "",
+    "address": {
+      "address": "인천광역시 남동구 논현대로 760",
+      "jibun_address": "인천광역시 남동구 논현동 618",
+      "zone_code": "21697",
+      "detail_address": "논현동 두산위브더제니스 103동 1605호"
+    },
     "rrn_front": "000623",
     "rrn_back": "4661915",
     "military": {

@@ -14,6 +14,7 @@ const memberDBSchema = new mongoose.Schema({
   rrn_front: String,
   rrn_back: String,
   sex: String,
+  email: String,
   military: {
     division: String,
     army: String,

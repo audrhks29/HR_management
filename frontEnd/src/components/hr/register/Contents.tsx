@@ -7,62 +7,21 @@ import Department from './menu/info/Department';
 import { Button } from '@/components/ui/button';
 import Career from './menu/career/Career';
 import Education from './menu/career/Education';
+
 import { postMemberData } from '@/server/fetchCreateData';
 
-const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => {
-  const [formData, setFormData] = useState<MemberDataTypes>({
-    employee_number: '',
-    kor_name: '',
-    eng_name: '',
-    phone_number: '',
-    address: {
-      address: "",
-      jibun_address: "",
-      zone_code: "",
-      detail_address: ""
-    },
-    rrn_front: '',
-    rrn_back: '',
-    sex: '남성',
-    military: {
-      division: "",
-      army: "",
-      rank: "",
-    },
-    quarter: '',
-    department: '',
-    team: '',
-    position: '',
-    rank: '',
-    date_of_joining: '',
-    career: [],
-    edu: []
-  });
+import { initialCareerData, initialMemberData, initialEduData, initialFullAddress } from '@/assets/initialValue';
+import { useNavigate } from 'react-router-dom';
 
-  const [careerData, setCareerData] = useState({
-    company_name: "",
-    join_date: "",
-    leave_date: "",
-    job: "",
-    depart: "",
-    rank: "",
-  });
+const Contents = memo(({ handleNextClick }: {
+  handleNextClick: () => void;
+}) => {
+  const [formData, setFormData] = useState<MemberDataTypes>(initialMemberData);
+  const [careerData, setCareerData] = useState(initialCareerData);
+  const [eduData, setEduData] = useState(initialEduData);
+  const [fullAddress, setFullAddress] = useState(initialFullAddress)
 
-  const [eduData, setEduData] = useState({
-    school_classification: "",
-    school_name: "",
-    collage: "",
-    graduation_status: "",
-    admission_date: "",
-    graduation_date: ""
-  })
-
-  const [fullAddress, setFullAddress] = useState({
-    address: "",
-    jibun_address: "",
-    zone_code: "",
-    detail_address: ""
-  })
+  const navigate = useNavigate()
 
   // career plus버튼
   const handleClickCareerPlusButton = (name: string, data: CareerDataTypes) => {
@@ -71,14 +30,7 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
       [name]: [...prevData.career, data]
     }));
 
-    setCareerData({
-      company_name: "",
-      join_date: "",
-      leave_date: "",
-      job: "",
-      depart: "",
-      rank: "",
-    })
+    setCareerData(initialCareerData)
   };
 
   // edu plus버튼
@@ -88,14 +40,7 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
       [name]: [...prevData.edu, data]
     }));
 
-    setEduData({
-      school_classification: "",
-      school_name: "",
-      collage: "",
-      graduation_status: "",
-      admission_date: "",
-      graduation_date: ""
-    })
+    setEduData(initialEduData)
   };
 
   // input 변경시 동작
@@ -139,6 +84,25 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
     }
   };
 
+  // useState 초기화
+  const initialData = () => {
+    setFormData(initialMemberData)
+    setCareerData(initialCareerData)
+    setEduData(initialEduData)
+    setFullAddress(initialFullAddress)
+  }
+
+  // 제출버튼 클릭
+  const handleSubmit = () => {
+    const confirmMessage = confirm('제출하시겠습니까?')
+    if (confirmMessage) {
+      postMemberData(formData)
+      alert('추가되었습니다.')
+      initialData()
+      navigate('/hr_record')
+    }
+  }
+
   return (
     <div className='mt-5'>
       <TabsContent
@@ -180,7 +144,7 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
           handleClickCareerPlusButton={handleClickCareerPlusButton} />
 
         <div className='text-right'>
-          <Button onClick={() => postMemberData(formData)}>제출</Button>
+          <Button onClick={handleSubmit}>제출</Button>
         </div>
       </TabsContent>
     </div>

@@ -47,45 +47,48 @@ const Address = memo(({ setFormData, fullAddress, setFullAddress }: {
   return (
     <div className="space-y-1">
       <Label htmlFor="address">주소</Label>
-      <Button onClick={() => setIsPopupOpen(!isPopupOpen)}>주소검색</Button>
 
       {isPopupOpen
         && <DaumPostcode
           style={postCodeStyle}
-          onComplete={handleSearchAddress}
-        ></DaumPostcode>}
+          onComplete={handleSearchAddress} />}
 
-      <Input
-        id="sample4_roadAddress"
-        name="address"
-        placeholder="도로명주소"
-        disabled
-        value={fullAddress.address}
-        onChange={handleChange} />
+      <div className='grid grid-cols-2 gap-6'>
+        <Input
+          id="sample4_roadAddress"
+          name="address"
+          placeholder="도로명주소"
+          disabled
+          value={fullAddress.address}
+          onChange={handleChange} />
 
-      <Input
-        id="sample4_jibunAddress"
-        name="jibun_adrress"
-        placeholder="지번주소"
-        disabled
-        value={fullAddress.jibun_address}
-        onChange={handleChange} />
+        <Input
+          id="sample4_jibunAddress"
+          name="jibun_adrress"
+          placeholder="지번주소"
+          disabled
+          value={fullAddress.jibun_address}
+          onChange={handleChange} />
+      </div>
 
-      <Input
-        id="sample4_detailAddress"
-        name='detail_address'
-        placeholder="상세주소"
-        value={fullAddress.detail_address}
-        onChange={handleChange} />
+      <div className='grid grid-cols-[1fr_3fr_80px] gap-3 py-2'>
+        <Input
+          id="sample4_postcode"
+          name='zonecode'
+          placeholder="우편번호"
+          disabled
+          value={fullAddress.zone_code}
+          onChange={handleChange} />
 
-      <Input
-        id="sample4_postcode"
-        name='zonecode'
-        placeholder="우편번호"
-        disabled
-        value={fullAddress.zone_code}
-        onChange={handleChange}
-      />
+        <Input
+          id="sample4_detailAddress"
+          name='detail_address'
+          placeholder="상세주소"
+          value={fullAddress.detail_address}
+          onChange={handleChange} />
+
+        <Button onClick={() => setIsPopupOpen(!isPopupOpen)}>주소검색</Button>
+      </div>
     </div>
   );
 });

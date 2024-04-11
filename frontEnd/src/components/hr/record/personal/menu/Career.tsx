@@ -1,9 +1,8 @@
 import { memo } from 'react';
-import { IoMdFemale, IoMdMale } from 'react-icons/io';
 
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import PersonalTitle from '@/shared/PersonalTitle';
 
 const Career = memo(({ personalData }: {
   personalData: MemberDataTypes | undefined;
@@ -11,42 +10,14 @@ const Career = memo(({ personalData }: {
 
   return (
     <Card className='h-[800px] p-8'>
-      <CardHeader className='border-b-2'>
-        <CardTitle>
-          <div className='flex items-center mb-3'>
-
-            {/* 직책 */}
-            {personalData?.position
-              && <Badge
-                className="h-8 text-[14px] items-center justify-center mr-2"
-                variant="secondary">
-                {personalData?.position}</Badge>}
-
-            {/* 직급 */}
-            <Badge
-              className="w-16 h-8 text-[14px] items-center justify-center mr-2"
-              variant="secondary">
-              {personalData?.rank}</Badge>
-          </div>
-
-          <div className='flex items-center mt-5'>
-
-            {/* 성별 */}
-            {personalData?.sex === "남성"
-              ? <IoMdMale className="text-[#0000ff] mr-3" />
-              : <IoMdFemale className='text-[#ff0000] mr-3' />}
-
-            {/* 이름 */}
-            {personalData?.kor_name} ({personalData?.eng_name})
-          </div>
-        </CardTitle>
-      </CardHeader>
+      <PersonalTitle personalData={personalData} />
 
       <CardContent className="mt-5">
         <CardDescription className='text-[16px] mb-3'>학과</CardDescription>
         <Table className='text-center border-b mb-5'>
           <TableHeader className='bg-muted'>
             <TableRow>
+              <TableHead>구분</TableHead>
               <TableHead>학교명</TableHead>
               <TableHead>학과</TableHead>
               <TableHead>졸업여부</TableHead>
@@ -56,13 +27,17 @@ const Career = memo(({ personalData }: {
           </TableHeader>
 
           <TableBody>
-            <TableRow className='cursor-pointer'>
-              <TableCell>00고등학교</TableCell>
-              <TableCell>문과</TableCell>
-              <TableCell>졸업</TableCell>
-              <TableCell>2015년 03월 02일</TableCell>
-              <TableCell>2018년 02월 17일</TableCell>
-            </TableRow>
+            {personalData && personalData.edu.length > 0
+              ? personalData?.edu.map(edu => (
+                <TableRow className='cursor-pointer'>
+                  <TableCell>{edu.school_classification}</TableCell>
+                  <TableCell>{edu.school_name}</TableCell>
+                  <TableCell>{edu.collage}</TableCell>
+                  <TableCell>{edu.graduation_status}</TableCell>
+                  <TableCell>{edu.admission_date}</TableCell>
+                  <TableCell>{edu.graduation_date}</TableCell>
+                </TableRow>
+              )) : <TableCell colSpan={6}>데이터가 없습니다.</TableCell>}
           </TableBody>
         </Table>
 
@@ -80,14 +55,17 @@ const Career = memo(({ personalData }: {
           </TableHeader>
 
           <TableBody>
-            <TableRow className='cursor-pointer'>
-              <TableCell>000컴퍼니</TableCell>
-              <TableCell>2018년 05월 21일</TableCell>
-              <TableCell>2021년 03월 8일</TableCell>
-              <TableCell>경영</TableCell>
-              <TableCell>경영지원부</TableCell>
-              <TableCell>대리</TableCell>
-            </TableRow>
+            {personalData && personalData.career.length > 0
+              ? personalData?.career.map(career => (
+                <TableRow className='cursor-pointer'>
+                  <TableCell>{career.company_name}</TableCell>
+                  <TableCell>{career.join_date}</TableCell>
+                  <TableCell>{career.leave_date}</TableCell>
+                  <TableCell>{career.job}</TableCell>
+                  <TableCell>{career.depart}</TableCell>
+                  <TableCell>{career.rank}</TableCell>
+                </TableRow>
+              )) : <TableCell colSpan={6}>데이터가 없습니다.</TableCell>}
           </TableBody>
         </Table>
 

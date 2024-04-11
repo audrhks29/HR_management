@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { IoMdArrowDropdown } from "react-icons/io";
 
@@ -9,14 +9,18 @@ const Menu = memo(() => {
   const [activeMenus, setActiveMenus] = useState<number[]>([]);
   const [height, setHeight] = useState(window.innerHeight);
 
-  const location = window.location.hash;
-  const [hashName, setHashName] = useState(location)
+  const location = useLocation();
+  const [hashName, setHashName] = useState(location.pathname)
 
   const screenHeight = window.innerHeight;
 
   useEffect(() => {
     setHeight(screenHeight)
   }, [screenHeight])
+
+  useEffect(() => {
+    setHashName(location.pathname)
+  }, [location])
 
   const handleClickMenu = (id: number) => {
     activeMenus.includes(id)

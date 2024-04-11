@@ -17,11 +17,6 @@
         "id": 3,
         "title": "조직도 구성",
         "link": "/hr_organization_chart"
-      },
-      {
-        "id": 4,
-        "title": "인사발령",
-        "link": "/hr_appointments"
       }
     ]
   },
