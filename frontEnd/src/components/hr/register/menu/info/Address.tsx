@@ -1,96 +1,72 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 // import { Dialog, DialogClose, DialogContent, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { memo, useState } from 'react';
-import DaumPostcode from 'react-daum-postcode';
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { memo, useState } from "react";
+import DaumPostcode from "react-daum-postcode";
 
-const Address = memo(({ setFormData, fullAddress, setFullAddress }: {
-  setFormData: React.Dispatch<React.SetStateAction<MemberDataTypes>>;
-  fullAddress: AddressDataTypes;
-  setFullAddress: React.Dispatch<React.SetStateAction<AddressDataTypes>>;
-}) => {
-  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFullAddress((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-
-    setFormData((prevData) => ({
-      ...prevData,
-      address: fullAddress
-    }));
-  };
-
-  const handleSearchAddress = (data: {
-    address: string;
-    jibunAddress: string;
-    zonecode: string;
+const Address = memo(
+  ({
+    setFormData,
+    fullAddress,
+    setFullAddress,
+  }: {
+    setFormData: React.Dispatch<React.SetStateAction<MemberDataTypes>>;
+    fullAddress: AddressDataTypes;
+    setFullAddress: React.Dispatch<React.SetStateAction<AddressDataTypes>>;
   }) => {
-    setFullAddress({
-      address: data.address,
-      jibun_address: data.jibunAddress,
-      zone_code: data.zonecode,
-      detail_address: ""
-    });
-    // props.onClose()
-  }
+    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
 
-  const postCodeStyle = {
-    width: '500px',
-    height: '500px',
-  };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setFullAddress(prevData => ({
+        ...prevData,
+        [name]: value,
+      }));
 
-  return (
-    <div className="space-y-1">
-      <Label htmlFor="address">주소</Label>
+      setFormData(prevData => ({
+        ...prevData,
+        address: fullAddress,
+      }));
+    };
 
-      {isPopupOpen
-        && <DaumPostcode
-          style={postCodeStyle}
-          onComplete={handleSearchAddress} />}
+    const handleSearchAddress = (data: { address: string; jibunAddress: string; zonecode: string }) => {
+      setFullAddress({
+        address: data.address,
+        jibun_address: data.jibunAddress,
+        zone_code: data.zonecode,
+        detail_address: "",
+      });
+      // props.onClose()
+    };
 
-      <div className='grid grid-cols-2 gap-6'>
-        <Input
-          id="sample4_roadAddress"
-          name="address"
-          placeholder="도로명주소"
-          disabled
-          value={fullAddress.address}
-          onChange={handleChange} />
+    const postCodeStyle = {
+      width: "500px",
+      height: "500px",
+    };
 
-        <Input
-          id="sample4_jibunAddress"
-          name="jibun_adrress"
-          placeholder="지번주소"
-          disabled
-          value={fullAddress.jibun_address}
-          onChange={handleChange} />
+    return (
+      <div className="space-y-1">
+        <Label htmlFor="address">주소</Label>
+
+        {isPopupOpen && <DaumPostcode style={postCodeStyle} onComplete={handleSearchAddress} />}
+
+        <div className="grid grid-cols-2 gap-6">
+          <Input id="sample4_roadAddress" name="address" placeholder="도로명주소" disabled value={fullAddress.address} onChange={handleChange} />
+
+          <Input id="sample4_jibunAddress" name="jibun_adrress" placeholder="지번주소" disabled value={fullAddress.jibun_address} onChange={handleChange} />
+        </div>
+
+        <div className="grid grid-cols-[1fr_3fr_80px] gap-3 py-2">
+          <Input id="sample4_postcode" name="zonecode" placeholder="우편번호" disabled value={fullAddress.zone_code} onChange={handleChange} />
+
+          <Input id="sample4_detailAddress" name="detail_address" placeholder="상세주소" value={fullAddress.detail_address} onChange={handleChange} />
+
+          <Button onClick={() => setIsPopupOpen(!isPopupOpen)}>주소검색</Button>
+        </div>
       </div>
-
-      <div className='grid grid-cols-[1fr_3fr_80px] gap-3 py-2'>
-        <Input
-          id="sample4_postcode"
-          name='zonecode'
-          placeholder="우편번호"
-          disabled
-          value={fullAddress.zone_code}
-          onChange={handleChange} />
-
-        <Input
-          id="sample4_detailAddress"
-          name='detail_address'
-          placeholder="상세주소"
-          value={fullAddress.detail_address}
-          onChange={handleChange} />
-
-        <Button onClick={() => setIsPopupOpen(!isPopupOpen)}>주소검색</Button>
-      </div>
-    </div>
-  );
-});
+    );
+  },
+);
 
 export default Address;

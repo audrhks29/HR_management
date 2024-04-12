@@ -1,11 +1,9 @@
-import { memo } from 'react';
+import { memo } from "react";
 
-import Contents from './Contents';
+import Contents from "./Contents";
 
 const Index = memo(() => {
-  return (
-    <Contents />
-  );
+  return <Contents />;
 });
 
 export default Index;

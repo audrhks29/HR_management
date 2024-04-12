@@ -1,8 +1,8 @@
-import { memo } from 'react';
+import { memo } from "react";
 
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { Bell, Package2 } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { Bell, Package2 } from "lucide-react";
 
 const User = memo(() => {
   return (

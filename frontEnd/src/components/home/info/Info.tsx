@@ -1,11 +1,11 @@
-import { memo } from 'react';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { memo } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
-import { getBusinessData } from '@/server/fetchReadData';
+import { getBusinessData } from "@/server/fetchReadData";
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-import Notification from './notification/Notification';
+import Notification from "./notification/Notification";
 
 const Info = memo(() => {
   const { data: businessData }: { data: BusinessDataTypes[] } = useSuspenseQuery({
@@ -13,14 +13,14 @@ const Info = memo(() => {
     queryFn: getBusinessData,
   });
 
-  const companyName = businessData.find(business => business.kor_desc === "상호")
+  const companyName = businessData.find(business => business.kor_desc === "상호");
 
   return (
-    <Card className='col-span-2'>
+    <Card className="col-span-2">
       <CardHeader>
         <CardTitle>{companyName?.displayText}</CardTitle>
       </CardHeader>
-      <CardContent className='grid grid-cols-2'>
+      <CardContent className="grid grid-cols-2">
         <Notification />
       </CardContent>
     </Card>

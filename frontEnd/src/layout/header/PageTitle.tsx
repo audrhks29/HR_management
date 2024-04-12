@@ -1,83 +1,83 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 import React, { memo } from "react";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
 
-import menuList from '../../assets/menuList.json'
-import { Home } from 'lucide-react';
-import { ModeToggle } from '@/components/mode/mode-toggle';
+import menuList from "../../assets/menuList.json";
+import { Home } from "lucide-react";
+import { ModeToggle } from "@/components/mode/mode-toggle";
 
 const PageTitle = memo(() => {
   const location = useLocation();
   const currentUrl = location.pathname;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [, firstUrl, secondUrl] = currentUrl.split("/");
 
   // 홈 -> ??
-  const findSecondUrl = menuList.find(path => (
-    path.submenu.some(item => item.link === `/${firstUrl}`)
-  ))
+  const findSecondUrl = menuList.find(path => path.submenu.some(item => item.link === `/${firstUrl}`));
 
   // 홈 -> ?? -> ??
-  const findThirdUrl = findSecondUrl?.submenu.find(url => url.link === `/${firstUrl}`)
+  const findThirdUrl = findSecondUrl?.submenu.find(url => url.link === `/${firstUrl}`);
 
   // 홈 -> ?? -> ?? -> ??
-  const findFourthUrl = secondUrl
+  const findFourthUrl = secondUrl;
 
   const handleClickLink = (link: string) => {
-    navigate(link)
-  }
+    navigate(link);
+  };
   return (
     <React.Fragment>
-      <Breadcrumb className='flex items-center p-4'>
+      <Breadcrumb className="flex items-center p-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            {findSecondUrl
-              ? <BreadcrumbLink onClick={() => handleClickLink('/')}>
+            {findSecondUrl ? (
+              <BreadcrumbLink onClick={() => handleClickLink("/")}>
                 <span className="flex items-center cursor-pointer">
                   <Home className="h-4 w-4 mr-2" />홈
                 </span>
               </BreadcrumbLink>
-              : <BreadcrumbPage>
+            ) : (
+              <BreadcrumbPage>
                 <span className="flex items-center cursor-pointer">
                   <Home className="h-4 w-4 mr-2" />홈
                 </span>
-              </BreadcrumbPage>}
+              </BreadcrumbPage>
+            )}
           </BreadcrumbItem>
 
           {findSecondUrl && <BreadcrumbSeparator />}
 
-          {findSecondUrl && <BreadcrumbItem>
-            <BreadcrumbLink className='cursor-pointer'>{findSecondUrl?.title}</BreadcrumbLink>
-          </BreadcrumbItem>}
+          {findSecondUrl && (
+            <BreadcrumbItem>
+              <BreadcrumbLink className="cursor-pointer">{findSecondUrl?.title}</BreadcrumbLink>
+            </BreadcrumbItem>
+          )}
 
           {findThirdUrl && <BreadcrumbSeparator />}
 
-          {findThirdUrl
-            && <BreadcrumbItem>
-              {!findFourthUrl
-                ? <BreadcrumbPage className='cursor-pointer'>
+          {findThirdUrl && (
+            <BreadcrumbItem>
+              {!findFourthUrl ? (
+                <BreadcrumbPage className="cursor-pointer">{findThirdUrl?.title}</BreadcrumbPage>
+              ) : (
+                <BreadcrumbLink className="cursor-pointer" onClick={() => handleClickLink(findThirdUrl.link)}>
                   {findThirdUrl?.title}
-                </BreadcrumbPage>
-                : <BreadcrumbLink
-                  className='cursor-pointer'
-                  onClick={() => handleClickLink(findThirdUrl.link)}
-                >
-                  {findThirdUrl?.title}
-                </BreadcrumbLink>}
-            </BreadcrumbItem>}
+                </BreadcrumbLink>
+              )}
+            </BreadcrumbItem>
+          )}
 
           {findFourthUrl && <BreadcrumbSeparator />}
 
-          {findFourthUrl && <BreadcrumbItem>
-            <BreadcrumbPage className='cursor-pointer'>
-              {findFourthUrl}
-            </BreadcrumbPage>
-          </BreadcrumbItem>}
+          {findFourthUrl && (
+            <BreadcrumbItem>
+              <BreadcrumbPage className="cursor-pointer">{findFourthUrl}</BreadcrumbPage>
+            </BreadcrumbItem>
+          )}
         </BreadcrumbList>
       </Breadcrumb>
-      <div className='ml-auto px-4 flex items-center  '>
+      <div className="ml-auto px-4 flex items-center  ">
         <ModeToggle />
       </div>
     </React.Fragment>

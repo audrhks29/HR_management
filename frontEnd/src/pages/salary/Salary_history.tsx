@@ -1,5 +1,5 @@
-import { memo } from 'react';
-import Index from '@/components/salary/history/Index';
+import { memo } from "react";
+import Index from "@/components/salary/history/Index";
 
 const Salary_history = memo(() => {
   return (

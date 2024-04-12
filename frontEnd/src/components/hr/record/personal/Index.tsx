@@ -1,7 +1,7 @@
-import { memo } from 'react';
+import { memo } from "react";
 
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import Contents from './Contents';
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Contents from "./Contents";
 
 const Index = memo(() => {
   return (

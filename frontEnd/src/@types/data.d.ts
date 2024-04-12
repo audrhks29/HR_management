@@ -3,7 +3,7 @@ interface MemberDataTypes {
   kor_name: string;
   eng_name: string;
   phone_number: string;
-  address: AddressDataTypes
+  address: AddressDataTypes;
   rrn_front: string;
   rrn_back: string;
   sex: string;
@@ -12,7 +12,7 @@ interface MemberDataTypes {
     division: string;
     army: string;
     rank: string;
-  },
+  };
   quarter: string;
   department: string;
   team: string;
@@ -36,8 +36,8 @@ interface SalaryDataTypes {
       night_work_allowance: number;
       annual_leave_allowance: number;
       meals: number;
-    }[]
-  }[]
+    }[];
+  }[];
 }
 
 interface MemberSalaryDataTypes {
@@ -54,8 +54,8 @@ interface OrganizationDataTypes {
     team: {
       id: number;
       name: string;
-    }[]
-  }[]
+    }[];
+  }[];
 }
 
 interface BusinessDataTypes {

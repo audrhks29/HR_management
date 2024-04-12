@@ -1,16 +1,13 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from "react";
 
-import { Card, CardContent } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/ui/table';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@/components/ui/table";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
-import { FaFilter } from 'react-icons/fa';
+import { FaFilter } from "react-icons/fa";
 
-const FilterCondition = memo(({ data, setSearchData }: {
-  data: MemberDataTypes[];
-  setSearchData: React.Dispatch<React.SetStateAction<MemberDataTypes[]>>;
-}) => {
+const FilterCondition = memo(({ data, setSearchData }: { data: MemberDataTypes[]; setSearchData: React.Dispatch<React.SetStateAction<MemberDataTypes[]>> }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [isFilterPopup, setIsFilterPopup] = useState(false);
 
@@ -18,50 +15,50 @@ const FilterCondition = memo(({ data, setSearchData }: {
     department: "",
     rank: "",
     position: "",
-    quarter: ""
-  })
+    quarter: "",
+  });
 
   const handleInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
-  }
+  };
 
   const handleInputQuarter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(prevState => ({
       ...prevState,
-      quarter: e.target.value
+      quarter: e.target.value,
     }));
-  }
+  };
 
   const handleInputDepartment = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(prevState => ({
       ...prevState,
-      department: e.target.value
+      department: e.target.value,
     }));
-  }
+  };
 
   const handleInputRank = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(prevState => ({
       ...prevState,
-      rank: e.target.value
+      rank: e.target.value,
     }));
-  }
+  };
 
   const handleInputPosition = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(prevState => ({
       ...prevState,
-      position: e.target.value
+      position: e.target.value,
     }));
-  }
+  };
 
   const handleResetCategory = () => {
     setCategory({
       department: "",
       rank: "",
       position: "",
-      quarter: ""
-    })
-    setIsFilterPopup(false)
-  }
+      quarter: "",
+    });
+    setIsFilterPopup(false);
+  };
 
   useEffect(() => {
     const filteredData = data.filter(member => {
@@ -73,83 +70,66 @@ const FilterCondition = memo(({ data, setSearchData }: {
 
       return nameIncludesKeyword && matchesQuarter && matchesDepartment && matchesRank && matchesPosition;
     });
-    setSearchData(filteredData)
-  }, [category, searchKeyword, setSearchData, data])
+    setSearchData(filteredData);
+  }, [category, searchKeyword, setSearchData, data]);
 
   return (
-    <div className='flex mb-4'>
-      <Input
-        className="w-[300px]"
-        placeholder='이름으로 검색'
-        value={searchKeyword}
-        onChange={handleInputSearch} />
+    <div className="flex mb-4">
+      <Input className="w-[300px]" placeholder="이름으로 검색" value={searchKeyword} onChange={handleInputSearch} />
 
-      <div className='border-0 w-96 ml-auto relative'>
-        <div className='text-right'>
-          <Button
-            className='w-28'
-            onClick={() => setIsFilterPopup(!isFilterPopup)}>
-            <i className='mr-2'><FaFilter /></i>
+      <div className="border-0 w-96 ml-auto relative">
+        <div className="text-right">
+          <Button className="w-28" onClick={() => setIsFilterPopup(!isFilterPopup)}>
+            <i className="mr-2">
+              <FaFilter />
+            </i>
             <span>검색조건</span>
           </Button>
         </div>
 
-        {isFilterPopup
-          && <Card className='border absolute top-12 right-0 z-10 w-[400px]'>
+        {isFilterPopup && (
+          <Card className="border absolute top-12 right-0 z-10 w-[400px]">
             <CardContent>
-              <Table className='text-center'>
+              <Table className="text-center">
                 <TableBody>
-                  <TableRow className='hover:bg-background'>
-                    <TableHead className='w-[130px]'>관할</TableHead>
-                    <TableCell className='text-left'>
-                      <Input
-                        value={category.quarter}
-                        onChange={handleInputQuarter}
-                      />
+                  <TableRow className="hover:bg-background">
+                    <TableHead className="w-[130px]">관할</TableHead>
+                    <TableCell className="text-left">
+                      <Input value={category.quarter} onChange={handleInputQuarter} />
                     </TableCell>
                   </TableRow>
 
-                  <TableRow className='hover:bg-background'>
-                    <TableHead className='w-[130px]'>부서</TableHead>
-                    <TableCell className='text-left'>
-                      <Input
-                        value={category.department}
-                        onChange={handleInputDepartment}
-                      />
+                  <TableRow className="hover:bg-background">
+                    <TableHead className="w-[130px]">부서</TableHead>
+                    <TableCell className="text-left">
+                      <Input value={category.department} onChange={handleInputDepartment} />
                     </TableCell>
                   </TableRow>
 
-                  <TableRow className='hover:bg-background'>
-                    <TableHead className='w-[130px]'>직급</TableHead>
-                    <TableCell className='text-left'>
-                      <Input
-                        value={category.rank}
-                        onChange={handleInputRank}
-                      />
+                  <TableRow className="hover:bg-background">
+                    <TableHead className="w-[130px]">직급</TableHead>
+                    <TableCell className="text-left">
+                      <Input value={category.rank} onChange={handleInputRank} />
                     </TableCell>
                   </TableRow>
 
-                  <TableRow className='hover:bg-background'>
-                    <TableHead className='w-[130px]'>직책</TableHead>
-                    <TableCell className='text-left'>
-                      <Input
-                        value={category.position}
-                        onChange={handleInputPosition}
-                      />
+                  <TableRow className="hover:bg-background">
+                    <TableHead className="w-[130px]">직책</TableHead>
+                    <TableCell className="text-left">
+                      <Input value={category.position} onChange={handleInputPosition} />
                     </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
 
-              <div className='text-right'>
-                <Button
-                  className='w-28'
-                  onClick={handleResetCategory}>
+              <div className="text-right">
+                <Button className="w-28" onClick={handleResetCategory}>
                   <span>초기화</span>
                 </Button>
               </div>
             </CardContent>
-          </Card>}
+          </Card>
+        )}
       </div>
     </div>
   );

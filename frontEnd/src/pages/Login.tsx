@@ -1,6 +1,6 @@
-import { memo } from 'react';
+import { memo } from "react";
 
-import LoginForm from '@/layout/header/user/login/LoginForm';
+import LoginForm from "@/layout/header/user/login/LoginForm";
 
 const Login = memo(() => {
   return (

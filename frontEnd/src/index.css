@@ -2,17 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-#root{
-
+#root {
 }
 
-header{
-
+header {
 }
 
-main{
-  padding:24px;
-  position:relative;
+main {
+  padding: 24px;
+  position: relative;
 }
 
 @layer base {
@@ -62,7 +60,6 @@ main{
   }
 }
 
-
 @layer base {
   * {
     @apply border-border;
@@ -70,7 +67,7 @@ main{
   body {
     @apply bg-muted text-foreground;
   }
-  main{
+  main {
     @apply bg-primary-foreground;
   }
 }
