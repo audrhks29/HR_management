@@ -23,7 +23,11 @@ const PersonalTitle = memo(({ personalData }: { personalData: MemberDataTypes | 
 
         <div className="flex items-center mt-5">
           {/* 성별 */}
-          {personalData?.sex === "남성" ? <IoMdMale className="text-[#0000ff] mr-3" /> : <IoMdFemale className="text-[#ff0000] mr-3" />}
+          {personalData?.sex === "남성" ? (
+            <IoMdMale className="text-[#0000ff] mr-3" />
+          ) : (
+            <IoMdFemale className="text-[#ff0000] mr-3" />
+          )}
           {/* 이름 */}
           {personalData?.kor_name} ({personalData?.eng_name})
         </div>

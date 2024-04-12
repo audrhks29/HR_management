@@ -74,7 +74,13 @@ const Career = memo(
                 <Label className="mt-1">입사일</Label>
                 <Popover>
                   <PopoverTrigger asChild>
-                    <Button variant={"outline"} className={cn("w-[200px] justify-start text-left font-normal", !joinDate && "text-muted-foreground")}>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-[200px] justify-start text-left font-normal",
+                        !joinDate && "text-muted-foreground",
+                      )}
+                    >
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {joinDate ? format(joinDate, "PPP") : <span>Pick a date</span>}
                     </Button>
@@ -98,7 +104,13 @@ const Career = memo(
                 <Label className="mt-1">퇴사일</Label>
                 <Popover>
                   <PopoverTrigger asChild>
-                    <Button variant={"outline"} className={cn("w-[200px] justify-start text-left font-normal", !leaveDate && "text-muted-foreground")}>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-[200px] justify-start text-left font-normal",
+                        !leaveDate && "text-muted-foreground",
+                      )}
+                    >
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {leaveDate ? format(leaveDate, "PPP") : <span>Pick a date</span>}
                     </Button>

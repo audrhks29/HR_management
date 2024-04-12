@@ -41,7 +41,9 @@ const CommuteTime = memo(() => {
           </SheetTitle>
           <SheetDescription className="flex gap-1">
             <span>{currentTime.getFullYear()}년</span>
-            <span>{currentTime.getMonth() + 1 < 10 ? `0${currentTime.getMonth() + 1}` : currentTime.getMonth() + 1}월</span>
+            <span>
+              {currentTime.getMonth() + 1 < 10 ? `0${currentTime.getMonth() + 1}` : currentTime.getMonth() + 1}월
+            </span>
             <span>{currentTime.getDate() < 10 ? `0${currentTime.getDate()}` : currentTime.getDate()}일</span>
             <span>{currentTime.getHours() < 10 ? `0${currentTime.getHours()}` : currentTime.getHours()}시</span>
             <span>{currentTime.getMinutes() < 10 ? `0${currentTime.getMinutes()}` : currentTime.getMinutes()}분</span>

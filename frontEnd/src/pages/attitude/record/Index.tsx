@@ -34,7 +34,12 @@ const Index = memo(() => {
       <CardContent className="py-8">
         <FilterCondition data={memberData} setSearchData={setSearchData} />
 
-        <MonthPicker isMonthPicker={isMonthPicker} setIsMonthPicker={setIsMonthPicker} selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} />
+        <MonthPicker
+          isMonthPicker={isMonthPicker}
+          setIsMonthPicker={setIsMonthPicker}
+          selectedMonth={selectedMonth}
+          setSelectedMonth={setSelectedMonth}
+        />
         <Table className="text-center">
           <TableHeader className="bg-muted">
             <TableRow>

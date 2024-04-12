@@ -16,7 +16,7 @@ const organizationDBSchema = new mongoose.Schema({
 const Organization = mongoose.model(
   "Organization",
   organizationDBSchema,
-  "organizationDB"
+  "organizationDB",
 );
 
 export default Organization;

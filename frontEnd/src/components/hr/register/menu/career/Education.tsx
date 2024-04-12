@@ -72,7 +72,10 @@ const Education = memo(
           <div className="grid grid-cols-[1fr_2fr_1fr_1fr_1fr] gap-6">
             {/* 졸업구분 */}
             <div className="space-y-1">
-              <Select value={eduData.school_classification} onValueChange={value => handleChangeSelect("school_classification", value)}>
+              <Select
+                value={eduData.school_classification}
+                onValueChange={value => handleChangeSelect("school_classification", value)}
+              >
                 <Label>졸업 구분</Label>
                 <SelectTrigger>
                   <SelectValue placeholder="졸업 구분" />
@@ -103,7 +106,10 @@ const Education = memo(
 
             {/* 졸업 여부 */}
             <div className="space-y-1">
-              <Select value={eduData.graduation_status} onValueChange={value => handleChangeSelect("graduation_status", value)}>
+              <Select
+                value={eduData.graduation_status}
+                onValueChange={value => handleChangeSelect("graduation_status", value)}
+              >
                 <Label>졸업 여부</Label>
                 <SelectTrigger>
                   <SelectValue placeholder="졸업 여부" />
@@ -127,7 +133,13 @@ const Education = memo(
                 <Label className="mt-1">입학일</Label>
                 <Popover>
                   <PopoverTrigger asChild>
-                    <Button variant={"outline"} className={cn("w-[200px] justify-start text-left font-normal", !admission_date && "text-muted-foreground")}>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-[200px] justify-start text-left font-normal",
+                        !admission_date && "text-muted-foreground",
+                      )}
+                    >
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {admission_date ? format(admission_date, "PPP") : <span>Pick a date</span>}
                     </Button>
@@ -151,7 +163,13 @@ const Education = memo(
                 <Label className="mt-1">졸업일</Label>
                 <Popover>
                   <PopoverTrigger asChild>
-                    <Button variant={"outline"} className={cn("w-[200px] justify-start text-left font-normal", !graduation_date && "text-muted-foreground")}>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-[200px] justify-start text-left font-normal",
+                        !graduation_date && "text-muted-foreground",
+                      )}
+                    >
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {graduation_date ? format(graduation_date, "PPP") : <span>Pick a date</span>}
                     </Button>

@@ -19,7 +19,11 @@ type QueryResult<T> = {
   data: T;
 };
 
-type SuspenseQueriesResult = [QueryResult<RankDataTypes[]>, QueryResult<OrganizationDataTypes[]>, QueryResult<PositionDataTypes[]>];
+type SuspenseQueriesResult = [
+  QueryResult<RankDataTypes[]>,
+  QueryResult<OrganizationDataTypes[]>,
+  QueryResult<PositionDataTypes[]>,
+];
 
 const Department = memo(
   ({
@@ -33,22 +37,23 @@ const Department = memo(
     handleChangeSelect: (name: string, value: string) => void;
     handleSelectDate: (value: Date | undefined) => void;
   }) => {
-    const [{ data: rankData }, { data: organizationData }, { data: positionData }] = useSuspenseQueries<SuspenseQueriesResult>({
-      queries: [
-        {
-          queryKey: ["rankData"],
-          queryFn: getRankData,
-        },
-        {
-          queryKey: ["organizationData"],
-          queryFn: getOrganizationData,
-        },
-        {
-          queryKey: ["positionData"],
-          queryFn: getPositionData,
-        },
-      ],
-    });
+    const [{ data: rankData }, { data: organizationData }, { data: positionData }] =
+      useSuspenseQueries<SuspenseQueriesResult>({
+        queries: [
+          {
+            queryKey: ["rankData"],
+            queryFn: getRankData,
+          },
+          {
+            queryKey: ["organizationData"],
+            queryFn: getOrganizationData,
+          },
+          {
+            queryKey: ["positionData"],
+            queryFn: getPositionData,
+          },
+        ],
+      });
 
     const [date, setDate] = useState<Date | undefined>(new Date());
 
@@ -61,7 +66,12 @@ const Department = memo(
           {/* 사원번호 입력 */}
           <div className="space-y-1 w-3/5">
             <Label htmlFor="employee_number">사원번호</Label>
-            <Input id="employee_number" name="employee_number" value={formData.employee_number} onChange={handleChange} />
+            <Input
+              id="employee_number"
+              name="employee_number"
+              value={formData.employee_number}
+              onChange={handleChange}
+            />
           </div>
 
           {/* 소속 관할, 부서, 팀  */}
@@ -183,7 +193,10 @@ const Department = memo(
           </div>
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant={"outline"} className={cn("w-[280px] justify-start text-left font-normal", !date && "text-muted-foreground")}>
+              <Button
+                variant={"outline"}
+                className={cn("w-[280px] justify-start text-left font-normal", !date && "text-muted-foreground")}
+              >
                 <CalendarIcon className="mr-2 h-4 w-4" />
                 {date ? format(date, "PPP") : <span>Pick a date</span>}
               </Button>

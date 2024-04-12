@@ -8,7 +8,7 @@ const memberSalaryDBSchema = new mongoose.Schema({
 const MemberSalary = mongoose.model(
   "MemberSalary",
   memberSalaryDBSchema,
-  "memberSalaryDB"
+  "memberSalaryDB",
 );
 
 export default MemberSalary;

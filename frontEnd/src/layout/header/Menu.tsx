@@ -23,7 +23,9 @@ const Menu = memo(() => {
   }, [location]);
 
   const handleClickMenu = (id: number) => {
-    activeMenus.includes(id) ? setActiveMenus(activeMenus.filter(item => item !== id)) : setActiveMenus([...activeMenus, id]);
+    activeMenus.includes(id)
+      ? setActiveMenus(activeMenus.filter(item => item !== id))
+      : setActiveMenus([...activeMenus, id]);
   };
 
   const handleClickSubMenu = (link: React.SetStateAction<string>) => setHashName(link);
@@ -34,13 +36,15 @@ const Menu = memo(() => {
           <React.Fragment key={menu.id}>
             <div
               className="h-10 flex justify-between items-center border dark:border-primary/20 px-3 hover:bg-secondary rounded-md cursor-pointer"
-              onClick={() => handleClickMenu(menu.id)}>
+              onClick={() => handleClickMenu(menu.id)}
+            >
               <span>{menu.title}</span>
               <i
                 className="text-[25px] duration-500"
                 style={{
                   transform: activeMenus.includes(menu.id) ? "rotate(180deg)" : "",
-                }}>
+                }}
+              >
                 <IoMdArrowDropdown />
               </i>
             </div>
@@ -58,7 +62,8 @@ const Menu = memo(() => {
                     overflow: "hidden",
                     transition: "opacity 0.7s ease",
                     backgroundColor: hashName.includes(submenu.link) ? "rgba(0,0,0,0.5)" : "",
-                  }}>
+                  }}
+                >
                   <li>{submenu.title}</li>
                 </Link>
               ))}

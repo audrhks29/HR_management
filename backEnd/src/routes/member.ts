@@ -13,7 +13,7 @@ module.exports = function (app: any, Member: any) {
       const data = await Member.find({});
       const { id } = req.params;
       const filteredData = data.find(
-        (item: MemberDataTypes) => item.employee_number === id
+        (item: MemberDataTypes) => item.employee_number === id,
       );
       res.json(filteredData);
     } catch (err: any) {

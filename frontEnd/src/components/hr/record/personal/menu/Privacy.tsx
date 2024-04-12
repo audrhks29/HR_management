@@ -22,7 +22,11 @@ const Privacy = memo(({ personalData }: { personalData: MemberDataTypes | undefi
             <TableRow className="cursor-pointer h-[53px]">
               <TableHead className="w-32 text-left">성별</TableHead>
               <TableCell className="flex items-center justify-center">
-                {personalData?.sex === "남성" ? <IoMdMale className="text-[#0000ff] mr-3" /> : <IoMdFemale className="text-[#ff0000] mr-3" />}
+                {personalData?.sex === "남성" ? (
+                  <IoMdMale className="text-[#0000ff] mr-3" />
+                ) : (
+                  <IoMdFemale className="text-[#ff0000] mr-3" />
+                )}
               </TableCell>
             </TableRow>
 

@@ -113,7 +113,12 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
           setFullAddress={setFullAddress}
         />
 
-        <Department formData={formData} handleChange={handleChange} handleChangeSelect={handleChangeSelect} handleSelectDate={handleSelectDate} />
+        <Department
+          formData={formData}
+          handleChange={handleChange}
+          handleChangeSelect={handleChangeSelect}
+          handleSelectDate={handleSelectDate}
+        />
 
         <div className="text-right col-span-2">
           <Button onClick={handleNextClick}>다음</Button>
@@ -121,8 +126,18 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
       </TabsContent>
 
       <TabsContent value="edu_career" className="flex flex-col gap-6">
-        <Education formData={formData} eduData={eduData} setEduData={setEduData} handleClickEduPlusButton={handleClickEduPlusButton} />
-        <Career formData={formData} careerData={careerData} setCareerData={setCareerData} handleClickCareerPlusButton={handleClickCareerPlusButton} />
+        <Education
+          formData={formData}
+          eduData={eduData}
+          setEduData={setEduData}
+          handleClickEduPlusButton={handleClickEduPlusButton}
+        />
+        <Career
+          formData={formData}
+          careerData={careerData}
+          setCareerData={setCareerData}
+          handleClickCareerPlusButton={handleClickCareerPlusButton}
+        />
 
         <div className="text-right">
           <Button onClick={handleSubmit}>제출</Button>

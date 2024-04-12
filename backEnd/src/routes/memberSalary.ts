@@ -13,7 +13,7 @@ module.exports = function (app: any, MemberSalary: any) {
       const data = await MemberSalary.find({});
       const { id } = req.params;
       const filteredData = data.filter(
-        (item: MemberSalaryDataTypes) => item.employee_number === id
+        (item: MemberSalaryDataTypes) => item.employee_number === id,
       );
       res.json(filteredData);
     } catch (err: any) {

@@ -1,6 +1,13 @@
 import { memo, useLayoutEffect, useState } from "react";
 
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 const Paging = memo(
   ({
@@ -36,7 +43,12 @@ const Paging = memo(
             {pageIndex.map((page, index) => {
               const isCurrent = currentPage === index + 1;
               return (
-                <PaginationLink key={index} onClick={() => setCurrentPage(page)} style={{ background: isCurrent ? "#1f2937" : "" }} className="cursor-pointer">
+                <PaginationLink
+                  key={index}
+                  onClick={() => setCurrentPage(page)}
+                  style={{ background: isCurrent ? "#1f2937" : "" }}
+                  className="cursor-pointer"
+                >
                   {page}
                 </PaginationLink>
               );
