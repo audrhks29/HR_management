@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const organizationDBSchema = new mongoose.Schema({
   id: Number,
@@ -8,11 +8,15 @@ const organizationDBSchema = new mongoose.Schema({
     name: String,
     team: {
       id: Number,
-      name: String
-    }
-  }
+      name: String,
+    },
+  },
 });
 
-const Organization = mongoose.model('Organization', organizationDBSchema, 'organizationDB');
+const Organization = mongoose.model(
+  "Organization",
+  organizationDBSchema,
+  "organizationDB"
+);
 
 export default Organization;

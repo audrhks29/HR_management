@@ -1,5 +1,5 @@
 module.exports = function (app: any, Rank: any) {
-  app.get('/rank', async (req: any, res: any) => {
+  app.get("/rank", async (req: any, res: any) => {
     try {
       const data = await Rank.find({});
       res.json(data);
@@ -8,7 +8,7 @@ module.exports = function (app: any, Rank: any) {
     }
   });
 
-  app.post('/rank', async (req: any, res: any) => {
+  app.post("/rank", async (req: any, res: any) => {
     try {
       const newRank = new Rank(req.body);
       const result = await newRank.save();

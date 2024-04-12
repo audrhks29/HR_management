@@ -8,7 +8,7 @@ interface MemberDataTypes {
     jibun_address: string;
     zone_code: string;
     detail_address: string;
-  }
+  };
   rrn_front: string;
   rrn_back: string;
   sex: string;
@@ -17,7 +17,7 @@ interface MemberDataTypes {
     division: string;
     army: string;
     rank: string;
-  },
+  };
   quarter: string;
   department: string;
   team: string;
@@ -41,8 +41,8 @@ interface SalaryDataTypes {
       night_work_allowance: number;
       annual_leave_allowance: number;
       meals: number;
-    }[]
-  }[]
+    }[];
+  }[];
 }
 
 interface MemberSalaryDataTypes {
@@ -59,8 +59,8 @@ interface OrganizationDataTypes {
     team: {
       id: number;
       name: string;
-    }[]
-  }[]
+    }[];
+  }[];
 }
 
 interface BusinessDataTypes {

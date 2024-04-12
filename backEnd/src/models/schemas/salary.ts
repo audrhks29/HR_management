@@ -12,11 +12,11 @@ const salaryDBSchema = new mongoose.Schema({
       saturday_work_allowance: Number,
       night_work_allowance: Number,
       annual_leave_allowance: Number,
-      meals: Number
-    }
-  }
+      meals: Number,
+    },
+  },
 });
 
-const Salary = mongoose.model('Salary', salaryDBSchema, 'salaryDB');
+const Salary = mongoose.model("Salary", salaryDBSchema, "salaryDB");
 
 export default Salary;

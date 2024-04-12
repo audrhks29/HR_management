@@ -4,9 +4,9 @@ const businessDBSchema = new mongoose.Schema({
   id: Number,
   kor_desc: String,
   eng_desc: String,
-  displayText: String
-})
+  displayText: String,
+});
 
-const Business = mongoose.model('Business', businessDBSchema, 'businessDB');
+const Business = mongoose.model("Business", businessDBSchema, "businessDB");
 
 export default Business;
