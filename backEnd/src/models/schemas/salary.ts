@@ -13,6 +13,15 @@ const salaryDBSchema = new mongoose.Schema({
       night_work_allowance: Number,
       annual_leave_allowance: Number,
       meals: Number,
+      tax: {
+        national_pension: Number,
+        health_tax: Number,
+        long_term_care_insurance: Number,
+        employment_insurance: Number,
+        income_tax: Number,
+        resident_tax: Number,
+        year_end_tax_settlement: Number,
+      },
     },
   },
 });

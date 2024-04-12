@@ -24,6 +24,7 @@ import Attitude_commute_time from "./pages/attitude/Attitude_commute_time";
 import Attitude_record from "./pages/attitude/Attitude_record";
 import { Suspense } from "react";
 import Loading from "./shared/Loading";
+import Salary_history_personal from "./window/Salary_history_personal";
 
 function App() {
   return (
@@ -47,6 +48,11 @@ function App() {
                 <Route path="/salary_status" index element={<Salary_status />} />
                 <Route path="/salary_history" index element={<Salary_history />} />
                 <Route path="/salary_history/:employee_number" index element={<Salary_history />} />
+                <Route
+                  path="/salary_history_personal/:employee_number/:year/:month"
+                  index
+                  element={<Salary_history_personal />}
+                />
 
                 {/* attitude */}
                 <Route path="/attitude_commute_time" index element={<Attitude_commute_time />} />

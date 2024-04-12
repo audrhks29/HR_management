@@ -13,7 +13,16 @@
             "saturday_work_allowance": 0,
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
-            "meals": 0
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 354500,
+              "long_term_care_insurance": 45900,
+              "employment_insurance": 90000,
+              "income_tax": 1507400,
+              "resident_tax": 150740,
+              "year_end_tax_settlement": 0
+            }
           },
           {
             "month": 2,
@@ -23,7 +32,16 @@
             "saturday_work_allowance": 0,
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
-            "meals": 0
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 354500,
+              "long_term_care_insurance": 45900,
+              "employment_insurance": 90000,
+              "income_tax": 1507400,
+              "resident_tax": 150740,
+              "year_end_tax_settlement": 0
+            }
           },
           {
             "month": 3,
@@ -33,7 +51,16 @@
             "saturday_work_allowance": 600000,
             "night_work_allowance": 200000,
             "annual_leave_allowance": 0,
-            "meals": 0
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 389950,
+              "long_term_care_insurance": 50490,
+              "employment_insurance": 99000,
+              "income_tax": 1875400,
+              "resident_tax": 187540,
+              "year_end_tax_settlement": 0
+            }
           }
         ]
       },
@@ -42,33 +69,231 @@
         "salary": [
           {
             "month": 1,
-            "salary": 10000000,
+            "salary": 9200000,
             "overtime_pay": 0,
             "bonus": 0,
             "saturday_work_allowance": 0,
             "night_work_allowance": 160000,
             "annual_leave_allowance": 790000,
-            "meals": 0
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 359810,
+              "long_term_care_insurance": 46590,
+              "employment_insurance": 91350,
+              "income_tax": 1583850,
+              "resident_tax": 158380,
+              "year_end_tax_settlement": 0
+            }
           },
           {
             "month": 2,
-            "salary": 10000000,
-            "overtime_pay": 1600000,
+            "salary": 9200000,
+            "overtime_pay": 800000,
             "bonus": 0,
             "saturday_work_allowance": 0,
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
-            "meals": 200000
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 389950,
+              "long_term_care_insurance": 50490,
+              "employment_insurance": 99000,
+              "income_tax": 1875400,
+              "resident_tax": 187540,
+              "year_end_tax_settlement": 0
+            }
           },
           {
             "month": 3,
-            "salary": 10000000,
+            "salary": 9200000,
             "overtime_pay": 0,
             "bonus": 3000000,
             "saturday_work_allowance": 600000,
             "night_work_allowance": 200000,
             "annual_leave_allowance": 0,
-            "meals": 0
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 460850,
+              "long_term_care_insurance": 59680,
+              "employment_insurance": 117000,
+              "income_tax": 2561400,
+              "resident_tax": 256140,
+              "year_end_tax_settlement": 0
+            }
+          },
+          {
+            "month": 4,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 354500,
+              "long_term_care_insurance": 45900,
+              "employment_insurance": 90000,
+              "income_tax": 1507400,
+              "resident_tax": 150740,
+              "year_end_tax_settlement": 0
+            }
+          },
+          {
+            "month": 5,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 354500,
+              "long_term_care_insurance": 45900,
+              "employment_insurance": 90000,
+              "income_tax": 1507400,
+              "resident_tax": 150740,
+              "year_end_tax_settlement": 0
+            }
+          },
+          {
+            "month": 6,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 354500,
+              "long_term_care_insurance": 45900,
+              "employment_insurance": 90000,
+              "income_tax": 1507400,
+              "resident_tax": 150740,
+              "year_end_tax_settlement": 0
+            }
+          },
+          {
+            "month": 7,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 354500,
+              "long_term_care_insurance": 45900,
+              "employment_insurance": 90000,
+              "income_tax": 1507400,
+              "resident_tax": 150740,
+              "year_end_tax_settlement": 0
+            }
+          },
+          {
+            "month": 8,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 354500,
+              "long_term_care_insurance": 45900,
+              "employment_insurance": 90000,
+              "income_tax": 1507400,
+              "resident_tax": 150740,
+              "year_end_tax_settlement": 0
+            }
+          },
+          {
+            "month": 9,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 354500,
+              "long_term_care_insurance": 45900,
+              "employment_insurance": 90000,
+              "income_tax": 1507400,
+              "resident_tax": 150740,
+              "year_end_tax_settlement": 0
+            }
+          },
+          {
+            "month": 10,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 354500,
+              "long_term_care_insurance": 45900,
+              "employment_insurance": 90000,
+              "income_tax": 1507400,
+              "resident_tax": 150740,
+              "year_end_tax_settlement": 0
+            }
+          },
+          {
+            "month": 11,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 354500,
+              "long_term_care_insurance": 45900,
+              "employment_insurance": 90000,
+              "income_tax": 1507400,
+              "resident_tax": 150740,
+              "year_end_tax_settlement": 0
+            }
+          },
+          {
+            "month": 12,
+            "salary": 10000000,
+            "overtime_pay": 0,
+            "bonus": 0,
+            "saturday_work_allowance": 0,
+            "night_work_allowance": 0,
+            "annual_leave_allowance": 0,
+            "meals": 0,
+            "tax": {
+              "national_pension": 265500,
+              "health_tax": 354500,
+              "long_term_care_insurance": 45900,
+              "employment_insurance": 90000,
+              "income_tax": 1507400,
+              "resident_tax": 150740,
+              "year_end_tax_settlement": 0
+            }
           }
         ]
       }

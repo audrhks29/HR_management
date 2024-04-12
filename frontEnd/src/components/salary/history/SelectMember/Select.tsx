@@ -18,6 +18,9 @@ const Select = memo(
         ? setIsOpenDetailYear(isOpenDetailYear.filter(item => item !== year))
         : setIsOpenDetailYear([...isOpenDetailYear, year]);
     };
+    const handleClickMonthRow = (employeeNumber: string, year: number, month: number) => {
+      window.electronAPI.openNewWindow(`${employeeNumber}/${year}/${month}`);
+    };
 
     useEffect(() => {
       const foundData = salaryData.find(item => item.employee_number === employee_number);
@@ -25,9 +28,8 @@ const Select = memo(
     }, [employee_number, salaryData]);
 
     return (
-      <Card className="h-[850px] p-8">
+      <Card className="h-[850px] p-8 overflow-y-auto">
         <PersonalTitle personalData={personalData} />
-
         <CardContent className="mt-5">
           <Table className="text-right text-[12px]">
             <TableHeader className="text-[14px] text-center">
@@ -38,50 +40,49 @@ const Select = memo(
                 <TableHead className="p-2 w-[100px]">토요근로수당</TableHead>
                 <TableHead className="p-2 w-[100px]">야간근로수당</TableHead>
                 <TableHead className="p-2 w-[100px]">연차수당</TableHead>
-                <TableHead className="p-2 w-[100px]">식대</TableHead>
+                <TableHead className="p-2 w-[80px]">식대</TableHead>
                 <TableHead className="p-2">급여</TableHead>
               </TableRow>
             </TableHeader>
 
             <TableBody>
-              {data?.data.map((data, index) => {
-                const overTimePaySum = data.salary.reduce((acc, cur) => {
+              {data?.data.map((salaryData, index) => {
+                const overTimePaySum = salaryData.salary.reduce((acc, cur) => {
                   return acc + cur.overtime_pay;
                 }, 0);
 
-                const bonusSum = data.salary.reduce((acc, cur) => {
+                const bonusSum = salaryData.salary.reduce((acc, cur) => {
                   return acc + cur.bonus;
                 }, 0);
 
-                const saturdaySum = data.salary.reduce((acc, cur) => {
+                const saturdaySum = salaryData.salary.reduce((acc, cur) => {
                   return acc + cur.saturday_work_allowance;
                 }, 0);
 
-                const nightSum = data.salary.reduce((acc, cur) => {
+                const nightSum = salaryData.salary.reduce((acc, cur) => {
                   return acc + cur.night_work_allowance;
                 }, 0);
 
-                const AnnualLeaveSum = data.salary.reduce((acc, cur) => {
+                const AnnualLeaveSum = salaryData.salary.reduce((acc, cur) => {
                   return acc + cur.annual_leave_allowance;
                 }, 0);
 
-                const mealsSum = data.salary.reduce((acc, cur) => {
+                const mealsSum = salaryData.salary.reduce((acc, cur) => {
                   return acc + cur.meals;
                 }, 0);
 
-                const salarySum = data.salary.reduce((acc, cur) => {
+                const salarySum = salaryData.salary.reduce((acc, cur) => {
                   return acc + cur.salary;
                 }, 0);
 
-                const isOpen = isOpenDetailYear.includes(data.year);
+                const isOpen = isOpenDetailYear.includes(salaryData.year);
 
                 return (
                   <React.Fragment key={index}>
                     <TableRow
                       className="cursor-pointer h-[53px] bg-primary-foreground"
-                      onClick={() => handleClickRow(data.year)}
-                    >
-                      <TableCell className="p-2 text-center">{data.year}년</TableCell>
+                      onClick={() => handleClickRow(salaryData.year)}>
+                      <TableCell className="p-2 text-center">{salaryData.year}년</TableCell>
                       <TableCell className="p-2">{overTimePaySum.toLocaleString()}원</TableCell>
                       <TableCell className="p-2">{bonusSum.toLocaleString()}원</TableCell>
                       <TableCell className="p-2">{saturdaySum.toLocaleString()}원</TableCell>
@@ -92,8 +93,11 @@ const Select = memo(
                     </TableRow>
 
                     {isOpen &&
-                      data.salary.map(salary => (
-                        <TableRow className="cursor-pointer h-[53px]" key={salary.month}>
+                      salaryData.salary.map(salary => (
+                        <TableRow
+                          className="cursor-pointer h-[53px]"
+                          key={salary.month}
+                          onClick={() => handleClickMonthRow(data.employee_number, salaryData.year, salary.month)}>
                           <TableCell className="p-2 text-center">{salary.month}월</TableCell>
                           <TableCell className="p-2">{salary.overtime_pay.toLocaleString()}원</TableCell>
                           <TableCell className="p-2">{salary.bonus.toLocaleString()}원</TableCell>
