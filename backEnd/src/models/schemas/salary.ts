@@ -2,28 +2,32 @@ import mongoose from "mongoose";
 
 const salaryDBSchema = new mongoose.Schema({
   employee_number: String,
-  data: {
-    year: Number,
-    salary: {
-      month: Number,
-      salary: Number,
-      overtime_pay: Number,
-      bonus: Number,
-      saturday_work_allowance: Number,
-      night_work_allowance: Number,
-      annual_leave_allowance: Number,
-      meals: Number,
-      tax: {
-        national_pension: Number,
-        health_tax: Number,
-        long_term_care_insurance: Number,
-        employment_insurance: Number,
-        income_tax: Number,
-        resident_tax: Number,
-        year_end_tax_settlement: Number,
-      },
+  data: [
+    {
+      year: Number,
+      salary: [
+        {
+          month: Number,
+          salary: Number,
+          overtime_pay: Number,
+          bonus: Number,
+          saturday_work_allowance: Number,
+          night_work_allowance: Number,
+          annual_leave_allowance: Number,
+          meals: Number,
+          tax: {
+            national_pension: Number,
+            health_tax: Number,
+            long_term_care_insurance: Number,
+            employment_insurance: Number,
+            income_tax: Number,
+            resident_tax: Number,
+            year_end_tax_settlement: Number,
+          },
+        },
+      ],
     },
-  },
+  ],
 });
 
 const Salary = mongoose.model("Salary", salaryDBSchema, "salaryDB");

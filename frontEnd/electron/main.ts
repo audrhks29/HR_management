@@ -47,8 +47,8 @@ function createWindow() {
 
 function createSalaryPersonalWindow(url:string) {
   newWindow = new BrowserWindow({
-    width: 800,
-    height: 800,
+    width: 1000,
+    height: 880,
     autoHideMenuBar: true,
   })
   

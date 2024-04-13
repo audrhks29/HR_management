@@ -18,6 +18,7 @@ const Select = memo(
         ? setIsOpenDetailYear(isOpenDetailYear.filter(item => item !== year))
         : setIsOpenDetailYear([...isOpenDetailYear, year]);
     };
+
     const handleClickMonthRow = (employeeNumber: string, year: number, month: number) => {
       window.electronAPI.openNewWindow(`${employeeNumber}/${year}/${month}`);
     };

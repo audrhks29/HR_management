@@ -5,13 +5,22 @@ export const getMemberData = async () => {
   return response.data;
 };
 
-export const getPersonalData = async (employee_number: string | undefined) => {
+export const getMemberPersonalData = async (employee_number: string | undefined) => {
   const response = await axios.get(`http://localhost:5000/member/${employee_number}`);
   return response.data;
 };
 
 export const getSalaryData = async () => {
   const response = await axios.get("http://localhost:5000/salary");
+  return response.data;
+};
+
+export const getSalaryPersonalData = async (
+  employee_number: string | undefined,
+  year: string | undefined,
+  month: string | undefined,
+) => {
+  const response = await axios.get(`http://localhost:5000/salary/${employee_number}/${year}/${month}`);
   return response.data;
 };
 
