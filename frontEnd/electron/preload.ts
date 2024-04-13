@@ -1,9 +1,26 @@
-import { ipcRenderer, contextBridge } from 'electron'
+import { ipcRenderer, contextBridge, IpcRendererEvent } from 'electron'
 
 // --------- Expose some API to the Renderer process ---------
 
 contextBridge.exposeInMainWorld("electronAPI", {
-  openNewWindow: (url:string) => ipcRenderer.send("open-new-window",url),
+  // salary
+  openSalaryPersonalWindow: (url:string) => ipcRenderer.send("open-salary-personal-window",url),
+
+  // post
+  openPostWindow: () => ipcRenderer.send("open-post-window"),
+  closePostWindow: () => ipcRenderer.send("close-post-window"),
+  sendPostData: (data:any) => ipcRenderer.send("post-data", data),
+  onPostData: (callback: (data: any) => void) => {
+    ipcRenderer.on("post-data", (event, data) => {
+      callback(data);
+    });
+  },
+  on: (channel: string, listener: (event: IpcRendererEvent, ...args: any[]) => void) => {
+    ipcRenderer.on(channel, listener);
+  },
+  off: (channel: string, listener: (event: IpcRendererEvent, ...args: any[]) => void) => {
+    ipcRenderer.off(channel, listener);
+  },
 });
 
 contextBridge.exposeInMainWorld('ipcRenderer', {

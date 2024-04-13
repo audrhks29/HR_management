@@ -25,6 +25,7 @@ import Attitude_record from "./pages/attitude/Attitude_record";
 import { Suspense } from "react";
 import Loading from "./shared/Loading";
 import Salary_history_personal from "./window/Salary_history_personal";
+import Post from "./components/hr/register/menu/info/Post";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
                 <Route path="/attitude_record" index element={<Attitude_record />} />
 
                 <Route path="/login" index element={<Login />} />
+                <Route path="/post" index element={<Post />} />
               </Routes>
             </Suspense>
           </HashRouter>

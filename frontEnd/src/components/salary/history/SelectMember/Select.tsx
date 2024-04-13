@@ -20,7 +20,7 @@ const Select = memo(
     };
 
     const handleClickMonthRow = (employeeNumber: string, year: number, month: number) => {
-      window.electronAPI.openNewWindow(`${employeeNumber}/${year}/${month}`);
+      window.electronAPI.openSalaryPersonalWindow(`${employeeNumber}/${year}/${month}`);
     };
 
     useEffect(() => {

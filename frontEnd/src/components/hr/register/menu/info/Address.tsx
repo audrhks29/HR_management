@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 // import { Dialog, DialogClose, DialogContent, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import DaumPostcode from "react-daum-postcode";
 
 const Address = memo(
@@ -15,7 +15,7 @@ const Address = memo(
     fullAddress: AddressDataTypes;
     setFullAddress: React.Dispatch<React.SetStateAction<AddressDataTypes>>;
   }) => {
-    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+    const [postData, setPostData] = useState(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
@@ -40,16 +40,23 @@ const Address = memo(
       // props.onClose()
     };
 
-    const postCodeStyle = {
-      width: "500px",
-      height: "500px",
+    useEffect(() => {
+      const handlePostData = (data: any) => {
+        setPostData(data);
+        handleSearchAddress(data);
+      };
+      window.electronAPI.onPostData(handlePostData);
+    }, []);
+
+    const handleClickButton = () => {
+      window.electronAPI.openPostWindow();
     };
 
     return (
       <div className="space-y-1">
         <Label htmlFor="address">주소</Label>
 
-        {isPopupOpen && <DaumPostcode style={postCodeStyle} onComplete={handleSearchAddress} />}
+        {/* {isPopupOpen && <DaumPostcode style={postCodeStyle} onComplete={handleSearchAddress} />} */}
 
         <div className="grid grid-cols-2 gap-6">
           <Input
@@ -86,7 +93,7 @@ const Address = memo(
             value={fullAddress.detail_address}
             onChange={handleChange}
           />
-          <Button onClick={() => setIsPopupOpen(!isPopupOpen)}>주소검색</Button>
+          <Button onClick={handleClickButton}>주소검색</Button>
         </div>
       </div>
     );

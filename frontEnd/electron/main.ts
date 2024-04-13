@@ -17,6 +17,7 @@ process.env.VITE_PUBLIC = app.isPackaged ? process.env.DIST : path.join(process.
 
 let win: BrowserWindow | null;
 let newWindow: BrowserWindow | null;
+let postWindow: BrowserWindow | null;
 // 🚧 Use ['ENV_NAME'] avoid vite:define plugin - Vite@2.x
 const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
 
@@ -59,9 +60,43 @@ function createSalaryPersonalWindow(url:string) {
   })
 }
 
-ipcMain.on('open-new-window', (event, url) => {
+ipcMain.on('open-salary-personal-window', (event, url) => {
   createSalaryPersonalWindow(url)
 })
+
+function createPostWindow() {
+  postWindow = new BrowserWindow({
+    width: 600,
+    height: 600,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: path.join(__dirname, "preload.js"),
+    },
+  })
+  
+  postWindow.loadURL(`http://localhost:5173/#/post`)
+  
+  postWindow.on('closed', () => {
+    newWindow = null
+  })
+}
+
+ipcMain.on('open-post-window', (event, url) => {
+  createPostWindow()
+})
+
+ipcMain.on('close-post-window', (event, url) => {
+  if (postWindow) {
+    postWindow.close();
+    postWindow = null;
+  }
+});
+
+ipcMain.on("post-data", (event, data) => {
+  win?.webContents.send("post-data", data);
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

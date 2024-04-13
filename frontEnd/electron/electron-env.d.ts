@@ -25,6 +25,12 @@ declare namespace NodeJS {
 interface Window {
   ipcRenderer: import("electron").IpcRenderer;
   electronAPI: {
-    openNewWindow: (url:string) => void;
+    off(arg0: string, handlePostData: (event: any, data: any) => void): unknown;
+    on(arg0: string, handlePostData: (event: any, data: any) => void): unknown;
+    openSalaryPersonalWindow: (url:string) => void;
+    openPostWindow:()=>void;
+    closePostWindow:()=>void;
+    sendPostData: (data:any)=>void;
+    onPostData:(handlePostData)=>void;
   };
 }

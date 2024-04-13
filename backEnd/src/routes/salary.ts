@@ -8,37 +8,6 @@ module.exports = function (app: any, Salary: any) {
     }
   });
 
-  // app.get("/salary/:id/:year", async (req: any, res: any) => {
-  //   try {
-  //     const { id, year, month } = req.params;
-  //     const data = await Salary.find({
-  //       $and: [
-  //         { employee_number: id },
-  //         { data: [{ $elemMatch: { year: Number(year) } }] },
-  //       ],
-  //     });
-  // const data = await Salary.aggregate([
-  //   {
-  //     $match: { employee_number: id },
-  //   },
-  //   {
-  //     $unwind: "$data",
-  //   },
-  //   {
-  //     $match: { "data.year": parseInt(year) },
-  //   },
-  //   {
-  //     $project: {
-  //       _id: 0,
-  //       salary: "$data.salary",
-  //     },
-  //   },
-  // ]);
-  //     res.json(data);
-  //   } catch (err: any) {
-  //     res.status(500).json({ error: err.message });
-  //   }
-  // });
   app.get("/salary/:id/:year/:month", async (req: any, res: any) => {
     try {
       const { id, year, month } = req.params;

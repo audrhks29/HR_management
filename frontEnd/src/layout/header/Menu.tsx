@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 import menuList from "../../assets/menuList.json";
+import excludeHashArray from "@/assets/excludeHashList";
 
 const Menu = memo(() => {
   const [activeMenus, setActiveMenus] = useState<number[]>([]);
@@ -31,7 +32,7 @@ const Menu = memo(() => {
   const handleClickSubMenu = (link: React.SetStateAction<string>) => setHashName(link);
   return (
     <>
-      {!hashName.includes("salary_history_personal") && (
+      {!excludeHashArray.some(item => location.pathname.includes(item)) && (
         <div className="border-r border-primary/40" style={{ height: height - 60 }}>
           <nav className="text-sm font-medium px-4 grid gap-1 pt-2">
             {menuList.map(menu => (
