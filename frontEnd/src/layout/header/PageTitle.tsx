@@ -7,7 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-import React, { memo } from "react";
+import { memo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import menuList from "../../assets/menuList.json";

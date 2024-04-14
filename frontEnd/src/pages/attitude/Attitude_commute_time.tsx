@@ -1,7 +1,12 @@
+import Index from "@/components/attitude/commute/Index";
 import { memo } from "react";
 
 const Attitude_commute_time = memo(() => {
-  return <main>출퇴근시간 등록</main>;
+  return (
+    <main>
+      <Index />
+    </main>
+  );
 });
 
 export default Attitude_commute_time;

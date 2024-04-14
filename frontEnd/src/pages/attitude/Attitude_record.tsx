@@ -1,5 +1,5 @@
+import Index from "@/components/attitude/record/Index";
 import { memo } from "react";
-import Index from "./record/Index";
 
 const Attitude_record = memo(() => {
   return (
