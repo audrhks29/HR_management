@@ -23,23 +23,24 @@ const Privacy = memo(
     setFullAddress: React.Dispatch<React.SetStateAction<AddressDataTypes>>;
   }) => {
     return (
-      <Card className="min-h-[700px] p-8">
+      <Card className="h-[700px] p-8">
         <CardHeader>
           <CardTitle>개인정보</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
-          {/* 한글 이름 입력 */}
-          <div className="space-y-1 w-3/5">
-            <Label htmlFor="kor_name">한글 이름</Label>
-            <Input id="kor_name" name="kor_name" value={formData.kor_name} onChange={handleChange} />
-          </div>
+          <div className="flex gap-2">
+            {/* 한글 이름 입력 */}
+            <div className="space-y-1 w-3/5">
+              <Label htmlFor="kor_name">한글 이름</Label>
+              <Input id="kor_name" name="kor_name" value={formData.kor_name} onChange={handleChange} />
+            </div>
 
-          {/* 영문 이름 입력 */}
-          <div className="space-y-1 w-3/5">
-            <Label htmlFor="eng_name">영문 이름</Label>
-            <Input id="eng_name" name="eng_name" value={formData.eng_name} onChange={handleChange} />
+            {/* 영문 이름 입력 */}
+            <div className="space-y-1 w-3/5">
+              <Label htmlFor="eng_name">영문 이름</Label>
+              <Input id="eng_name" name="eng_name" value={formData.eng_name} onChange={handleChange} />
+            </div>
           </div>
-
           {/* 이메일 입력 */}
           <div className="space-y-1 w-3/5">
             <Label htmlFor="phone_number">이메일</Label>

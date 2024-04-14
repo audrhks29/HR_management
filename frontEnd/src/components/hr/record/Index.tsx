@@ -25,7 +25,7 @@ const Index = memo(() => {
   const handleClickRow = (id: string) => navigate(`${id}`);
 
   return (
-    <Card className="h-[850px] relative">
+    <Card className="h-full relative">
       <CardContent className="py-8">
         <FilterCondition data={memberData} setSearchData={setSearchData} />
 

@@ -30,10 +30,10 @@ import Post from "./components/hr/register/menu/info/Post";
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="grid grid-cols-[250px_1fr]">
-        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-          <HashRouter>
-            <Header />
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <HashRouter>
+          <Header />
+          <div className="flex justify-around">
             <Menu />
             <Suspense fallback={<Loading />}>
               <Routes>
@@ -63,9 +63,9 @@ function App() {
                 <Route path="/post" index element={<Post />} />
               </Routes>
             </Suspense>
-          </HashRouter>
-        </ThemeProvider>
-      </div>
+          </div>
+        </HashRouter>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

@@ -8,16 +8,9 @@ import excludeHashArray from "@/assets/excludeHashList";
 
 const Menu = memo(() => {
   const [activeMenus, setActiveMenus] = useState<number[]>([]);
-  const [height, setHeight] = useState(window.innerHeight);
 
   const location = useLocation();
   const [hashName, setHashName] = useState(location.pathname);
-
-  const screenHeight = window.innerHeight;
-
-  useEffect(() => {
-    setHeight(screenHeight);
-  }, [screenHeight]);
 
   useEffect(() => {
     setHashName(location.pathname);
@@ -33,7 +26,7 @@ const Menu = memo(() => {
   return (
     <>
       {!excludeHashArray.some(item => location.pathname.includes(item)) && (
-        <div className="border-r border-primary/40" style={{ height: height - 60 }}>
+        <div className="border-r border-primary/40 min-w-[250px]">
           <nav className="text-sm font-medium px-4 grid gap-1 pt-2">
             {menuList.map(menu => (
               <React.Fragment key={menu.id}>

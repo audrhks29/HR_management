@@ -58,7 +58,7 @@ const Department = memo(
     const [date, setDate] = useState<Date | undefined>(new Date());
 
     return (
-      <Card className="min-h-[700px] p-8">
+      <Card className="h-[700px] p-8">
         <CardHeader>
           <CardTitle>부서정보</CardTitle>
         </CardHeader>
@@ -195,8 +195,7 @@ const Department = memo(
             <PopoverTrigger asChild>
               <Button
                 variant={"outline"}
-                className={cn("w-[280px] justify-start text-left font-normal", !date && "text-muted-foreground")}
-              >
+                className={cn("w-[280px] justify-start text-left font-normal", !date && "text-muted-foreground")}>
                 <CalendarIcon className="mr-2 h-4 w-4" />
                 {date ? format(date, "PPP") : <span>Pick a date</span>}
               </Button>

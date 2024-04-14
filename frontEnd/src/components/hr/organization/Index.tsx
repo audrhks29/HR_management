@@ -14,7 +14,7 @@ const Index = memo(() => {
 
   return (
     <React.Fragment>
-      <Card className="h-[780px] relative overflow-y-auto py-8">
+      <Card className="h-[750px] relative overflow-y-auto py-8">
         <CardContent>
           {organizationData.map(quarter => (
             <div key={quarter.id} className="cursor-pointer flex w-fit border mb-3">

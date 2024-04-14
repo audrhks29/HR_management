@@ -34,7 +34,7 @@ const PageTitle = memo(() => {
     navigate(link);
   };
   return (
-    <React.Fragment>
+    <div className="flex justify-between">
       <Breadcrumb className="flex items-center p-4">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -84,10 +84,10 @@ const PageTitle = memo(() => {
           )}
         </BreadcrumbList>
       </Breadcrumb>
-      <div className="ml-auto px-4 flex items-center  ">
+      <div className="flex items-center mr-3">
         <ModeToggle />
       </div>
-    </React.Fragment>
+    </div>
   );
 });
 
