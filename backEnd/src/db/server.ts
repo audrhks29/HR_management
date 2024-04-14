@@ -1,6 +1,7 @@
 // app.js
 
 require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -13,6 +14,16 @@ mongoose
   .connect(`${process.env.DB_URL}/BASE_DB`)
   .then(() => console.log("MongoDB가 연결되었습니다...!"))
   .catch((err: any) => console.error("MongoDB 연결 실패:", err));
+
+export const userConnection = mongoose.createConnection(
+  `${process.env.DB_URL}/user`
+);
+userConnection.on("connected", () => {
+  console.log("MongoDB user 데이터베이스에 연결되었습니다...!");
+});
+userConnection.on("error", (err: any) => {
+  console.error("user 연결 실패:", err);
+});
 
 // cors 허용
 app.use(cors());
@@ -29,6 +40,8 @@ const Business = require("../models/schemas/business").default;
 const Rank = require("../models/schemas/rank").default;
 const Position = require("../models/schemas/position").default;
 
+const User = require("../models/schemas/user").default;
+
 // 라우트 설정
 require("../routes/salary")(app, Salary);
 require("../routes/member")(app, Member);
@@ -37,6 +50,8 @@ require("../routes/organization")(app, Organization);
 require("../routes/business")(app, Business);
 require("../routes/rank")(app, Rank);
 require("../routes/position")(app, Position);
+
+require("../routes/user")(app, User);
 
 // 서버 시작
 app.listen(port, () => {

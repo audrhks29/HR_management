@@ -18,6 +18,9 @@ const Index = memo(() => {
   const [data, setData] = useState<MemberDataTypes[]>(memberData);
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([]);
 
+  const handleButtonClick = () => {
+    const confirmMessage = confirm("등록하시겠습니까?");
+  };
   return (
     <Card className="h-[850px] relative">
       <CardContent className="py-8">
@@ -59,7 +62,7 @@ const Index = memo(() => {
                   <TableCell className="p-2">미퇴근</TableCell>
                   <TableCell className="p-2">0시간</TableCell>
                   <TableCell className="p-2">
-                    <Button>등록</Button>
+                    <Button onClick={handleButtonClick}>등록</Button>
                   </TableCell>
                 </TableRow>
               );
