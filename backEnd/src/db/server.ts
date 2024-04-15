@@ -51,6 +51,7 @@ require("../routes/business")(app, Business);
 require("../routes/rank")(app, Rank);
 require("../routes/position")(app, Position);
 
+// 로그인
 require("../routes/user")(app, User);
 
 // 서버 시작

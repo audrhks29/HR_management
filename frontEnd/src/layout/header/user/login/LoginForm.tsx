@@ -2,30 +2,51 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { postUserData } from "@/server/fetchUserData";
+import useUserStore from "@/store/user-store";
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = memo(() => {
+  const { userInfo, setUserData } = useUserStore();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const user_id = formData.get("user_id") as string;
+    const user_password = formData.get("user_password") as string;
+    try {
+      const userData = await postUserData(user_id, user_password);
+      setUserData(userData);
+      if (userData) navigate("/");
+    } catch (error) {
+      console.error("로그인 실패:", error);
+    }
+  };
+  console.log(userInfo);
+
   return (
-    <div className="flex justify-center mt-72">
+    <form onSubmit={handleSubmit} className="flex justify-center mt-72">
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle className="text-2xl">로그인</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="email">이메일</Label>
-            <Input id="email" type="email" placeholder="이메일" required />
+            <Label htmlFor="user_id">아이디</Label>
+            <Input id="user_id" name="user_id" type="text" placeholder="아이디" required />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="password">비밀번호</Label>
-            <Input id="password" type="password" placeholder="비밀번호" required />
+            <Label htmlFor="user_password">비밀번호</Label>
+            <Input id="user_password" name="user_password" type="password" placeholder="비밀번호" required />
           </div>
         </CardContent>
         <CardFooter>
           <Button className="w-full">로그인</Button>
         </CardFooter>
       </Card>
-    </div>
+    </form>
   );
 });
 
