@@ -21,6 +21,7 @@ const Index = memo(() => {
   const handleButtonClick = () => {
     const confirmMessage = confirm("등록하시겠습니까?");
   };
+
   return (
     <Card className="h-[850px] relative">
       <CardContent className="py-8">

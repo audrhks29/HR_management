@@ -1,14 +1,14 @@
 import { create } from "zustand";
 
 interface UserStoreType {
-  userInfo: UserDataTypes | null;
-  setUserData: (userData: UserDataTypes) => void;
+  userInfo: UserInfoTypes | null;
+  setUserInfo: (userData: UserInfoTypes | null) => void;
 }
 
 const useUserStore = create<UserStoreType>(set => ({
   userInfo: null,
 
-  setUserData: userData => {
+  setUserInfo: userData => {
     set({ userInfo: userData });
   },
 }));

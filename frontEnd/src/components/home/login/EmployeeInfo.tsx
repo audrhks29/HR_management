@@ -11,14 +11,28 @@ import CommuteTime from "./CommuteTime";
 import { Separator } from "@/components/ui/separator";
 
 import { getMemberData } from "@/server/fetchReadData";
+import useUserStore from "@/store/user-store";
+import { useNavigate } from "react-router-dom";
 
 const EmployeeInfo = memo(() => {
+  const { setUserInfo } = useUserStore();
+  const navigate = useNavigate();
+
   const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({
     queryKey: ["memberData"],
     queryFn: getMemberData,
   });
 
   const loggedInUserData = memberData.find(member => member.employee_number === "160301");
+
+  const handleClickLogout = () => {
+    const confirmMessage = confirm("로그아웃 하시겠습니까?");
+    if (confirmMessage) {
+      const data = null;
+      setUserInfo(data);
+      navigate("/");
+    }
+  };
 
   return (
     <Card className="w-fit">
@@ -50,7 +64,7 @@ const EmployeeInfo = memo(() => {
                 </Badge>
                 <span>{loggedInUserData?.kor_name}</span>
               </div>
-              <Button>로그아웃</Button>
+              <Button onClick={handleClickLogout}>로그아웃</Button>
             </div>
           </CardTitle>
         </div>

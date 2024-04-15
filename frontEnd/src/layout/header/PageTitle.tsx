@@ -39,7 +39,7 @@ const PageTitle = memo(() => {
         <BreadcrumbList>
           <BreadcrumbItem>
             {findSecondUrl ? (
-              <BreadcrumbLink onClick={() => handleClickLink("/")}>
+              <BreadcrumbLink onClick={() => handleClickLink("/home")}>
                 <span className="flex items-center cursor-pointer">
                   <Home className="h-4 w-4 mr-2" />홈
                 </span>

@@ -10,7 +10,6 @@ import Header from "./layout/header/Header";
 import Menu from "./layout/header/Menu";
 
 import Home from "./pages/Home";
-import Login from "./pages/Login";
 
 import Hr_register from "./pages/hr/Hr_register";
 import Hr_record from "./pages/hr/Hr_record";
@@ -26,6 +25,7 @@ import { Suspense } from "react";
 import Loading from "./shared/Loading";
 import Salary_history_personal from "./window/Salary_history_personal";
 import Post from "./components/hr/register/menu/info/Post";
+import Login from "./pages/user/Login";
 
 function App() {
   return (
@@ -37,7 +37,8 @@ function App() {
             <Menu />
             <Suspense fallback={<Loading />}>
               <Routes>
-                <Route path="/" index element={<Home />} />
+                <Route path="/" index element={<Login />} />
+                <Route path="/home" index element={<Home />} />
 
                 {/* hr */}
                 <Route path="/hr_register" index element={<Hr_register />} />
@@ -59,7 +60,6 @@ function App() {
                 <Route path="/attitude_commute_time" index element={<Attitude_commute_time />} />
                 <Route path="/attitude_record" index element={<Attitude_record />} />
 
-                <Route path="/login" index element={<Login />} />
                 <Route path="/post" index element={<Post />} />
               </Routes>
             </Suspense>

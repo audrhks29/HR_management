@@ -1,2 +1,2 @@
-const excludeHashArray = ["salary_history_personal", "post"];
-export default excludeHashArray;
+export const includeHashArray = ["/salary_history_personal"];
+export const someHashArray = ["/post", "/"];

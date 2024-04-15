@@ -8,7 +8,7 @@ import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = memo(() => {
-  const { userInfo, setUserData } = useUserStore();
+  const { setUserInfo } = useUserStore();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -18,17 +18,16 @@ const LoginForm = memo(() => {
     const user_password = formData.get("user_password") as string;
     try {
       const userData = await postUserData(user_id, user_password);
-      setUserData(userData);
-      if (userData) navigate("/");
+      setUserInfo(userData);
+      if (userData) navigate("/home");
     } catch (error) {
       console.error("로그인 실패:", error);
     }
   };
-  console.log(userInfo);
 
   return (
-    <form onSubmit={handleSubmit} className="flex justify-center mt-72">
-      <Card className="w-full max-w-sm">
+    <form onSubmit={handleSubmit} className="w-[500px]">
+      <Card>
         <CardHeader>
           <CardTitle className="text-2xl">로그인</CardTitle>
         </CardHeader>

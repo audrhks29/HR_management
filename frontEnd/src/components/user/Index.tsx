@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Bell, Package2 } from "lucide-react";
 import useUserStore from "@/store/user-store";
 
-const User = memo(() => {
+const Index = memo(() => {
   const { userInfo } = useUserStore();
 
   return (
@@ -21,4 +21,4 @@ const User = memo(() => {
   );
 });
 
-export default User;
+export default Index;

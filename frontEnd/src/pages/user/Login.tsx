@@ -1,10 +1,9 @@
+import LoginForm from "@/components/login/LoginForm";
 import { memo } from "react";
-
-import LoginForm from "@/layout/header/user/login/LoginForm";
 
 const Login = memo(() => {
   return (
-    <main>
+    <main className="h-screen flex justify-center items-center">
       <LoginForm />
     </main>
   );
