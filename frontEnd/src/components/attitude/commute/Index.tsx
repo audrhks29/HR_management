@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -61,18 +60,30 @@ const Index = memo(() => {
                   <TableCell className="p-2">
                     <Select>
                       <SelectTrigger className="w-[130px]">
-                        <SelectValue placeholder="Theme" />
+                        <SelectValue placeholder="미출근" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="light">미출근</SelectItem>
-                        <SelectItem value="dark">정상출근</SelectItem>
+                        <SelectItem value="정상출근">정상출근</SelectItem>
+                        <SelectItem value="지각">지각</SelectItem>
+                        <SelectItem value="결근">결근</SelectItem>
+                        <SelectItem value="연차">연차</SelectItem>
+                        <SelectItem value="반차">반차</SelectItem>
                       </SelectContent>
                     </Select>
                   </TableCell>
                   <TableCell className="p-2">
                     <Input id="off_time" name="off_time" type="text" placeholder="퇴근시간" />
                   </TableCell>
-                  <TableCell className="p-2">미퇴근</TableCell>
+                  <Select>
+                    <SelectTrigger className="w-[130px]">
+                      <SelectValue placeholder="미퇴근" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="정상퇴근">정상퇴근</SelectItem>
+                      <SelectItem value="조기퇴근">조기퇴근</SelectItem>
+                      <SelectItem value="병가">병가</SelectItem>
+                    </SelectContent>
+                  </Select>
                   <TableCell className="p-2">0시간</TableCell>
                   <TableCell className="p-2">
                     <Button onClick={handleButtonClick}>등록</Button>
