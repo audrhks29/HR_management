@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getMemberData } from "@/server/fetchReadData";
 import FilterCondition from "@/shared/FilterCondition";
@@ -54,11 +55,20 @@ const Index = memo(() => {
                     </Badge>
                   </TableCell>
                   <TableCell className="p-2">{member.position}</TableCell>
-                  <TableCell className="p-2">
-                    <Checkbox />
+                  <TableCell className="p-2 flex">
                     <Input id="on_time" name="on_time" type="text" placeholder="출근시간" />
                   </TableCell>
-                  <TableCell className="p-2">미출근</TableCell>
+                  <TableCell className="p-2">
+                    <Select>
+                      <SelectTrigger className="w-[130px]">
+                        <SelectValue placeholder="Theme" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="light">미출근</SelectItem>
+                        <SelectItem value="dark">정상출근</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </TableCell>
                   <TableCell className="p-2">
                     <Input id="off_time" name="off_time" type="text" placeholder="퇴근시간" />
                   </TableCell>

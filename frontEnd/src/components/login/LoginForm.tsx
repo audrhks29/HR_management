@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef } from "react";
+import { memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import useUserStore from "@/store/user-store";
@@ -10,31 +10,28 @@ import { postUserData } from "@/server/fetchUserData";
 
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+interface FormValues {
+  user_id: string;
+  user_password: string;
+}
 
 const LoginForm = memo(() => {
   const { setUserInfo } = useUserStore();
   const navigate = useNavigate();
-  // const userIdRef = useRef<HTMLInputElement>(null);
+  const { register, handleSubmit } = useForm<FormValues>();
 
-  // useEffect(() => {
-  //   if (userIdRef.current !== null) {
-  //     userIdRef.current.disabled = false;
-  //     userIdRef.current.focus();
-  //   }
-  // }, []);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const user_id = formData.get("user_id") as string;
-    const user_password = formData.get("user_password") as string;
+  const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
+    const { user_id, user_password } = data;
+    const userData = await postUserData(user_id, user_password);
+    setUserInfo(userData);
     try {
-      const userData = await postUserData(user_id, user_password);
-      setUserInfo(userData);
       if (userData) navigate("/home");
     } catch (error) {
       console.error("로그인 실패:", error);
     }
+    console.log(data);
   };
 
   const handleLoginGuest = async () => {
@@ -48,7 +45,7 @@ const LoginForm = memo(() => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="z-50">
+    <form onSubmit={handleSubmit(onSubmit)} className="z-50">
       <Card className="w-[450px] text-center p-8">
         <CardHeader>
           <CardTitle className="text-2xl">환영합니다</CardTitle>
@@ -58,13 +55,13 @@ const LoginForm = memo(() => {
             <Label className="block mb-2" htmlFor="user_id">
               아이디
             </Label>
-            <Input id="user_id" name="user_id" type="text" placeholder="아이디" required />
+            <Input id="user_id" type="text" placeholder="아이디" {...register("user_id")} />
           </div>
           <div className="w-full text-left">
             <Label className="block mb-2" htmlFor="user_password">
               비밀번호
             </Label>
-            <Input id="user_password" name="user_password" type="password" placeholder="비밀번호" required />
+            <Input id="user_password" {...register("user_password")} type="password" placeholder="비밀번호" />
             <p className="text-muted-foreground mt-1 text-left text-[12px] cursor-pointer hover:text-primary">
               비밀번호를 잊으셨나요?
             </p>
