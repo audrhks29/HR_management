@@ -1,15 +1,27 @@
-import { Button } from "@/components/ui/button";
+import { memo, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import useUserStore from "@/store/user-store";
+
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { postUserData } from "@/server/fetchUserData";
-import useUserStore from "@/store/user-store";
-import { memo } from "react";
-import { useNavigate } from "react-router-dom";
+
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 const LoginForm = memo(() => {
   const { setUserInfo } = useUserStore();
   const navigate = useNavigate();
+  // const userIdRef = useRef<HTMLInputElement>(null);
+
+  // useEffect(() => {
+  //   if (userIdRef.current !== null) {
+  //     userIdRef.current.disabled = false;
+  //     userIdRef.current.focus();
+  //   }
+  // }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,24 +37,53 @@ const LoginForm = memo(() => {
     }
   };
 
+  const handleLoginGuest = async () => {
+    try {
+      const userData = await postUserData("sample", "sample");
+      setUserInfo(userData);
+      if (userData) navigate("/home");
+    } catch (error) {
+      console.error("로그인 실패:", error);
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="w-[500px]">
-      <Card>
+    <form onSubmit={handleSubmit} className="z-50">
+      <Card className="w-[450px] text-center p-8">
         <CardHeader>
-          <CardTitle className="text-2xl">로그인</CardTitle>
+          <CardTitle className="text-2xl">환영합니다</CardTitle>
         </CardHeader>
-        <CardContent className="grid gap-4">
-          <div className="grid gap-2">
-            <Label htmlFor="user_id">아이디</Label>
+        <CardContent className="w-[350px] m-auto grid gap-4">
+          <div className="text-left">
+            <Label className="block mb-2" htmlFor="user_id">
+              아이디
+            </Label>
             <Input id="user_id" name="user_id" type="text" placeholder="아이디" required />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="user_password">비밀번호</Label>
+          <div className="w-full text-left">
+            <Label className="block mb-2" htmlFor="user_password">
+              비밀번호
+            </Label>
             <Input id="user_password" name="user_password" type="password" placeholder="비밀번호" required />
+            <p className="text-muted-foreground mt-1 text-left text-[12px] cursor-pointer hover:text-primary">
+              비밀번호를 잊으셨나요?
+            </p>
           </div>
+          <Button type="submit">로그인</Button>
         </CardContent>
-        <CardFooter>
-          <Button className="w-full">로그인</Button>
+        <CardFooter className="text-[12px] w-[350px] m-auto flex-col items-start gap-1 text-muted-foreground">
+          <div>
+            <span className="mr-3">계정이 필요한가요?</span>
+            <Link to={""} className="hover:text-primary underline underline-offset-2">
+              회원가입
+            </Link>
+          </div>
+          <div>
+            <span className="mr-3">둘러보고 싶으신가요?</span>
+            <span onClick={handleLoginGuest} className="cursor-pointer hover:text-primary underline underline-offset-2">
+              게스트 로그인
+            </span>
+          </div>
         </CardFooter>
       </Card>
     </form>

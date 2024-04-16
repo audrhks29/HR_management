@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
 
 import { ThemeProvider } from "@/components/mode/theme-provider";
 
@@ -38,11 +38,11 @@ function App() {
             <Suspense fallback={<Loading />}>
               <Routes>
                 <Route path="/" index element={<Login />} />
-                <Route path="/home" index element={<Home />} />
+                <Route path="/home" element={<Home />} />
 
                 {/* hr */}
-                <Route path="/hr_register" index element={<Hr_register />} />
-                <Route path="/hr_record" index element={<Hr_record />} />
+                <Route path="/hr_register" element={<Hr_register />} />
+                <Route path="/hr_record" element={<Hr_record />} />
                 <Route path="/hr_record/:employee_number" element={<Personal />} />
                 <Route path="/hr_organization_chart" index element={<Hr_organization_chart />} />
 

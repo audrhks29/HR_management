@@ -79,8 +79,7 @@ const Career = memo(
                       className={cn(
                         "w-[200px] justify-start text-left font-normal",
                         !joinDate && "text-muted-foreground",
-                      )}
-                    >
+                      )}>
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {joinDate ? format(joinDate, "PPP") : <span>Pick a date</span>}
                     </Button>
@@ -109,8 +108,7 @@ const Career = memo(
                       className={cn(
                         "w-[200px] justify-start text-left font-normal",
                         !leaveDate && "text-muted-foreground",
-                      )}
-                    >
+                      )}>
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {leaveDate ? format(leaveDate, "PPP") : <span>Pick a date</span>}
                     </Button>
@@ -129,19 +127,16 @@ const Career = memo(
                 </Popover>
               </div>
             </div>
-
             {/* 직무 */}
             <div className="space-y-1">
               <Label htmlFor="job">직무</Label>
               <Input id="job" name="job" value={careerData.job} onChange={handleChange} />
             </div>
-
             {/* 근무부서 */}
             <div className="space-y-1">
               <Label htmlFor="depart">근무부서</Label>
               <Input id="depart" name="depart" value={careerData.depart} onChange={handleChange} />
             </div>
-
             {/* 직급 */}
             <div className="space-y-1">
               <Label htmlFor="rank">직급</Label>

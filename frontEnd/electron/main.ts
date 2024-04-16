@@ -3,6 +3,9 @@ import path from "node:path";
 
 const { ipcMain } = require('electron')
 
+const electronLocalshortcut = require('electron-localshortcut');
+
+
 // The built directory structure
 //
 // ├─┬─┬ dist
@@ -33,6 +36,19 @@ function createWindow() {
     width: 1680,
     height: 1000,
   });
+
+  // devtools
+  electronLocalshortcut.register(win, 'F12', () => {
+    win?.webContents.toggleDevTools()
+});
+
+  // refresh
+  electronLocalshortcut.register(win, 'F5', () => {
+    win?.reload();
+  });    
+
+
+
 
   // Test active push message to Renderer-process.
   win.webContents.on("did-finish-load", () => {
@@ -97,6 +113,7 @@ ipcMain.on('close-post-window', (event, url) => {
 ipcMain.on("post-data", (event, data) => {
   win?.webContents.send("post-data", data);
 });
+
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getMemberData } from "@/server/fetchReadData";
@@ -54,11 +55,12 @@ const Index = memo(() => {
                   </TableCell>
                   <TableCell className="p-2">{member.position}</TableCell>
                   <TableCell className="p-2">
-                    <Input></Input>
+                    <Checkbox />
+                    <Input id="on_time" name="on_time" type="text" placeholder="출근시간" />
                   </TableCell>
                   <TableCell className="p-2">미출근</TableCell>
                   <TableCell className="p-2">
-                    <Input></Input>
+                    <Input id="off_time" name="off_time" type="text" placeholder="퇴근시간" />
                   </TableCell>
                   <TableCell className="p-2">미퇴근</TableCell>
                   <TableCell className="p-2">0시간</TableCell>

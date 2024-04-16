@@ -64,7 +64,9 @@ const EmployeeInfo = memo(() => {
                 </Badge>
                 <span>{loggedInUserData?.kor_name}</span>
               </div>
-              <Button onClick={handleClickLogout}>로그아웃</Button>
+              <Button type="submit" onClick={handleClickLogout}>
+                로그아웃
+              </Button>
             </div>
           </CardTitle>
         </div>
