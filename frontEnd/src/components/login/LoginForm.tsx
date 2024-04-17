@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import useUserStore from "@/store/user-store";
@@ -18,34 +18,37 @@ interface FormValues {
 }
 
 const LoginForm = memo(() => {
+  const [findUser, setFindUser] = useState(true);
   const { setUserInfo } = useUserStore();
   const navigate = useNavigate();
+
   const { register, handleSubmit } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
-    const { user_id, user_password } = data;
+  const findUserData = async (user_id: string, user_password: string) => {
     const userData = await postUserData(user_id, user_password);
     setUserInfo(userData);
     try {
-      if (userData) navigate("/home");
+      if (userData) {
+        navigate("/home");
+      } else {
+        setFindUser(false);
+      }
     } catch (error) {
       console.error("로그인 실패:", error);
     }
-    console.log(data);
   };
 
-  const handleLoginGuest = async () => {
-    try {
-      const userData = await postUserData("sample", "sample");
-      setUserInfo(userData);
-      if (userData) navigate("/home");
-    } catch (error) {
-      console.error("로그인 실패:", error);
-    }
+  const onSubmit: SubmitHandler<FormValues> = (data: FormValues) => {
+    const { user_id, user_password } = data;
+    findUserData(user_id, user_password);
+  };
+
+  const handleLoginGuest = () => {
+    findUserData("sample", "sample");
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="z-50">
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Card className="w-[450px] text-center p-8">
         <CardHeader>
           <CardTitle className="text-2xl">환영합니다</CardTitle>
@@ -66,6 +69,9 @@ const LoginForm = memo(() => {
               비밀번호를 잊으셨나요?
             </p>
           </div>
+          {!findUser && (
+            <p className="text-[12px] text-destructive-foreground">아이디 또는 비밀번호가 잘못되었습니다.</p>
+          )}
           <Button type="submit">로그인</Button>
         </CardContent>
         <CardFooter className="text-[12px] w-[350px] m-auto flex-col items-start gap-1 text-muted-foreground">

@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { Mail, Settings } from "lucide-react";
@@ -13,8 +13,14 @@ import { Separator } from "@/components/ui/separator";
 import { getMemberData } from "@/server/fetchReadData";
 import useUserStore from "@/store/user-store";
 import { useNavigate } from "react-router-dom";
+import CustomConfirm from "@/shared/alert/CustomConfirm";
 
 const EmployeeInfo = memo(() => {
+  const [confirmState, setConfirmState] = useState({
+    popup: false,
+    confirm: false,
+  });
+
   const { setUserInfo } = useUserStore();
   const navigate = useNavigate();
 
@@ -25,14 +31,17 @@ const EmployeeInfo = memo(() => {
 
   const loggedInUserData = memberData.find(member => member.employee_number === "160301");
 
-  const handleClickLogout = () => {
-    const confirmMessage = confirm("로그아웃 하시겠습니까?");
-    if (confirmMessage) {
+  const handleClickLogout = () => setConfirmState({ popup: true, confirm: false });
+
+  useEffect(() => {
+    if (confirmState.confirm) {
       const data = null;
       setUserInfo(data);
       navigate("/");
     }
-  };
+
+    setConfirmState({ popup: confirmState.popup, confirm: false });
+  }, [confirmState.confirm]);
 
   return (
     <Card className="w-fit">
@@ -95,6 +104,12 @@ const EmployeeInfo = memo(() => {
           <CommuteTime />
         </CardContent>
       </CardContent>
+      <CustomConfirm
+        confirmState={confirmState}
+        setConfirmState={setConfirmState}
+        title="로그아웃"
+        text="로그아웃 하시겠습니까?"
+      />
     </Card>
   );
 });

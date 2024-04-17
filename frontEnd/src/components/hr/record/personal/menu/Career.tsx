@@ -25,8 +25,8 @@ const Career = memo(({ personalData }: { personalData: MemberDataTypes | undefin
 
           <TableBody>
             {personalData && personalData.edu.length > 0 ? (
-              personalData?.edu.map(edu => (
-                <TableRow className="cursor-pointer">
+              personalData?.edu.map((edu, index) => (
+                <TableRow key={index} className="cursor-pointer">
                   <TableCell>{edu.school_classification}</TableCell>
                   <TableCell>{edu.school_name}</TableCell>
                   <TableCell>{edu.collage}</TableCell>
@@ -56,8 +56,8 @@ const Career = memo(({ personalData }: { personalData: MemberDataTypes | undefin
 
           <TableBody>
             {personalData && personalData.career.length > 0 ? (
-              personalData?.career.map(career => (
-                <TableRow className="cursor-pointer">
+              personalData?.career.map((career, index) => (
+                <TableRow key={index} className="cursor-pointer">
                   <TableCell>{career.company_name}</TableCell>
                   <TableCell>{career.join_date}</TableCell>
                   <TableCell>{career.leave_date}</TableCell>

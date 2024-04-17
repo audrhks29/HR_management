@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 import { TabsContent } from "@/components/ui/tabs";
 
@@ -12,12 +12,18 @@ import { postMemberData } from "@/server/fetchCreateData";
 
 import { initialCareerData, initialMemberData, initialEduData, initialFullAddress } from "@/assets/initialValue";
 import { useNavigate } from "react-router-dom";
+import CustomConfirm from "@/shared/alert/CustomConfirm";
 
 const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => {
   const [formData, setFormData] = useState<MemberDataTypes>(initialMemberData);
   const [careerData, setCareerData] = useState(initialCareerData);
   const [eduData, setEduData] = useState(initialEduData);
   const [fullAddress, setFullAddress] = useState(initialFullAddress);
+
+  const [confirmState, setConfirmState] = useState({
+    popup: false,
+    confirm: false,
+  });
 
   const navigate = useNavigate();
 
@@ -91,15 +97,17 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
   };
 
   // 제출버튼 클릭
-  const handleSubmit = () => {
-    const confirmMessage = confirm("제출하시겠습니까?");
-    if (confirmMessage) {
+  const handleSubmit = () => ({ popup: true, confirm: false });
+
+  useEffect(() => {
+    if (confirmState.confirm) {
       postMemberData(formData);
-      alert("추가되었습니다.");
       initialData();
       navigate("/hr_record");
     }
-  };
+
+    setConfirmState({ popup: confirmState.popup, confirm: false });
+  }, [confirmState.confirm]);
 
   return (
     <div className="mt-5">
@@ -143,6 +151,13 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
           <Button onClick={handleSubmit}>제출</Button>
         </div>
       </TabsContent>
+
+      <CustomConfirm
+        confirmState={confirmState}
+        setConfirmState={setConfirmState}
+        title="구성원 등록"
+        text="데이터 입력을 완료하시겠습니까?"
+      />
     </div>
   );
 });

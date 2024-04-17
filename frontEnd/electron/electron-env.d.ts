@@ -33,4 +33,10 @@ interface Window {
     sendPostData: (data:any)=>void;
     onPostData:(handlePostData)=>void;
   };
+  alertAPI:{
+    loginSuccess:()=>void;
+  };
+  confirmAPI:{
+    register:()=>void;
+  }
 }

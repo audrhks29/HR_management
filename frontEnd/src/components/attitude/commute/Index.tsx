@@ -16,7 +16,21 @@ const Index = memo(() => {
     queryFn: getMemberData,
   });
 
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const today = `${year}` + `${month}` + `${day}`;
+
   const [data, setData] = useState<MemberDataTypes[]>(memberData);
+
+  // data.map(item => ({
+  //   id: item.employee_number,
+  //   text: "",
+  //   name: "",
+  // }));
+
+  const [todayCommuteTimeData, setTodayCommuteTimeData] = useState();
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([]);
 
   const handleButtonClick = () => {
@@ -27,6 +41,7 @@ const Index = memo(() => {
     <Card className="h-[850px] relative">
       <CardContent className="py-8">
         <FilterCondition data={memberData} setSearchData={setSearchData} />
+        {today}
         <Table className="text-center">
           <TableHeader className="bg-muted">
             <TableRow>

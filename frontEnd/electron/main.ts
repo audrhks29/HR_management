@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, dialog } from "electron";
 import path from "node:path";
 
 const { ipcMain } = require('electron')
@@ -40,15 +40,12 @@ function createWindow() {
   // devtools
   electronLocalshortcut.register(win, 'F12', () => {
     win?.webContents.toggleDevTools()
-});
+  });
 
   // refresh
   electronLocalshortcut.register(win, 'F5', () => {
     win?.reload();
   });    
-
-
-
 
   // Test active push message to Renderer-process.
   win.webContents.on("did-finish-load", () => {
@@ -75,6 +72,32 @@ function createSalaryPersonalWindow(url:string) {
     newWindow = null
   })
 }
+
+ipcMain.on('show-login-success-dialog', (event) => {
+  try {
+    dialog.showMessageBox({
+      type: 'info',
+      title: '로그인 성공',
+      message: '로그인되었습니다.',
+      buttons: ['확인']
+    });
+  } catch (error) {
+    console.error('Error showing login success dialog:', error);
+  }
+});
+
+ipcMain.on('show-member-register-dialog', (event) => {
+  try {
+    dialog.showMessageBox({
+      type: 'question',
+      title: '제출',
+      message: '데이터 입력을 완료하시겠습니까?',
+      buttons: ['Yes', 'No']
+    });
+  } catch (error) {
+    console.error('Error showing login success dialog:', error);
+  }
+});
 
 ipcMain.on('open-salary-personal-window', (event, url) => {
   createSalaryPersonalWindow(url)

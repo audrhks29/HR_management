@@ -23,6 +23,15 @@ contextBridge.exposeInMainWorld("electronAPI", {
   },
 });
 
+contextBridge.exposeInMainWorld("alertAPI", {
+  loginSuccess: () => ipcRenderer.send("show-login-success-dialog")
+});
+
+contextBridge.exposeInMainWorld("confirmAPI", {
+  register: () => ipcRenderer.send("show-member-register-dialog")
+});
+
+
 contextBridge.exposeInMainWorld('ipcRenderer', {
   on(...args: Parameters<typeof ipcRenderer.on>) {
     const [channel, listener] = args
