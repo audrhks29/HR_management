@@ -5,6 +5,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 5000;
@@ -30,6 +31,7 @@ app.use(cors());
 
 // 미들웨어 설정
 app.use(express.json());
+app.use(bodyParser.json());
 
 // 스키마 require
 const Salary = require("../models/schemas/salary").default;

@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 
 import { ThemeProvider } from "@/components/mode/theme-provider";
 
