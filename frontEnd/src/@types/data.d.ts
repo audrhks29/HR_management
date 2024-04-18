@@ -110,3 +110,16 @@ interface SalaryPersonalDataTypes {
     year_end_tax_settlement: number;
   };
 }
+
+interface AttitudeDataTypes {
+  date: string;
+  data: AttitudeTypes[];
+}
+
+interface AttitudeTypes {
+  employee_number: string;
+  working_time: string;
+  working_division: string;
+  quitting_time: string;
+  quitting_division: string;
+}

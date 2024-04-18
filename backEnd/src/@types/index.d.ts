@@ -107,3 +107,16 @@ interface EduDataTypes {
   admission_date: string;
   graduation_date: string;
 }
+
+interface AttitudeTypes {
+  date: string;
+  data: AttitudeDataTypes[];
+}
+
+interface AttitudeDataTypes {
+  employee_number: string;
+  working_time: string;
+  working_division: string;
+  quitting_time: string;
+  quitting_division: string;
+}

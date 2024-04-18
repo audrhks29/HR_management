@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { postAttitudeData } from "@/server/fetchCreateData";
 import { getMemberData } from "@/server/fetchReadData";
 import FilterCondition from "@/shared/FilterCondition";
 import Paging from "@/shared/Paging";
@@ -24,17 +25,21 @@ const Index = memo(() => {
 
   const [data, setData] = useState<MemberDataTypes[]>(memberData);
 
-  // data.map(item => ({
-  //   id: item.employee_number,
-  //   text: "",
-  //   name: "",
-  // }));
-
   const [todayCommuteTimeData, setTodayCommuteTimeData] = useState();
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([]);
 
-  const handleButtonClick = () => {
-    const confirmMessage = confirm("등록하시겠습니까?");
+  const handleButtonClick = id => {
+    const postData = {
+      date: today,
+      data: memberData.map(item => ({
+        employee_number: item.employee_number,
+        working_time: "",
+        working_division: "",
+        quitting_time: "",
+        quitting_division: "",
+      })),
+    };
+    postAttitudeData(postData);
   };
 
   return (
@@ -70,7 +75,7 @@ const Index = memo(() => {
                   </TableCell>
                   <TableCell className="p-2">{member.position}</TableCell>
                   <TableCell className="p-2 flex">
-                    <Input id="on_time" name="on_time" type="text" placeholder="출근시간" />
+                    <Input id="working_time" name="working_time" type="text" placeholder="출근시간" />
                   </TableCell>
                   <TableCell className="p-2">
                     <Select>
@@ -87,21 +92,23 @@ const Index = memo(() => {
                     </Select>
                   </TableCell>
                   <TableCell className="p-2">
-                    <Input id="off_time" name="off_time" type="text" placeholder="퇴근시간" />
+                    <Input id="quitting_time" name="quitting_time" type="text" placeholder="퇴근시간" />
                   </TableCell>
-                  <Select>
-                    <SelectTrigger className="w-[130px]">
-                      <SelectValue placeholder="미퇴근" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="정상퇴근">정상퇴근</SelectItem>
-                      <SelectItem value="조기퇴근">조기퇴근</SelectItem>
-                      <SelectItem value="병가">병가</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <TableCell className="p-2">
+                    <Select>
+                      <SelectTrigger className="w-[130px]">
+                        <SelectValue placeholder="미퇴근" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="정상퇴근">정상퇴근</SelectItem>
+                        <SelectItem value="조기퇴근">조기퇴근</SelectItem>
+                        <SelectItem value="병가">병가</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </TableCell>
                   <TableCell className="p-2">0시간</TableCell>
                   <TableCell className="p-2">
-                    <Button onClick={handleButtonClick}>등록</Button>
+                    <Button onClick={() => handleButtonClick(member.employee_number)}>등록</Button>
                   </TableCell>
                 </TableRow>
               );

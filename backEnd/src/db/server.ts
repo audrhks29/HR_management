@@ -39,6 +39,7 @@ const Organization = require("../models/schemas/organization").default;
 const Business = require("../models/schemas/business").default;
 const Rank = require("../models/schemas/rank").default;
 const Position = require("../models/schemas/position").default;
+const Attitude = require("../models/schemas/attitude").default;
 
 const User = require("../models/schemas/user").default;
 
@@ -50,7 +51,7 @@ require("../routes/organization")(app, Organization);
 require("../routes/business")(app, Business);
 require("../routes/rank")(app, Rank);
 require("../routes/position")(app, Position);
-
+require("../routes/attitude")(app, Attitude);
 // 로그인
 require("../routes/user")(app, User);
 

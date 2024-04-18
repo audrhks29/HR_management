@@ -1,0 +1,26 @@
+[
+  {
+    "date": "20240417",
+    "data": [
+      {
+        "employee_number": "160301",
+        "working_time": "09:00",
+        "working_division": "정상출근",
+        "quitting_time": "18:00",
+        "quitting_division": "정상퇴근"
+      }
+    ]
+  },
+  {
+    "date": "20240416",
+    "data": [
+      {
+        "employee_number": "160301",
+        "working_time": "09:00",
+        "working_division": "정상출근",
+        "quitting_time": "18:00",
+        "quitting_division": "정상퇴근"
+      }
+    ]
+  }
+]
