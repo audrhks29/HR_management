@@ -111,12 +111,12 @@ interface SalaryPersonalDataTypes {
   };
 }
 
-interface AttitudeDataTypes {
+interface CommuteTimeDataTypes {
   date: string;
   data: AttitudeTypes[];
 }
 
-interface AttitudeTypes {
+interface CommuteTimeTypes {
   employee_number: string;
   working_time: string;
   working_division: string;

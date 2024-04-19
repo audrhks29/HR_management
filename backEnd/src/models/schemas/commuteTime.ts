@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const AttitudeDBSchema = new mongoose.Schema({
+const CommuteTimeDBSchema = new mongoose.Schema({
   date: String,
   data: [
     {
@@ -13,6 +13,10 @@ const AttitudeDBSchema = new mongoose.Schema({
   ],
 });
 
-const Attitude = mongoose.model("Attitude", AttitudeDBSchema, "attitudeDB");
+const CommuteTime = mongoose.model(
+  "CommuteTime",
+  CommuteTimeDBSchema,
+  "commuteTimeDB"
+);
 
-export default Attitude;
+export default CommuteTime;

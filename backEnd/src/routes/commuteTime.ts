@@ -1,16 +1,14 @@
-import { CLIENT_RENEG_LIMIT } from "tls";
-
-module.exports = function (app: any, Attitude: any) {
-  app.get("/attitude", async (req: any, res: any) => {
+module.exports = function (app: any, CommuteTime: any) {
+  app.get("/commutetime", async (req: any, res: any) => {
     try {
-      const data = await Attitude.find({});
+      const data = await CommuteTime.find({});
       res.json(data);
     } catch (err: any) {
       res.status(500).json({ error: err.message });
     }
   });
 
-  app.post("/attitude", async (req: any, res: any) => {
+  app.post("/commutetime", async (req: any, res: any) => {
     try {
       const today = new Date();
       const year = today.getFullYear();
@@ -18,33 +16,33 @@ module.exports = function (app: any, Attitude: any) {
       const day = String(today.getDate()).padStart(2, "0");
       const todayDate = `${year}${month}${day}`;
 
-      let todayAttitude = await Attitude.findOne({ date: todayDate });
+      let todayCommuteTime = await CommuteTime.findOne({ date: todayDate });
 
-      if (todayAttitude) {
+      if (todayCommuteTime) {
         // 오늘 날짜에 해당하는 도큐먼트가 이미 존재하는 경우
-        const todayEmployeeAttitude = todayAttitude.data.find(
-          (item: AttitudeDataTypes) =>
+        const todayEmployeeCommuteTime = todayCommuteTime.data.find(
+          (item: CommuteTimeDataTypes) =>
             item.employee_number === req.body.employee_number
         );
 
-        if (todayEmployeeAttitude) {
-          let index = todayAttitude.data.findIndex(
-            (item: AttitudeDataTypes) =>
+        if (todayEmployeeCommuteTime) {
+          let index = todayCommuteTime.data.findIndex(
+            (item: CommuteTimeDataTypes) =>
               item.employee_number === req.body.employee_number
           );
-          todayAttitude.data[index] = req.body;
+          todayCommuteTime.data[index] = req.body;
         } else {
-          todayAttitude.data.push(req.body);
+          todayCommuteTime.data.push(req.body);
         }
-        await todayAttitude.save();
-        res.status(200).json(todayAttitude);
+        await todayCommuteTime.save();
+        res.status(200).json(todayCommuteTime);
       } else {
         // 오늘 날짜에 해당하는 도큐먼트가 없는 경우
-        const newAttitude = new Attitude({
+        const newCommuteTime = new CommuteTime({
           date: todayDate,
           data: req.body,
         });
-        const result = await newAttitude.save();
+        const result = await newCommuteTime.save();
         res.status(201).json(result);
       }
     } catch (err: any) {

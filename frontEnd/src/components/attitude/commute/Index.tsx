@@ -1,10 +1,10 @@
 import { memo, useState } from "react";
 
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQueries, useSuspenseQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
 import { postAttitudeData } from "@/server/fetchCreateData";
-import { getMemberData } from "@/server/fetchReadData";
+import { getCommuteTimeData, getMemberData } from "@/server/fetchReadData";
 
 import FilterCondition from "@/shared/FilterCondition";
 import Paging from "@/shared/Paging";
@@ -17,7 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface FormValues {
-  attitudes: {
+  commuteTime: {
     employee_number: string;
     working_time: string;
     working_division: string;
@@ -26,18 +26,29 @@ interface FormValues {
   }[];
 }
 
-const Index = memo(() => {
-  const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({
-    queryKey: ["memberData"],
-    queryFn: getMemberData,
-  });
+type QueryResult<T> = {
+  data: T;
+};
 
+type SuspenseQueriesResult = [QueryResult<MemberDataTypes[]>, QueryResult<CommuteTimeTypes[]>];
+
+const Index = memo(() => {
+  const [{ data: memberData }, { data: commuteTimeData }] = useSuspenseQueries<SuspenseQueriesResult>({
+    queries: [
+      { queryKey: ["memberData"], queryFn: getMemberData },
+      {
+        queryKey: ["commuteTimeData"],
+        queryFn: getCommuteTimeData,
+      },
+    ],
+  });
+  console.log(commuteTimeData);
   const [data, setData] = useState<MemberDataTypes[]>(memberData);
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([]);
 
   const { register, handleSubmit, setValue } = useForm<FormValues>({
     defaultValues: {
-      attitudes: data.map(member => ({
+      commuteTime: data.map(member => ({
         employee_number: member.employee_number,
         working_time: "",
         working_division: "",
@@ -48,7 +59,7 @@ const Index = memo(() => {
   });
 
   const onSubmit = (index: number) => (data: FormValues) => {
-    postAttitudeData(data.attitudes[index]);
+    postAttitudeData(data.commuteTime[index]);
   };
 
   return (
@@ -86,12 +97,12 @@ const Index = memo(() => {
                     <TableCell className="p-2 flex">
                       <Input
                         id={`attitudes.${index}.working_time`}
-                        {...register(`attitudes.${index}.working_time`)}
+                        {...register(`commuteTime.${index}.working_time`)}
                         placeholder="출근시간"
                       />
                     </TableCell>
                     <TableCell className="p-2">
-                      <Select onValueChange={value => setValue(`attitudes.${index}.working_division`, value)}>
+                      <Select onValueChange={value => setValue(`commuteTime.${index}.working_division`, value)}>
                         <SelectTrigger className="w-[130px]">
                           <SelectValue placeholder="미출근" />
                         </SelectTrigger>
@@ -107,13 +118,13 @@ const Index = memo(() => {
                     <TableCell className="p-2">
                       <Input
                         id={`attitudes.${index}.quitting_time`}
-                        {...register(`attitudes.${index}.quitting_time`)}
+                        {...register(`commuteTime.${index}.quitting_time`)}
                         type="text"
                         placeholder="퇴근시간"
                       />
                     </TableCell>
                     <TableCell className="p-2">
-                      <Select onValueChange={value => setValue(`attitudes.${index}.quitting_division`, value)}>
+                      <Select onValueChange={value => setValue(`commuteTime.${index}.quitting_division`, value)}>
                         <SelectTrigger className="w-[130px]">
                           <SelectValue placeholder="미퇴근" />
                         </SelectTrigger>

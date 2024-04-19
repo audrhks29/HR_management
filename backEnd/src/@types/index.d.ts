@@ -108,12 +108,12 @@ interface EduDataTypes {
   graduation_date: string;
 }
 
-interface AttitudeTypes {
+interface CommuteTimeTypes {
   date: string;
   data: AttitudeDataTypes[];
 }
 
-interface AttitudeDataTypes {
+interface CommuteTimeDataTypes {
   employee_number: string;
   working_time: string;
   working_division: string;

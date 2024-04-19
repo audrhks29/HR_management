@@ -48,3 +48,8 @@ export const getPositionData = async () => {
   const response = await axios.get("http://localhost:5000/position");
   return response.data;
 };
+
+export const getCommuteTimeData = async () => {
+  const response = await axios.get("http://localhost:5000/commutetime");
+  return response.data;
+};
