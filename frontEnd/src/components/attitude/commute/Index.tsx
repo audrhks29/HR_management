@@ -55,7 +55,7 @@ const Index = memo(() => {
   const { register, handleSubmit, setValue } = useForm<FormValues>({
     defaultValues: {
       commuteTime: data.map((member, index) => {
-        const idx = commuteTimeData.data.findIndex(item => item.employee_number === data[index]?.employee_number);
+        const idx = commuteTimeData?.data.findIndex(item => item.employee_number === data[index]?.employee_number);
         return {
           employee_number: member.employee_number,
           working_time: idx !== -1 ? commuteTimeData?.data[idx]?.working_time : "",
@@ -70,6 +70,22 @@ const Index = memo(() => {
   const onSubmit = (index: number) => async (data: FormValues) => {
     await postCommuteTimeData(data.commuteTime[index]);
     refetchCommuteTimeData();
+  };
+
+  const calculateWorkingHours = (startTime: string, endTime: string) => {
+    const [startHour, startMinute] = startTime.split(":").map(Number);
+    const [endHour, endMinute] = endTime.split(":").map(Number);
+
+    const startDate = new Date();
+    startDate.setHours(startHour, startMinute, 0, 0);
+
+    const endDate = new Date();
+    endDate.setHours(endHour, endMinute, 0, 0);
+
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    const hoursDiff = timeDiff / (1000 * 60 * 60);
+
+    return hoursDiff;
   };
 
   return (
@@ -135,7 +151,7 @@ const Index = memo(() => {
                             <SelectItem value="지각">지각</SelectItem>
                             <SelectItem value="결근">결근</SelectItem>
                             <SelectItem value="연차">연차</SelectItem>
-                            <SelectItem value="반차">반차</SelectItem>
+                            <SelectItem value="반차">오전반차</SelectItem>
                           </SelectContent>
                         </Select>
                       )}
@@ -169,11 +185,14 @@ const Index = memo(() => {
                             <SelectItem value="정상퇴근">정상퇴근</SelectItem>
                             <SelectItem value="조기퇴근">조기퇴근</SelectItem>
                             <SelectItem value="병가">병가</SelectItem>
+                            <SelectItem value="오후반차">오후반차</SelectItem>
                           </SelectContent>
                         </Select>
                       )}
                     </TableCell>
-                    <TableCell className="p-2">0시간</TableCell>
+                    <TableCell className="p-2">
+                      {calculateWorkingHours(employeeCommuteTime?.working_time, employeeCommuteTime?.quitting_time)}시간
+                    </TableCell>
                     <TableCell className="p-2">
                       <Button onClick={handleSubmit(onSubmit(index))}>등록</Button>
                     </TableCell>
