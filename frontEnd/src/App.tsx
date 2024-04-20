@@ -32,6 +32,7 @@ import Loading from "./shared/Loading";
 import Salary_history_personal from "./window/Salary_history_personal";
 import Post from "./components/hr/register/menu/info/Post";
 import Login from "./pages/user/Login";
+import Setting from "./pages/setting/Setting";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
                 <Route path="/attitude_record" index element={<Attitude_record />} />
 
                 <Route path="/post" index element={<Post />} />
+                <Route path="/setting" index element={<Setting />} />
               </Routes>
             </Suspense>
           </div>

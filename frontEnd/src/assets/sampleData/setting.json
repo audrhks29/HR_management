@@ -1,0 +1,35 @@
+{
+  "commute_setting": [
+    {
+      "name": "working_time_setting",
+      "setting": [
+        { "id": 1, "value": "정상출근" },
+        { "id": 2, "value": "지각" },
+        { "id": 3, "value": "결근" },
+        { "id": 4, "value": "연차" },
+        { "id": 5, "value": "오전반차" }
+      ]
+    },
+    {
+      "name": "quitting_time_setting",
+      "setting": [
+        { "id": 1, "value": "정상퇴근" },
+        { "id": 2, "value": "조기퇴근" },
+        { "id": 3, "value": "병가" },
+        { "id": 4, "value": "오후반차" }
+      ]
+    }
+  ],
+  "rank_setting": [
+    { "order": 1, "value": "CEO" },
+    { "order": 2, "value": "부사장" },
+    { "order": 3, "value": "상무" },
+    { "order": 4, "value": "이사" },
+    { "order": 5, "value": "부장" },
+    { "order": 6, "value": "차장" },
+    { "order": 7, "value": "과장" },
+    { "order": 8, "value": "대리" },
+    { "order": 9, "value": "주임" },
+    { "order": 10, "value": "사원" }
+  ]
+}
