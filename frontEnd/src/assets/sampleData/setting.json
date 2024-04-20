@@ -1,4 +1,14 @@
 {
+  "business_setting": {
+    "name_of_company": "코드시스템스",
+    "business_registration_number": "000-00-00000",
+    "name_of_representative": "지은호",
+    "resident_registration_number": "111111-2222222",
+    "business_address": "경기도 성남시 분당구 대왕판교로 670 유스페이스2 A동 000호",
+    "date_of_business_commencement": "2020년 10월 14일",
+    "type_of_business": "정보통신업/시스템 소프트웨어 개발 및 공급업",
+    "main_number": "031-000-0000"
+  },
   "commute_setting": [
     {
       "name": "working_time_setting",

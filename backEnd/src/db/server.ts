@@ -38,25 +38,27 @@ const Salary = require("../models/schemas/salary").default;
 const Member = require("../models/schemas/member").default;
 const MemberSalary = require("../models/schemas/memberSalary").default;
 const Organization = require("../models/schemas/organization").default;
-const Business = require("../models/schemas/business").default;
 const Rank = require("../models/schemas/rank").default;
 const Position = require("../models/schemas/position").default;
 const CommuteTime = require("../models/schemas/commuteTime").default;
 
 const User = require("../models/schemas/user").default;
 
+const Setting = require("../models/schemas/setting").default;
+
 // 라우트 설정
 require("../routes/salary")(app, Salary);
 require("../routes/member")(app, Member);
 require("../routes/memberSalary")(app, MemberSalary);
 require("../routes/organization")(app, Organization);
-require("../routes/business")(app, Business);
 require("../routes/rank")(app, Rank);
 require("../routes/position")(app, Position);
 require("../routes/commuteTime")(app, CommuteTime);
 // 로그인
 require("../routes/user")(app, User);
 
+//세팅
+require("../routes/setting")(app, Setting);
 // 서버 시작
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

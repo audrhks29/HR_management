@@ -24,11 +24,6 @@ export const getSalaryPersonalData = async (
   return response.data;
 };
 
-export const getBusinessData = async () => {
-  const response = await axios.get("http://localhost:5000/business");
-  return response.data;
-};
-
 export const getOrganizationData = async () => {
   const response = await axios.get("http://localhost:5000/organization");
   return response.data;
