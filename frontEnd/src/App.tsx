@@ -4,7 +4,13 @@ import { ThemeProvider } from "@/components/mode/theme-provider";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 import Header from "./layout/header/Header";
 import Menu from "./layout/header/Menu";

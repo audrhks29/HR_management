@@ -8,14 +8,24 @@ module.exports = function (app: any, CommuteTime: any) {
     }
   });
 
-  app.post("/commutetime", async (req: any, res: any) => {
+  app.get("/commutetime/:date", async (req: any, res: any) => {
+    const { date } = req.params;
     try {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, "0");
-      const day = String(today.getDate()).padStart(2, "0");
-      const todayDate = `${year}${month}${day}`;
+      const data = await CommuteTime.findOne({ date: date });
+      res.json(data);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
 
+  app.post("/commutetime", async (req: any, res: any) => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    const todayDate = `${year}${month}${day}`;
+
+    try {
       let todayCommuteTime = await CommuteTime.findOne({ date: todayDate });
 
       if (todayCommuteTime) {

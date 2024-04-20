@@ -3,8 +3,8 @@ import { memo, useState } from "react";
 import { useSuspenseQueries } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
-import { postAttitudeData } from "@/server/fetchCreateData";
-import { getCommuteTimeData, getMemberData } from "@/server/fetchReadData";
+import { postCommuteTimeData } from "@/server/fetchCreateData";
+import { getCommuteTimeDateData, getMemberData } from "@/server/fetchReadData";
 
 import FilterCondition from "@/shared/FilterCondition";
 import Paging from "@/shared/Paging";
@@ -30,36 +30,46 @@ type QueryResult<T> = {
   data: T;
 };
 
-type SuspenseQueriesResult = [QueryResult<MemberDataTypes[]>, QueryResult<CommuteTimeTypes[]>];
+type SuspenseQueriesResult = [QueryResult<MemberDataTypes[]>, QueryResult<CommuteTimeDataTypes>];
+const today = new Date();
+const year = today.getFullYear();
+const month = String(today.getMonth() + 1).padStart(2, "0");
+const day = String(today.getDate()).padStart(2, "0");
+const todayDate = `${year}${month}${day}`;
 
 const Index = memo(() => {
-  const [{ data: memberData }, { data: commuteTimeData }] = useSuspenseQueries<SuspenseQueriesResult>({
-    queries: [
-      { queryKey: ["memberData"], queryFn: getMemberData },
-      {
-        queryKey: ["commuteTimeData"],
-        queryFn: getCommuteTimeData,
-      },
-    ],
-  });
+  const [{ data: memberData }, { data: commuteTimeData, refetch: refetchCommuteTimeData }] =
+    useSuspenseQueries<SuspenseQueriesResult>({
+      queries: [
+        { queryKey: ["memberData"], queryFn: getMemberData },
+        {
+          queryKey: ["commuteTimeData"],
+          queryFn: () => getCommuteTimeDateData(todayDate),
+        },
+      ],
+    });
 
   const [data, setData] = useState<MemberDataTypes[]>(memberData);
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([]);
 
   const { register, handleSubmit, setValue } = useForm<FormValues>({
     defaultValues: {
-      commuteTime: data.map(member => ({
-        employee_number: member.employee_number,
-        working_time: "",
-        working_division: "",
-        quitting_time: "",
-        quitting_division: "",
-      })),
+      commuteTime: data.map((member, index) => {
+        const idx = commuteTimeData.data.findIndex(item => item.employee_number === data[index]?.employee_number);
+        return {
+          employee_number: member.employee_number,
+          working_time: idx !== -1 ? commuteTimeData?.data[idx]?.working_time : "",
+          working_division: idx !== -1 ? commuteTimeData?.data[idx]?.working_division : "",
+          quitting_time: idx !== -1 ? commuteTimeData?.data[idx]?.quitting_time : "",
+          quitting_division: idx !== -1 ? commuteTimeData?.data[idx]?.quitting_division : "",
+        };
+      }),
     },
   });
 
-  const onSubmit = (index: number) => (data: FormValues) => {
-    postAttitudeData(data.commuteTime[index]);
+  const onSubmit = (index: number) => async (data: FormValues) => {
+    await postCommuteTimeData(data.commuteTime[index]);
+    refetchCommuteTimeData();
   };
 
   return (
@@ -83,9 +93,14 @@ const Index = memo(() => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data.map((member, index) => {
+              {data.map(member => {
+                const index = memberData.findIndex(item => item.employee_number === member.employee_number);
+
+                const employeeCommuteTime = commuteTimeData?.data.find(
+                  item => item.employee_number === member.employee_number,
+                );
                 return (
-                  <TableRow key={index} className="cursor-pointer h-[56px]">
+                  <TableRow key={member.employee_number} className="cursor-pointer h-[56px]">
                     <TableCell className="p-2">{member.quarter}</TableCell>
                     <TableCell className="p-2">{member.kor_name}</TableCell>
                     <TableCell className="p-2">
@@ -94,46 +109,69 @@ const Index = memo(() => {
                       </Badge>
                     </TableCell>
                     <TableCell className="p-2">{member.position}</TableCell>
-                    <TableCell className="p-2 flex">
-                      <Input
-                        id={`attitudes.${index}.working_time`}
-                        {...register(`commuteTime.${index}.working_time`)}
-                        placeholder="출근시간"
-                      />
-                    </TableCell>
+
                     <TableCell className="p-2">
-                      <Select onValueChange={value => setValue(`commuteTime.${index}.working_division`, value)}>
-                        <SelectTrigger className="w-[130px]">
-                          <SelectValue placeholder="미출근" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="정상출근">정상출근</SelectItem>
-                          <SelectItem value="지각">지각</SelectItem>
-                          <SelectItem value="결근">결근</SelectItem>
-                          <SelectItem value="연차">연차</SelectItem>
-                          <SelectItem value="반차">반차</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      {employeeCommuteTime?.working_time ? (
+                        employeeCommuteTime?.working_time
+                      ) : (
+                        <Input
+                          id={`commuteTime.${member.employee_number}.working_time`}
+                          {...register(`commuteTime.${index}.working_time`)}
+                          placeholder="출근시간"
+                        />
+                      )}
                     </TableCell>
+
                     <TableCell className="p-2">
-                      <Input
-                        id={`attitudes.${index}.quitting_time`}
-                        {...register(`commuteTime.${index}.quitting_time`)}
-                        type="text"
-                        placeholder="퇴근시간"
-                      />
+                      {employeeCommuteTime?.working_division ? (
+                        employeeCommuteTime?.working_division
+                      ) : (
+                        <Select onValueChange={value => setValue(`commuteTime.${index}.working_division`, value)}>
+                          <SelectTrigger className="w-[130px]">
+                            <SelectValue placeholder="미출근" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="정상출근">정상출근</SelectItem>
+                            <SelectItem value="지각">지각</SelectItem>
+                            <SelectItem value="결근">결근</SelectItem>
+                            <SelectItem value="연차">연차</SelectItem>
+                            <SelectItem value="반차">반차</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      )}
                     </TableCell>
+
                     <TableCell className="p-2">
-                      <Select onValueChange={value => setValue(`commuteTime.${index}.quitting_division`, value)}>
-                        <SelectTrigger className="w-[130px]">
-                          <SelectValue placeholder="미퇴근" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="정상퇴근">정상퇴근</SelectItem>
-                          <SelectItem value="조기퇴근">조기퇴근</SelectItem>
-                          <SelectItem value="병가">병가</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      {employeeCommuteTime?.quitting_time ? (
+                        employeeCommuteTime?.quitting_time
+                      ) : (
+                        <Input
+                          id={`commuteTime.${member.employee_number}.quitting_time`}
+                          {...register(`commuteTime.${index}.quitting_time`)}
+                          type="text"
+                          placeholder="퇴근시간"
+                        />
+                      )}
+                    </TableCell>
+
+                    <TableCell className="p-2">
+                      {employeeCommuteTime?.quitting_division ? (
+                        employeeCommuteTime?.quitting_division
+                      ) : (
+                        <Select
+                          onValueChange={value => {
+                            setValue(`commuteTime.${index}.quitting_division`, value);
+                          }}>
+                          <SelectTrigger className="w-[130px]">
+                            <SelectValue placeholder="미퇴근" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="정상퇴근">정상퇴근</SelectItem>
+                            <SelectItem value="조기퇴근">조기퇴근</SelectItem>
+                            <SelectItem value="병가">병가</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      )}
                     </TableCell>
                     <TableCell className="p-2">0시간</TableCell>
                     <TableCell className="p-2">

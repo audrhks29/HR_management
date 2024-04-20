@@ -53,3 +53,8 @@ export const getCommuteTimeData = async () => {
   const response = await axios.get("http://localhost:5000/commutetime");
   return response.data;
 };
+
+export const getCommuteTimeDateData = async (date: string) => {
+  const response = await axios.get(`http://localhost:5000/commutetime/${date}`);
+  return response.data;
+};

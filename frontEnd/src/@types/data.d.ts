@@ -123,3 +123,13 @@ interface CommuteTimeTypes {
   quitting_time: string;
   quitting_division: string;
 }
+
+interface CommuteTimeFormValues {
+  commuteTime: {
+    employee_number: string;
+    working_time: string;
+    working_division: string;
+    quitting_time: string;
+    quitting_division: string;
+  }[];
+}
