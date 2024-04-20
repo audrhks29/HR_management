@@ -43,8 +43,7 @@ const MemberList = memo(
                 <TableRow
                   key={member.employee_number}
                   className="cursor-pointer"
-                  onClick={() => handleClickRow(`/${menuLink}/${member.employee_number}`)}
-                >
+                  onClick={() => handleClickRow(`/${menuLink}/${member.employee_number}`)}>
                   <TableCell className="hidden sm:table-cell">
                     <Badge className="text-xs" variant="secondary">
                       {member.rank}

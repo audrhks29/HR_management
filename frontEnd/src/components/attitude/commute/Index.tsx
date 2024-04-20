@@ -1,6 +1,6 @@
 import { memo, useState } from "react";
 
-import { useSuspenseQueries, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQueries } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
 import { postAttitudeData } from "@/server/fetchCreateData";
@@ -42,7 +42,7 @@ const Index = memo(() => {
       },
     ],
   });
-  console.log(commuteTimeData);
+
   const [data, setData] = useState<MemberDataTypes[]>(memberData);
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([]);
 

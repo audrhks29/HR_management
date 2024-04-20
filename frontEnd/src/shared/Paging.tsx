@@ -21,14 +21,14 @@ const Paging = memo(
   }) => {
     const [currentPage, setCurrentPage] = useState(1);
 
-    const lastPage = Math.ceil(beforePagingData.length / displayAmount); //마지막 페이지 번호
+    const lastPage = Math.ceil(beforePagingData?.length / displayAmount); //마지막 페이지 번호
     const pageIndex = Array.from({ length: lastPage }, (_, i) => i + 1); // 페이지 번호 배열
 
     const handleClickPrev = () => (currentPage !== 1 ? setCurrentPage(currentPage - 1) : "");
     const handleClickNext = () => (currentPage !== lastPage ? setCurrentPage(currentPage + 1) : "");
 
     useLayoutEffect(() => {
-      const slicedData = beforePagingData.slice((currentPage - 1) * displayAmount, currentPage * displayAmount);
+      const slicedData = beforePagingData?.slice((currentPage - 1) * displayAmount, currentPage * displayAmount);
       setData(slicedData);
     }, [currentPage, beforePagingData, setData, displayAmount]);
 
@@ -47,8 +47,7 @@ const Paging = memo(
                   key={index}
                   onClick={() => setCurrentPage(page)}
                   style={{ background: isCurrent ? "#1f2937" : "" }}
-                  className="cursor-pointer"
-                >
+                  className="cursor-pointer">
                   {page}
                 </PaginationLink>
               );

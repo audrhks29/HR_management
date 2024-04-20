@@ -68,8 +68,9 @@ const FilterCondition = memo(
     };
 
     useEffect(() => {
-      const filteredData = data.filter(member => {
-        const nameIncludesKeyword = searchKeyword !== "" ? member.kor_name.includes(searchKeyword) : true;
+      const filteredData = data?.filter(member => {
+        const nameIncludesKeyword =
+          searchKeyword !== "" && member.kor_name ? member.kor_name.includes(searchKeyword) : true;
         const matchesQuarter = category.quarter !== "" ? member.quarter === category.quarter : true;
         const matchesDepartment = category.department !== "" ? member.department === category.department : true;
         const matchesRank = category.rank !== "" ? member.rank === category.rank : true;
@@ -77,6 +78,7 @@ const FilterCondition = memo(
 
         return nameIncludesKeyword && matchesQuarter && matchesDepartment && matchesRank && matchesPosition;
       });
+
       setSearchData(filteredData);
     }, [category, searchKeyword, setSearchData, data]);
 
