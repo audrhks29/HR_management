@@ -134,7 +134,7 @@ const Index = memo(() => {
                         <Input
                           id={`commuteTime.${member.employee_number}.working_time`}
                           {...register(`commuteTime.${index}.working_time`)}
-                          placeholder="출근시간"
+                          placeholder="예) 09:00"
                         />
                       )}
                     </TableCell>
@@ -166,7 +166,7 @@ const Index = memo(() => {
                           id={`commuteTime.${member.employee_number}.quitting_time`}
                           {...register(`commuteTime.${index}.quitting_time`)}
                           type="text"
-                          placeholder="퇴근시간"
+                          placeholder="예) 18:00"
                         />
                       )}
                     </TableCell>
