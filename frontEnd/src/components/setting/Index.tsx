@@ -13,7 +13,6 @@ const Index = memo(() => {
     queryKey: ["settingData"],
     queryFn: getSettingData,
   });
-
   return (
     <React.Fragment>
       <Business data={settingData.business_setting} />
