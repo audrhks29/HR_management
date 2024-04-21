@@ -72,19 +72,20 @@ const Index = memo(() => {
     refetchCommuteTimeData();
   };
 
-  const calculateWorkingHours = (startTime: string, endTime: string) => {
-    const [startHour, startMinute] = startTime.split(":").map(Number);
-    const [endHour, endMinute] = endTime.split(":").map(Number);
+  const calculateWorkingHours = (startTime: string, endTime: string): number => {
+    const [startHour, startMinute] = startTime ? startTime.split(":").map(Number) : "";
+    const [endHour, endMinute] = endTime ? endTime.split(":").map(Number) : "";
+    let hoursDiff = 0;
+    if (startTime && endTime) {
+      const startDate = new Date();
+      startDate.setHours(Number(startHour), Number(startMinute), 0, 0);
 
-    const startDate = new Date();
-    startDate.setHours(startHour, startMinute, 0, 0);
+      const endDate = new Date();
+      endDate.setHours(Number(endHour), Number(endMinute), 0, 0);
 
-    const endDate = new Date();
-    endDate.setHours(endHour, endMinute, 0, 0);
-
-    const timeDiff = endDate.getTime() - startDate.getTime();
-    const hoursDiff = timeDiff / (1000 * 60 * 60);
-
+      const timeDiff = endDate.getTime() - startDate.getTime();
+      hoursDiff = timeDiff / (1000 * 60 * 60);
+    }
     return hoursDiff;
   };
 
