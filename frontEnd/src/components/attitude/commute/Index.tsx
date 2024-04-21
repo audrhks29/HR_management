@@ -38,12 +38,12 @@ const day = String(today.getDate()).padStart(2, "0");
 const todayDate = `${year}${month}${day}`;
 
 const Index = memo(() => {
-  const [{ data: memberData }, { data: commuteTimeData, refetch: refetchCommuteTimeData }] =
+  const [{ data: memberData }, { data: commuteTimeDateData, refetch: refetchCommuteTimeData }] =
     useSuspenseQueries<SuspenseQueriesResult>({
       queries: [
         { queryKey: ["memberData"], queryFn: getMemberData },
         {
-          queryKey: ["commuteTimeData"],
+          queryKey: ["commuteTimeDateData"],
           queryFn: () => getCommuteTimeDateData(todayDate),
         },
       ],
@@ -55,14 +55,14 @@ const Index = memo(() => {
   const { register, handleSubmit, setValue } = useForm<FormValues>({
     defaultValues: {
       commuteTime: data.map((member, index) => {
-        const idx = commuteTimeData?.data.findIndex(item => item.employee_number === data[index]?.employee_number);
+        const idx = commuteTimeDateData?.data.findIndex(item => item.employee_number === data[index]?.employee_number);
 
         return {
           employee_number: member.employee_number,
-          working_time: idx !== -1 ? commuteTimeData?.data[idx]?.working_time : "",
-          working_division: idx !== -1 ? commuteTimeData?.data[idx]?.working_division : "",
-          quitting_time: idx !== -1 ? commuteTimeData?.data[idx]?.quitting_time : "",
-          quitting_division: idx !== -1 ? commuteTimeData?.data[idx]?.quitting_division : "",
+          working_time: idx !== -1 ? commuteTimeDateData?.data[idx]?.working_time : "",
+          working_division: idx !== -1 ? commuteTimeDateData?.data[idx]?.working_division : "",
+          quitting_time: idx !== -1 ? commuteTimeDateData?.data[idx]?.quitting_time : "",
+          quitting_division: idx !== -1 ? commuteTimeDateData?.data[idx]?.quitting_division : "",
         };
       }),
     },
@@ -116,7 +116,7 @@ const Index = memo(() => {
               {data.map(member => {
                 const index = memberData.findIndex(item => item.employee_number === member.employee_number);
 
-                const employeeCommuteTime = commuteTimeData?.data.find(
+                const employeeCommuteTime = commuteTimeDateData?.data.find(
                   item => item.employee_number === member.employee_number,
                 );
 
@@ -154,6 +154,7 @@ const Index = memo(() => {
                           <SelectContent>
                             <SelectItem value="정상출근">정상출근</SelectItem>
                             <SelectItem value="지각">지각</SelectItem>
+                            <SelectItem value="병가">병가</SelectItem>
                             <SelectItem value="결근">결근</SelectItem>
                             <SelectItem value="연차">연차</SelectItem>
                             <SelectItem value="반차">오전반차</SelectItem>
@@ -190,6 +191,8 @@ const Index = memo(() => {
                             <SelectItem value="정상퇴근">정상퇴근</SelectItem>
                             <SelectItem value="조기퇴근">조기퇴근</SelectItem>
                             <SelectItem value="병가">병가</SelectItem>
+                            <SelectItem value="결근">결근</SelectItem>
+                            <SelectItem value="연차">연차</SelectItem>
                             <SelectItem value="오후반차">오후반차</SelectItem>
                           </SelectContent>
                         </Select>

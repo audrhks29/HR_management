@@ -1,33 +1,60 @@
 import { memo, useState } from "react";
+import { useSuspenseQueries } from "@tanstack/react-query";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 
-import FilterCondition from "../../../shared/FilterCondition";
+import FilterCondition from "@/shared/FilterCondition";
 import Paging from "@/shared/Paging";
 import MonthPicker from "@/shared/MonthPicker";
-import { getMemberData } from "@/server/fetchReadData";
-import { useSuspenseQuery } from "@tanstack/react-query";
+
+import { getCommuteTimeData, getCommuteTimeDateData, getMemberData } from "@/server/fetchReadData";
+
+type QueryResult<T> = {
+  data: T;
+};
+
+type SuspenseQueriesResult = [
+  QueryResult<MemberDataTypes[]>,
+  QueryResult<CommuteTimeDataTypes>,
+  QueryResult<CommuteTimeDataTypes[]>,
+];
 
 const Index = memo(() => {
-  const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({
-    queryKey: ["memberData"],
-    queryFn: getMemberData,
-  });
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  const todayDate = `${year}${month}${day}`;
+
+  const [{ data: memberData }, { data: commuteTimeDateData }, { data: commuteTimeData }] =
+    useSuspenseQueries<SuspenseQueriesResult>({
+      queries: [
+        { queryKey: ["memberData"], queryFn: getMemberData },
+        {
+          queryKey: ["commuteTimeDateData"],
+          queryFn: () => getCommuteTimeDateData(todayDate),
+        },
+        {
+          queryKey: ["commuteTimeData"],
+          queryFn: getCommuteTimeData,
+        },
+      ],
+    });
 
   const [data, setData] = useState<MemberDataTypes[]>(memberData);
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([]);
-
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
 
   const [isMonthPicker, setIsMonthPicker] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState({
     year: year.toString(),
     month: month.toString(),
   });
+
+  const monthCommute = commuteTimeData.filter((data: CommuteTimeDataTypes) =>
+    data.date.includes(selectedMonth.year + selectedMonth.month),
+  );
 
   return (
     <Card className="h-[850px] relative">
@@ -40,6 +67,7 @@ const Index = memo(() => {
           selectedMonth={selectedMonth}
           setSelectedMonth={setSelectedMonth}
         />
+
         <Table className="text-center">
           <TableHeader className="bg-muted">
             <TableRow>
@@ -60,6 +88,31 @@ const Index = memo(() => {
 
           <TableBody>
             {data.map(member => {
+              // 오늘 출퇴근시간 관련
+              const todayCommuteTime = commuteTimeDateData?.data.find(
+                (item: CommuteTimeTypes) => item.employee_number === member.employee_number,
+              );
+
+              // 개인별 근태
+              const employeeAttitude = monthCommute?.map(item =>
+                item.data.find(data => data.employee_number === member.employee_number),
+              );
+
+              // 근무 일수
+              const workingCount = employeeAttitude?.filter(
+                item => item?.working_time.includes(":") && item?.quitting_time.includes(":"),
+              ).length;
+
+              // 휴가 일수
+              const annualLeavesCount = employeeAttitude?.filter(item => item?.working_time === "연차").length;
+
+              // 결근, 병가 일수
+              const truancyCount = employeeAttitude?.filter(
+                item => item?.working_time === "결근" || item?.working_time === "병가",
+              ).length;
+
+              // 연장근로 시간
+
               return (
                 <TableRow key={member.employee_number} className="cursor-pointer h-[56px]">
                   <TableCell className="p-2">{member.quarter}</TableCell>
@@ -70,14 +123,14 @@ const Index = memo(() => {
                     </Badge>
                   </TableCell>
                   <TableCell className="p-2">{member.position}</TableCell>
-                  <TableCell className="p-2">30</TableCell>
-                  <TableCell className="p-2">1</TableCell>
+                  <TableCell className="p-2">{workingCount}</TableCell>
+                  <TableCell className="p-2">{annualLeavesCount}</TableCell>
+                  <TableCell className="p-2">{truancyCount}</TableCell>
                   <TableCell className="p-2">0</TableCell>
                   <TableCell className="p-2">0</TableCell>
                   <TableCell className="p-2">0</TableCell>
-                  <TableCell className="p-2">0</TableCell>
-                  <TableCell className="p-2">00시 00분</TableCell>
-                  <TableCell className="p-2">00시 00분</TableCell>
+                  <TableCell className="p-2">{todayCommuteTime?.working_time}</TableCell>
+                  <TableCell className="p-2">{todayCommuteTime?.quitting_time}</TableCell>
                 </TableRow>
               );
             })}

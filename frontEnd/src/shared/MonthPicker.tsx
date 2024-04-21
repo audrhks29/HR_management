@@ -28,7 +28,10 @@ const MonthPicker = memo(
     const [year, setYear] = useState(selectedMonth.year);
     const [month, setMonth] = useState(selectedMonth.month);
 
-    const handleButtonClick = () => setSelectedMonth({ year, month });
+    const handleButtonClick = () => {
+      setSelectedMonth({ year, month });
+      setIsMonthPicker(false);
+    };
 
     const monthArray = Array.from({ length: 12 }, (_, index) => (index + 1 < 10 ? `0${index + 1}` : `${index + 1}`));
 
