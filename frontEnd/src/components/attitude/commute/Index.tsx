@@ -56,6 +56,7 @@ const Index = memo(() => {
     defaultValues: {
       commuteTime: data.map((member, index) => {
         const idx = commuteTimeData?.data.findIndex(item => item.employee_number === data[index]?.employee_number);
+
         return {
           employee_number: member.employee_number,
           working_time: idx !== -1 ? commuteTimeData?.data[idx]?.working_time : "",
@@ -75,7 +76,9 @@ const Index = memo(() => {
   const calculateWorkingHours = (startTime: string, endTime: string): number => {
     const [startHour, startMinute] = startTime ? startTime.split(":").map(Number) : "";
     const [endHour, endMinute] = endTime ? endTime.split(":").map(Number) : "";
+
     let hoursDiff = 0;
+
     if (startTime && endTime) {
       const startDate = new Date();
       startDate.setHours(Number(startHour), Number(startMinute), 0, 0);
@@ -116,6 +119,7 @@ const Index = memo(() => {
                 const employeeCommuteTime = commuteTimeData?.data.find(
                   item => item.employee_number === member.employee_number,
                 );
+
                 return (
                   <TableRow key={member.employee_number} className="cursor-pointer h-[56px]">
                     <TableCell className="p-2">{member.quarter}</TableCell>
@@ -191,9 +195,11 @@ const Index = memo(() => {
                         </Select>
                       )}
                     </TableCell>
+
                     <TableCell className="p-2">
                       {calculateWorkingHours(employeeCommuteTime?.working_time, employeeCommuteTime?.quitting_time)}시간
                     </TableCell>
+
                     <TableCell className="p-2">
                       <Button onClick={handleSubmit(onSubmit(index))}>등록</Button>
                     </TableCell>

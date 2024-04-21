@@ -1,19 +1,19 @@
 import { memo } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 
 import { updateSettingRankData } from "@/server/fetchUpdateData";
+import ButtonGroup from "../Button/ButtonGroup";
 
 interface FormValues {
   rank_setting: RankSettingTypes[];
   RankSettingTypes: RankSettingTypes[];
 }
 
-const Rank = memo(({ data }: { data: RankSettingTypes[] }) => {
+const Rank = memo(({ data, refetch }: { data: RankSettingTypes[]; refetch: () => void }) => {
   const { register, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       rank_setting: data.map(rank => ({
@@ -25,6 +25,7 @@ const Rank = memo(({ data }: { data: RankSettingTypes[] }) => {
 
   const onSubmit: SubmitHandler<FormValues> = async updateData => {
     await updateSettingRankData(updateData);
+    refetch();
   };
 
   return (
@@ -35,12 +36,18 @@ const Rank = memo(({ data }: { data: RankSettingTypes[] }) => {
         <CardContent className="py-3">
           {data.map((rank, index) => (
             <div key={rank.order} className="grid grid-cols-[80px_200px] my-2 items-center gap-3">
-              <Input id={`rank_setting.${index}.order`} {...register(`rank_setting.${index}.order`)} type="text" />
+              <Input
+                className="text-center"
+                id={`rank_setting.${index}.order`}
+                {...register(`rank_setting.${index}.order`)}
+                type="text"
+              />
               <Input id={`rank_setting.${index}.value`} {...register(`rank_setting.${index}.value`)} type="text" />
             </div>
           ))}
-          <Button type="submit">저장</Button>
         </CardContent>
+
+        <ButtonGroup />
       </Card>
     </form>
   );

@@ -5,7 +5,7 @@ export const updateSettingBusinessData = async (updateData: { business_setting: 
   return response.data;
 };
 
-export const updateSettingCommuteData = async (updateData: { commute_setting: CommuteSettingTypes }) => {
+export const updateSettingCommuteData = async (updateData: { commute_setting: CommuteSettingTypes[] }) => {
   const response = await axios.put("http://localhost:5000/setting/commute", updateData);
   return response.data;
 };

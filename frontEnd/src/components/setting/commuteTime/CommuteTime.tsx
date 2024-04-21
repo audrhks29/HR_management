@@ -6,24 +6,30 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { updateSettingCommuteData } from "@/server/fetchUpdateData";
+import ButtonGroup from "../Button/ButtonGroup";
 
-const CommuteTime = memo(({ data }: { data: CommuteSettingTypes[] }) => {
-  console.log(data);
-  const { register, handleSubmit, formState } = useForm<CommuteSettingTypes[]>({
-    defaultValues: data.map(commute => ({
-      name: commute.name,
-      setting: commute.setting.map(item => ({
-        id: item?.id,
-        value: item?.value,
+interface FormValues {
+  commute_setting: CommuteSettingTypes[];
+}
+
+const CommuteTime = memo(({ data, refetch }: { data: CommuteSettingTypes[]; refetch: () => void }) => {
+  const { register, handleSubmit } = useForm<FormValues>({
+    defaultValues: {
+      commute_setting: data.map(commute => ({
+        name: commute.name,
+        setting: commute.setting.map(item => ({
+          id: item?.id,
+          value: item?.value,
+        })),
       })),
-    })),
+    },
   });
-  console.log(formState.defaultValues);
 
-  const onSubmit: SubmitHandler<CommuteSettingTypes[]> = async updateData => {
-    console.log(updateData);
+  const onSubmit: SubmitHandler<FormValues> = async updateData => {
     await updateSettingCommuteData(updateData);
+    refetch();
   };
+
   const working_time_setting = data.find(item => item.name === "working_time_setting");
   const quitting_time_setting = data.find(item => item.name === "quitting_time_setting");
 
@@ -40,8 +46,8 @@ const CommuteTime = memo(({ data }: { data: CommuteSettingTypes[] }) => {
               <div key={working.id} className="grid grid-cols-[80px_200px] my-2 items-center gap-3">
                 <Button variant="outline">{working.id}</Button>
                 <Input
-                  id={`${index}.setting.${working.id - 1}.value`}
-                  {...register(`${index}.setting.${working.id - 1}.value`)}
+                  id={`commute_setting.${Number(0)}.setting.${index}.value`}
+                  {...register(`commute_setting.${Number(0)}.setting.${index}.value`)}
                   type="text"
                 />
               </div>
@@ -51,19 +57,20 @@ const CommuteTime = memo(({ data }: { data: CommuteSettingTypes[] }) => {
           <div>
             <h2 className="py-2 text-[20px] font-bold">퇴근</h2>
             <Separator />
-            {quitting_time_setting?.setting.map((qutting, index) => (
-              <div key={qutting.id} className="grid grid-cols-[80px_200px] my-2 items-center gap-3">
-                <Button variant="outline">{qutting.id}</Button>
+            {quitting_time_setting?.setting.map((quitting, index) => (
+              <div key={quitting.id} className="grid grid-cols-[80px_200px] my-2 items-center gap-3">
+                <Button variant="outline">{quitting.id}</Button>
                 <Input
-                  id={`setting.${qutting.id - 1}.value`}
-                  {...register(`commute_setting.${index}.setting.${qutting.id - 1}.value`)}
+                  id={`commute_setting.${Number(1)}.setting.${index}.value`}
+                  {...register(`commute_setting.${Number(1)}.setting.${index}.value`)}
                   type="text"
                 />
               </div>
             ))}
           </div>
-          <Button type="submit">저장</Button>
         </CardContent>
+
+        <ButtonGroup />
       </Card>
     </form>
   );

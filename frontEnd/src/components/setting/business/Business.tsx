@@ -7,8 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { updateSettingBusinessData } from "@/server/fetchUpdateData";
 import { SubmitHandler, useForm } from "react-hook-form";
+import ButtonGroup from "../Button/ButtonGroup";
 
-const Business = memo(({ data }: { data: BusinessSettingTypes }) => {
+const Business = memo(({ data, refetch }: { data: BusinessSettingTypes; refetch: () => void }) => {
   interface FormValues {
     business_setting: BusinessSettingTypes;
   }
@@ -30,6 +31,7 @@ const Business = memo(({ data }: { data: BusinessSettingTypes }) => {
 
   const onSubmit: SubmitHandler<FormValues> = async updateData => {
     await updateSettingBusinessData(updateData);
+    refetch();
   };
 
   return (
@@ -44,6 +46,7 @@ const Business = memo(({ data }: { data: BusinessSettingTypes }) => {
               id={"business_setting.name_of_company"}
               {...register("business_setting.name_of_company")}
               type="text"
+              placeholder="상호"
             />
           </div>
 
@@ -53,6 +56,7 @@ const Business = memo(({ data }: { data: BusinessSettingTypes }) => {
               id={"business_setting.business_address"}
               {...register("business_setting.business_address")}
               type="text"
+              placeholder="사업장주소"
             />
           </div>
 
@@ -62,6 +66,7 @@ const Business = memo(({ data }: { data: BusinessSettingTypes }) => {
               id={"business_setting.business_registration_number"}
               {...register("business_setting.business_registration_number")}
               type="text"
+              placeholder="예) 000-00-0000"
             />
           </div>
 
@@ -71,6 +76,7 @@ const Business = memo(({ data }: { data: BusinessSettingTypes }) => {
               id={"business_setting.resident_registration_number"}
               {...register("business_setting.resident_registration_number")}
               type="text"
+              placeholder="예) 000000-0000000"
             />
           </div>
 
@@ -80,12 +86,18 @@ const Business = memo(({ data }: { data: BusinessSettingTypes }) => {
               id={"business_setting.date_of_business_commencement"}
               {...register("business_setting.date_of_business_commencement")}
               type="text"
+              placeholder="0000년 00월 00일"
             />
           </div>
 
           <div className="grid grid-cols-[130px_1fr] my-2 items-center gap-3">
             <Button variant="outline">사업장 대표번호</Button>
-            <Input id={"business_setting.main_number"} {...register("business_setting.main_number")} type="text" />
+            <Input
+              id={"business_setting.main_number"}
+              {...register("business_setting.main_number")}
+              type="text"
+              placeholder="000-000-0000"
+            />
           </div>
 
           <div className="grid grid-cols-[130px_1fr] my-2 items-center gap-3">
@@ -94,6 +106,7 @@ const Business = memo(({ data }: { data: BusinessSettingTypes }) => {
               id={"business_setting.name_of_representative"}
               {...register("business_setting.name_of_representative")}
               type="text"
+              placeholder="사업자 대표"
             />
           </div>
 
@@ -103,11 +116,12 @@ const Business = memo(({ data }: { data: BusinessSettingTypes }) => {
               id={"business_setting.type_of_business"}
               {...register("business_setting.type_of_business")}
               type="text"
-              value={data.type_of_business}
+              placeholder="업종"
             />
           </div>
-          <Button type="submit">저장</Button>
         </CardContent>
+
+        <ButtonGroup />
       </Card>
     </form>
   );

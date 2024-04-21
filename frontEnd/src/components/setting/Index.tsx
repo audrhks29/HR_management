@@ -9,15 +9,16 @@ import Rank from "./rank/Rank";
 import { getSettingData } from "@/server/fetchReadData";
 
 const Index = memo(() => {
-  const { data: settingData }: { data: SettingTypes } = useSuspenseQuery({
+  const { data: settingData, refetch }: { data: SettingTypes; refetch: () => void } = useSuspenseQuery({
     queryKey: ["settingData"],
     queryFn: getSettingData,
   });
+
   return (
     <React.Fragment>
-      <Business data={settingData.business_setting} />
-      <CommuteTime data={settingData.commute_setting} />
-      <Rank data={settingData.rank_setting} />
+      <Business data={settingData.business_setting} refetch={refetch} />
+      <CommuteTime data={settingData.commute_setting} refetch={refetch} />
+      <Rank data={settingData.rank_setting} refetch={refetch} />
     </React.Fragment>
   );
 });
