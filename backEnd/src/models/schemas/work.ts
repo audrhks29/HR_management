@@ -20,6 +20,7 @@ const WorkDBSchema = new mongoose.Schema({
       truancy_count: Number,
       overtime_count: Number,
       night_work_count: Number,
+      holiday_work_count: Number,
     },
   ],
 });

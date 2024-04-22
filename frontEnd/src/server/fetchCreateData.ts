@@ -17,3 +17,7 @@ export const postCommuteTimeData = async (
 ) => {
   await axios.post(`http://localhost:5000/work/commute/${id}`, data);
 };
+
+export const postAttitudeData = async (data: AttitudeDataTypes | undefined, id: string) => {
+  await axios.post(`http://localhost:5000/work/attitude/${id}`, data);
+};

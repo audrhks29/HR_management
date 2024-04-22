@@ -28,7 +28,7 @@ module.exports = function (app: any, Work: any) {
 
   app.post("/work/commute/:id", async (req: any, res: any) => {
     const { id } = req.params;
-    // console.log(req.body);
+
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -55,6 +55,38 @@ module.exports = function (app: any, Work: any) {
         const result = await newWork.save();
         res.status(201).json(result);
       }
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/work/attitude/:id", async (req: any, res: any) => {
+    const { id } = req.params;
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+
+    try {
+      let employeeData = await Work.findOne(
+        { employee_number: id },
+        { attitude: 1 }
+      );
+      const employeeAttitudeData = employeeData.attitude;
+
+      if (employeeAttitudeData.length > 0) {
+        const index = employeeAttitudeData.findIndex(
+          (item: AttitudeDataTypes) => item.month === String(year + month)
+        );
+        if (index !== -1) {
+          employeeAttitudeData[index] = req.body;
+        } else {
+          employeeAttitudeData.push(req.body);
+        }
+      } else {
+        employeeAttitudeData.push(req.body);
+      }
+      await employeeData.save();
+      res.status(200).json(employeeData);
     } catch (err: any) {
       res.status(500).json({ error: err.message });
     }

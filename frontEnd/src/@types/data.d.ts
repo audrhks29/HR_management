@@ -122,6 +122,11 @@ interface ExceptAttitude {
   commuteTime: CommuteTimeDataTypes[];
 }
 
+interface ExceptCommute {
+  employee_number: string;
+  attitude: AttitudeDataTypes[];
+}
+
 interface CommuteTimeDataTypes {
   date: string;
   working_time: string;
@@ -138,4 +143,5 @@ interface AttitudeDataTypes {
   truancy_count: number;
   overtime_count: number;
   night_work_count: number;
+  holiday_work_count: number;
 }

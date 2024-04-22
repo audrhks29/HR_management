@@ -3,7 +3,7 @@ import { memo, useState } from "react";
 import { useSuspenseQueries } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
-import { postCommuteTimeData } from "@/server/fetchCreateData";
+import { postAttitudeData, postCommuteTimeData } from "@/server/fetchCreateData";
 import { getCommuteData, getMemberData } from "@/server/fetchReadData";
 
 import FilterCondition from "@/shared/FilterCondition";
@@ -15,6 +15,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { calculateWorkingHours } from "../function/calculateWorkingHours";
+import { calculateAttitude } from "../function/calculateAttitude";
 
 interface FormValues {
   commuteTime: {
@@ -53,40 +55,9 @@ const Index = memo(() => {
         },
       ],
     });
-  // console.log(memberData);
+
   const [data, setData] = useState<MemberDataTypes[]>(memberData);
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([]);
-
-  const calculateWorkingHours = (startTime: string, endTime: string): number => {
-    const [startHour, startMinute] = startTime ? startTime.split(":").map(Number) : "";
-    const [endHour, endMinute] = endTime ? endTime.split(":").map(Number) : "";
-
-    let hoursDiff = 0;
-
-    if (startTime && endTime) {
-      const startDate = new Date();
-      startDate.setHours(Number(startHour), Number(startMinute), 0, 0);
-
-      const endDate = new Date();
-      endDate.setHours(Number(endHour), Number(endMinute), 0, 0);
-
-      const lunchStart = new Date(startDate);
-      lunchStart.setHours(12, 0, 0, 0);
-      const lunchEnd = new Date(startDate);
-      lunchEnd.setHours(13, 0, 0, 0);
-
-      if (startDate < lunchStart && endDate > lunchEnd) {
-        const timeDiffBeforeLunch = lunchStart.getTime() - startDate.getTime();
-        const timeDiffAfterLunch = endDate.getTime() - lunchEnd.getTime();
-        hoursDiff = (timeDiffBeforeLunch + timeDiffAfterLunch) / (1000 * 60 * 60);
-      } else {
-        const timeDiff = endDate.getTime() - startDate.getTime();
-        hoursDiff = timeDiff / (1000 * 60 * 60);
-      }
-    }
-    const hour = hoursDiff >= 9 ? hoursDiff - 1 : hoursDiff;
-    return hour;
-  };
 
   const { register, handleSubmit, setValue } = useForm<FormValues>({
     defaultValues: {
@@ -111,11 +82,11 @@ const Index = memo(() => {
 
   const onSubmit = (index: number, id: string) => async (data: FormValues) => {
     const newCommuteTime = data.commuteTime[index];
-
     const total_time = calculateWorkingHours(
       newCommuteTime.commuteTime.working_time,
       newCommuteTime.commuteTime.quitting_time,
     );
+
     const newData = {
       ...newCommuteTime,
       commuteTime: {
@@ -124,8 +95,16 @@ const Index = memo(() => {
       },
     };
 
-    await postCommuteTimeData(newData, id);
-    refetchCommuteData();
+    try {
+      await postCommuteTimeData(newData, id);
+
+      // 데이터가 등록된 후에 calculateAttitude 함수 호출
+      const updatedCommuteData = await refetchCommuteData();
+      const attitudeData = calculateAttitude(updatedCommuteData.data, id);
+      await postAttitudeData(attitudeData, id);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

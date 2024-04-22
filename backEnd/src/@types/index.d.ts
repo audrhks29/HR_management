@@ -130,4 +130,5 @@ interface AttitudeDataTypes {
   truancy_count: number;
   overtime_count: number;
   night_work_count: number;
+  holiday_work_count: number;
 }

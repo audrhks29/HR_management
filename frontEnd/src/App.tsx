@@ -65,7 +65,7 @@ function App() {
 
                 {/* attitude */}
                 <Route path="/attitude_commute_time" index element={<Attitude_commute_time />} />
-                {/* <Route path="/attitude_record" index element={<Attitude_record />} /> */}
+                <Route path="/attitude_record" index element={<Attitude_record />} />
 
                 <Route path="/post" index element={<Post />} />
                 <Route path="/setting" index element={<Setting />} />
