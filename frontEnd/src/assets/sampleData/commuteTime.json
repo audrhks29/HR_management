@@ -7,7 +7,8 @@
         "working_time": "09:00",
         "working_division": "정상출근",
         "quitting_time": "18:00",
-        "quitting_division": "정상퇴근"
+        "quitting_division": "정상퇴근",
+        "total_time": "9"
       }
     ]
   },
@@ -19,7 +20,8 @@
         "working_time": "09:00",
         "working_division": "정상출근",
         "quitting_time": "18:00",
-        "quitting_division": "정상퇴근"
+        "quitting_division": "정상퇴근",
+        "total_time": "9"
       }
     ]
   }

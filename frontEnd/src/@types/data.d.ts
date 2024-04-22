@@ -111,25 +111,31 @@ interface SalaryPersonalDataTypes {
   };
 }
 
-interface CommuteTimeDataTypes {
-  date: string;
-  data: AttitudeTypes[];
+interface WorkTypes {
+  employee_number: string;
+  commuteTime: CommuteTimeDataTypes[];
+  attitude: AttitudeDataTypes[];
 }
 
-interface CommuteTimeTypes {
+interface ExceptAttitude {
   employee_number: string;
+  commuteTime: CommuteTimeDataTypes[];
+}
+
+interface CommuteTimeDataTypes {
+  date: string;
   working_time: string;
   working_division: string;
   quitting_time: string;
   quitting_division: string;
+  total_time: number;
 }
 
-interface CommuteTimeFormValues {
-  commuteTime: {
-    employee_number: string;
-    working_time: string;
-    working_division: string;
-    quitting_time: string;
-    quitting_division: string;
-  }[];
+interface AttitudeDataTypes {
+  month: string;
+  working_count: number;
+  annual_leave_count: number;
+  truancy_count: number;
+  overtime_count: number;
+  night_work_count: number;
 }

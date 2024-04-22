@@ -108,15 +108,26 @@ interface EduDataTypes {
   graduation_date: string;
 }
 
-interface CommuteTimeTypes {
-  date: string;
-  data: AttitudeDataTypes[];
+interface WorkTypes {
+  employee_number: string;
+  commuteTime: CommuteTimeDataTypes[];
+  attitude: AttitudeDataTypes[];
 }
 
 interface CommuteTimeDataTypes {
-  employee_number: string;
+  date: string;
   working_time: string;
   working_division: string;
   quitting_time: string;
   quitting_division: string;
+  total_time: number;
+}
+
+interface AttitudeDataTypes {
+  month: string;
+  working_count: number;
+  annual_leave_count: number;
+  truancy_count: number;
+  overtime_count: number;
+  night_work_count: number;
 }

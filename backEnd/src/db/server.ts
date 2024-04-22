@@ -19,9 +19,11 @@ mongoose
 export const userConnection = mongoose.createConnection(
   `${process.env.DB_URL}/user`
 );
+
 userConnection.on("connected", () => {
   console.log("MongoDB user 데이터베이스에 연결되었습니다...!");
 });
+
 userConnection.on("error", (err: any) => {
   console.error("user 연결 실패:", err);
 });
@@ -40,7 +42,7 @@ const MemberSalary = require("../models/schemas/memberSalary").default;
 const Organization = require("../models/schemas/organization").default;
 const Rank = require("../models/schemas/rank").default;
 const Position = require("../models/schemas/position").default;
-const CommuteTime = require("../models/schemas/commuteTime").default;
+const Work = require("../models/schemas/work").default;
 
 const User = require("../models/schemas/user").default;
 
@@ -53,12 +55,14 @@ require("../routes/memberSalary")(app, MemberSalary);
 require("../routes/organization")(app, Organization);
 require("../routes/rank")(app, Rank);
 require("../routes/position")(app, Position);
-require("../routes/commuteTime")(app, CommuteTime);
+require("../routes/work")(app, Work);
+
 // 로그인
 require("../routes/user")(app, User);
 
 //세팅
 require("../routes/setting")(app, Setting);
+
 // 서버 시작
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

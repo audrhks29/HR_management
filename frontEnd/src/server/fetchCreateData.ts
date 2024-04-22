@@ -8,6 +8,12 @@ export const postMemberSalaryData = async (data: MemberSalaryDataTypes) => {
   await axios.post("http://localhost:5000/memberSalary", data);
 };
 
-export const postCommuteTimeData = async (data: CommuteTimeTypes) => {
-  await axios.post("http://localhost:5000/commutetime", data);
+export const postCommuteTimeData = async (
+  data: {
+    employee_number: string;
+    commuteTime: CommuteTimeDataTypes;
+  },
+  id: string,
+) => {
+  await axios.post(`http://localhost:5000/work/commute/${id}`, data);
 };

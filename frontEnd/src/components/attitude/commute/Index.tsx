@@ -4,7 +4,7 @@ import { useSuspenseQueries } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
 import { postCommuteTimeData } from "@/server/fetchCreateData";
-import { getCommuteTimeDateData, getMemberData } from "@/server/fetchReadData";
+import { getCommuteData, getMemberData } from "@/server/fetchReadData";
 
 import FilterCondition from "@/shared/FilterCondition";
 import Paging from "@/shared/Paging";
@@ -19,10 +19,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 interface FormValues {
   commuteTime: {
     employee_number: string;
-    working_time: string;
-    working_division: string;
-    quitting_time: string;
-    quitting_division: string;
+    commuteTime: {
+      date: string;
+      working_time: string;
+      working_division: string;
+      quitting_time: string;
+      quitting_division: string;
+      total_time: number;
+    };
   }[];
 }
 
@@ -30,7 +34,8 @@ type QueryResult<T> = {
   data: T;
 };
 
-type SuspenseQueriesResult = [QueryResult<MemberDataTypes[]>, QueryResult<CommuteTimeDataTypes>];
+type SuspenseQueriesResult = [QueryResult<MemberDataTypes[]>, QueryResult<ExceptAttitude[]>];
+
 const today = new Date();
 const year = today.getFullYear();
 const month = String(today.getMonth() + 1).padStart(2, "0");
@@ -38,40 +43,19 @@ const day = String(today.getDate()).padStart(2, "0");
 const todayDate = `${year}${month}${day}`;
 
 const Index = memo(() => {
-  const [{ data: memberData }, { data: commuteTimeDateData, refetch: refetchCommuteTimeData }] =
+  const [{ data: memberData }, { data: commuteData, refetch: refetchCommuteData }] =
     useSuspenseQueries<SuspenseQueriesResult>({
       queries: [
         { queryKey: ["memberData"], queryFn: getMemberData },
         {
-          queryKey: ["commuteTimeDateData"],
-          queryFn: () => getCommuteTimeDateData(todayDate),
+          queryKey: ["commuteData"],
+          queryFn: getCommuteData,
         },
       ],
     });
-
+  // console.log(memberData);
   const [data, setData] = useState<MemberDataTypes[]>(memberData);
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([]);
-
-  const { register, handleSubmit, setValue } = useForm<FormValues>({
-    defaultValues: {
-      commuteTime: data.map((member, index) => {
-        const idx = commuteTimeDateData?.data.findIndex(item => item.employee_number === data[index]?.employee_number);
-
-        return {
-          employee_number: member.employee_number,
-          working_time: idx !== -1 ? commuteTimeDateData?.data[idx]?.working_time : "",
-          working_division: idx !== -1 ? commuteTimeDateData?.data[idx]?.working_division : "",
-          quitting_time: idx !== -1 ? commuteTimeDateData?.data[idx]?.quitting_time : "",
-          quitting_division: idx !== -1 ? commuteTimeDateData?.data[idx]?.quitting_division : "",
-        };
-      }),
-    },
-  });
-
-  const onSubmit = (index: number) => async (data: FormValues) => {
-    await postCommuteTimeData(data.commuteTime[index]);
-    refetchCommuteTimeData();
-  };
 
   const calculateWorkingHours = (startTime: string, endTime: string): number => {
     const [startHour, startMinute] = startTime ? startTime.split(":").map(Number) : "";
@@ -86,10 +70,62 @@ const Index = memo(() => {
       const endDate = new Date();
       endDate.setHours(Number(endHour), Number(endMinute), 0, 0);
 
-      const timeDiff = endDate.getTime() - startDate.getTime();
-      hoursDiff = timeDiff / (1000 * 60 * 60);
+      const lunchStart = new Date(startDate);
+      lunchStart.setHours(12, 0, 0, 0);
+      const lunchEnd = new Date(startDate);
+      lunchEnd.setHours(13, 0, 0, 0);
+
+      if (startDate < lunchStart && endDate > lunchEnd) {
+        const timeDiffBeforeLunch = lunchStart.getTime() - startDate.getTime();
+        const timeDiffAfterLunch = endDate.getTime() - lunchEnd.getTime();
+        hoursDiff = (timeDiffBeforeLunch + timeDiffAfterLunch) / (1000 * 60 * 60);
+      } else {
+        const timeDiff = endDate.getTime() - startDate.getTime();
+        hoursDiff = timeDiff / (1000 * 60 * 60);
+      }
     }
-    return hoursDiff;
+    const hour = hoursDiff >= 9 ? hoursDiff - 1 : hoursDiff;
+    return hour;
+  };
+
+  const { register, handleSubmit, setValue } = useForm<FormValues>({
+    defaultValues: {
+      commuteTime: data.map(member => {
+        const employeeCommute = commuteData.find(item => item.employee_number === member.employee_number);
+        const employeeTodayCommute = employeeCommute?.commuteTime.find(item => item.date === todayDate);
+
+        return {
+          employee_number: member.employee_number,
+          commuteTime: {
+            date: employeeTodayCommute ? employeeTodayCommute.date : todayDate,
+            working_time: employeeTodayCommute ? employeeTodayCommute?.working_time : "",
+            working_division: employeeTodayCommute ? employeeTodayCommute?.working_division : "",
+            quitting_time: employeeTodayCommute ? employeeTodayCommute?.quitting_time : "",
+            quitting_division: employeeTodayCommute ? employeeTodayCommute?.quitting_division : "",
+            total_time: employeeTodayCommute ? employeeTodayCommute?.total_time : 0,
+          },
+        };
+      }),
+    },
+  });
+
+  const onSubmit = (index: number, id: string) => async (data: FormValues) => {
+    const newCommuteTime = data.commuteTime[index];
+
+    const total_time = calculateWorkingHours(
+      newCommuteTime.commuteTime.working_time,
+      newCommuteTime.commuteTime.quitting_time,
+    );
+    const newData = {
+      ...newCommuteTime,
+      commuteTime: {
+        ...newCommuteTime.commuteTime,
+        total_time,
+      },
+    };
+
+    await postCommuteTimeData(newData, id);
+    refetchCommuteData();
   };
 
   return (
@@ -112,13 +148,13 @@ const Index = memo(() => {
                 <TableHead className="w-[130px] p-2">등록</TableHead>
               </TableRow>
             </TableHeader>
+
             <TableBody>
               {data.map(member => {
                 const index = memberData.findIndex(item => item.employee_number === member.employee_number);
 
-                const employeeCommuteTime = commuteTimeDateData?.data.find(
-                  item => item.employee_number === member.employee_number,
-                );
+                const employeeCommute = commuteData?.find(item => item.employee_number === member.employee_number);
+                const employeeTodayCommute = employeeCommute?.commuteTime.find(item => item.date === todayDate);
 
                 return (
                   <TableRow key={member.employee_number} className="cursor-pointer h-[56px]">
@@ -132,22 +168,23 @@ const Index = memo(() => {
                     <TableCell className="p-2">{member.position}</TableCell>
 
                     <TableCell className="p-2">
-                      {employeeCommuteTime?.working_time ? (
-                        employeeCommuteTime?.working_time
+                      {employeeTodayCommute?.working_time ? (
+                        employeeTodayCommute?.working_time
                       ) : (
                         <Input
-                          id={`commuteTime.${member.employee_number}.working_time`}
-                          {...register(`commuteTime.${index}.working_time`)}
+                          id={`commuteTime.${index}.commuteTime.working_time`}
+                          {...register(`commuteTime.${index}.commuteTime.working_time`)}
                           placeholder="예) 09:00"
                         />
                       )}
                     </TableCell>
 
                     <TableCell className="p-2">
-                      {employeeCommuteTime?.working_division ? (
-                        employeeCommuteTime?.working_division
+                      {employeeTodayCommute?.working_division ? (
+                        employeeTodayCommute?.working_division
                       ) : (
-                        <Select onValueChange={value => setValue(`commuteTime.${index}.working_division`, value)}>
+                        <Select
+                          onValueChange={value => setValue(`commuteTime.${index}.commuteTime.working_division`, value)}>
                           <SelectTrigger className="w-[130px]">
                             <SelectValue placeholder="미출근" />
                           </SelectTrigger>
@@ -157,19 +194,19 @@ const Index = memo(() => {
                             <SelectItem value="병가">병가</SelectItem>
                             <SelectItem value="결근">결근</SelectItem>
                             <SelectItem value="연차">연차</SelectItem>
-                            <SelectItem value="반차">오전반차</SelectItem>
+                            <SelectItem value="오전반차">오전반차</SelectItem>
                           </SelectContent>
                         </Select>
                       )}
                     </TableCell>
 
                     <TableCell className="p-2">
-                      {employeeCommuteTime?.quitting_time ? (
-                        employeeCommuteTime?.quitting_time
+                      {employeeTodayCommute?.quitting_time ? (
+                        employeeTodayCommute?.quitting_time
                       ) : (
                         <Input
-                          id={`commuteTime.${member.employee_number}.quitting_time`}
-                          {...register(`commuteTime.${index}.quitting_time`)}
+                          id={`commuteTime.${index}.commuteTime.quitting_time`}
+                          {...register(`commuteTime.${index}.commuteTime.quitting_time`)}
                           type="text"
                           placeholder="예) 18:00"
                         />
@@ -177,12 +214,12 @@ const Index = memo(() => {
                     </TableCell>
 
                     <TableCell className="p-2">
-                      {employeeCommuteTime?.quitting_division ? (
-                        employeeCommuteTime?.quitting_division
+                      {employeeTodayCommute?.quitting_division ? (
+                        employeeTodayCommute?.quitting_division
                       ) : (
                         <Select
                           onValueChange={value => {
-                            setValue(`commuteTime.${index}.quitting_division`, value);
+                            setValue(`commuteTime.${index}.commuteTime.quitting_division`, value);
                           }}>
                           <SelectTrigger className="w-[130px]">
                             <SelectValue placeholder="미퇴근" />
@@ -199,12 +236,10 @@ const Index = memo(() => {
                       )}
                     </TableCell>
 
-                    <TableCell className="p-2">
-                      {calculateWorkingHours(employeeCommuteTime?.working_time, employeeCommuteTime?.quitting_time)}시간
-                    </TableCell>
+                    <TableCell className="p-2">{employeeTodayCommute?.total_time}시간</TableCell>
 
                     <TableCell className="p-2">
-                      <Button onClick={handleSubmit(onSubmit(index))}>등록</Button>
+                      <Button onClick={handleSubmit(onSubmit(index, member.employee_number))}>등록</Button>
                     </TableCell>
                   </TableRow>
                 );

@@ -1,0 +1,80 @@
+[
+  {
+    "employee_number": "160301",
+    "commuteTime": [
+      {
+        "date": "20240422",
+        "working_time": "09:00",
+        "working_division": "정상출근",
+        "quitting_time": "18:00",
+        "quitting_division": "정상퇴근",
+        "total_time": 8
+      },
+      {
+        "date": "20240421",
+        "working_time": "09:00",
+        "working_division": "정상출근",
+        "quitting_time": "18:00",
+        "quitting_division": "정상퇴근",
+        "total_time": 8
+      },
+      {
+        "date": "20240420",
+        "working_time": "09:00",
+        "working_division": "정상출근",
+        "quitting_time": "18:00",
+        "quitting_division": "정상퇴근",
+        "total_time": 8
+      }
+    ],
+    "attitude": [
+      {
+        "month": "202404",
+        "working_count": 0,
+        "annual_leave_count": 0,
+        "truancy_count": 0,
+        "overtime_count": 0,
+        "night_work_count": 0
+      }
+    ]
+  },
+  {
+    "employee_number": "180901",
+    "commuteTime": [
+      {
+        "date": "20240422",
+        "working_time": "09:00",
+        "working_division": "정상출근",
+        "quitting_time": "18:00",
+        "quitting_division": "정상퇴근",
+        "total_time": 8
+      },
+      {
+        "date": "20240421",
+        "working_time": "09:00",
+        "working_division": "정상출근",
+        "quitting_time": "18:00",
+        "quitting_division": "정상퇴근",
+        "total_time": 8
+      },
+      {
+        "date": "20240420",
+        "working_time": "09:00",
+        "working_division": "정상출근",
+        "quitting_time": "18:00",
+        "quitting_division": "정상퇴근",
+        "total_time": 8
+      }
+    ],
+    "attitude": [
+      {
+        "month": "202404",
+        "working_count": 0,
+        "annual_leave_count": 0,
+        "truancy_count": 0,
+        "overtime_count": 0,
+        "night_work_count": 0
+      }
+    ]
+  }
+]
