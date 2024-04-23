@@ -59,6 +59,7 @@ const Index = memo(() => {
           setIsMonthPicker={setIsMonthPicker}
           selectedMonth={selectedMonth}
           setSelectedMonth={setSelectedMonth}
+          className=""
         />
 
         <Table className="text-center">

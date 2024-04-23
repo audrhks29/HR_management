@@ -4,6 +4,7 @@ import { Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 const MonthPicker = memo(
   ({
@@ -11,6 +12,7 @@ const MonthPicker = memo(
     setIsMonthPicker,
     selectedMonth,
     setSelectedMonth,
+    className,
   }: {
     isMonthPicker: boolean;
     setIsMonthPicker: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,6 +26,7 @@ const MonthPicker = memo(
         month: string;
       }>
     >;
+    className: string | undefined;
   }) => {
     const [year, setYear] = useState(selectedMonth.year);
     const [month, setMonth] = useState(selectedMonth.month);
@@ -36,7 +39,7 @@ const MonthPicker = memo(
     const monthArray = Array.from({ length: 12 }, (_, index) => (index + 1 < 10 ? `0${index + 1}` : `${index + 1}`));
 
     return (
-      <div className="absolute top-8 right-1/2 translate-x-1/2 z-10">
+      <div className={cn("absolute top-8 right-1/2 translate-x-1/2 z-10", className)}>
         <Button variant="outline" onClick={() => setIsMonthPicker(!isMonthPicker)}>
           <Calendar className="mr-3" />
           {selectedMonth.year}년 {selectedMonth.month}월

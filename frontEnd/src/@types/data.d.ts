@@ -26,10 +26,31 @@ interface MemberDataTypes {
 interface SalaryDataTypes {
   employee_number: string;
   data: {
-    year: number;
+    year: string;
     salary: SalaryPersonalDataTypes[];
   }[];
 }
+
+interface SalaryPersonalDataTypes {
+  month: string;
+  salary: number;
+  overtime_pay: number;
+  bonus: number;
+  saturday_work_allowance: number;
+  night_work_allowance: number;
+  annual_leave_allowance: number;
+  meals: number;
+  tax: {
+    national_pension: number;
+    health_tax: number;
+    long_term_care_insurance: number;
+    employment_insurance: number;
+    income_tax: number;
+    resident_tax: number;
+    year_end_tax_settlement: number;
+  };
+}
+
 interface MemberSalaryDataTypes {
   employee_number: string;
   wage: number;
@@ -89,26 +110,6 @@ interface AddressDataTypes {
   jibun_address: string;
   zone_code: string;
   detail_address: string;
-}
-
-interface SalaryPersonalDataTypes {
-  month: number;
-  salary: number;
-  overtime_pay: number;
-  bonus: number;
-  saturday_work_allowance: number;
-  night_work_allowance: number;
-  annual_leave_allowance: number;
-  meals: number;
-  tax: {
-    national_pension: number;
-    health_tax: number;
-    long_term_care_insurance: number;
-    employment_insurance: number;
-    income_tax: number;
-    resident_tax: number;
-    year_end_tax_settlement: number;
-  };
 }
 
 interface WorkTypes {

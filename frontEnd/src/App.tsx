@@ -33,6 +33,7 @@ import Salary_history_personal from "./window/Salary_history_personal";
 import Post from "./components/hr/register/menu/info/Post";
 import Login from "./pages/user/Login";
 import Setting from "./pages/setting/Setting";
+import Salary_registration from "./pages/salary/Salary_registration";
 
 function App() {
   return (
@@ -55,6 +56,8 @@ function App() {
 
                 {/* salary */}
                 <Route path="/salary_status" index element={<Salary_status />} />
+                <Route path="/salary_registration" index element={<Salary_registration />} />
+                <Route path="/salary_registration/:employee_number" index element={<Salary_registration />} />
                 <Route path="/salary_history" index element={<Salary_history />} />
                 <Route path="/salary_history/:employee_number" index element={<Salary_history />} />
                 <Route

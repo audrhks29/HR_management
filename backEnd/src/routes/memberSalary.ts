@@ -9,13 +9,10 @@ module.exports = function (app: any, MemberSalary: any) {
   });
 
   app.get("/memberSalary/:id", async (req: any, res: any) => {
+    const { id } = req.params;
     try {
-      const data = await MemberSalary.find({});
-      const { id } = req.params;
-      const filteredData = data.filter(
-        (item: MemberSalaryDataTypes) => item.employee_number === id,
-      );
-      res.json(filteredData);
+      const data = await MemberSalary.findOne({ employee_number: id });
+      res.json(data);
     } catch (err: any) {
       res.status(500).json({ error: err.message });
     }

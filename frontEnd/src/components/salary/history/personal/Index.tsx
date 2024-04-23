@@ -94,11 +94,11 @@ const Index = memo(() => {
           <TableHeader className="bg-primary-foreground">
             <TableRow>
               <TableHead>근무일수</TableHead>
-              <TableHead>휴가일수</TableHead>
+              <TableHead>연차일수</TableHead>
               <TableHead>결근일수</TableHead>
               <TableHead>연장근로시간</TableHead>
               <TableHead>야간근로시간</TableHead>
-              <TableHead>토요근로시간</TableHead>
+              <TableHead>휴일근로시간</TableHead>
             </TableRow>
           </TableHeader>
 
@@ -119,9 +119,10 @@ const Index = memo(() => {
           <TableHeader className="bg-primary-foreground">
             <TableRow>
               <TableHead>기본급</TableHead>
+              <TableHead>직무수당</TableHead>
               <TableHead>연장근로수당</TableHead>
               <TableHead>성과금</TableHead>
-              <TableHead>토요근로시간</TableHead>
+              <TableHead>휴일근로시간</TableHead>
               <TableHead>야간근로시간</TableHead>
               <TableHead>연차수당</TableHead>
               <TableHead>식대</TableHead>
@@ -131,6 +132,7 @@ const Index = memo(() => {
           <TableBody>
             <TableRow>
               <TableCell>{salary.toLocaleString()}원</TableCell>
+              <TableCell>0원</TableCell>
               <TableCell>{overtime_pay.toLocaleString()}원</TableCell>
               <TableCell>{bonus.toLocaleString()}원</TableCell>
               <TableCell>{saturday_work_allowance.toLocaleString()}원</TableCell>

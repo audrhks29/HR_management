@@ -62,7 +62,7 @@ const Index = memo(() => {
   const { register, handleSubmit, setValue } = useForm<FormValues>({
     defaultValues: {
       commuteTime: data.map(member => {
-        const employeeCommute = commuteData.find(item => item.employee_number === member.employee_number);
+        const employeeCommute = commuteData?.find(item => item.employee_number === member.employee_number);
         const employeeTodayCommute = employeeCommute?.commuteTime.find(item => item.date === todayDate);
 
         return {

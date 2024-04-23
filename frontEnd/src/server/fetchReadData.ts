@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// member
 export const getMemberData = async () => {
   const response = await axios.get("http://localhost:5000/member");
   return response.data;
@@ -10,8 +11,14 @@ export const getMemberPersonalData = async (employee_number: string | undefined)
   return response.data;
 };
 
+// salary
 export const getSalaryData = async () => {
   const response = await axios.get("http://localhost:5000/salary");
+  return response.data;
+};
+
+export const getPersonalSalaryData = async (id: string | undefined) => {
+  const response = await axios.get(`http://localhost:5000/salary/${id}`);
   return response.data;
 };
 
@@ -24,28 +31,43 @@ export const getSalaryPersonalData = async (
   return response.data;
 };
 
+// organization
 export const getOrganizationData = async () => {
   const response = await axios.get("http://localhost:5000/organization");
   return response.data;
 };
 
+// memberSalary
 export const getMemberSalaryData = async () => {
   const response = await axios.get("http://localhost:5000/memberSalary");
   return response.data;
 };
 
+export const getPersonalMemberSalaryData = async (id: string | undefined) => {
+  const response = await axios.get(`http://localhost:5000/memberSalary/${id}`);
+  return response.data;
+};
+
+// rank
 export const getRankData = async () => {
   const response = await axios.get("http://localhost:5000/rank");
   return response.data;
 };
 
+// position
 export const getPositionData = async () => {
   const response = await axios.get("http://localhost:5000/position");
   return response.data;
 };
 
+// workData
 export const getWorkData = async () => {
   const response = await axios.get("http://localhost:5000/work");
+  return response.data;
+};
+
+export const getPersonalAttitudeData = async (id: string | undefined) => {
+  const response = await axios.get(`http://localhost:5000/work/attitude/${id}`);
   return response.data;
 };
 
@@ -59,6 +81,7 @@ export const getCommuteData = async () => {
   return response.data;
 };
 
+// setting
 export const getSettingData = async () => {
   const response = await axios.get(`http://localhost:5000/setting`);
   return response.data;

@@ -17,6 +17,16 @@ module.exports = function (app: any, Work: any) {
     }
   });
 
+  app.get("/work/attitude/:id", async (req: any, res: any) => {
+    const { id } = req.params;
+    try {
+      const data = await Work.findOne({ employee_number: id });
+      res.json(data);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   app.get("/work/commute", async (req: any, res: any) => {
     try {
       const data = await Work.find({}, "commuteTime employee_number");

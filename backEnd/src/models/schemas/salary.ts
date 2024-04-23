@@ -4,10 +4,10 @@ const salaryDBSchema = new mongoose.Schema({
   employee_number: String,
   data: [
     {
-      year: Number,
+      year: String,
       salary: [
         {
-          month: Number,
+          month: String,
           salary: Number,
           overtime_pay: Number,
           bonus: Number,

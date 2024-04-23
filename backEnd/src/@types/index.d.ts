@@ -31,9 +31,9 @@ interface MemberDataTypes {
 interface SalaryDataTypes {
   employee_number: string;
   data: {
-    year: number;
+    year: string;
     salary: {
-      month: number;
+      month: string;
       salary: number;
       overtime_pay: number;
       bonus: number;
