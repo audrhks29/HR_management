@@ -1,23 +1,19 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-import { useParams } from "react-router-dom";
 import PersonalTitle from "@/shared/PersonalTitle";
-import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
 import MonthPicker from "@/shared/MonthPicker";
-import { Label } from "@/components/ui/label";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
 import Attitude from "./table/Attitude";
 import Total from "./table/Total";
 import Salary from "./table/Salary";
 import Deduct from "./table/Deduct";
 
-interface FormValues {
-  year: string;
-  salary: SalaryPersonalDataTypes;
-}
+import { calculateDefaultFormValues } from "../function/calculateDefaultFormValues";
 
 const Select = memo(
   ({
@@ -27,59 +23,56 @@ const Select = memo(
     personalMemberSalaryData,
   }: {
     personalMemberData: MemberDataTypes;
-    personalSalaryData: SalaryDataTypes[];
+    personalSalaryData: SalaryDataTypes;
     personalAttitudeData: ExceptCommute;
     personalMemberSalaryData: MemberSalaryDataTypes;
   }) => {
     const today = new Date();
-    const year = today.getFullYear();
+    const year = String(today.getFullYear());
     const month = String(today.getMonth() + 1).padStart(2, "0");
     const day = String(today.getDate()).padStart(2, "0");
-    const todayDate = `${year}${month}${day}`;
+    // const todayDate = `${year}${month}${day}`;
 
     const { employee_number } = useParams();
-
+    // console.log(employee_number);
     const [isMonthPicker, setIsMonthPicker] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState({
       year: year.toString(),
       month: month.toString(),
     });
 
-    // console.log(personalSalaryData);
-    // console.log(personalAttitudeData);
-    const { register, handleSubmit, setValue } = useForm<FormValues>({
-      defaultValues: {
-        year: "2024",
-        salary: {
-          annual_leave_allowance: 0,
-          bonus: 0,
-          meals: 0,
-          month: "03",
-          night_work_allowance: 0,
-          overtime_pay: 0,
-          salary: 0,
-          saturday_work_allowance: 0,
-          tax: {
-            employment_insurance: 0,
-            health_tax: 0,
-            income_tax: 0,
-            long_term_care_insurance: 0,
-            national_pension: 0,
-            resident_tax: 0,
-            year_end_tax_settlement: 0,
-          },
-        },
-      },
-    });
-
-    const [totalSalary, setTotalSalary] = useState();
-
-    const employeeMonthAttitude = personalAttitudeData.attitude.find(
+    const employeeMonthAttitude = personalAttitudeData?.attitude.find(
       item => item.month === selectedMonth.year + selectedMonth.month,
     );
 
+    // const personalYearSalaryData = personalSalaryData?.data.find(item => item.year === selectedMonth.year);
+
+    // const personalMonthSalaryData = personalYearSalaryData?.salary.find(item => item.month);
+
+    const hourSalary = Math.round(personalMemberSalaryData.wage / 12 / 209);
+
+    const defaultFormValues = calculateDefaultFormValues(
+      selectedMonth,
+      employeeMonthAttitude,
+      hourSalary,
+      personalMemberSalaryData,
+    );
+
+    useEffect(() => {
+      reset({ ...defaultFormValues });
+    }, [employee_number]);
+
+    const { register, handleSubmit, setValue, getValues, reset } = useForm<SalaryRegistrationFormTypes>({
+      defaultValues: defaultFormValues,
+    });
+
+    const onsubmit = (data: SalaryRegistrationFormTypes) => {
+      console.log(data);
+    };
+
+    // console.log(defaultFormValues);
     return (
-      <form>
+      <form onSubmit={handleSubmit(onsubmit)}>
         <Card className="h-[850px] p-8 overflow-y-auto relative ">
           <PersonalTitle personalData={personalMemberData} />
           <CardContent className="py-8">
@@ -91,20 +84,20 @@ const Select = memo(
               className="mt-4"
             />
 
-            <Total />
+            <Total getValues={getValues} />
+
             <Attitude data={employeeMonthAttitude} />
-            <Salary personalMemberSalaryData={personalMemberSalaryData} employeeMonthAttitude={employeeMonthAttitude} />
-            <Deduct personalMemberSalaryData={personalMemberSalaryData} />
-            {/* <div className="space-y-2 flex items-center">
-              <Label className="w-[100px]">기본급</Label>
-              <Input type="text" id={`salary.bonus`} {...register(`salary.bonus`)} />
-            </div>
-            근무일	휴가일	결근일	연장근로시간	야간근로시간	휴일근로시간
-            연장근로수당	배당금	토요근로수당	야간근로수당	연차수당	식대	급여
-            <div className="space-y-2 flex items-center">
-              <Label className="w-[100px]">dd</Label>
-              <Input type="text" />
-            </div> */}
+
+            <Salary employeeMonthAttitude={employeeMonthAttitude} register={register} getValues={getValues} />
+
+            <Deduct
+              personalMemberSalaryData={personalMemberSalaryData}
+              register={register}
+              getValues={getValues}
+              setValue={setValue}
+            />
+
+            <Button type="submit">전송</Button>
           </CardContent>
         </Card>
       </form>

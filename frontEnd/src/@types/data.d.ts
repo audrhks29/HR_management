@@ -40,6 +40,7 @@ interface SalaryPersonalDataTypes {
   night_work_allowance: number;
   annual_leave_allowance: number;
   meals: number;
+  total_salary: number;
   tax: {
     national_pension: number;
     health_tax: number;
@@ -48,6 +49,7 @@ interface SalaryPersonalDataTypes {
     income_tax: number;
     resident_tax: number;
     year_end_tax_settlement: number;
+    total_tax: number;
   };
 }
 

@@ -15,8 +15,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { calculateWorkingHours } from "../function/calculateWorkingHours";
 import { calculateAttitude } from "../function/calculateAttitude";
+import { calculateWorkingHours } from "../function/calculateWorkingHours";
 
 interface FormValues {
   commuteTime: {

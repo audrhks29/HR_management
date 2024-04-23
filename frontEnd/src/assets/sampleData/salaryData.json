@@ -14,6 +14,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -21,7 +22,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -33,6 +35,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -40,7 +43,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -52,6 +56,7 @@
             "night_work_allowance": 200000,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 389950,
@@ -59,7 +64,8 @@
               "employment_insurance": 99000,
               "income_tax": 1875400,
               "resident_tax": 187540,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           }
         ]
@@ -76,6 +82,7 @@
             "night_work_allowance": 160000,
             "annual_leave_allowance": 790000,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 359810,
@@ -83,7 +90,8 @@
               "employment_insurance": 91350,
               "income_tax": 1583850,
               "resident_tax": 158380,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -95,6 +103,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 389950,
@@ -102,7 +111,8 @@
               "employment_insurance": 99000,
               "income_tax": 1875400,
               "resident_tax": 187540,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -114,6 +124,7 @@
             "night_work_allowance": 200000,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 460850,
@@ -121,7 +132,8 @@
               "employment_insurance": 117000,
               "income_tax": 2561400,
               "resident_tax": 256140,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -133,6 +145,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -140,7 +153,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -152,6 +166,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -159,7 +174,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -171,6 +187,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -178,7 +195,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -190,6 +208,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -197,7 +216,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -209,6 +229,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -216,7 +237,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -228,6 +250,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -235,7 +258,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -247,6 +271,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -254,7 +279,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -266,6 +292,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -273,7 +300,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -285,6 +313,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -292,7 +321,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           }
         ]
@@ -314,6 +344,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -321,7 +352,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -333,6 +365,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -340,7 +373,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -352,6 +386,7 @@
             "night_work_allowance": 200000,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 389950,
@@ -359,7 +394,8 @@
               "employment_insurance": 99000,
               "income_tax": 1875400,
               "resident_tax": 187540,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           }
         ]
@@ -376,6 +412,7 @@
             "night_work_allowance": 160000,
             "annual_leave_allowance": 790000,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 359810,
@@ -383,7 +420,8 @@
               "employment_insurance": 91350,
               "income_tax": 1583850,
               "resident_tax": 158380,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -395,6 +433,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 389950,
@@ -402,7 +441,8 @@
               "employment_insurance": 99000,
               "income_tax": 1875400,
               "resident_tax": 187540,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -414,6 +454,7 @@
             "night_work_allowance": 200000,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 460850,
@@ -421,7 +462,8 @@
               "employment_insurance": 117000,
               "income_tax": 2561400,
               "resident_tax": 256140,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -433,6 +475,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -440,7 +483,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -452,6 +496,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -459,7 +504,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -471,6 +517,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -478,7 +525,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -490,6 +538,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -497,7 +546,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -509,6 +559,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -516,7 +567,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -528,6 +580,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -535,7 +588,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -547,6 +601,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -554,7 +609,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -566,6 +622,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -573,7 +630,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           },
           {
@@ -585,6 +643,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
+            "total_salary": 0,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -592,7 +651,8 @@
               "employment_insurance": 90000,
               "income_tax": 1507400,
               "resident_tax": 150740,
-              "year_end_tax_settlement": 0
+              "year_end_tax_settlement": 0,
+              "total_tax": 0
             }
           }
         ]

@@ -32,26 +32,30 @@ interface SalaryDataTypes {
   employee_number: string;
   data: {
     year: string;
-    salary: {
-      month: string;
-      salary: number;
-      overtime_pay: number;
-      bonus: number;
-      saturday_work_allowance: number;
-      night_work_allowance: number;
-      annual_leave_allowance: number;
-      meals: number;
-      tax: {
-        national_pension: number;
-        health_tax: number;
-        long_term_care_insurance: number;
-        employment_insurance: number;
-        income_tax: number;
-        resident_tax: number;
-        year_end_tax_settlement: number;
-      };
-    }[];
+    salary: SalaryPersonalDataTypes[];
   }[];
+}
+
+interface SalaryPersonalDataTypes {
+  month: string;
+  salary: number;
+  overtime_pay: number;
+  bonus: number;
+  saturday_work_allowance: number;
+  night_work_allowance: number;
+  annual_leave_allowance: number;
+  meals: number;
+  total_salary: number;
+  tax: {
+    national_pension: number;
+    health_tax: number;
+    long_term_care_insurance: number;
+    employment_insurance: number;
+    income_tax: number;
+    resident_tax: number;
+    year_end_tax_settlement: number;
+    total_tax: number;
+  };
 }
 
 interface MemberSalaryDataTypes {

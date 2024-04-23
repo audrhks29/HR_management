@@ -15,6 +15,7 @@ const salaryDBSchema = new mongoose.Schema({
           night_work_allowance: Number,
           annual_leave_allowance: Number,
           meals: Number,
+          total_salary: Number,
           tax: {
             national_pension: Number,
             health_tax: Number,
@@ -23,6 +24,7 @@ const salaryDBSchema = new mongoose.Schema({
             income_tax: Number,
             resident_tax: Number,
             year_end_tax_settlement: Number,
+            total_tax: Number,
           },
         },
       ],

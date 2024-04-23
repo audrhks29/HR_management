@@ -17,7 +17,7 @@ type QueryResult<T> = {
 };
 
 type SuspenseQueriesResult = [
-  QueryResult<SalaryDataTypes[]>,
+  QueryResult<SalaryDataTypes>,
   QueryResult<MemberDataTypes>,
   QueryResult<WorkTypes>,
   QueryResult<MemberSalaryDataTypes>,
