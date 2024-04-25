@@ -14,5 +14,15 @@
 | DB         | <img src="https://img.shields.io/badge/Mongodb-47A248?style=flat-square&logo=mongodb&logoColor=white">                                                                                                                                                                                                                                                                                                                                  |
 | 런타임     | <img src="https://img.shields.io/badge/Nodejs-339933?style=flat-square&logo=nodedotjs&logoColor=white">                                                                                                                                                                                                                                                                                                                                 |
 
+### 2. UI
+
+#### 1. 로그인 화면
+
+![image](https://github.com/audrhks29/HR_management/assets/130128690/0560ff1c-e8a2-4953-b4ec-7357cfe5cfa2)
+
+#### 2. 메인 화면
+
+![image](https://github.com/audrhks29/HR_management/assets/130128690/b43fd217-c863-4da8-bd2e-183e48079839)
+
 </div>
 </details>
