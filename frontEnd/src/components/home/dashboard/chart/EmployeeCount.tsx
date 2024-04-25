@@ -13,8 +13,6 @@ const EmployeeCount = memo(
     const year = Number(today.getFullYear());
     const [selectedYear, setSelectedYear] = useState(year);
 
-    const labels = Array.from({ length: 12 }, (_, v) => v + 1);
-
     const matchJoinYear = memberData
       .map(member => member.date_of_joining)
       .filter(e => e.substring(0, 5) === selectedYear + "년");
@@ -26,8 +24,17 @@ const EmployeeCount = memo(
       monthCount[month]++;
     });
 
+    const labels = Array.from({ length: 12 }, (_, v) => v + 1 + "월");
+
     const options = {
       responsive: true,
+      scales: {
+        y: {
+          ticks: {
+            stepSize: 1,
+          },
+        },
+      },
       plugins: {
         legend: {
           display: false,
@@ -45,7 +52,7 @@ const EmployeeCount = memo(
         {
           label: "입사자 수",
           data: monthCount.map(month => month),
-          backgroundColor: "rgba(255, 99, 132, 0.5)",
+          backgroundColor: "#FAFAFA",
         },
       ],
     };

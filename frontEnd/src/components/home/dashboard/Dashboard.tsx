@@ -1,7 +1,7 @@
 import { memo, useState } from "react";
 import { useSuspenseQueries } from "@tanstack/react-query";
 
-import { getMemberData, getSettingData } from "@/server/fetchReadData";
+import { getMemberData, getSalaryData, getSettingData } from "@/server/fetchReadData";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import TotalSalary from "./chart/TotalSalary";
@@ -14,22 +14,27 @@ type QueryResult<T> = {
   data: T;
 };
 
-type SuspenseQueriesResult = [QueryResult<SettingTypes>, QueryResult<MemberDataTypes[]>];
+type SuspenseQueriesResult = [
+  QueryResult<SettingTypes>,
+  QueryResult<MemberDataTypes[]>,
+  QueryResult<SalaryDataTypes[]>,
+];
 
 const Dashboard = memo(() => {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
-  const [{ data: settingData }, { data: memberData }] = useSuspenseQueries<SuspenseQueriesResult>({
-    queries: [
-      { queryKey: ["settingData"], queryFn: getSettingData },
-      { queryKey: ["memberData"], queryFn: getMemberData },
-      // {
-      //   queryKey: ["commuteData"],
-      //   queryFn: getCommuteData,
-      // },
-    ],
-  });
-  console.log(settingData);
+  const [{ data: settingData }, { data: memberData }, { data: salaryData }] = useSuspenseQueries<SuspenseQueriesResult>(
+    {
+      queries: [
+        { queryKey: ["settingData"], queryFn: getSettingData },
+        { queryKey: ["memberData"], queryFn: getMemberData },
+        {
+          queryKey: ["salaryData"],
+          queryFn: getSalaryData,
+        },
+      ],
+    },
+  );
   const companyName = settingData?.business_setting.name_of_company;
 
   return (
@@ -42,7 +47,7 @@ const Dashboard = memo(() => {
       </CardHeader>
       <CardContent className="grid grid-row gap-6">
         <div className="grid grid-cols-2 gap-6">
-          <TotalSalary />
+          <TotalSalary settingData={settingData} salaryData={salaryData} />
           <EmployeeCount settingData={settingData} memberData={memberData} />
         </div>
         <div className="grid grid-cols-3 gap-6">

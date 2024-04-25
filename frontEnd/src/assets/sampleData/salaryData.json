@@ -14,7 +14,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 15000000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -35,7 +35,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 12000000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -56,7 +56,7 @@
             "night_work_allowance": 200000,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 16000000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 389950,
@@ -82,7 +82,7 @@
             "night_work_allowance": 160000,
             "annual_leave_allowance": 790000,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 10000000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 359810,
@@ -103,7 +103,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 14000000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 389950,
@@ -124,7 +124,7 @@
             "night_work_allowance": 200000,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 25000000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 460850,
@@ -145,7 +145,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 13500000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -166,7 +166,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 13500000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -181,7 +181,7 @@
           {
             "month": "06",
             "salary": 10000000,
-            "overtime_pay": 0,
+            "overtime_pay": 13500000,
             "bonus": 0,
             "saturday_work_allowance": 0,
             "night_work_allowance": 0,
@@ -208,7 +208,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 13800000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -229,7 +229,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 10000000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -250,7 +250,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 10000000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -271,7 +271,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 10000000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -292,7 +292,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 13000000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -313,7 +313,7 @@
             "night_work_allowance": 0,
             "annual_leave_allowance": 0,
             "meals": 0,
-            "total_salary": 0,
+            "total_salary": 9400000,
             "tax": {
               "national_pension": 265500,
               "health_tax": 354500,
@@ -330,14 +330,14 @@
     ]
   },
   {
-    "employee_number": "356121",
+    "employee_number": "180901",
     "data": [
       {
         "year": "2024",
         "salary": [
           {
             "month": "01",
-            "salary": 1000,
+            "salary": 10000000,
             "overtime_pay": 0,
             "bonus": 0,
             "saturday_work_allowance": 0,
