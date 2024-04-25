@@ -1,7 +1,7 @@
 import { memo, useState } from "react";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQueries } from "@tanstack/react-query";
 
-import { getSettingData } from "@/server/fetchReadData";
+import { getMemberData, getSettingData } from "@/server/fetchReadData";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import TotalSalary from "./chart/TotalSalary";
@@ -10,13 +10,26 @@ import { Building2 } from "lucide-react";
 import EmployeeBirthday from "./board/EmployeeBirthday";
 import { Calendar } from "@/components/ui/calendar";
 
+type QueryResult<T> = {
+  data: T;
+};
+
+type SuspenseQueriesResult = [QueryResult<SettingTypes>, QueryResult<MemberDataTypes[]>];
+
 const Dashboard = memo(() => {
   const [date, setDate] = useState<Date | undefined>(new Date());
-  const { data: settingData }: { data: SettingTypes } = useSuspenseQuery({
-    queryKey: ["settingData"],
-    queryFn: getSettingData,
-  });
 
+  const [{ data: settingData }, { data: memberData }] = useSuspenseQueries<SuspenseQueriesResult>({
+    queries: [
+      { queryKey: ["settingData"], queryFn: getSettingData },
+      { queryKey: ["memberData"], queryFn: getMemberData },
+      // {
+      //   queryKey: ["commuteData"],
+      //   queryFn: getCommuteData,
+      // },
+    ],
+  });
+  console.log(settingData);
   const companyName = settingData?.business_setting.name_of_company;
 
   return (
@@ -30,7 +43,7 @@ const Dashboard = memo(() => {
       <CardContent className="grid grid-row gap-6">
         <div className="grid grid-cols-2 gap-6">
           <TotalSalary />
-          <EmployeeCount />
+          <EmployeeCount settingData={settingData} memberData={memberData} />
         </div>
         <div className="grid grid-cols-3 gap-6">
           <EmployeeBirthday />
