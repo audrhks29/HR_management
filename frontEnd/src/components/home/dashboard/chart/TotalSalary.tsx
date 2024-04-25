@@ -39,7 +39,7 @@ const TotalSalary = memo(
     const labels = Array.from({ length: 12 }, (_, v) => v + 1 + "월");
 
     const options = {
-      responsive: true,
+      responsive: false,
       scales: {
         y: {
           title: {
@@ -111,7 +111,7 @@ const TotalSalary = memo(
         </CardHeader>
         <CardContent className="h-full">
           {!isResult ? (
-            <Line options={options} data={data} />
+            <Line options={options} data={data} width={420} height={200} />
           ) : (
             <div className="flex items-center justify-center">등록된 데이터가 없습니다.</div>
           )}
