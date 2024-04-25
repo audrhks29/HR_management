@@ -22,7 +22,7 @@
 
 #### 2. 메인 화면
 
-![image](https://github.com/audrhks29/HR_management/assets/130128690/b43fd217-c863-4da8-bd2e-183e48079839)
+![image](https://github.com/audrhks29/HR_management/assets/130128690/b5642fa3-6c81-4bb8-9284-bfbe886fd944)
 
 </div>
 </details>
