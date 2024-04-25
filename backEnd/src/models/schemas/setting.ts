@@ -11,12 +11,6 @@ const SettingDBSchema = new mongoose.Schema({
     type_of_business: String,
     main_number: String,
   },
-  commute_setting: [
-    {
-      name: String,
-      setting: [{ id: Number, value: String }],
-    },
-  ],
   rank_setting: [{ order: Number, value: String }],
 });
 

@@ -2,15 +2,9 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getMemberData } from "@/server/fetchReadData";
-import { useSuspenseQueries } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { Cake } from "lucide-react";
 import { memo } from "react";
-
-type QueryResult<T> = {
-  data: T;
-};
-
-type SuspenseQueriesResult = [QueryResult<MemberDataTypes[]>];
 
 const EmployeeBirthday = memo(() => {
   const today = new Date();
@@ -18,14 +12,9 @@ const EmployeeBirthday = memo(() => {
   const month = String(today.getMonth() + 1).padStart(2, "0");
   const day = String(today.getDate()).padStart(2, "0");
 
-  const [{ data: memberData }] = useSuspenseQueries<SuspenseQueriesResult>({
-    queries: [
-      { queryKey: ["memberData"], queryFn: getMemberData },
-      // {
-      //   queryKey: ["commuteData"],
-      //   queryFn: getCommuteData,
-      // },
-    ],
+  const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({
+    queryKey: ["memberData"],
+    queryFn: getMemberData,
   });
 
   const birthdayList = memberData
@@ -34,7 +23,7 @@ const EmployeeBirthday = memo(() => {
     .slice(0, 5);
 
   return (
-    <Card className="col-span-2">
+    <Card className="h-[330px]">
       <CardHeader>
         <CardTitle className="text-[20px] flex items-center">
           <Cake className="mr-3" />

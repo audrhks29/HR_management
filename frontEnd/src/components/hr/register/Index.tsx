@@ -5,7 +5,6 @@ import Contents from "./Contents";
 const Index = memo(() => {
   const [activeTap, setActiveTab] = useState("info");
 
-  // 다음 버튼 클릭
   const handleNextClick = () => setActiveTab("edu_career");
 
   return (

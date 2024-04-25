@@ -9,6 +9,8 @@ import EmployeeCount from "./chart/EmployeeCount";
 import { Building2 } from "lucide-react";
 import EmployeeBirthday from "./board/EmployeeBirthday";
 import { Calendar } from "@/components/ui/calendar";
+import Logout from "./logout/Logout";
+import CommuteTime from "./chart/CommuteTime";
 
 type QueryResult<T> = {
   data: T;
@@ -35,24 +37,30 @@ const Dashboard = memo(() => {
       ],
     },
   );
+
   const companyName = settingData?.business_setting.name_of_company;
 
   return (
     <Card className="col-span-2 p-5">
       <CardHeader>
-        <CardTitle className="flex">
-          <Building2 className="mr-3" />
-          <span>{companyName}</span>
+        <CardTitle className="flex items-center justify-between">
+          <div className="flex">
+            <Building2 className="mr-3" />
+            <span>{companyName}</span>
+          </div>
+          <Logout />
         </CardTitle>
       </CardHeader>
+
       <CardContent className="grid grid-row gap-6">
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-[1fr_1fr_280px] gap-6 h-[316px]">
           <TotalSalary settingData={settingData} salaryData={salaryData} />
           <EmployeeCount settingData={settingData} memberData={memberData} />
-        </div>
-        <div className="grid grid-cols-3 gap-6">
-          <EmployeeBirthday />
           <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-md border" />
+        </div>
+        <div className="grid grid-cols-2 gap-6">
+          <EmployeeBirthday />
+          <CommuteTime />
         </div>
       </CardContent>
     </Card>

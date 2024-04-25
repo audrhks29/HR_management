@@ -19,6 +19,7 @@ const TotalSalary = memo(
   ({ settingData, salaryData }: { settingData: SettingTypes; salaryData: SalaryDataTypes[] }) => {
     const today = new Date();
     const year = Number(today.getFullYear());
+
     const [selectedYear, setSelectedYear] = useState(year);
 
     const selectedYearTotalSalary = salaryData?.map(data => data.data.find(item => item.year === String(selectedYear)));
@@ -70,8 +71,8 @@ const TotalSalary = memo(
         {
           label: "원",
           data: result.map(month => month),
-          borderColor: "#FAFAFA",
-          backgroundColor: "#FAFAFA",
+          borderColor: "rgba(54, 162, 235, 1)",
+          backgroundColor: "rgba(54, 162, 235, 1)",
         },
       ],
     };

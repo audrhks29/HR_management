@@ -9,27 +9,6 @@
     "type_of_business": "정보통신업/시스템 소프트웨어 개발 및 공급업",
     "main_number": "031-000-0000"
   },
-  "commute_setting": [
-    {
-      "name": "working_time_setting",
-      "setting": [
-        { "id": 1, "value": "정상출근" },
-        { "id": 2, "value": "지각" },
-        { "id": 3, "value": "결근" },
-        { "id": 4, "value": "연차" },
-        { "id": 5, "value": "오전반차" }
-      ]
-    },
-    {
-      "name": "quitting_time_setting",
-      "setting": [
-        { "id": 1, "value": "정상퇴근" },
-        { "id": 2, "value": "조기퇴근" },
-        { "id": 3, "value": "병가" },
-        { "id": 4, "value": "오후반차" }
-      ]
-    }
-  ],
   "rank_setting": [
     { "order": 1, "value": "CEO" },
     { "order": 2, "value": "부사장" },

@@ -159,7 +159,7 @@ const Department = memo(
                 <SelectContent>
                   <SelectGroup>
                     {positionData.map(position => (
-                      <SelectItem key={position.id} value="00부장">
+                      <SelectItem key={position.id} value={position.name}>
                         {position.name}
                       </SelectItem>
                     ))}

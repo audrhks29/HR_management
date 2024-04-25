@@ -11,6 +11,7 @@ const EmployeeCount = memo(
   ({ settingData, memberData }: { settingData: SettingTypes; memberData: MemberDataTypes[] }) => {
     const today = new Date();
     const year = Number(today.getFullYear());
+
     const [selectedYear, setSelectedYear] = useState(year);
 
     const matchJoinYear = memberData
@@ -23,6 +24,8 @@ const EmployeeCount = memo(
       const month = parseInt(date.split(" ")[1].slice(0, -1)) - 1;
       monthCount[month]++;
     });
+
+    const isMonthCount = monthCount.every(num => num === 0);
 
     const labels = Array.from({ length: 12 }, (_, v) => v + 1 + "월");
 
@@ -52,7 +55,7 @@ const EmployeeCount = memo(
         {
           label: "입사자 수",
           data: monthCount.map(month => month),
-          backgroundColor: "#FAFAFA",
+          backgroundColor: "rgba(255, 99, 132, 1)",
         },
       ],
     };
@@ -90,7 +93,11 @@ const EmployeeCount = memo(
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Bar options={options} data={data} />
+          {!isMonthCount ? (
+            <Bar options={options} data={data} />
+          ) : (
+            <div className="flex items-center justify-center">등록된 데이터가 없습니다.</div>
+          )}
         </CardContent>
       </Card>
     );
