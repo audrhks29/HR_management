@@ -3,6 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
 import commuteList from "@/assets/commuteList.json";
+import { useTheme } from "@/components/mode/theme-provider";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const today = new Date();
@@ -12,6 +13,8 @@ const day = String(today.getDate()).padStart(2, "0");
 const todayDate = `${year}${month}${day}`;
 
 const Working = memo(({ commuteData }: { commuteData: ExceptAttitude[] }) => {
+  const { theme } = useTheme();
+  console.log(theme);
   const options = {
     responsive: false,
     plugins: {
@@ -21,7 +24,7 @@ const Working = memo(({ commuteData }: { commuteData: ExceptAttitude[] }) => {
       title: {
         display: true,
         text: "출근 현황",
-        color: "white",
+        color: theme === "light" ? "#181818" : "#FAFAFA",
       },
     },
   };

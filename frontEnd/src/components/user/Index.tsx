@@ -17,7 +17,7 @@ const Index = memo(() => {
   const companyName = settingData?.business_setting.name_of_company;
 
   return (
-    <div className="flex border-r border-primary/40 items-center px-4 w-[250px]">
+    <div className="flex border-r border-primary/20 items-center px-4 w-[250px]">
       <div className="flex items-center gap-2 font-semibold">
         <Building2 className="h-6 w-6" />
 

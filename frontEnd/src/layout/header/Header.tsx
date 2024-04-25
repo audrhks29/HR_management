@@ -12,7 +12,7 @@ const Header = memo(() => {
     <>
       {!includeHashArray.some(item => location.pathname.includes(item)) &&
         !someHashArray.some(item => item === location.pathname) && (
-          <header className="grid grid-cols-[250px_1fr] h-[60px] border-b border-primary/40">
+          <header className="grid grid-cols-[250px_1fr] h-[60px] border-b border-primary/20">
             <Index />
             <PageTitle />
           </header>

@@ -8,6 +8,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useTheme } from "@/components/mode/theme-provider";
 
 const Paging = memo(
   ({
@@ -19,6 +20,7 @@ const Paging = memo(
     setData: React.Dispatch<React.SetStateAction<MemberDataTypes[]>>;
     displayAmount: number;
   }) => {
+    const { theme } = useTheme();
     const [currentPage, setCurrentPage] = useState(1);
 
     const lastPage = Math.ceil(beforePagingData?.length / displayAmount); //마지막 페이지 번호
@@ -46,8 +48,7 @@ const Paging = memo(
                 <PaginationLink
                   key={index}
                   onClick={() => setCurrentPage(page)}
-                  style={{ background: isCurrent ? "#1f2937" : "" }}
-                  className="cursor-pointer">
+                  className={`${isCurrent ? "bg-primary text-primary-foreground" : ""}  cursor-pointer`}>
                   {page}
                 </PaginationLink>
               );

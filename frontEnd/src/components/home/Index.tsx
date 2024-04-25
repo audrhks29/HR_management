@@ -1,5 +1,4 @@
 import { memo } from "react";
-import EmployeeInfo from "./login/EmployeeInfo";
 import Dashboard from "./dashboard/Dashboard";
 
 const Index = memo(() => {
