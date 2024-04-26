@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 
 import { includeHashArray, someHashArray } from "@/assets/excludeHashList";
 import menuList from "../../assets/menuList.json";
-import { Separator } from "@/components/ui/separator";
 
 const Menu = memo(() => {
   const location = useLocation();
@@ -30,6 +29,7 @@ const Menu = memo(() => {
                   <div className="h-10 font-bold flex justify-between items-center px-3 hover:bg-secondary cursor-pointer">
                     <span>{menu.title}</span>
                   </div>
+
                   <ul>
                     {menu.submenu.map(submenu => (
                       <Link

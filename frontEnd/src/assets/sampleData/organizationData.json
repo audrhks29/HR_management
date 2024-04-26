@@ -1,22 +1,6 @@
 [
   {
     "id": 1,
-    "quarter": "전체",
-    "depart": [
-      {
-        "id": 1,
-        "name": "",
-        "team": [
-          {
-            "id": 1,
-            "name": ""
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 2,
     "quarter": "본사",
     "depart": [
       {
@@ -78,7 +62,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": 2,
     "quarter": "광주지사",
     "depart": [
       {
