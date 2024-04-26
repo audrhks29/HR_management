@@ -15,6 +15,7 @@ import Deduct from "./table/Deduct";
 
 import { calculateDefaultFormValues } from "../function/calculateDefaultFormValues";
 import useDateStore from "@/store/date-store";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Select = memo(
   ({
@@ -70,32 +71,34 @@ const Select = memo(
     // console.log(defaultFormValues);
     return (
       <form onSubmit={handleSubmit(onsubmit)}>
-        <Card className="h-[850px] p-8 overflow-y-auto relative ">
-          <PersonalTitle personalData={personalMemberData} />
-          <CardContent className="py-8">
-            <MonthPicker
-              isMonthPicker={isMonthPicker}
-              setIsMonthPicker={setIsMonthPicker}
-              selectedMonth={selectedMonth}
-              setSelectedMonth={setSelectedMonth}
-              className="mt-4"
-            />
+        <Card>
+          <ScrollArea className="h-[850px] p-8 overflow-y-auto relative ">
+            <PersonalTitle personalData={personalMemberData} />
+            <CardContent className="py-8">
+              <MonthPicker
+                isMonthPicker={isMonthPicker}
+                setIsMonthPicker={setIsMonthPicker}
+                selectedMonth={selectedMonth}
+                setSelectedMonth={setSelectedMonth}
+                className="mt-4"
+              />
 
-            <Total getValues={getValues} />
+              <Total getValues={getValues} />
 
-            <Attitude data={employeeMonthAttitude} />
+              <Attitude data={employeeMonthAttitude} />
 
-            <Salary employeeMonthAttitude={employeeMonthAttitude} register={register} getValues={getValues} />
+              <Salary employeeMonthAttitude={employeeMonthAttitude} register={register} getValues={getValues} />
 
-            <Deduct
-              personalMemberSalaryData={personalMemberSalaryData}
-              register={register}
-              getValues={getValues}
-              setValue={setValue}
-            />
+              <Deduct
+                personalMemberSalaryData={personalMemberSalaryData}
+                register={register}
+                getValues={getValues}
+                setValue={setValue}
+              />
 
-            <Button type="submit">전송</Button>
-          </CardContent>
+              <Button type="submit">전송</Button>
+            </CardContent>
+          </ScrollArea>
         </Card>
       </form>
     );

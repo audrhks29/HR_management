@@ -56,37 +56,5 @@
         "link": "/attitude_record"
       }
     ]
-  },
-  {
-    "id": 4,
-    "title": "연차",
-    "submenu": [
-      {
-        "id": 1,
-        "title": "연차 사용 내역",
-        "link": "/hr_card"
-      },
-      {
-        "id": 2,
-        "title": "연차 보유 현황",
-        "link": "/hr_card"
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "title": "기타 서식",
-    "submenu": [
-      {
-        "id": 1,
-        "title": "연차 사용 내역",
-        "link": "/hr_card"
-      },
-      {
-        "id": 2,
-        "title": "연차 보유 현황",
-        "link": "/hr_card"
-      }
-    ]
   }
 ]

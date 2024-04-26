@@ -15,7 +15,7 @@ const Index = memo(() => {
     queryKey: ["organizationData"],
     queryFn: getOrganizationData,
   });
-  console.log(organizationData);
+
   return (
     <>
       {organizationData?.length === 0 ? (

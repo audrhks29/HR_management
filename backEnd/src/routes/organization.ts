@@ -9,7 +9,6 @@ module.exports = function (app: any, Organization: any) {
   });
 
   app.post("/organization", async (req: any, res: any) => {
-    console.log(req.body);
     try {
       const newOrganization = new Organization(req.body);
       // const result = await newOrganization.save();
@@ -20,7 +19,6 @@ module.exports = function (app: any, Organization: any) {
   });
 
   app.put("/organization", async (req: any, res: any) => {
-    // console.log(req.body);
     try {
       const organizationData = req.body.organizationData; // 요청된 조직 정보
 

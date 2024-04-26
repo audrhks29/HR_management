@@ -97,7 +97,7 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
   };
 
   // 제출버튼 클릭
-  const handleSubmit = () => ({ popup: true, confirm: false });
+  const handleSubmit = () => setConfirmState({ popup: true, confirm: false });
 
   useEffect(() => {
     if (confirmState.confirm) {

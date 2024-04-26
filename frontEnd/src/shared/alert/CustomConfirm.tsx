@@ -43,7 +43,7 @@ const CustomConfirm = memo((props: PropsTypes) => {
   return (
     <>
       {props.confirmState.popup && (
-        <div className="fixed top-0 right-0 w-full h-full bg-black bg-opacity-50 flex justify-center">
+        <div className="fixed top-0 z-10 right-0 w-full h-full bg-black bg-opacity-50 flex justify-center">
           <Alert className="w-[500px] h-[180px] p-7 flex flex-col translate-y-3">
             <AlertTitle className="mb-3">{props.title}</AlertTitle>
             <AlertDescription>{props.text}</AlertDescription>
