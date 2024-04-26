@@ -10,6 +10,7 @@ import Paging from "@/shared/Paging";
 import MonthPicker from "@/shared/MonthPicker";
 
 import { getAttitudeData, getCommuteData, getMemberData } from "@/server/fetchReadData";
+import useDateStore from "@/store/date-store";
 
 type QueryResult<T> = {
   data: T;
@@ -22,11 +23,7 @@ type SuspenseQueriesResult = [
 ];
 
 const Index = memo(() => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const day = String(today.getDate()).padStart(2, "0");
-  const todayDate = `${year}${month}${day}`;
+  const { year, month, todayDate } = useDateStore();
 
   const [{ data: memberData }, { data: attitudeData }, { data: commuteData }] =
     useSuspenseQueries<SuspenseQueriesResult>({
@@ -45,8 +42,8 @@ const Index = memo(() => {
 
   const [isMonthPicker, setIsMonthPicker] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState({
-    year: year.toString(),
-    month: month.toString(),
+    year: year,
+    month: month,
   });
 
   return (

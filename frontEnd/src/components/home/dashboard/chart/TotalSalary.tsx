@@ -13,14 +13,14 @@ import {
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
+import useDateStore from "@/store/date-store";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const TotalSalary = memo(
   ({ settingData, salaryData }: { settingData: SettingTypes; salaryData: SalaryDataTypes[] }) => {
-    const today = new Date();
-    const year = Number(today.getFullYear());
+    const { year } = useDateStore();
 
-    const [selectedYear, setSelectedYear] = useState(year);
+    const [selectedYear, setSelectedYear] = useState(Number(year));
 
     const selectedYearTotalSalary = salaryData?.map(data => data.data.find(item => item.year === String(selectedYear)));
 
@@ -87,7 +87,7 @@ const TotalSalary = memo(
     };
 
     const handleClickNextYear = () => {
-      if (year <= selectedYear) {
+      if (Number(year) <= selectedYear) {
         return;
       } else {
         setSelectedYear(selectedYear + 1);

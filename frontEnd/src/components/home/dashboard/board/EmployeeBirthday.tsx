@@ -2,15 +2,13 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getMemberData } from "@/server/fetchReadData";
+import useDateStore from "@/store/date-store";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Cake } from "lucide-react";
 import { memo } from "react";
 
 const EmployeeBirthday = memo(() => {
-  const today = new Date();
-  const year = String(today.getFullYear());
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const day = String(today.getDate()).padStart(2, "0");
+  const { month, date } = useDateStore();
 
   const { data: memberData }: { data: MemberDataTypes[] } = useSuspenseQuery({
     queryKey: ["memberData"],
@@ -19,7 +17,7 @@ const EmployeeBirthday = memo(() => {
 
   const birthdayList = memberData
     .sort((a, b) => Number(a.rrn_front.substring(2, 4)) - Number(b.rrn_front.substring(2, 4)))
-    .filter(item => Number(item.rrn_front.substring(2, 6)) >= Number(month + day))
+    .filter(item => Number(item.rrn_front.substring(2, 6)) >= Number(month + date))
     .slice(0, 5);
 
   return (

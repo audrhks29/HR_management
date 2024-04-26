@@ -14,6 +14,7 @@ import Salary from "./table/Salary";
 import Deduct from "./table/Deduct";
 
 import { calculateDefaultFormValues } from "../function/calculateDefaultFormValues";
+import useDateStore from "@/store/date-store";
 
 const Select = memo(
   ({
@@ -27,11 +28,7 @@ const Select = memo(
     personalAttitudeData: ExceptCommute;
     personalMemberSalaryData: MemberSalaryDataTypes;
   }) => {
-    const today = new Date();
-    const year = String(today.getFullYear());
-    const month = String(today.getMonth() + 1).padStart(2, "0");
-    const day = String(today.getDate()).padStart(2, "0");
-    // const todayDate = `${year}${month}${day}`;
+    const { year, month } = useDateStore();
 
     const { employee_number } = useParams();
     // console.log(employee_number);

@@ -17,6 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { calculateAttitude } from "../function/calculateAttitude";
 import { calculateWorkingHours } from "../function/calculateWorkingHours";
+import useDateStore from "@/store/date-store";
 
 interface FormValues {
   commuteTime: {
@@ -38,13 +39,9 @@ type QueryResult<T> = {
 
 type SuspenseQueriesResult = [QueryResult<MemberDataTypes[]>, QueryResult<ExceptAttitude[]>];
 
-const today = new Date();
-const year = today.getFullYear();
-const month = String(today.getMonth() + 1).padStart(2, "0");
-const day = String(today.getDate()).padStart(2, "0");
-const todayDate = `${year}${month}${day}`;
-
 const Index = memo(() => {
+  const { todayDate } = useDateStore();
+
   const [{ data: memberData }, { data: commuteData, refetch: refetchCommuteData }] =
     useSuspenseQueries<SuspenseQueriesResult>({
       queries: [

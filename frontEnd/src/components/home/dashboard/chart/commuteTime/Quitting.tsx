@@ -3,15 +3,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
 import commuteList from "@/assets/commuteList.json";
+import useDateStore from "@/store/date-store";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-const today = new Date();
-const year = today.getFullYear();
-const month = String(today.getMonth() + 1).padStart(2, "0");
-const day = String(today.getDate()).padStart(2, "0");
-const todayDate = `${year}${month}${day}`;
 
 const Quitting = memo(({ commuteData }: { commuteData: ExceptAttitude[] }) => {
+  const { todayDate } = useDateStore();
+
   const options = {
     responsive: false,
     plugins: {

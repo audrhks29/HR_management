@@ -3,7 +3,7 @@ import { calculateWorkingHours } from "./calculateWorkingHours";
 export const calculateAttitude = (commuteData: ExceptAttitude[] | undefined, id: string) => {
   if (commuteData) {
     const today = new Date();
-    const year = today.getFullYear();
+    const year = String(today.getFullYear());
     const month = String(today.getMonth() + 1).padStart(2, "0");
 
     const index = commuteData.findIndex(item => item.employee_number === id);
@@ -71,10 +71,10 @@ export const calculateAttitude = (commuteData: ExceptAttitude[] | undefined, id:
     const holiday_work_count = thisMonthAttitude?.reduce((acc, cur) => {
       let hours = 0;
 
-      const year = Number(cur.date.substring(0, 4));
-      const month = Number(cur.date.substring(4, 6)) - 1;
-      const day = Number(cur.date.substring(6, 8));
-      const date = new Date(year, month, day);
+      const thisYear = Number(cur.date.substring(0, 4));
+      const thisMonth = Number(cur.date.substring(4, 6)) - 1;
+      const thisDate = Number(cur.date.substring(6, 8));
+      const date = new Date(thisYear, thisMonth, thisDate);
       const dayOfWeek = date.getDay();
       if (dayOfWeek === 0 || dayOfWeek === 6) {
         // 근무시간

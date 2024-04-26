@@ -27,15 +27,22 @@ import Salary_history from "./pages/salary/Salary_history";
 
 import Attitude_commute_time from "./pages/attitude/Attitude_commute_time";
 import Attitude_record from "./pages/attitude/Attitude_record";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import Loading from "./shared/Loading";
 import Salary_history_personal from "./window/Salary_history_personal";
 import Post from "./components/hr/register/menu/info/Post";
 import Login from "./pages/user/Login";
 import Setting from "./pages/setting/Setting";
 import Salary_registration from "./pages/salary/Salary_registration";
+import useDateStore from "./store/date-store";
 
 function App() {
+  const { setToday } = useDateStore();
+
+  useEffect(() => {
+    setToday();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">

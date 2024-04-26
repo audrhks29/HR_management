@@ -4,15 +4,15 @@ import { memo, useState } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 
 import { Bar } from "react-chartjs-2";
+import useDateStore from "@/store/date-store";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const EmployeeCount = memo(
   ({ settingData, memberData }: { settingData: SettingTypes; memberData: MemberDataTypes[] }) => {
-    const today = new Date();
-    const year = Number(today.getFullYear());
+    const { year } = useDateStore();
 
-    const [selectedYear, setSelectedYear] = useState(year);
+    const [selectedYear, setSelectedYear] = useState(Number(year));
 
     const matchJoinYear = memberData
       .map(member => member.date_of_joining)
@@ -70,7 +70,7 @@ const EmployeeCount = memo(
     };
 
     const handleClickNextYear = () => {
-      if (year <= selectedYear) {
+      if (Number(year) <= selectedYear) {
         return;
       } else {
         setSelectedYear(selectedYear + 1);
