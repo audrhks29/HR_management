@@ -46,7 +46,7 @@ const Select = memo(
 
     // const personalMonthSalaryData = personalYearSalaryData?.salary.find(item => item.month);
 
-    const hourSalary = Math.round(personalMemberSalaryData.wage / 12 / 209);
+    const hourSalary = Math.round(personalMemberSalaryData?.wage / 12 / 209);
 
     const defaultFormValues = calculateDefaultFormValues(
       selectedMonth,

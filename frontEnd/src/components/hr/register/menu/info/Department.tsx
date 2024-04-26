@@ -75,7 +75,7 @@ const Department = memo(
           </div>
 
           {/* 소속 관할, 부서, 팀  */}
-          <div className="space-y-1 grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <div>
               <Select value={formData.quarter} onValueChange={value => handleChangeSelect("quarter", value)}>
                 <Label>소속 관할</Label>
@@ -149,7 +149,7 @@ const Department = memo(
           </div>
 
           {/* 직책, 직급 */}
-          <div className="space-y-1 grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <div>
               <Select value={formData.position} onValueChange={value => handleChangeSelect("position", value)}>
                 <Label>직책</Label>

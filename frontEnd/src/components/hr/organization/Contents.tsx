@@ -4,11 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tree, TreeNode } from "react-organizational-chart";
 import { Building, Building2, Warehouse } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 const Contents = memo(({ data }: { data: OrganizationDataTypes }) => {
   return (
     <TabsContent value={data.quarter} className="mt-5">
       <Card className="h-[700px] relative overflow-y-auto py-8 flex items-center justify-center">
-        <CardContent className="text-[14px] grid gap-4">
+        <CardContent>
           <Tree
             label={
               <Button
@@ -36,7 +37,7 @@ const Contents = memo(({ data }: { data: OrganizationDataTypes }) => {
                     label={
                       <Button
                         variant="outline"
-                        className="bg-primary-foreground m-auto w-fit px-8 py-2 border-primary/20">
+                        className="bg-primary-foreground block w-fit h-fit m-auto px-8 py-2 border-primary/20">
                         <Warehouse className="m-auto" />
                         <span>{team.name}</span>
                       </Button>

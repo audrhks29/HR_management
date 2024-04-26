@@ -1,7 +1,7 @@
 module.exports = function (app: any, Member: any) {
   app.get("/member", async (req: any, res: any) => {
     try {
-      const data = await Member.find({});
+      const data = await Member.find({}).sort({ employee_number: 1 });
       res.json(data);
     } catch (err: any) {
       res.status(500).json({ error: err.message });
@@ -9,13 +9,11 @@ module.exports = function (app: any, Member: any) {
   });
 
   app.get("/member/:id", async (req: any, res: any) => {
+    const { id } = req.params;
     try {
-      const data = await Member.find({});
-      const { id } = req.params;
-      const filteredData = data.find(
-        (item: MemberDataTypes) => item.employee_number === id,
-      );
-      res.json(filteredData);
+      const data = await Member.findOne({ employee_number: id });
+
+      res.json(data);
     } catch (err: any) {
       res.status(500).json({ error: err.message });
     }
