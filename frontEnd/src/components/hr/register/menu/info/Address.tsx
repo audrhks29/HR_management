@@ -4,100 +4,51 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { memo, useEffect, useState } from "react";
 import DaumPostcode from "react-daum-postcode";
+import { UseFormRegister } from "react-hook-form";
 
-const Address = memo(
-  ({
-    setFormData,
-    fullAddress,
-    setFullAddress,
-  }: {
-    setFormData: React.Dispatch<React.SetStateAction<MemberDataTypes>>;
-    fullAddress: AddressDataTypes;
-    setFullAddress: React.Dispatch<React.SetStateAction<AddressDataTypes>>;
-  }) => {
-    const [postData, setPostData] = useState(null);
+const Address = memo(({ register }: { register: UseFormRegister<MemberRegistrationFormValues> }) => {
+  const [postData, setPostData] = useState(null);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target;
-      setFullAddress(prevData => ({
-        ...prevData,
-        [name]: value,
-      }));
-
-      setFormData(prevData => ({
-        ...prevData,
-        address: fullAddress,
-      }));
+  useEffect(() => {
+    const handlePostData = (data: any) => {
+      setPostData(data);
+      // handleSearchAddress(data);
     };
+    window.electronAPI.onPostData(handlePostData);
+  }, []);
 
-    const handleSearchAddress = (data: { address: string; jibunAddress: string; zonecode: string }) => {
-      setFullAddress({
-        address: data.address,
-        jibun_address: data.jibunAddress,
-        zone_code: data.zonecode,
-        detail_address: "",
-      });
-      // props.onClose()
-    };
+  const handleClickButton = () => {
+    window.electronAPI.openPostWindow();
+  };
 
-    useEffect(() => {
-      const handlePostData = (data: any) => {
-        setPostData(data);
-        handleSearchAddress(data);
-      };
-      window.electronAPI.onPostData(handlePostData);
-    }, []);
+  return (
+    <div className="space-y-1">
+      <Label htmlFor="address">주소</Label>
 
-    const handleClickButton = () => {
-      window.electronAPI.openPostWindow();
-    };
+      {/* {isPopupOpen && <DaumPostcode style={postCodeStyle} onComplete={handleSearchAddress} />} */}
 
-    return (
-      <div className="space-y-1">
-        <Label htmlFor="address">주소</Label>
-
-        {/* {isPopupOpen && <DaumPostcode style={postCodeStyle} onComplete={handleSearchAddress} />} */}
-
-        <div className="grid grid-cols-2 gap-6">
-          <Input
-            id="sample4_roadAddress"
-            name="address"
-            placeholder="도로명주소"
-            disabled
-            value={fullAddress.address}
-            onChange={handleChange}
-          />
-          <Input
-            id="sample4_jibunAddress"
-            name="jibun_adrress"
-            placeholder="지번주소"
-            disabled
-            value={fullAddress.jibun_address}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="grid grid-cols-[1fr_3fr_80px] gap-3 py-2">
-          <Input
-            id="sample4_postcode"
-            name="zonecode"
-            placeholder="우편번호"
-            disabled
-            value={fullAddress.zone_code}
-            onChange={handleChange}
-          />
-          <Input
-            id="sample4_detailAddress"
-            name="detail_address"
-            placeholder="상세주소"
-            value={fullAddress.detail_address}
-            onChange={handleChange}
-          />
-          <Button onClick={handleClickButton}>주소검색</Button>
-        </div>
+      <div className="grid grid-cols-2 gap-6">
+        <Input
+          id="sample4_roadAddress"
+          {...register(`employeeData.address.address`)}
+          placeholder="도로명주소"
+          disabled
+        />
+        <Input
+          id="sample4_jibunAddress"
+          {...register(`employeeData.address.jibun_address`)}
+          placeholder="지번주소"
+          disabled
+        />
       </div>
-    );
-  },
-);
+
+      <div className="grid grid-cols-[1fr_3fr_80px] gap-3 py-2">
+        <Input id="sample4_postcode" {...register(`employeeData.address.zone_code`)} placeholder="우편번호" disabled />
+        <Input id="sample4_detailAddress" {...register(`employeeData.address.detail_address`)} placeholder="상세주소" />
+        <Button onClick={handleClickButton}>주소검색</Button>
+      </div>
+    </div>
+  );
+});
 
 export default Address;

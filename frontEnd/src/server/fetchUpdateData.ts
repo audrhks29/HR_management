@@ -16,7 +16,6 @@ export const updateSettingRankData = async (updateData: { RankSettingTypes: Rank
 };
 
 export const updateOrganizationData = async (updateData: { organizationData: OrganizationDataTypes[] }) => {
-  console.log(updateData);
   const response = await axios.put("http://localhost:5000/organization", updateData);
   return response.data;
 };

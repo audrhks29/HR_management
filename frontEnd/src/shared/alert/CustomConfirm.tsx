@@ -3,43 +3,21 @@ import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction, memo } from "react";
 
 interface PropsTypes {
-  confirmState: { popup: boolean; confirm: boolean };
-  setConfirmState: Dispatch<SetStateAction<{ popup: boolean; confirm: boolean }>>;
+  confirmState: { popup: boolean; confirmResult: boolean | undefined };
+  setConfirmState: Dispatch<SetStateAction<{ popup: boolean; confirmResult: boolean | undefined }>>;
   title: string;
   text: string;
 }
 
-/*
-
-[ 부모컴포넌트에서 필요한 상태 ]
-const [confirmState, setConfirmState] = useState({
-  popup: false,
-  confirm: false,
-});
-------------------------------------------
-[ 부모컴포넌트에서 실행하는 함수 ]
-  const 함수이름 = () => {
-    setConfirmState({ popup: true, confirm: false });
-  };
-------------------------------------------
-[ 부모컴포넌트에서 실행할 useEffect ]
-useEffect(() => {
-  if (confirmState.confirm) {
-    함수실행
-  }
-  setConfirmState({ popup: confirmState.popup, confirm: false });
-}, [confirmState.confirm]);
-------------------------------------------
-[ 부모컴포넌트에서 필요한 props ]
-  <CustomConfirm
-    confirmState={confirmState}
-    setConfirmState={setConfirmState}
-    title="타이틀"
-    text="텍스트"
-  />
-*/
-
 const CustomConfirm = memo((props: PropsTypes) => {
+  const handleYes = () => {
+    props.setConfirmState({ popup: true, confirmResult: true });
+  };
+
+  const handleNo = () => {
+    props.setConfirmState({ popup: false, confirmResult: undefined });
+  };
+
   return (
     <>
       {props.confirmState.popup && (
@@ -48,10 +26,10 @@ const CustomConfirm = memo((props: PropsTypes) => {
             <AlertTitle className="mb-3">{props.title}</AlertTitle>
             <AlertDescription>{props.text}</AlertDescription>
             <div className="text-right mt-auto">
-              <Button className="mr-3" onClick={() => props.setConfirmState({ popup: false, confirm: true })}>
+              <Button className="mr-3" onClick={handleYes}>
                 확인
               </Button>
-              <Button onClick={() => props.setConfirmState({ popup: false, confirm: false })}>취소</Button>
+              <Button onClick={handleNo}>취소</Button>
             </div>
           </Alert>
         </div>

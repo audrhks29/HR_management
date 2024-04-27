@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const postMemberData = async (data: MemberDataTypes) => {
+export const postMemberData = async (data: { employeeData: MemberDataTypes }) => {
   await axios.post("http://localhost:5000/member", data);
 };
 

@@ -12,6 +12,12 @@ const SettingDBSchema = new mongoose.Schema({
     main_number: String,
   },
   rank_setting: [{ order: Number, value: String }],
+  position_setting: [
+    {
+      id: Number,
+      name: String,
+    },
+  ],
 });
 
 const Setting = mongoose.model("Setting", SettingDBSchema, "setting");

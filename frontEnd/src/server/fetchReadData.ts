@@ -48,18 +48,6 @@ export const getPersonalMemberSalaryData = async (id: string | undefined) => {
   return response.data;
 };
 
-// rank
-export const getRankData = async () => {
-  const response = await axios.get("http://localhost:5000/rank");
-  return response.data;
-};
-
-// position
-export const getPositionData = async () => {
-  const response = await axios.get("http://localhost:5000/position");
-  return response.data;
-};
-
 // workData
 export const getWorkData = async () => {
   const response = await axios.get("http://localhost:5000/work");
@@ -84,5 +72,15 @@ export const getCommuteData = async () => {
 // setting
 export const getSettingData = async () => {
   const response = await axios.get(`http://localhost:5000/setting`);
+  return response.data;
+};
+
+export const getRankData = async () => {
+  const response = await axios.get("http://localhost:5000/setting/rank");
+  return response.data;
+};
+
+export const getPositionData = async () => {
+  const response = await axios.get("http://localhost:5000/setting/position");
   return response.data;
 };

@@ -1,5 +1,6 @@
 import { memo, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { Tree, TreeNode } from "react-organizational-chart";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,8 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { updateOrganizationData } from "@/server/fetchUpdateData";
-import CustomConfirm2 from "@/shared/alert/CustomConfirm2";
-import { useNavigate } from "react-router-dom";
+import CustomConfirm from "@/shared/alert/CustomConfirm";
 
 interface FormValues {
   organizationData: OrganizationDataTypes[];
@@ -60,6 +60,7 @@ const Edit = memo(
     const onSubmit = async (data: { organizationData: OrganizationDataTypes[] }) => {
       showPopup();
       const confirm = await waitForUserConfirmation();
+      console.log(confirm);
       if (confirm) {
         updateOrganizationData(data);
         setConfirmState({ popup: false, confirmResult: undefined });
@@ -122,7 +123,12 @@ const Edit = memo(
           </Button>
           <Button type="submit">확인</Button>
         </div>
-        <CustomConfirm2 confirmState={confirmState} setConfirmState={setConfirmState} title="타이틀" text="텍스트" />
+        <CustomConfirm
+          confirmState={confirmState}
+          setConfirmState={setConfirmState}
+          title="조직도 수정"
+          text="수정사항을 반영하시겠습니까?"
+        />
       </form>
     );
   },

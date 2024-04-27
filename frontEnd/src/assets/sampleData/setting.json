@@ -20,5 +20,19 @@
     { "order": 8, "value": "대리" },
     { "order": 9, "value": "주임" },
     { "order": 10, "value": "사원" }
+  ],
+  "position_setting": [
+    {
+      "id": 1,
+      "name": "개발부장"
+    },
+    {
+      "id": 2,
+      "name": "영업부장"
+    },
+    {
+      "id": 3,
+      "name": "경영지원부장"
+    }
   ]
 }

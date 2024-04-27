@@ -40,8 +40,6 @@ const Salary = require("../models/schemas/salary").default;
 const Member = require("../models/schemas/member").default;
 const MemberSalary = require("../models/schemas/memberSalary").default;
 const Organization = require("../models/schemas/organization").default;
-const Rank = require("../models/schemas/rank").default;
-const Position = require("../models/schemas/position").default;
 const Work = require("../models/schemas/work").default;
 
 const User = require("../models/schemas/user").default;
@@ -53,8 +51,6 @@ require("../routes/salary")(app, Salary);
 require("../routes/member")(app, Member);
 require("../routes/memberSalary")(app, MemberSalary);
 require("../routes/organization")(app, Organization);
-require("../routes/rank")(app, Rank);
-require("../routes/position")(app, Position);
 require("../routes/work")(app, Work);
 
 // 로그인

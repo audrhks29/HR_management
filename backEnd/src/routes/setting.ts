@@ -8,6 +8,24 @@ module.exports = function (app: any, Setting: any) {
     }
   });
 
+  app.get("/setting/rank", async (req: any, res: any) => {
+    try {
+      const data = await Setting.findOne({}, "rank_setting");
+      res.json(data.rank_setting);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.get("/setting/position", async (req: any, res: any) => {
+    try {
+      const data = await Setting.findOne({}, "position_setting");
+      res.json(data.position_setting);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   app.put("/setting/business", async (req: any, res: any) => {
     try {
       let setting = await Setting.findOne({}, "business_setting -_id");

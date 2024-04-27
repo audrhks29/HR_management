@@ -21,7 +21,7 @@ module.exports = function (app: any, Member: any) {
 
   app.post("/member", async (req: any, res: any) => {
     try {
-      const newMember = new Member(req.body);
+      const newMember = new Member(req.body.employeeData);
       const result = await newMember.save();
       res.status(201).json(result);
     } catch (err: any) {
