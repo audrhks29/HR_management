@@ -41,7 +41,7 @@ const Index = memo(() => {
           {!isEditMode ? (
             organizationData.map((item, index) => <Contents key={index} data={item} />)
           ) : (
-            <Edit organizationData={organizationData} />
+            <Edit organizationData={organizationData} setIsEditMode={setIsEditMode} />
           )}
 
           {!isEditMode && (
