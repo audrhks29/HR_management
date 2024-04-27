@@ -20,18 +20,17 @@ module.exports = function (app: any, Organization: any) {
 
   app.put("/organization", async (req: any, res: any) => {
     try {
-      const organizationData = req.body.organizationData; // 요청된 조직 정보
+      const organizationData = req.body.organizationData;
 
-      // 각 조직 정보에 대해 업데이트 수행
       for (const org of organizationData) {
         const organization = await Organization.findOneAndUpdate(
           { id: org.id },
           org, // 전체 업데이트
           { new: true }
         );
-        console.log(organization);
+
         if (!organization) {
-          // 만약 해당 id의 조직 정보가 없으면 새로 생성
+          // id의 조직 정보가 없으면 새로 생성
           const newOrganization = new Organization(org);
           await newOrganization.save();
         }

@@ -35,7 +35,6 @@ import Login from "./pages/user/Login";
 import Setting from "./pages/setting/Setting";
 import Salary_registration from "./pages/salary/Salary_registration";
 import useDateStore from "./store/date-store";
-import { ScrollArea } from "./components/ui/scroll-area";
 
 function App() {
   const { setToday } = useDateStore();
@@ -49,42 +48,41 @@ function App() {
       <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
         <HashRouter>
           <Header />
-          <ScrollArea className="overflow-y-auto">
-            <div className="flex justify-around">
-              <Menu />
-              <Suspense fallback={<Loading />}>
-                <Routes>
-                  <Route path="/" index element={<Login />} />
-                  <Route path="/home" element={<Home />} />
 
-                  {/* hr */}
-                  <Route path="/hr_register" element={<Hr_register />} />
-                  <Route path="/hr_record" element={<Hr_record />} />
-                  <Route path="/hr_record/:employee_number" element={<Personal />} />
-                  <Route path="/hr_organization_chart" index element={<Hr_organization_chart />} />
+          <div className="flex justify-around">
+            <Menu />
+            <Suspense fallback={<Loading />}>
+              <Routes>
+                <Route path="/" index element={<Login />} />
+                <Route path="/home" element={<Home />} />
 
-                  {/* salary */}
-                  <Route path="/salary_status" index element={<Salary_status />} />
-                  <Route path="/salary_registration" index element={<Salary_registration />} />
-                  <Route path="/salary_registration/:employee_number" index element={<Salary_registration />} />
-                  <Route path="/salary_history" index element={<Salary_history />} />
-                  <Route path="/salary_history/:employee_number" index element={<Salary_history />} />
-                  <Route
-                    path="/salary_history_personal/:employee_number/:year/:month"
-                    index
-                    element={<Salary_history_personal />}
-                  />
+                {/* hr */}
+                <Route path="/hr_register" element={<Hr_register />} />
+                <Route path="/hr_record" element={<Hr_record />} />
+                <Route path="/hr_record/:employee_number" element={<Personal />} />
+                <Route path="/hr_organization_chart" index element={<Hr_organization_chart />} />
 
-                  {/* attitude */}
-                  <Route path="/attitude_commute_time" index element={<Attitude_commute_time />} />
-                  <Route path="/attitude_record" index element={<Attitude_record />} />
+                {/* salary */}
+                <Route path="/salary_status" index element={<Salary_status />} />
+                <Route path="/salary_registration" index element={<Salary_registration />} />
+                <Route path="/salary_registration/:employee_number" index element={<Salary_registration />} />
+                <Route path="/salary_history" index element={<Salary_history />} />
+                <Route path="/salary_history/:employee_number" index element={<Salary_history />} />
+                <Route
+                  path="/salary_history_personal/:employee_number/:year/:month"
+                  index
+                  element={<Salary_history_personal />}
+                />
 
-                  <Route path="/post" index element={<Post />} />
-                  <Route path="/setting" index element={<Setting />} />
-                </Routes>
-              </Suspense>
-            </div>
-          </ScrollArea>
+                {/* attitude */}
+                <Route path="/attitude_commute_time" index element={<Attitude_commute_time />} />
+                <Route path="/attitude_record" index element={<Attitude_record />} />
+
+                <Route path="/post" index element={<Post />} />
+                <Route path="/setting" index element={<Setting />} />
+              </Routes>
+            </Suspense>
+          </div>
         </HashRouter>
       </ThemeProvider>
     </QueryClientProvider>
