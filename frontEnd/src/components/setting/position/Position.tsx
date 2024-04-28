@@ -1,34 +1,33 @@
 import { memo, useState } from "react";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
 import { Minus, Plus } from "lucide-react";
 
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
-import { updateSettingRankData } from "@/server/fetchUpdateData";
+import { updateSettingPositionData } from "@/server/fetchUpdateData";
+import { Button } from "@/components/ui/button";
 import CustomConfirm from "@/shared/alert/CustomConfirm";
 
 type FormValues = {
-  rank_setting: RankSettingTypes[];
+  position_setting: PositionSettingTypes[];
 };
 
-const Rank = memo(({ data, refetch }: { data: RankSettingTypes[]; refetch: () => void }) => {
+const Position = memo(({ data, refetch }: { data: PositionSettingTypes[]; refetch: () => void }) => {
   const { register, handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
-      rank_setting: data.map(rank => ({
-        order: rank.order,
-        value: rank.value,
+      position_setting: data.map(position => ({
+        id: position.id,
+        name: position.name,
       })),
     },
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "rank_setting",
+    name: "position_setting",
   });
 
   const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
@@ -53,7 +52,7 @@ const Rank = memo(({ data, refetch }: { data: RankSettingTypes[]; refetch: () =>
     showPopup();
     const confirm = await waitForUserConfirmation();
     if (confirm) {
-      await updateSettingRankData(updateData);
+      await updateSettingPositionData(updateData);
       refetch();
       navigate("/setting");
     }
@@ -63,14 +62,14 @@ const Rank = memo(({ data, refetch }: { data: RankSettingTypes[]; refetch: () =>
     <form onSubmit={handleSubmit(onSubmit)}>
       <Card className="p-8 h-full">
         <CardTitle className="pb-3 flex items-center justify-between">
-          <span>직급</span>
+          <span>직책</span>
           <div className="flex gap-2">
             <Button
               type="button"
               onClick={() =>
                 append({
-                  order: fields.length + 1,
-                  value: "",
+                  id: fields.length + 1,
+                  name: "",
                 })
               }>
               <Plus className="w-3 h-3" />
@@ -79,16 +78,21 @@ const Rank = memo(({ data, refetch }: { data: RankSettingTypes[]; refetch: () =>
           </div>
         </CardTitle>
         <Separator />
-        <CardContent className="py-3">
-          {fields.map((rank, index) => (
-            <div key={rank.order} className="grid grid-cols-[50px_200px_50px] my-2 items-center gap-3">
+
+        <CardContent>
+          {fields.map((position, index) => (
+            <div key={position.id} className="grid grid-cols-[50px_200px_50px] my-2 items-center gap-3">
               <Input
                 className="text-center"
-                id={`rank_setting.${index}.order`}
-                {...register(`rank_setting.${index}.order`)}
+                id={`position_setting.${index}.id`}
+                {...register(`position_setting.${index}.id`)}
                 type="text"
               />
-              <Input id={`rank_setting.${index}.value`} {...register(`rank_setting.${index}.value`)} type="text" />
+              <Input
+                id={`position_setting.${index}.name`}
+                {...register(`position_setting.${index}.name`)}
+                type="text"
+              />
               <Button type="button" onClick={() => remove(index)}>
                 <Minus className="w-3 h-3" />
               </Button>
@@ -100,11 +104,11 @@ const Rank = memo(({ data, refetch }: { data: RankSettingTypes[]; refetch: () =>
       <CustomConfirm
         confirmState={confirmState}
         setConfirmState={setConfirmState}
-        title="직급"
-        text="직급을 저장하시겠습니까?"
+        title="직책"
+        text="직책을 저장하시겠습니까?"
       />
     </form>
   );
 });
 
-export default Rank;
+export default Position;

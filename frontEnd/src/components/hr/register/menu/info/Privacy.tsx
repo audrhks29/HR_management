@@ -34,6 +34,7 @@ const Privacy = memo(
               <Input id="eng_name" {...register(`employeeData.eng_name`)} />
             </div>
           </div>
+
           {/* 이메일 입력 */}
           <div className="space-y-1 w-3/5">
             <Label htmlFor="phone_number">이메일</Label>

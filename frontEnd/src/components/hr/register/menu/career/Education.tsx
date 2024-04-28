@@ -73,6 +73,7 @@ const Education = memo(
           <CardTitle className="flex justify-between">
             <span>학력</span>
             <Button
+              type="button"
               onClick={() => {
                 append({
                   admission_date: "",
@@ -154,6 +155,7 @@ const Education = memo(
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
+                        type="button"
                         variant={"outline"}
                         className={cn(
                           "w-[200px] justify-start text-left font-normal",
@@ -184,6 +186,7 @@ const Education = memo(
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
+                        type="button"
                         variant={"outline"}
                         className={cn(
                           "w-[200px] justify-start text-left font-normal",
@@ -211,7 +214,7 @@ const Education = memo(
 
               {/* 삭제 버튼 */}
               <div className="mt-auto ml-auto">
-                <Button onClick={() => remove(index)}>
+                <Button type="button" onClick={() => remove(index)}>
                   <Minus className="w-3 h-3" />
                 </Button>
               </div>

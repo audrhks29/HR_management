@@ -1,13 +1,14 @@
-import { memo } from "react";
+import { memo, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+
 import { updateSettingBusinessData } from "@/server/fetchUpdateData";
-import { SubmitHandler, useForm } from "react-hook-form";
-import ButtonGroup from "../Button/ButtonGroup";
 
 const Business = memo(({ data, refetch }: { data: BusinessSettingTypes; refetch: () => void }) => {
   interface FormValues {
@@ -29,15 +30,43 @@ const Business = memo(({ data, refetch }: { data: BusinessSettingTypes; refetch:
     },
   });
 
+  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
+    popup: false,
+    confirmResult: undefined,
+  });
+
+  const navigate = useNavigate();
+
+  const showPopup = () => {
+    setConfirmState({ popup: true, confirmResult: undefined });
+  };
+
+  const waitForUserConfirmation = () => {
+    return new Promise<boolean>((resolve, reject) => {
+      if (confirmState.confirmResult) resolve(true);
+      else resolve(false);
+    });
+  };
+
   const onSubmit: SubmitHandler<FormValues> = async updateData => {
-    await updateSettingBusinessData(updateData);
-    refetch();
+    showPopup();
+    const confirm = await waitForUserConfirmation();
+    if (confirm) {
+      await updateSettingBusinessData(updateData);
+      refetch();
+      navigate("/setting");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Card className="p-8">
-        <CardTitle className="pb-3">회사정보</CardTitle>
+        <CardTitle className="pb-3 flex items-center justify-between">
+          <span>회사정보</span>
+          <div className="flex gap-2">
+            <Button type="submit">저장</Button>
+          </div>
+        </CardTitle>
         <Separator />
         <CardContent className="py-3">
           <div className="grid grid-cols-[130px_1fr] my-2 items-center gap-3">
@@ -120,8 +149,6 @@ const Business = memo(({ data, refetch }: { data: BusinessSettingTypes; refetch:
             />
           </div>
         </CardContent>
-
-        <ButtonGroup />
       </Card>
     </form>
   );
