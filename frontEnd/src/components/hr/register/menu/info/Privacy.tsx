@@ -59,9 +59,7 @@ const Privacy = memo(
             </div>
           </div>
 
-          {/* !!! 카카오 주소 가져와야함!!! --> 임시로 대체중 */}
-
-          <Address register={register} />
+          <Address register={register} setValue={setValue} />
 
           {/* 성별 체크 */}
           <div className="py-2">
