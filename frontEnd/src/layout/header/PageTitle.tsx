@@ -45,7 +45,7 @@ const PageTitle = memo(() => {
                 </span>
               </BreadcrumbLink>
             ) : (
-              <BreadcrumbPage>
+              <BreadcrumbPage onClick={() => handleClickLink("/home")}>
                 <span className="flex items-center cursor-pointer">
                   <Home className="h-4 w-4 mr-2" />홈
                 </span>

@@ -23,11 +23,11 @@ const Index = memo(() => {
 
         <span className="">{companyName}</span>
       </div>
-      <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
-        <Link to={"/setting"}>
+      <Link to={"/setting"} className="block ml-auto ">
+        <Button variant="outline" size="icon" className="h-8 w-8">
           <Settings className="h-4 w-4" />
-        </Link>
-      </Button>
+        </Button>
+      </Link>
     </div>
   );
 });
