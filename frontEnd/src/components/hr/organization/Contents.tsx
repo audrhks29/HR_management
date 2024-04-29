@@ -20,9 +20,9 @@ const Contents = memo(({ data }: { data: OrganizationDataTypes }) => {
               </Button>
             }
             lineColor="gray">
-            {data.depart.map(depart => (
+            {data?.depart?.map((depart, departIndex) => (
               <TreeNode
-                key={depart.id}
+                key={departIndex}
                 label={
                   <Button
                     variant="outline"
@@ -31,9 +31,9 @@ const Contents = memo(({ data }: { data: OrganizationDataTypes }) => {
                     <span>{depart.name}</span>
                   </Button>
                 }>
-                {depart.team.map(team => (
+                {depart.team.map((team, teamIndex) => (
                   <TreeNode
-                    key={team.id}
+                    key={teamIndex}
                     label={
                       <Button
                         variant="outline"

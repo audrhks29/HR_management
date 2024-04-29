@@ -22,18 +22,13 @@ module.exports = function (app: any, Organization: any) {
     try {
       const organizationData = req.body.organizationData;
 
-      for (const org of organizationData) {
-        const organization = await Organization.findOneAndUpdate(
-          { id: org.id },
-          org, // 전체 업데이트
-          { new: true }
-        );
+      // 기존 데이터를 모두 삭제
+      await Organization.deleteMany({});
 
-        if (!organization) {
-          // id의 조직 정보가 없으면 새로 생성
-          const newOrganization = new Organization(org);
-          await newOrganization.save();
-        }
+      // 새로운 데이터 추가
+      for (const org of organizationData) {
+        const newOrganization = new Organization(org);
+        await newOrganization.save();
       }
 
       res.json(organizationData);

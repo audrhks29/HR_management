@@ -64,13 +64,10 @@ interface MemberSalaryDataTypes {
 }
 
 interface OrganizationDataTypes {
-  id: number;
   quarter: string;
   depart: {
-    id: number;
     name: string;
     team: {
-      id: number;
       name: string;
     }[];
   }[];

@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -8,10 +8,10 @@ import Contents from "./Contents";
 import Edit from "./edit/Edit";
 import { Card, CardContent } from "@/components/ui/card";
 
-const Index = memo(() => {
+const Index = () => {
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const { data: organizationData }: { data: OrganizationDataTypes[] } = useSuspenseQuery({
+  const { data: organizationData, refetch }: { data: OrganizationDataTypes[]; refetch: () => void } = useSuspenseQuery({
     queryKey: ["organizationData"],
     queryFn: getOrganizationData,
   });
@@ -41,7 +41,7 @@ const Index = memo(() => {
           {!isEditMode ? (
             organizationData.map((item, index) => <Contents key={index} data={item} />)
           ) : (
-            <Edit organizationData={organizationData} setIsEditMode={setIsEditMode} />
+            <Edit organizationData={organizationData} refetch={refetch} setIsEditMode={setIsEditMode} />
           )}
 
           {!isEditMode && (
@@ -53,6 +53,6 @@ const Index = memo(() => {
       )}
     </>
   );
-});
+};
 
 export default Index;

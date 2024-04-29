@@ -54,6 +54,7 @@ function App() {
             <Suspense fallback={<Loading />}>
               <Routes>
                 <Route path="/" index element={<Login />} />
+                {/* <Route path="/" index element={<Test />} /> */}
                 <Route path="/home" element={<Home />} />
 
                 {/* hr */}

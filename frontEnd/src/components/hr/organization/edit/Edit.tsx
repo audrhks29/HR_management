@@ -1,25 +1,23 @@
 import { memo, useState } from "react";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Tree, TreeNode } from "react-organizational-chart";
+import { useForm } from "react-hook-form";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 import { updateOrganizationData } from "@/server/fetchUpdateData";
 import CustomConfirm from "@/shared/alert/CustomConfirm";
 
-interface FormValues {
-  organizationData: OrganizationDataTypes[];
-}
+import Quarter from "./Quarter";
 
 const Edit = memo(
   ({
     organizationData,
+    refetch,
     setIsEditMode,
   }: {
     organizationData: OrganizationDataTypes[];
+    refetch: () => void;
     setIsEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   }) => {
     const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
@@ -33,16 +31,13 @@ const Edit = memo(
       setConfirmState({ popup: true, confirmResult: undefined });
     };
 
-    const { register, handleSubmit } = useForm<FormValues>({
+    const { register, handleSubmit, control } = useForm<OrganizationFormValues>({
       defaultValues: {
-        organizationData: organizationData.map(item => ({
-          id: item.id,
+        organizationData: organizationData?.map(item => ({
           quarter: item.quarter,
-          depart: item.depart.map(depart => ({
-            id: depart.id,
+          depart: item?.depart?.map(depart => ({
             name: depart.name,
-            team: depart.team.map(team => ({
-              id: team.id,
+            team: depart?.team?.map(team => ({
               name: team.name,
             })),
           })),
@@ -60,60 +55,25 @@ const Edit = memo(
     const onSubmit = async (data: { organizationData: OrganizationDataTypes[] }) => {
       showPopup();
       const confirm = await waitForUserConfirmation();
-      console.log(confirm);
       if (confirm) {
-        updateOrganizationData(data);
+        await updateOrganizationData(data);
         setConfirmState({ popup: false, confirmResult: undefined });
         setIsEditMode(false);
+        await refetch();
         navigate("/hr_organization_chart");
       }
     };
-
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <Card className="relative overflow-y-auto py-8">
           <CardHeader>
-            <CardTitle>조직도 수정</CardTitle>
+            <CardTitle>
+              <span>조직도 수정</span>
+            </CardTitle>
           </CardHeader>
 
-          <CardContent className="text-[14px] grid gap-32">
-            {organizationData.map((item, index) => (
-              <Tree
-                key={item.id}
-                label={
-                  <Input
-                    id={`organizationData.${index}.quarter`}
-                    {...register(`organizationData.${index}.quarter`)}
-                    className="max-w-[200px] m-auto py-2 border-primary/20 text-center"
-                  />
-                }
-                lineColor="gray">
-                {item.depart.map((depart, depart_index) => (
-                  <TreeNode
-                    key={depart.id}
-                    label={
-                      <Input
-                        id={`organizationData.${index}.depart.${depart_index}.name`}
-                        {...register(`organizationData.${index}.depart.${depart_index}.name`)}
-                        className="max-w-[200px] m-auto py-2 border-primary/20 text-center"
-                      />
-                    }>
-                    {depart.team.map((team, team_index) => (
-                      <TreeNode
-                        key={team.id}
-                        label={
-                          <Input
-                            id={`organizationData.${index}.depart.${depart_index}.team.${team_index}.name`}
-                            {...register(`organizationData.${index}.depart.${depart_index}.team.${team_index}.name`)}
-                            className="py-2 border-primary/20 text-center"
-                          />
-                        }
-                      />
-                    ))}
-                  </TreeNode>
-                ))}
-              </Tree>
-            ))}
+          <CardContent>
+            <Quarter control={control} register={register} />
           </CardContent>
         </Card>
 
@@ -123,6 +83,7 @@ const Edit = memo(
           </Button>
           <Button type="submit">확인</Button>
         </div>
+
         <CustomConfirm
           confirmState={confirmState}
           setConfirmState={setConfirmState}
