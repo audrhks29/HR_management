@@ -1,11 +1,10 @@
-import { memo } from "react";
-
+import { UseFormWatch } from "react-hook-form";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { UseFormGetValues } from "react-hook-form";
 
-const Total = ({ getValues }: { getValues: UseFormGetValues<SalaryRegistrationFormTypes> }) => {
-  const total_salary = getValues("salary.total_salary");
-  const total_tax = getValues("salary.tax.total_tax");
+const Total = ({ watch }: { watch: UseFormWatch<SalaryRegistrationFormTypes> }) => {
+  const total_salary = watch(`salary.salary.total_salary`);
+  const total_tax = watch(`salary.salary.tax.total_tax`);
+  const total_tax_except_tax = watch(`salary.salary.total_salary_except_tax`);
 
   return (
     <Table className="border">
@@ -16,11 +15,12 @@ const Total = ({ getValues }: { getValues: UseFormGetValues<SalaryRegistrationFo
           <TableHead>실수령액</TableHead>
         </TableRow>
       </TableHeader>
+
       <TableBody>
         <TableRow className="text-center hover:bg-card">
           <TableCell>{total_salary?.toLocaleString()}원</TableCell>
           <TableCell>{total_tax?.toLocaleString()}원</TableCell>
-          <TableCell>{(total_salary - total_tax)?.toLocaleString()}원</TableCell>
+          <TableCell>{total_tax_except_tax?.toLocaleString()}원</TableCell>
         </TableRow>
       </TableBody>
     </Table>

@@ -3,11 +3,9 @@ import { Input } from "@/components/ui/input";
 import { UseFormGetValues, UseFormRegister } from "react-hook-form";
 
 const Salary = ({
-  employeeMonthAttitude,
   register,
   getValues,
 }: {
-  employeeMonthAttitude: AttitudeDataTypes | undefined;
   register: UseFormRegister<SalaryRegistrationFormTypes>;
   getValues: UseFormGetValues<SalaryRegistrationFormTypes>;
 }) => {
@@ -25,15 +23,19 @@ const Salary = ({
         </TableRow>
 
         <TableRow className="text-center hover:bg-card">
-          <TableCell className="p-2">{getValues("salary.salary")?.toLocaleString()}원</TableCell>
+          <TableCell className="p-2">{getValues(`salary.salary.salary`)?.toLocaleString()}원</TableCell>
 
-          {/* !직무수당 - 설정해야함! */}
-          <TableCell className="p-2">0</TableCell>
+          <TableCell className="p-2">{getValues(`salary.salary.job_allowance`)?.toLocaleString()}원</TableCell>
 
-          <TableCell className="p-2">{getValues("salary.overtime_pay")?.toLocaleString()}원</TableCell>
+          <TableCell className="p-2">{getValues(`salary.salary.overtime_pay`)?.toLocaleString()}원</TableCell>
 
           <TableCell className="p-2">
-            <Input id="salary.bonus" {...register("salary.bonus")} />
+            <Input
+              className="text-right"
+              type="number"
+              id="salary.bonus"
+              {...register(`salary.salary.bonus`, { valueAsNumber: true })}
+            />
           </TableCell>
         </TableRow>
 
@@ -45,18 +47,25 @@ const Salary = ({
         </TableRow>
 
         <TableRow className="text-center hover:bg-card">
-          <TableCell className="p-2">{getValues("salary.saturday_work_allowance")?.toLocaleString()}원</TableCell>
-          <TableCell className="p-2">{getValues("salary.night_work_allowance")?.toLocaleString()}원</TableCell>
+          <TableCell className="p-2">
+            {getValues(`salary.salary.saturday_work_allowance`)?.toLocaleString()}원
+          </TableCell>
+          <TableCell className="p-2">{getValues(`salary.salary.night_work_allowance`)?.toLocaleString()}원</TableCell>
           <TableCell className="p-2">
             <Input
-              type="text"
-              className="h-9"
+              type="number"
+              className="h-9 text-right"
               id="salary.annual_leave_allowance"
-              {...register("salary.annual_leave_allowance")}
+              {...register(`salary.salary.annual_leave_allowance`, { valueAsNumber: true })}
             />
           </TableCell>
           <TableCell className="p-2">
-            <Input type="text" className="h-9" id="salary.meals" {...register("salary.meals")} />
+            <Input
+              type="number"
+              className="h-9 text-right"
+              id="salary.meals"
+              {...register(`salary.salary.meals`, { valueAsNumber: true })}
+            />
           </TableCell>
         </TableRow>
       </TableBody>

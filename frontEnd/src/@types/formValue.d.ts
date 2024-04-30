@@ -3,8 +3,10 @@ interface MemberRegistrationFormValues {
 }
 
 interface SalaryRegistrationFormTypes {
-  year: string;
-  salary: SalaryPersonalDataTypes;
+  salary: {
+    year: string;
+    salary: SalaryPersonalDataTypes;
+  };
 }
 
 interface OrganizationFormValues {

@@ -26,23 +26,53 @@ const Deduct = ({
         </TableRow>
 
         <TableRow className="text-center hover:bg-card">
-          <TableCell>
-            <Input id={"salary.tax.national_pension"} {...register("salary.tax.national_pension")} />
+          <TableCell className="p-2">
+            <Input
+              className="text-right"
+              type="number"
+              id={`salary.salary.tax.national_pension`}
+              {...register(`salary.salary.tax.national_pension`, { valueAsNumber: true })}
+            />
           </TableCell>
-          <TableCell>
-            <Input id={"salary.tax.income_tax"} {...register("salary.tax.income_tax")} />
+          <TableCell className="p-2">
+            <Input
+              className="text-right"
+              type="number"
+              id={`salary.salary.tax.income_tax`}
+              {...register(`salary.salary.tax.income_tax`, { valueAsNumber: true })}
+            />
           </TableCell>
-          <TableCell>
-            <Input id={"salary.tax.resident_tax"} {...register("salary.tax.resident_tax")} />
+          <TableCell className="p-2">
+            <Input
+              className="text-right"
+              type="number"
+              id={`salary.salary.tax.resident_tax`}
+              {...register(`salary.salary.tax.resident_tax`, { valueAsNumber: true })}
+            />
           </TableCell>
-          <TableCell>
-            <Input id={"salary.tax.health_tax"} {...register("salary.tax.health_tax")} />
+          <TableCell className="p-2">
+            <Input
+              className="text-right"
+              type="number"
+              id={`salary.salary.tax.health_tax`}
+              {...register(`salary.salary.tax.health_tax`, { valueAsNumber: true })}
+            />
           </TableCell>
-          <TableCell>
-            <Input id={"salary.tax.long_term_care_insurance"} {...register("salary.tax.long_term_care_insurance")} />
+          <TableCell className="p-2">
+            <Input
+              className="text-right"
+              type="number"
+              id={`salary.salary.tax.long_term_care_insurance`}
+              {...register(`salary.salary.tax.long_term_care_insurance`, { valueAsNumber: true })}
+            />
           </TableCell>
-          <TableCell>
-            <Input id={"salary.tax.employment_insurance"} {...register("salary.tax.employment_insurance")} />
+          <TableCell className="p-2">
+            <Input
+              className="text-right"
+              type="number"
+              id={`salary.salary.tax.employment_insurance`}
+              {...register(`salary.salary.tax.employment_insurance`, { valueAsNumber: true })}
+            />
           </TableCell>
         </TableRow>
       </TableBody>

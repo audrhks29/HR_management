@@ -45,7 +45,9 @@ interface SalaryPersonalDataTypes {
   night_work_allowance: number;
   annual_leave_allowance: number;
   meals: number;
+  job_allowance: number;
   total_salary: number;
+  total_salary_except_tax: number;
   tax: {
     national_pension: number;
     health_tax: number;
