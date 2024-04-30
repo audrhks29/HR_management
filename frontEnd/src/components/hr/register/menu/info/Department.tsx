@@ -21,9 +21,9 @@ type QueryResult<T> = {
 };
 
 type SuspenseQueriesResult = [
-  QueryResult<RankDataTypes[]>,
+  QueryResult<RankSettingTypes[]>,
   QueryResult<OrganizationDataTypes[]>,
-  QueryResult<PositionDataTypes[]>,
+  QueryResult<PositionSettingTypes[]>,
 ];
 
 const Department = ({
@@ -78,7 +78,13 @@ const Department = ({
         {/* 사원번호 입력 */}
         <div className="space-y-1 w-3/5">
           <Label htmlFor="employee_number">사원번호</Label>
-          <Input id="employee_number" {...register("employeeData.employee_number")} />
+          <Input
+            id="employee_number"
+            {...(register("employeeData.employee_number"),
+            {
+              required: true,
+            })}
+          />
         </div>
 
         {/* 소속 관할, 부서, 팀  */}
@@ -94,8 +100,8 @@ const Department = ({
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  {organizationData.map(organization => (
-                    <SelectItem key={organization.id} value={organization.quarter}>
+                  {organizationData.map((organization, index) => (
+                    <SelectItem key={index} value={organization.quarter}>
                       {organization.quarter}
                     </SelectItem>
                   ))}
@@ -115,11 +121,11 @@ const Department = ({
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  {organizationData.map(organization => {
+                  {organizationData.map((organization, index) => {
                     const isDepart = organization.quarter === watchQuarter;
                     if (isDepart) {
                       return organization.depart.map(depart => (
-                        <SelectItem key={depart.id} value={depart.name}>
+                        <SelectItem key={index} value={depart.name}>
                           {depart.name}
                         </SelectItem>
                       ));
@@ -147,8 +153,8 @@ const Department = ({
                       return organization.depart.map(depart => {
                         const isTeam = depart.name === watchDepart;
                         if (isTeam) {
-                          return depart.team.map(team => (
-                            <SelectItem key={team.id} value={team.name}>
+                          return depart.team.map((team, index) => (
+                            <SelectItem key={index} value={team.name}>
                               {team.name}
                             </SelectItem>
                           ));

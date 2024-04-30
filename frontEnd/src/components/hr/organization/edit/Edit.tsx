@@ -63,6 +63,7 @@ const Edit = memo(
         navigate("/hr_organization_chart");
       }
     };
+
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <Card className="relative overflow-y-auto py-8">

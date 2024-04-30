@@ -12,24 +12,21 @@ const Privacy = memo(({ personalData }: { personalData: MemberDataTypes | undefi
       <PersonalTitle personalData={personalData} />
 
       <CardContent className="mt-5 grid grid-cols-2">
+        <div className="col-span-2">
+          <Table>
+            <TableBody>
+              <TableRow className="cursor-pointer h-[53px]">
+                <TableHead className="w-32 text-left">주소</TableHead>
+                <TableCell>
+                  {personalData?.address.address}&nbsp;
+                  {personalData?.address.detail_address}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
         <Table className="text-center w-80">
           <TableBody>
-            <TableRow className="cursor-pointer h-[53px]">
-              <TableHead className="w-32 text-left">이름</TableHead>
-              <TableCell>{personalData?.kor_name}</TableCell>
-            </TableRow>
-
-            <TableRow className="cursor-pointer h-[53px]">
-              <TableHead className="w-32 text-left">성별</TableHead>
-              <TableCell className="flex items-center justify-center">
-                {personalData?.sex === "남성" ? (
-                  <IoMdMale className="text-[#0000ff] mr-3" />
-                ) : (
-                  <IoMdFemale className="text-[#ff0000] mr-3" />
-                )}
-              </TableCell>
-            </TableRow>
-
             <TableRow className="cursor-pointer h-[53px]">
               <TableHead className="w-32 text-left">핸드폰 번호</TableHead>
               <TableCell>{personalData?.phone_number}</TableCell>
@@ -43,16 +40,16 @@ const Privacy = memo(({ personalData }: { personalData: MemberDataTypes | undefi
             </TableRow>
 
             <TableRow className="cursor-pointer h-[53px]">
-              <TableHead className="w-32 text-left">주소</TableHead>
-              <TableCell>
-                {personalData?.address.address}&nbsp;
-                {personalData?.address.detail_address}
-              </TableCell>
+              <TableHead className="w-32 text-left">이메일</TableHead>
+              <TableCell>{personalData?.email}</TableCell>
             </TableRow>
 
             <TableRow className="cursor-pointer h-[53px]">
-              <TableHead className="w-32 text-left">이메일</TableHead>
-              <TableCell>{personalData?.email}</TableCell>
+              <TableHead className="w-32 text-left">병역</TableHead>
+              <TableCell>
+                {personalData?.military.army}&nbsp;
+                {personalData?.military.rank} ({personalData?.military.division})
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
