@@ -12,8 +12,8 @@ const Quarter = memo(
     control,
     register,
   }: {
-    control: Control<OrganizationFormValues, any>;
-    register: UseFormRegister<OrganizationFormValues>;
+    control: Control<OrganizationFormTypes, any>;
+    register: UseFormRegister<OrganizationFormTypes>;
   }) => {
     const { fields, append, remove } = useFieldArray({
       control,

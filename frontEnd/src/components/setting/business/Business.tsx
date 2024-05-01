@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { updateSettingBusinessData } from "@/server/fetchUpdateData";
+import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
 
 const Business = memo(({ data, refetch }: { data: BusinessSettingTypes; refetch: () => void }) => {
   interface FormValues {
@@ -41,16 +42,9 @@ const Business = memo(({ data, refetch }: { data: BusinessSettingTypes; refetch:
     setConfirmState({ popup: true, confirmResult: undefined });
   };
 
-  const waitForUserConfirmation = () => {
-    return new Promise<boolean>((resolve, reject) => {
-      if (confirmState.confirmResult) resolve(true);
-      else resolve(false);
-    });
-  };
-
   const onSubmit: SubmitHandler<FormValues> = async updateData => {
     showPopup();
-    const confirm = await waitForUserConfirmation();
+    const confirm = await waitForUserConfirmation(confirmState);
     if (confirm) {
       await updateSettingBusinessData(updateData);
       refetch();

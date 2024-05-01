@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 
 import { updateSettingRankData } from "@/server/fetchUpdateData";
 import CustomConfirm from "@/shared/alert/CustomConfirm";
+import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
 
 type FormValues = {
   rank_setting: RankSettingTypes[];
@@ -42,16 +43,9 @@ const Rank = memo(({ data, refetch }: { data: RankSettingTypes[]; refetch: () =>
     setConfirmState({ popup: true, confirmResult: undefined });
   };
 
-  const waitForUserConfirmation = () => {
-    return new Promise<boolean>((resolve, reject) => {
-      if (confirmState.confirmResult) resolve(true);
-      else resolve(false);
-    });
-  };
-
   const onSubmit: SubmitHandler<FormValues> = async updateData => {
     showPopup();
-    const confirm = await waitForUserConfirmation();
+    const confirm = await waitForUserConfirmation(confirmState);
     if (confirm) {
       await updateSettingRankData(updateData);
       refetch();

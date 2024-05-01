@@ -13,8 +13,8 @@ const Team = memo(
   }: {
     quarterIndex: number;
     departIndex: number;
-    control: Control<OrganizationFormValues, any>;
-    register: UseFormRegister<OrganizationFormValues>;
+    control: Control<OrganizationFormTypes, any>;
+    register: UseFormRegister<OrganizationFormTypes>;
   }) => {
     const { fields, remove, append } = useFieldArray({
       control,

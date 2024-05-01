@@ -69,6 +69,10 @@ const Select = ({
   );
 
   useEffect(() => {
+    reset();
+  }, [memberSalaryPersonalData]);
+
+  useEffect(() => {
     // 시간 당 급여
     const hourSalary = Math.round(memberSalaryPersonalData?.data[0].wage / 12 / 209);
 
@@ -188,7 +192,7 @@ const Select = ({
     <form onSubmit={handleSubmit(onsubmit)}>
       <Card>
         <ScrollArea className="h-[850px] p-8 overflow-y-auto relative ">
-          <PersonalTitle personalData={personalMemberData} />
+          <PersonalTitle personalData={personalMemberData} children={undefined} />
           <CardContent className="py-8">
             <MonthPicker
               isMonthPicker={isMonthPicker}

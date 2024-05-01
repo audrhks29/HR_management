@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import CustomConfirm from "@/shared/alert/CustomConfirm";
+import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
 import useUserStore from "@/store/user-store";
 import { memo, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,16 +19,9 @@ const Logout = memo(() => {
     setConfirmState({ popup: true, confirmResult: undefined });
   };
 
-  const waitForUserConfirmation = () => {
-    return new Promise<boolean>((resolve, reject) => {
-      if (confirmState.confirmResult) resolve(true);
-      else resolve(false);
-    });
-  };
-
   const onSubmit = async () => {
     showPopup();
-    const confirm = await waitForUserConfirmation();
+    const confirm = await waitForUserConfirmation(confirmState);
     if (confirm) {
       setUserInfo();
       setConfirmState({ popup: false, confirmResult: undefined });

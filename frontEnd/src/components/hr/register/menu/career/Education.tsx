@@ -27,10 +27,10 @@ const Education = memo(
     append,
     remove,
   }: {
-    register: UseFormRegister<MemberRegistrationFormValues>;
-    setValue: UseFormSetValue<MemberRegistrationFormValues>;
-    fields: FieldArrayWithId<MemberRegistrationFormValues, "employeeData.edu", "id">[];
-    append: UseFieldArrayAppend<MemberRegistrationFormValues, "employeeData.edu">;
+    register: UseFormRegister<MemberRegistrationFormTypes>;
+    setValue: UseFormSetValue<MemberRegistrationFormTypes>;
+    fields: FieldArrayWithId<MemberRegistrationFormTypes, "employeeData.edu", "id">[];
+    append: UseFieldArrayAppend<MemberRegistrationFormTypes, "employeeData.edu">;
     remove: UseFieldArrayRemove;
   }) => {
     const [admissionDates, setAdmissionDates] = useState<(Date | undefined)[]>(fields.map(() => new Date()));

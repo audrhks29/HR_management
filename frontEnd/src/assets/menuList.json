@@ -26,12 +26,12 @@
     "submenu": [
       {
         "id": 1,
-        "title": "급여 현황",
+        "title": "급여 현황 등록",
         "link": "/salary_status"
       },
       {
         "id": 2,
-        "title": "이번달 급여 등록",
+        "title": "금월 급여 등록",
         "link": "/salary_registration"
       },
       {

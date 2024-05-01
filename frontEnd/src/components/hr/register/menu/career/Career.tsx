@@ -26,10 +26,10 @@ const Career = memo(
     append,
     remove,
   }: {
-    register: UseFormRegister<MemberRegistrationFormValues>;
-    setValue: UseFormSetValue<MemberRegistrationFormValues>;
-    fields: FieldArrayWithId<MemberRegistrationFormValues, "employeeData.career", "id">[];
-    append: UseFieldArrayAppend<MemberRegistrationFormValues, "employeeData.career">;
+    register: UseFormRegister<MemberRegistrationFormTypes>;
+    setValue: UseFormSetValue<MemberRegistrationFormTypes>;
+    fields: FieldArrayWithId<MemberRegistrationFormTypes, "employeeData.career", "id">[];
+    append: UseFieldArrayAppend<MemberRegistrationFormTypes, "employeeData.career">;
     remove: UseFieldArrayRemove;
   }) => {
     const [joinDates, setJoinDates] = useState<(Date | undefined)[]>(fields.map(() => new Date()));

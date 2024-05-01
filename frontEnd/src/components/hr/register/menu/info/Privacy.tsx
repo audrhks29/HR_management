@@ -12,8 +12,8 @@ const Privacy = memo(
     register,
     setValue,
   }: {
-    register: UseFormRegister<MemberRegistrationFormValues>;
-    setValue: UseFormSetValue<MemberRegistrationFormValues>;
+    register: UseFormRegister<MemberRegistrationFormTypes>;
+    setValue: UseFormSetValue<MemberRegistrationFormTypes>;
   }) => {
     return (
       <Card className="h-[700px] p-8">

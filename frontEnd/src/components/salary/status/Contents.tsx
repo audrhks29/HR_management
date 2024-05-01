@@ -17,23 +17,28 @@ type SuspenseQueriesResult = [QueryResult<MemberSalaryDataTypes>, QueryResult<Me
 const Contents = memo(() => {
   const { employee_number } = useParams();
 
-  const [{ data: memberSalaryPersonalData }, { data: memberPersonalData }] = useSuspenseQueries<SuspenseQueriesResult>({
-    queries: [
-      {
-        queryKey: [`memberSalaryPersonalData/${employee_number}`],
-        queryFn: () => getMemberSalaryPersonalData(employee_number),
-      },
-      {
-        queryKey: [`memberPersonalData/${employee_number}`],
-        queryFn: () => getMemberPersonalData(employee_number),
-      },
-    ],
-  });
+  const [{ data: memberSalaryPersonalData, refetch }, { data: memberPersonalData }] =
+    useSuspenseQueries<SuspenseQueriesResult>({
+      queries: [
+        {
+          queryKey: [`memberSalaryPersonalData/${employee_number}`],
+          queryFn: () => getMemberSalaryPersonalData(employee_number),
+        },
+        {
+          queryKey: [`memberPersonalData/${employee_number}`],
+          queryFn: () => getMemberPersonalData(employee_number),
+        },
+      ],
+    });
   // console.log(memberSalaryPersonalData);
   return (
     <div className="grid grid-cols-[2fr_1fr] gap-6">
       {memberPersonalData ? (
-        <Select personalData={memberPersonalData} memberSalaryPersonalData={memberSalaryPersonalData} />
+        <Select
+          personalData={memberPersonalData}
+          memberSalaryPersonalData={memberSalaryPersonalData}
+          refetch={refetch}
+        />
       ) : (
         <None />
       )}

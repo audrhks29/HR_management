@@ -9,6 +9,7 @@ import { updateOrganizationData } from "@/server/fetchUpdateData";
 import CustomConfirm from "@/shared/alert/CustomConfirm";
 
 import Quarter from "./Quarter";
+import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
 
 const Edit = memo(
   ({
@@ -31,7 +32,7 @@ const Edit = memo(
       setConfirmState({ popup: true, confirmResult: undefined });
     };
 
-    const { register, handleSubmit, control } = useForm<OrganizationFormValues>({
+    const { register, handleSubmit, control } = useForm<OrganizationFormTypes>({
       defaultValues: {
         organizationData: organizationData?.map(item => ({
           quarter: item.quarter,
@@ -45,16 +46,9 @@ const Edit = memo(
       },
     });
 
-    const waitForUserConfirmation = () => {
-      return new Promise<boolean>((resolve, reject) => {
-        if (confirmState.confirmResult) resolve(true);
-        else resolve(false);
-      });
-    };
-
     const onSubmit = async (data: { organizationData: OrganizationDataTypes[] }) => {
       showPopup();
-      const confirm = await waitForUserConfirmation();
+      const confirm = await waitForUserConfirmation(confirmState);
       if (confirm) {
         await updateOrganizationData(data);
         setConfirmState({ popup: false, confirmResult: undefined });

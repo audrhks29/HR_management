@@ -15,6 +15,7 @@ import { memberRegisterFormData } from "@/assets/memberRegisterFormData";
 import { postMemberData } from "@/server/fetchCreateData";
 
 import CustomConfirm from "@/shared/alert/CustomConfirm";
+import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
 
 const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => {
   const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
@@ -28,7 +29,7 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
     setConfirmState({ popup: true, confirmResult: undefined });
   };
 
-  const { register, control, handleSubmit, setValue, watch } = useForm<MemberRegistrationFormValues>({
+  const { register, control, handleSubmit, setValue, watch } = useForm<MemberRegistrationFormTypes>({
     defaultValues: {
       employeeData: memberRegisterFormData,
     },
@@ -52,16 +53,9 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
     name: "employeeData.career",
   });
 
-  const waitForUserConfirmation = () => {
-    return new Promise<boolean>((resolve, reject) => {
-      if (confirmState.confirmResult) resolve(true);
-      else resolve(false);
-    });
-  };
-
   const onSubmit = async (data: { employeeData: MemberDataTypes }) => {
     showPopup();
-    const confirm = await waitForUserConfirmation();
+    const confirm = await waitForUserConfirmation(confirmState);
     if (confirm) {
       postMemberData(data);
       setConfirmState({ popup: false, confirmResult: undefined });

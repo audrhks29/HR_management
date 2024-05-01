@@ -30,15 +30,15 @@ const Select = memo(
 
     return (
       <Card className="h-[850px] p-8 overflow-y-auto">
-        <PersonalTitle personalData={personalData} />
+        <PersonalTitle personalData={personalData} children={undefined} />
         <CardContent className="mt-5">
           <Table className="text-right text-[12px]">
             <TableHeader className="text-[14px] text-center">
               <TableRow className="h-[53px] hover:bg-muted cursor-default">
                 <TableHead className="p-2 w-[72px]">년도</TableHead>
                 <TableHead className="p-2 w-[100px]">연장근로수당</TableHead>
-                <TableHead className="p-2 w-[100px]">배당금</TableHead>
-                <TableHead className="p-2 w-[100px]">토요근로수당</TableHead>
+                <TableHead className="p-2 w-[100px]">상여금</TableHead>
+                <TableHead className="p-2 w-[100px]">휴일근로수당</TableHead>
                 <TableHead className="p-2 w-[100px]">야간근로수당</TableHead>
                 <TableHead className="p-2 w-[100px]">연차수당</TableHead>
                 <TableHead className="p-2 w-[80px]">식대</TableHead>
@@ -76,13 +76,13 @@ const Select = memo(
                   return acc + cur.salary;
                 }, 0);
 
-                const isOpen = isOpenDetailYear.includes(salaryData.year);
+                const isOpen = isOpenDetailYear.includes(Number(salaryData.year));
 
                 return (
                   <React.Fragment key={index}>
                     <TableRow
                       className="cursor-pointer h-[53px] bg-primary-foreground"
-                      onClick={() => handleClickRow(salaryData.year)}>
+                      onClick={() => handleClickRow(Number(salaryData.year))}>
                       <TableCell className="p-2 text-center">{salaryData.year}년</TableCell>
                       <TableCell className="p-2">{overTimePaySum.toLocaleString()}원</TableCell>
                       <TableCell className="p-2">{bonusSum.toLocaleString()}원</TableCell>
@@ -98,7 +98,9 @@ const Select = memo(
                         <TableRow
                           className="cursor-pointer h-[53px]"
                           key={salary.month}
-                          onClick={() => handleClickMonthRow(data.employee_number, salaryData.year, salary.month)}>
+                          onClick={() =>
+                            handleClickMonthRow(data.employee_number, Number(salaryData.year), Number(salary.month))
+                          }>
                           <TableCell className="p-2 text-center">{salary.month}월</TableCell>
                           <TableCell className="p-2">{salary.overtime_pay.toLocaleString()}원</TableCell>
                           <TableCell className="p-2">{salary.bonus.toLocaleString()}원</TableCell>

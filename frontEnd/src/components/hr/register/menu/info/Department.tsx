@@ -31,9 +31,9 @@ const Department = ({
   setValue,
   watch,
 }: {
-  register: UseFormRegister<MemberRegistrationFormValues>;
-  setValue: UseFormSetValue<MemberRegistrationFormValues>;
-  watch: UseFormWatch<MemberRegistrationFormValues>;
+  register: UseFormRegister<MemberRegistrationFormTypes>;
+  setValue: UseFormSetValue<MemberRegistrationFormTypes>;
+  watch: UseFormWatch<MemberRegistrationFormTypes>;
 }) => {
   const [{ data: rankData }, { data: organizationData }, { data: positionData }] =
     useSuspenseQueries<SuspenseQueriesResult>({

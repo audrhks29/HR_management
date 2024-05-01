@@ -8,8 +8,8 @@ const Address = ({
   register,
   setValue,
 }: {
-  register: UseFormRegister<MemberRegistrationFormValues>;
-  setValue: UseFormSetValue<MemberRegistrationFormValues>;
+  register: UseFormRegister<MemberRegistrationFormTypes>;
+  setValue: UseFormSetValue<MemberRegistrationFormTypes>;
 }) => {
   const [postData, setPostData] = useState<any>(null);
 

@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { updateSettingPositionData } from "@/server/fetchUpdateData";
 import { Button } from "@/components/ui/button";
 import CustomConfirm from "@/shared/alert/CustomConfirm";
+import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
 
 type FormValues = {
   position_setting: PositionSettingTypes[];
@@ -41,16 +42,9 @@ const Position = memo(({ data, refetch }: { data: PositionSettingTypes[]; refetc
     setConfirmState({ popup: true, confirmResult: undefined });
   };
 
-  const waitForUserConfirmation = () => {
-    return new Promise<boolean>((resolve, reject) => {
-      if (confirmState.confirmResult) resolve(true);
-      else resolve(false);
-    });
-  };
-
   const onSubmit: SubmitHandler<FormValues> = async updateData => {
     showPopup();
-    const confirm = await waitForUserConfirmation();
+    const confirm = await waitForUserConfirmation(confirmState);
     if (confirm) {
       await updateSettingPositionData(updateData);
       refetch();

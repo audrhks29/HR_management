@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { UseFormRegister } from "react-hook-form";
 
 const Deduct = ({ register }: { register: UseFormRegister<SalaryRegistrationFormTypes> }) => {
   return (

@@ -7,7 +7,7 @@ import PersonalTitle from "@/shared/PersonalTitle";
 const Career = memo(({ personalData }: { personalData: MemberDataTypes | undefined }) => {
   return (
     <Card className="h-[800px] p-8">
-      <PersonalTitle personalData={personalData} />
+      <PersonalTitle personalData={personalData} children={undefined} />
 
       <CardContent className="mt-5">
         <CardDescription className="text-[16px] mb-3">학과</CardDescription>

@@ -1,4 +1,4 @@
-interface MemberRegistrationFormValues {
+interface MemberRegistrationFormTypes {
   employeeData: MemberDataTypes;
 }
 
@@ -9,6 +9,18 @@ interface SalaryRegistrationFormTypes {
   };
 }
 
-interface OrganizationFormValues {
+interface OrganizationFormTypes {
   organizationData: OrganizationDataTypes[];
+}
+
+interface MemberSalaryFormTypes {
+  memberSalary: {
+    employee_number: string;
+    data: {
+      year: string;
+      month: string;
+      wage: number;
+      salary: number;
+    };
+  };
 }

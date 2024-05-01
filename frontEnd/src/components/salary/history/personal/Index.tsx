@@ -64,7 +64,7 @@ const Index = memo(() => {
 
   return (
     <Card className="h-full">
-      <PersonalTitle personalData={memberPersonalData} />
+      <PersonalTitle personalData={memberPersonalData} children={undefined} />
       <CardContent className="py-4">
         <CardTitle className="text-center">
           {year}년 {month}월 급여명세서
