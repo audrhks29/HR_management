@@ -65,6 +65,7 @@ function App() {
 
                 {/* salary */}
                 <Route path="/salary_status" index element={<Salary_status />} />
+                <Route path="/salary_status/:employee_number" index element={<Salary_status />} />
                 <Route path="/salary_registration" index element={<Salary_registration />} />
                 <Route path="/salary_registration/:employee_number" index element={<Salary_registration />} />
                 <Route path="/salary_history" index element={<Salary_history />} />

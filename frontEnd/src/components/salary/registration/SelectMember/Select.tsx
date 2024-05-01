@@ -17,14 +17,13 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Select = ({
   personalMemberData,
-  personalSalaryData,
   personalAttitudeData,
-  personalMemberSalaryData,
+  memberSalaryPersonalData,
 }: {
   personalMemberData: MemberDataTypes;
   personalSalaryData: SalaryDataTypes;
   personalAttitudeData: ExceptCommute;
-  personalMemberSalaryData: MemberSalaryDataTypes;
+  memberSalaryPersonalData: MemberSalaryDataTypes;
 }) => {
   const { year, month } = useDateStore();
 
@@ -71,7 +70,7 @@ const Select = ({
 
   useEffect(() => {
     // 시간 당 급여
-    const hourSalary = Math.round(personalMemberSalaryData?.wage / 12 / 209);
+    const hourSalary = Math.round(memberSalaryPersonalData?.data[0].wage / 12 / 209);
 
     // ------ 수당 ------
     // 야간 근로 수당
@@ -87,7 +86,7 @@ const Select = ({
     setValue(`salary.salary.overtime_pay`, overtime_pay_value);
 
     // 기본급
-    const salary_value = personalMemberSalaryData ? personalMemberSalaryData.wage / 12 : 0;
+    const salary_value = memberSalaryPersonalData?.data[0] ? memberSalaryPersonalData.data[0].wage / 12 : 0;
     setValue(`salary.salary.salary`, salary_value);
 
     // 휴일 근로 수당
@@ -169,7 +168,7 @@ const Select = ({
     const total_salary_except_tax_value = total_salary_value - total_tax_value;
     setValue(`salary.salary.total_salary_except_tax`, total_salary_except_tax_value);
   }, [
-    personalMemberSalaryData,
+    memberSalaryPersonalData,
     watch(`salary.salary.bonus`),
     watch(`salary.salary.annual_leave_allowance`),
     watch(`salary.salary.meals`),
@@ -205,12 +204,7 @@ const Select = ({
 
             <Salary register={register} getValues={getValues} />
 
-            <Deduct
-              personalMemberSalaryData={personalMemberSalaryData}
-              register={register}
-              getValues={getValues}
-              setValue={setValue}
-            />
+            <Deduct register={register} />
 
             <Button type="submit">전송</Button>
           </CardContent>

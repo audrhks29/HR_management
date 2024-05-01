@@ -82,7 +82,12 @@ interface SalaryPersonalDataTypes {
 
 interface MemberSalaryDataTypes {
   employee_number: string;
-  wage: number;
+  data: {
+    year: string;
+    month: string;
+    wage: number;
+    salary: number;
+  }[];
 }
 
 interface OrganizationDataTypes {

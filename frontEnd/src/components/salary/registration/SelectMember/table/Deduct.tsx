@@ -2,14 +2,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from "@/components/u
 import { Input } from "@/components/ui/input";
 import { UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 
-const Deduct = ({
-  register,
-}: {
-  personalMemberSalaryData: MemberSalaryDataTypes;
-  setValue: UseFormSetValue<SalaryRegistrationFormTypes>;
-  getValues: UseFormGetValues<SalaryRegistrationFormTypes>;
-  register: UseFormRegister<SalaryRegistrationFormTypes>;
-}) => {
+const Deduct = ({ register }: { register: UseFormRegister<SalaryRegistrationFormTypes> }) => {
   return (
     <Table className="mt-3">
       <TableBody>

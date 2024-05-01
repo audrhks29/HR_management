@@ -8,7 +8,7 @@ import {
   getMemberPersonalData,
   getPersonalSalaryData,
   getPersonalAttitudeData,
-  getPersonalMemberSalaryData,
+  getMemberSalaryPersonalData,
 } from "@/server/fetchReadData";
 import { useSuspenseQueries } from "@tanstack/react-query";
 
@@ -30,7 +30,7 @@ const Contents = memo(() => {
     { data: personalSalaryData },
     { data: memberPersonalData },
     { data: personalAttitudeData },
-    { data: personalMemberSalaryData },
+    { data: memberSalaryPersonalData },
   ] = useSuspenseQueries<SuspenseQueriesResult>({
     queries: [
       {
@@ -46,8 +46,8 @@ const Contents = memo(() => {
         queryFn: () => getPersonalAttitudeData(employee_number),
       },
       {
-        queryKey: [`personalMemberSalary/${employee_number}`],
-        queryFn: () => getPersonalMemberSalaryData(employee_number),
+        queryKey: [`memberSalaryPersonalData/${employee_number}`],
+        queryFn: () => getMemberSalaryPersonalData(employee_number),
       },
     ],
   });
@@ -59,7 +59,7 @@ const Contents = memo(() => {
           personalMemberData={memberPersonalData}
           personalSalaryData={personalSalaryData}
           personalAttitudeData={personalAttitudeData}
-          personalMemberSalaryData={personalMemberSalaryData}
+          memberSalaryPersonalData={memberSalaryPersonalData}
         />
       ) : (
         <None />

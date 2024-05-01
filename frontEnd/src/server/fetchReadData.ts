@@ -43,7 +43,7 @@ export const getMemberSalaryData = async () => {
   return response.data;
 };
 
-export const getPersonalMemberSalaryData = async (id: string | undefined) => {
+export const getMemberSalaryPersonalData = async (id: string | undefined) => {
   const response = await axios.get(`http://localhost:5000/memberSalary/${id}`);
   return response.data;
 };

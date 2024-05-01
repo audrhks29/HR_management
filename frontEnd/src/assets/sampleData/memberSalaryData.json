@@ -1,122 +1,25 @@
 [
   {
     "employee_number": "160301",
-    "wage": 120000000
-  },
-  {
-    "employee_number": "160401",
-    "wage": 80400000
-  },
-  {
-    "employee_number": "160403",
-    "wage": 76800000
-  },
-  {
-    "employee_number": "160406",
-    "wage": 78000000
-  },
-  {
-    "employee_number": "170302",
-    "wage": 76800000
-  },
-  {
-    "employee_number": "180901",
-    "wage": 72000000
-  },
-  {
-    "employee_number": "181001",
-    "wage": 52800000
-  },
-  {
-    "employee_number": "190701",
-    "wage": 48000000
-  },
-  {
-    "employee_number": "200302",
-    "wage": 49200000
-  },
-  {
-    "employee_number": "200801",
-    "wage": 36000000
-  },
-  {
-    "employee_number": "200802",
-    "wage": 33000000
-  },
-  {
-    "employee_number": "200902",
-    "wage": 33000000
-  },
-  {
-    "employee_number": "210501",
-    "wage": 40800000
-  },
-  {
-    "employee_number": "211201",
-    "wage": 42000000
-  },
-  {
-    "employee_number": "230102",
-    "wage": 32400000
-  },
-  {
-    "employee_number": "230201",
-    "wage": 36000000
-  },
-  {
-    "employee_number": "230501",
-    "wage": 37200000
-  },
-  {
-    "employee_number": "230502",
-    "wage": 40800000
-  },
-  {
-    "employee_number": "230601",
-    "wage": 30000000
-  },
-  {
-    "employee_number": "230602",
-    "wage": 32400000
-  },
-  {
-    "employee_number": "230901",
-    "wage": 30960000
-  },
-  {
-    "employee_number": "230902",
-    "wage": 42000000
-  },
-  {
-    "employee_number": "231001",
-    "wage": 30960000
-  },
-  {
-    "employee_number": "231002",
-    "wage": 30960000
-  },
-  {
-    "employee_number": "231003",
-    "wage": 48000000
-  },
-  {
-    "employee_number": "231004",
-    "wage": 60000000
-  },
-  {
-    "employee_number": "240101",
-    "wage": 36000000
-  },
-  {
-    "employee_number": "240102",
-    "wage": 30960000
-  },
-  {
-    "employee_number": "240201",
-    "wage": 30000000
-  },
-  {
-    "employee_number": "240202",
-    "wage": 33000000
+    "data": [
+      {
+        "year": "2023",
+        "month": "02",
+        "wage": 120000000,
+        "salary": 10000000
+      },
+      {
+        "year": "2022",
+        "month": "02",
+        "wage": 10200000,
+        "salary": 8500000
+      },
+      {
+        "date": "2021",
+        "month": "02",
+        "wage": 90000000,
+        "salary": 7500000
+      }
+    ]
   }
 ]
