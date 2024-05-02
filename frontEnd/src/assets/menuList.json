@@ -31,8 +31,13 @@
       },
       {
         "id": 2,
-        "title": "금월 급여 등록",
+        "title": "급여 대장 작성",
         "link": "/salary_registration"
+      },
+      {
+        "id": 2,
+        "title": "급여 대장 수정",
+        "link": "/salary_edit"
       },
       {
         "id": 3,

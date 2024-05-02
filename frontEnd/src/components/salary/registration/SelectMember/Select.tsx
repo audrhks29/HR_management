@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,9 +14,12 @@ import Deduct from "./table/Deduct";
 
 import useDateStore from "@/store/date-store";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { postSalaryData } from "@/server/fetchCreateData";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Select = ({
   personalMemberData,
+  personalSalaryData,
   personalAttitudeData,
   memberSalaryPersonalData,
 }: {
@@ -26,12 +29,18 @@ const Select = ({
   memberSalaryPersonalData: MemberSalaryDataTypes;
 }) => {
   const { year, month } = useDateStore();
-
+  const { employee_number } = useParams();
   const [isMonthPicker, setIsMonthPicker] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState({
     year: year.toString(),
     month: month.toString(),
   });
+
+  const navigate = useNavigate();
+
+  const isData = personalSalaryData?.data
+    .find(item => item.year === selectedMonth.year)
+    ?.salary.find(item => item.month === selectedMonth.month);
 
   const { register, handleSubmit, setValue, getValues, reset, watch } = useForm<SalaryRegistrationFormTypes>({
     defaultValues: {
@@ -63,18 +72,36 @@ const Select = ({
       },
     },
   });
+  // console.log(formState.defaultValues);
+  // 해당 년월에 맞는 데이터가 이미 있는지
 
+  // 근태기록
   const employeeMonthAttitude = personalAttitudeData?.attitude.find(
     item => item.month === selectedMonth.year + selectedMonth.month,
   );
 
-  useEffect(() => {
-    reset();
-  }, [memberSalaryPersonalData]);
+  const selectedDate = new Date(`${selectedMonth.year}-${selectedMonth.month}`).getTime();
+
+  const selectedSalary = memberSalaryPersonalData?.data
+    .map(item => {
+      const dataDate = new Date(`${item.year}-${item.month}`).getTime();
+      if (selectedDate >= dataDate) {
+        return item;
+      }
+    })
+    .filter(item => item !== undefined);
 
   useEffect(() => {
+    reset();
+  }, [memberSalaryPersonalData, selectedMonth]);
+
+  useEffect(() => {
+    // 날짜 설정
+    setValue(`salary.year`, selectedMonth.year);
+    setValue(`salary.salary.month`, selectedMonth.month);
+
     // 시간 당 급여
-    const hourSalary = Math.round(memberSalaryPersonalData?.data[0].wage / 12 / 209);
+    const hourSalary = selectedSalary && selectedSalary[0] ? Math.round(selectedSalary[0]?.wage / 12 / 209) : 0;
 
     // ------ 수당 ------
     // 야간 근로 수당
@@ -90,7 +117,7 @@ const Select = ({
     setValue(`salary.salary.overtime_pay`, overtime_pay_value);
 
     // 기본급
-    const salary_value = memberSalaryPersonalData?.data[0] ? memberSalaryPersonalData.data[0].wage / 12 : 0;
+    const salary_value = selectedSalary && selectedSalary[0] ? selectedSalary[0]?.wage / 12 : 0;
     setValue(`salary.salary.salary`, salary_value);
 
     // 휴일 근로 수당
@@ -119,7 +146,6 @@ const Select = ({
       meals_value;
     setValue(`salary.salary.total_salary`, total_salary_value);
 
-    // console.log(getValues(`salary.salary.total_salary`));
     // 식대 제외 총 급여
     const total_salary_except_meals = total_salary_value - meals_value;
 
@@ -173,6 +199,7 @@ const Select = ({
     setValue(`salary.salary.total_salary_except_tax`, total_salary_except_tax_value);
   }, [
     memberSalaryPersonalData,
+    selectedMonth,
     watch(`salary.salary.bonus`),
     watch(`salary.salary.annual_leave_allowance`),
     watch(`salary.salary.meals`),
@@ -184,8 +211,8 @@ const Select = ({
     watch(`salary.salary.tax.national_pension`),
   ]);
 
-  const onsubmit = (data: SalaryRegistrationFormTypes) => {
-    console.log(data);
+  const onsubmit = async (data: SalaryRegistrationFormTypes) => {
+    await postSalaryData(data, employee_number, selectedMonth.year, selectedMonth.month);
   };
 
   return (
@@ -201,16 +228,25 @@ const Select = ({
               setSelectedMonth={setSelectedMonth}
               className="mt-4"
             />
+            {!isData ? (
+              <>
+                <Total watch={watch} />
+                <Attitude data={employeeMonthAttitude} />
+                <Salary register={register} getValues={getValues} />
+                <Deduct register={register} />
+              </>
+            ) : (
+              <div className="text-center">
+                <div>
+                  {selectedMonth.year}년 {selectedMonth.month}월의 데이터가 이미 등록되어있습니다.
+                </div>
+                <Button type="button" className="mt-3" onClick={() => navigate(`/salary_edit/${employee_number}`)}>
+                  수정하기
+                </Button>
+              </div>
+            )}
 
-            <Total watch={watch} />
-
-            <Attitude data={employeeMonthAttitude} />
-
-            <Salary register={register} getValues={getValues} />
-
-            <Deduct register={register} />
-
-            <Button type="submit">전송</Button>
+            <div className="text-right mt-3">{!isData && <Button type="submit">등록</Button>}</div>
           </CardContent>
         </ScrollArea>
       </Card>

@@ -58,4 +58,45 @@ module.exports = function (app: any, Salary: any) {
       res.status(500).json({ error: err.message });
     }
   });
+
+  app.post("/salary/:id/:year/:month", async (req: any, res: any) => {
+    const { id, year, month } = req.params;
+    let result;
+    const data = await Salary.findOne({ employee_number: id });
+
+    try {
+      if (data) {
+        const findMatchYearData = data.data.find(
+          (item: any) => item.year === year
+        );
+        if (findMatchYearData) {
+          const findMatchMonthData = findMatchYearData.salary.find(
+            (item: any) => item.month === month
+          );
+          if (!findMatchMonthData) {
+            findMatchYearData.salary.push(req.body.salary.salary);
+          }
+        } else {
+          data.data.push(req.body.salary);
+        }
+        result = await data.save();
+      } else {
+        const newSalary = new Salary();
+        newSalary.employee_number = id;
+        newSalary.data.push(req.body.salary);
+        result = await newSalary.save();
+      }
+      res.status(201).json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.put("/salary/:id/:year/:month", async (req: any, res: any) => {
+    const { id, year, month } = req.params;
+    const salaryData = req.body.salary;
+    console.log(salaryData);
+    const data = await Salary.findOne({ employee_number: id });
+    console.log(data);
+  });
 };

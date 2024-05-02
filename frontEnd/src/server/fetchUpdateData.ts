@@ -19,3 +19,13 @@ export const updateSettingPositionData = async (updateData: { position_setting: 
   const response = await axios.put("http://localhost:5000/setting/position", updateData);
   return response.data;
 };
+
+export const updateSalaryData = async (
+  updateData: SalaryRegistrationFormTypes,
+  id: string | undefined,
+  year: string,
+  month: string,
+) => {
+  const response = await axios.put(`http://localhost:5000/salary/${id}/${year}/${month}`, updateData);
+  return response.data;
+};

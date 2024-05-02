@@ -5,7 +5,6 @@ export const postMemberData = async (data: { employeeData: MemberDataTypes }) =>
 };
 
 export const postMemberSalaryPersonalData = async (data: MemberSalaryFormTypes, id: string | undefined) => {
-  console.log(data);
   await axios.post(`http://localhost:5000/memberSalary/${id}`, data);
 };
 
@@ -21,4 +20,13 @@ export const postCommuteTimeData = async (
 
 export const postAttitudeData = async (data: AttitudeDataTypes | undefined, id: string) => {
   await axios.post(`http://localhost:5000/work/attitude/${id}`, data);
+};
+
+export const postSalaryData = async (
+  data: SalaryRegistrationFormTypes | undefined,
+  id: string | undefined,
+  year: string,
+  month: string,
+) => {
+  await axios.post(`http://localhost:5000/salary/${id}/${year}/${month}`, data);
 };

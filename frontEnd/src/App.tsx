@@ -35,6 +35,7 @@ import Login from "./pages/user/Login";
 import Setting from "./pages/setting/Setting";
 import Salary_registration from "./pages/salary/Salary_registration";
 import useDateStore from "./store/date-store";
+import Salary_edit from "./pages/salary/Salary_edit";
 
 function App() {
   const { setToday } = useDateStore();
@@ -68,6 +69,8 @@ function App() {
                 <Route path="/salary_status/:employee_number" index element={<Salary_status />} />
                 <Route path="/salary_registration" index element={<Salary_registration />} />
                 <Route path="/salary_registration/:employee_number" index element={<Salary_registration />} />
+                <Route path="/salary_edit" index element={<Salary_edit />} />
+                <Route path="/salary_edit/:employee_number" index element={<Salary_edit />} />
                 <Route path="/salary_history" index element={<Salary_history />} />
                 <Route path="/salary_history/:employee_number" index element={<Salary_history />} />
                 <Route

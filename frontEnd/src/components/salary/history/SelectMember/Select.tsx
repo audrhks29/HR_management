@@ -19,7 +19,7 @@ const Select = memo(
         : setIsOpenDetailYear([...isOpenDetailYear, year]);
     };
 
-    const handleClickMonthRow = (employeeNumber: string, year: number, month: number) => {
+    const handleClickMonthRow = (employeeNumber: string, year: string, month: string) => {
       window.electronAPI.openSalaryPersonalWindow(`${employeeNumber}/${year}/${month}`);
     };
 
@@ -98,9 +98,7 @@ const Select = memo(
                         <TableRow
                           className="cursor-pointer h-[53px]"
                           key={salary.month}
-                          onClick={() =>
-                            handleClickMonthRow(data.employee_number, Number(salaryData.year), Number(salary.month))
-                          }>
+                          onClick={() => handleClickMonthRow(data.employee_number, salaryData.year, salary.month)}>
                           <TableCell className="p-2 text-center">{salary.month}월</TableCell>
                           <TableCell className="p-2">{salary.overtime_pay.toLocaleString()}원</TableCell>
                           <TableCell className="p-2">{salary.bonus.toLocaleString()}원</TableCell>

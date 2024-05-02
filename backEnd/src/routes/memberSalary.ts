@@ -29,22 +29,22 @@ module.exports = function (app: any, MemberSalary: any) {
   });
 
   // 데이터 삽입
-  app.post("/memberSalary", async (req: any, res: any) => {
-    const { id } = req.params;
-    console.log(req.body);
-    try {
-      const newMemberSalary = new MemberSalary(req.body);
-      const result = await newMemberSalary.save();
-      res.status(201).json(result);
-    } catch (err: any) {
-      res.status(500).json({ error: err.message });
-    }
-  });
+  // app.post("/memberSalary", async (req: any, res: any) => {
+  //   const { id } = req.params;
+
+  //   try {
+  //     const newMemberSalary = new MemberSalary(req.body);
+  //     const result = await newMemberSalary.save();
+  //     res.status(201).json(result);
+  //   } catch (err: any) {
+  //     res.status(500).json({ error: err.message });
+  //   }
+  // });
+
   app.post("/memberSalary/:id", async (req: any, res: any) => {
     const { id } = req.params;
-    console.log(id);
     let result;
-    console.log(req.body);
+
     const data = await MemberSalary.findOne({ employee_number: id });
     try {
       if (data) {
@@ -52,7 +52,6 @@ module.exports = function (app: any, MemberSalary: any) {
         result = await data.save();
       } else {
         const newMemberSalary = new MemberSalary(req.body.memberSalary);
-        // newMemberSalary.data.push(req.body.memberSalary.data);
         result = await newMemberSalary.save();
       }
       res.status(201).json(result);
