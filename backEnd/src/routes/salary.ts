@@ -95,8 +95,19 @@ module.exports = function (app: any, Salary: any) {
   app.put("/salary/:id/:year/:month", async (req: any, res: any) => {
     const { id, year, month } = req.params;
     const salaryData = req.body.salary;
-    console.log(salaryData);
-    const data = await Salary.findOne({ employee_number: id });
-    console.log(data);
+
+    try {
+      const data = await Salary.findOne({ employee_number: id });
+      const yearIndex = data.data.findIndex((item: any) => item.year === year);
+      const monthIndex = data.data[yearIndex].salary.findIndex(
+        (item: any) => item.month === month
+      );
+      data.data[yearIndex].salary[monthIndex] = salaryData.salary;
+      await data.save();
+
+      res.status(200).json({ message: "Salary data updated successfully" });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
   });
 };
