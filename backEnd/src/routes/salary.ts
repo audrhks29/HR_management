@@ -110,4 +110,29 @@ module.exports = function (app: any, Salary: any) {
       res.status(500).json({ error: err.message });
     }
   });
+
+  app.delete("/salary/:id/:year/:month", async (req: any, res: any) => {
+    const { id, year, month } = req.params;
+
+    try {
+      const result = await Salary.updateOne(
+        { employee_number: id, "data.year": year },
+        {
+          $pull: {
+            "data.$.salary": { month: month },
+          },
+        }
+      );
+
+      console.log(result);
+      if (result.nModified > 0) {
+        res.status(200).json({ message: "Salary data deleted successfully" });
+      } else {
+        res.status(404).json({ message: "Salary data not found" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 };

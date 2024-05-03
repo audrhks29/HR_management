@@ -17,6 +17,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { postSalaryData } from "@/server/fetchCreateData";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateSalaryData } from "@/server/fetchUpdateData";
+import { deleteSalaryData } from "@/server/fetchDeleteData";
 
 const Select = ({
   personalMemberData,
@@ -169,6 +170,9 @@ const Select = ({
     await updateSalaryData(data, employee_number, selectedMonth.year, selectedMonth.month);
   };
 
+  const onDelete = async () => {
+    await deleteSalaryData(employee_number, selectedMonth.year, selectedMonth.month);
+  };
   return (
     <form onSubmit={handleSubmit(onsubmit)}>
       <Card>
@@ -203,7 +207,14 @@ const Select = ({
               </>
             )}
 
-            <div className="text-right mt-3">{isData && <Button type="submit">수정</Button>}</div>
+            {isData && (
+              <div className="text-right mt-3">
+                <Button type="submit">수정</Button>
+                <Button type="button" onClick={onDelete}>
+                  삭제
+                </Button>
+              </div>
+            )}
           </CardContent>
         </ScrollArea>
       </Card>
