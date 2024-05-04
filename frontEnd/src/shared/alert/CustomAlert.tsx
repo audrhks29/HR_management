@@ -1,6 +1,5 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Terminal } from "lucide-react";
 import { memo } from "react";
 
 interface PropsTypes {
@@ -14,12 +13,17 @@ const CustomAlert = memo((props: PropsTypes) => {
   return (
     <>
       {props.alertState && (
-        <Alert className="absolute top-0 right-0 w-96">
-          <Terminal className="h-4 w-4" />
-          <AlertTitle>{props.title}</AlertTitle>
-          <AlertDescription>{props.text}</AlertDescription>
-          <Button onClick={() => props.setAlertState(false)}>확인</Button>
-        </Alert>
+        <div className="fixed top-0 z-10 right-0 w-full h-full bg-black bg-opacity-50 flex justify-center">
+          <Alert className="w-[500px] h-[180px] p-7 flex flex-col translate-y-3">
+            <AlertTitle className="mb-3">{props.title}</AlertTitle>
+            <AlertDescription>{props.text}</AlertDescription>
+            <div className="text-right mt-auto">
+              <Button type="button" onClick={() => props.setAlertState(false)}>
+                확인
+              </Button>
+            </div>
+          </Alert>
+        </div>
       )}
     </>
   );

@@ -28,7 +28,7 @@ const Index = memo(() => {
       },
     ],
   });
-  console.log(salaryPersonalData);
+
   const {
     salary,
     annual_leave_allowance,

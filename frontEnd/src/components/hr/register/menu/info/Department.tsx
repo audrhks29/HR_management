@@ -69,6 +69,7 @@ const Department = ({
       setValue(`employeeData.date_of_joining`, valueDate);
     }
   };
+
   return (
     <Card className="h-[700px] p-8">
       <CardHeader>

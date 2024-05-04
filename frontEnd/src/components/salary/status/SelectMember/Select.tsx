@@ -11,9 +11,12 @@ import { Input } from "@/components/ui/input";
 import { ErrorMessage } from "@hookform/error-message";
 import { postMemberSalaryPersonalData } from "@/server/fetchCreateData";
 import { useParams } from "react-router-dom";
-import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
+
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 import CustomConfirm from "@/shared/alert/CustomConfirm";
+import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
+import { deleteMemberSalaryData } from "@/server/fetchDeleteData";
+import CustomAlert from "@/shared/alert/CustomAlert";
 
 const Select = memo(
   ({
@@ -32,6 +35,8 @@ const Select = memo(
       popup: false,
       confirmResult: undefined,
     });
+
+    const [alertState, setAlertState] = useState(false);
 
     const showPopup = () => {
       setConfirmState({ popup: true, confirmResult: undefined });
@@ -76,6 +81,13 @@ const Select = memo(
       }
     };
 
+    const onDelete = async (year: string, month: string) => {
+      await deleteMemberSalaryData(employee_number, year, month);
+      setAlertState(true);
+      await refetch();
+      reset();
+    };
+
     const wageWatch = watch(`memberSalary.data.wage`);
 
     useEffect(() => {
@@ -98,10 +110,11 @@ const Select = memo(
             <Table className="text-right text-[12px]">
               <TableHeader className="text-[14px] text-center">
                 <TableRow className="h-[53px] bg-primary-foreground cursor-default">
-                  <TableHead className="p-2 w-[200px]">협상적용 년월</TableHead>
-                  <TableHead className="p-2 w-[200px]">기본연봉</TableHead>
-                  <TableHead className="p-2 w-[200px]">기본급여</TableHead>
-                  <TableHead className="p-2">인상율</TableHead>
+                  <TableHead className="p-2 w-[185px]">협상적용 년월</TableHead>
+                  <TableHead className="p-2 w-[210px]">기본연봉</TableHead>
+                  <TableHead className="p-2 w-[150px]">기본급여</TableHead>
+                  <TableHead className="p-2 w-[150px]">인상율</TableHead>
+                  <TableHead className="p-2">삭제</TableHead>
                 </TableRow>
               </TableHeader>
 
@@ -171,14 +184,14 @@ const Select = memo(
                       : "";
 
                   return (
-                    <TableRow key={index} className="cursor-pointer h-[53px] ">
+                    <TableRow key={index} className="cursor-pointer h-[53px]">
                       <TableCell className="text-center">
                         {item.year}년 {item.month}월
                       </TableCell>
                       <TableCell>{item.wage.toLocaleString()}원</TableCell>
                       <TableCell>{item.salary.toLocaleString()}원</TableCell>
 
-                      <TableCell className="flex items-center justify-center">
+                      <TableCell className="flex items-center justify-center h-[73px]">
                         {raiseRate !== "" && raiseRate > 0 && (
                           <>
                             <ArrowBigUpDashIcon className="text-[#ff0000]" />
@@ -192,6 +205,14 @@ const Select = memo(
                           </>
                         )}
                       </TableCell>
+                      <TableCell>
+                        <Button
+                          type="button"
+                          className="button text-center"
+                          onClick={() => onDelete(item.year, item.month)}>
+                          삭제
+                        </Button>
+                      </TableCell>
                     </TableRow>
                   );
                 })}
@@ -199,6 +220,12 @@ const Select = memo(
             </Table>
           </CardContent>
         </Card>
+        <CustomAlert
+          alertState={alertState}
+          setAlertState={setAlertState}
+          title="삭제 완료"
+          text="데이터가 삭제되었습니다."
+        />
         <CustomConfirm
           confirmState={confirmState}
           setConfirmState={setConfirmState}

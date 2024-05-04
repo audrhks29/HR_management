@@ -35,12 +35,12 @@
         "link": "/salary_registration"
       },
       {
-        "id": 2,
+        "id": 3,
         "title": "급여 대장 수정",
         "link": "/salary_edit"
       },
       {
-        "id": 3,
+        "id": 4,
         "title": "급여 지급 내역",
         "link": "/salary_history"
       }

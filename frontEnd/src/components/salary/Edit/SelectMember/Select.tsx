@@ -14,69 +14,82 @@ import Deduct from "./table/Deduct";
 
 import useDateStore from "@/store/date-store";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { postSalaryData } from "@/server/fetchCreateData";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateSalaryData } from "@/server/fetchUpdateData";
 import { deleteSalaryData } from "@/server/fetchDeleteData";
+import CustomAlert from "@/shared/alert/CustomAlert";
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
+import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
+import CustomConfirm from "@/shared/alert/CustomConfirm";
 
 const Select = ({
   personalMemberData,
   personalSalaryData,
   personalAttitudeData,
   memberSalaryPersonalData,
+  refetch,
 }: {
   personalMemberData: MemberDataTypes;
   personalSalaryData: SalaryDataTypes;
   personalAttitudeData: ExceptCommute;
   memberSalaryPersonalData: MemberSalaryDataTypes;
+  refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<SalaryDataTypes, unknown>>;
 }) => {
   const { year, month } = useDateStore();
   const { employee_number } = useParams();
+  const navigate = useNavigate();
+
   const [isMonthPicker, setIsMonthPicker] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState({
     year: year.toString(),
     month: month.toString(),
   });
+  const [alertState, setAlertState] = useState(false);
 
-  const navigate = useNavigate();
+  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
+    popup: false,
+    confirmResult: undefined,
+  });
+
+  const showPopup = () => {
+    setConfirmState({ popup: true, confirmResult: undefined });
+  };
 
   // 해당 년월에 맞는 데이터가 이미 있는지
   const isData = personalSalaryData?.data
     .find(item => item.year === selectedMonth.year)
     ?.salary.find(item => item.month === selectedMonth.month);
 
-  const { register, handleSubmit, setValue, formState, getValues, reset, watch } = useForm<SalaryRegistrationFormTypes>(
-    {
-      defaultValues: {
+  const { register, handleSubmit, setValue, getValues, reset, watch } = useForm<SalaryRegistrationFormTypes>({
+    defaultValues: {
+      salary: {
+        year: selectedMonth.year,
         salary: {
-          year: selectedMonth.year,
-          salary: {
-            annual_leave_allowance: 0,
-            bonus: 0,
-            meals: 0,
-            job_allowance: 0,
-            month: selectedMonth.month,
-            night_work_allowance: 0,
-            overtime_pay: 0,
-            salary: 0,
-            saturday_work_allowance: 0,
-            total_salary: 0,
-            total_salary_except_tax: 0,
-            tax: {
-              employment_insurance: 0,
-              health_tax: 0,
-              income_tax: 0,
-              long_term_care_insurance: 0,
-              national_pension: 0,
-              resident_tax: 0,
-              year_end_tax_settlement: 0,
-              total_tax: 0,
-            },
+          annual_leave_allowance: 0,
+          bonus: 0,
+          meals: 0,
+          job_allowance: 0,
+          month: selectedMonth.month,
+          night_work_allowance: 0,
+          overtime_pay: 0,
+          salary: 0,
+          saturday_work_allowance: 0,
+          total_salary: 0,
+          total_salary_except_tax: 0,
+          tax: {
+            employment_insurance: 0,
+            health_tax: 0,
+            income_tax: 0,
+            long_term_care_insurance: 0,
+            national_pension: 0,
+            resident_tax: 0,
+            year_end_tax_settlement: 0,
+            total_tax: 0,
           },
         },
       },
     },
-  );
+  });
 
   const employeeMonthAttitude = personalAttitudeData?.attitude.find(
     item => item.month === selectedMonth.year + selectedMonth.month,
@@ -167,12 +180,21 @@ const Select = ({
   ]);
 
   const onsubmit = async (data: SalaryRegistrationFormTypes) => {
-    await updateSalaryData(data, employee_number, selectedMonth.year, selectedMonth.month);
+    showPopup();
+    const confirm = await waitForUserConfirmation(confirmState);
+    if (confirm) {
+      await updateSalaryData(data, employee_number, selectedMonth.year, selectedMonth.month);
+      setConfirmState({ popup: false, confirmResult: undefined });
+      await refetch();
+    }
   };
 
   const onDelete = async () => {
     await deleteSalaryData(employee_number, selectedMonth.year, selectedMonth.month);
+    setAlertState(true);
+    refetch();
   };
+
   return (
     <form onSubmit={handleSubmit(onsubmit)}>
       <Card>
@@ -209,7 +231,9 @@ const Select = ({
 
             {isData && (
               <div className="text-right mt-3">
-                <Button type="submit">수정</Button>
+                <Button type="submit" className="mr-3">
+                  수정
+                </Button>
                 <Button type="button" onClick={onDelete}>
                   삭제
                 </Button>
@@ -218,6 +242,18 @@ const Select = ({
           </CardContent>
         </ScrollArea>
       </Card>
+      <CustomAlert
+        alertState={alertState}
+        setAlertState={setAlertState}
+        title="삭제 완료"
+        text="데이터가 삭제되었습니다."
+      />
+      <CustomConfirm
+        confirmState={confirmState}
+        setConfirmState={setConfirmState}
+        title="급여 대장 수정"
+        text="급여 대장을 수정하시겠습니까?"
+      />
     </form>
   );
 };

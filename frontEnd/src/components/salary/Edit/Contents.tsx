@@ -27,7 +27,7 @@ const Contents = memo(() => {
   const { employee_number } = useParams();
 
   const [
-    { data: personalSalaryData },
+    { data: personalSalaryData, refetch },
     { data: memberPersonalData },
     { data: personalAttitudeData },
     { data: memberSalaryPersonalData },
@@ -51,7 +51,7 @@ const Contents = memo(() => {
       },
     ],
   });
-
+  personalSalaryData;
   return (
     <div className="grid grid-cols-[2fr_1fr] gap-6">
       {memberPersonalData ? (
@@ -60,6 +60,7 @@ const Contents = memo(() => {
           personalSalaryData={personalSalaryData}
           personalAttitudeData={personalAttitudeData}
           memberSalaryPersonalData={memberSalaryPersonalData}
+          refetch={refetch}
         />
       ) : (
         <None />

@@ -16,17 +16,22 @@ import useDateStore from "@/store/date-store";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { postSalaryData } from "@/server/fetchCreateData";
 import { useNavigate, useParams } from "react-router-dom";
+import CustomConfirm from "@/shared/alert/CustomConfirm";
+import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 
 const Select = ({
   personalMemberData,
   personalSalaryData,
   personalAttitudeData,
   memberSalaryPersonalData,
+  refetch,
 }: {
   personalMemberData: MemberDataTypes;
   personalSalaryData: SalaryDataTypes;
   personalAttitudeData: ExceptCommute;
   memberSalaryPersonalData: MemberSalaryDataTypes;
+  refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<SalaryDataTypes, unknown>>;
 }) => {
   const { year, month } = useDateStore();
   const { employee_number } = useParams();
@@ -35,6 +40,14 @@ const Select = ({
     year: year.toString(),
     month: month.toString(),
   });
+  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
+    popup: false,
+    confirmResult: undefined,
+  });
+
+  const showPopup = () => {
+    setConfirmState({ popup: true, confirmResult: undefined });
+  };
 
   const navigate = useNavigate();
 
@@ -72,8 +85,6 @@ const Select = ({
       },
     },
   });
-  // console.log(formState.defaultValues);
-  // 해당 년월에 맞는 데이터가 이미 있는지
 
   // 근태기록
   const employeeMonthAttitude = personalAttitudeData?.attitude.find(
@@ -212,7 +223,14 @@ const Select = ({
   ]);
 
   const onsubmit = async (data: SalaryRegistrationFormTypes) => {
-    await postSalaryData(data, employee_number, selectedMonth.year, selectedMonth.month);
+    showPopup();
+    const confirm = await waitForUserConfirmation(confirmState);
+    if (confirm) {
+      await postSalaryData(data, employee_number, selectedMonth.year, selectedMonth.month);
+      setConfirmState({ popup: false, confirmResult: undefined });
+      await refetch();
+      reset();
+    }
   };
 
   return (
@@ -250,6 +268,12 @@ const Select = ({
           </CardContent>
         </ScrollArea>
       </Card>
+      <CustomConfirm
+        confirmState={confirmState}
+        setConfirmState={setConfirmState}
+        title="급여 현황 등록"
+        text="급여 현황을 등록하시겠습니까?"
+      />
     </form>
   );
 };

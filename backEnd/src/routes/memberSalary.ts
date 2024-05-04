@@ -28,19 +28,6 @@ module.exports = function (app: any, MemberSalary: any) {
     }
   });
 
-  // 데이터 삽입
-  // app.post("/memberSalary", async (req: any, res: any) => {
-  //   const { id } = req.params;
-
-  //   try {
-  //     const newMemberSalary = new MemberSalary(req.body);
-  //     const result = await newMemberSalary.save();
-  //     res.status(201).json(result);
-  //   } catch (err: any) {
-  //     res.status(500).json({ error: err.message });
-  //   }
-  // });
-
   app.post("/memberSalary/:id", async (req: any, res: any) => {
     const { id } = req.params;
     let result;
@@ -57,6 +44,33 @@ module.exports = function (app: any, MemberSalary: any) {
       res.status(201).json(result);
     } catch (err: any) {
       res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.delete("/memberSalary/:id/:year/:month", async (req: any, res: any) => {
+    const { id, year, month } = req.params;
+
+    try {
+      const result = await MemberSalary.updateOne(
+        { employee_number: id, "data.year": year },
+        {
+          $pull: {
+            data: {
+              year: year,
+              month: month,
+            },
+          },
+        }
+      );
+
+      if (result.modifiedCount > 0) {
+        res.status(200).json({ message: "Salary data deleted successfully" });
+      } else {
+        res.status(404).json({ message: "Salary data not found" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error" });
     }
   });
 };
