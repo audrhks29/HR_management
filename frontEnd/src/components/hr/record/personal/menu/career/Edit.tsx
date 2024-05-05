@@ -1,30 +1,26 @@
+import { useFieldArray, useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+
 import { CardContent, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { useFieldArray, useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useParams } from "react-router-dom";
+
 import { updateEduCareerData } from "@/server/fetchUpdateData";
-import { useState } from "react";
-import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
-import CustomConfirm from "@/shared/alert/CustomConfirm";
 
 const Edit = ({
   personalData,
   refetch,
   setEditMode,
+  setAlertState,
 }: {
   personalData: MemberDataTypes | undefined;
   refetch: () => void;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+  setAlertState: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { employee_number } = useParams();
-
-  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
-    popup: false,
-    confirmResult: undefined,
-  });
 
   const {
     register,
@@ -59,18 +55,11 @@ const Edit = ({
     name: "memberData.career",
   });
 
-  const showPopup = () => {
-    setConfirmState({ popup: true, confirmResult: undefined });
-  };
-
   const onSubmit = async (data: MemberEduCareerUpdateFormTypes) => {
-    showPopup();
-    const confirm = await waitForUserConfirmation(confirmState);
-    if (confirm) {
-      await updateEduCareerData(data, employee_number);
-      refetch();
-      setEditMode(false);
-    }
+    await updateEduCareerData(data, employee_number);
+    setAlertState(true);
+    refetch();
+    setEditMode(false);
   };
 
   return (
@@ -178,7 +167,7 @@ const Edit = ({
                       id={`memberData.edu.${index}.admission_date`}
                       {...register(`memberData.edu.${index}.admission_date`, {
                         pattern: {
-                          value: /(\d{4})년 (\d{2})월 (\d{2})일/,
+                          value: /(\d{4})년 (\d{2})월 (\d{2})일$/,
                           message: "알맞은 형식을 입력해주세요. 예) 2020년 01월 01일",
                         },
                       })}
@@ -191,7 +180,7 @@ const Edit = ({
                       id={`memberData.edu.${index}.graduation_date`}
                       {...register(`memberData.edu.${index}.graduation_date`, {
                         pattern: {
-                          value: /(\d{4})년 (\d{2})월 (\d{2})일/,
+                          value: /(\d{4})년 (\d{2})월 (\d{2})일$/,
                           message: "알맞은 형식을 입력해주세요. 예) 2020년 01월 01일",
                         },
                       })}
@@ -265,7 +254,7 @@ const Edit = ({
                       id={`memberData.career.${index}.join_date`}
                       {...register(`memberData.career.${index}.join_date`, {
                         pattern: {
-                          value: /(\d{4})년 (\d{2})월 (\d{2})일/,
+                          value: /(\d{4})년 (\d{2})월 (\d{2})일$/,
                           message: "알맞은 형식을 입력해주세요. 예) 2020년 01월 01일",
                         },
                       })}
@@ -278,7 +267,7 @@ const Edit = ({
                       id={`memberData.career.${index}.leave_date`}
                       {...register(`memberData.career.${index}.leave_date`, {
                         pattern: {
-                          value: /(\d{4})년 (\d{2})월 (\d{2})일/,
+                          value: /(\d{4})년 (\d{2})월 (\d{2})일$/,
                           message: "알맞은 형식을 입력해주세요. 예) 2020년 01월 01일",
                         },
                       })}
@@ -326,13 +315,6 @@ const Edit = ({
       <div className="text-right">
         <Button type="submit">등록</Button>
       </div>
-
-      <CustomConfirm
-        confirmState={confirmState}
-        setConfirmState={setConfirmState}
-        title="구성원 학력 및 경력 수정"
-        text="구성원의 학력 및 경력을 수정하시겠습니까?"
-      />
     </form>
   );
 };

@@ -41,7 +41,7 @@ module.exports = function (app: any, Member: any) {
         },
         { new: true }
       );
-      console.log(updatedMember);
+
       if (!updatedMember) {
         return res.status(404).json({ error: "직원을 찾을 수 없습니다." });
       }
@@ -53,6 +53,22 @@ module.exports = function (app: any, Member: any) {
       return res
         .status(500)
         .json({ error: "데이터를 업데이트하는 중 오류가 발생했습니다." });
+    }
+  });
+
+  app.delete("/member/:id", async (req: any, res: any) => {
+    const { id } = req.params;
+
+    try {
+      const result = await Member.deleteOne({ employee_number: id });
+
+      if (result) {
+        res.status(200).json({ message: "Member data deleted successfully" });
+      } else {
+        res.status(404).json({ message: "Member data not found" });
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
     }
   });
 };

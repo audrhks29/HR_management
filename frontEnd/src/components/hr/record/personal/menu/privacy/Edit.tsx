@@ -1,23 +1,16 @@
 import { memo, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSuspenseQueries } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import { CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@/components/ui/table";
 
-import { cn } from "@/lib/utils";
 import { getOrganizationData, getPositionData, getRankData } from "@/server/fetchReadData";
-import { useSuspenseQueries } from "@tanstack/react-query";
-import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
 import { updateEduCareerData } from "@/server/fetchUpdateData";
-import CustomConfirm from "@/shared/alert/CustomConfirm";
 
 type QueryResult<T> = {
   data: T;
@@ -34,19 +27,16 @@ const Edit = memo(
     personalData,
     refetch,
     setEditMode,
+    setAlertState,
   }: {
     personalData: MemberDataTypes | undefined;
     refetch: () => void;
     setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+    setAlertState: React.Dispatch<React.SetStateAction<boolean>>;
   }) => {
     const { employee_number } = useParams();
 
     const navigate = useNavigate();
-
-    const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
-      popup: false,
-      confirmResult: undefined,
-    });
 
     const [defaultArmy, setDefaultArmy] = useState({
       division: personalData?.military.division,
@@ -61,12 +51,6 @@ const Edit = memo(
       position: personalData?.position,
       rank: personalData?.rank,
     });
-
-    const defaultJoinDate = String(personalData?.date_of_joining);
-    const formattedDate = defaultJoinDate.replace(/(\d{4})년 (\d{2})월 (\d{2})일/, "$1-$2-$3");
-    const dateObject = new Date(formattedDate);
-
-    const [date, setDate] = useState<Date | undefined>(dateObject);
 
     const [{ data: rankData }, { data: organizationData }, { data: positionData }] =
       useSuspenseQueries<SuspenseQueriesResult>({
@@ -150,31 +134,13 @@ const Edit = memo(
       }
     }, [employee_number]);
 
-    const showPopup = () => {
-      setConfirmState({ popup: true, confirmResult: undefined });
-    };
-
     const onSubmit = async (data: MemberPrivacyUpdateFormTypes) => {
-      showPopup();
-      const confirm = await waitForUserConfirmation(confirmState);
-      if (confirm) {
-        await updateEduCareerData(data, employee_number);
-        refetch();
-        setEditMode(false);
-
-        const newParams = watch(`memberData.employee_number`);
-        navigate(`/hr_record/${newParams}`);
-      }
-    };
-
-    const onSelectDate = (value: Date) => {
-      setDate(value);
-      const year = value.getFullYear();
-      const month = String(value.getMonth() + 1).padStart(2, "0");
-      const date = String(value.getDate()).padStart(2, "0");
-      const date_of_joining = `${year}년 ${month}월 ${date}일`;
-
-      setValue(`memberData.date_of_joining`, date_of_joining);
+      await updateEduCareerData(data, employee_number);
+      refetch();
+      setAlertState(true);
+      setEditMode(false);
+      const newParams = watch(`memberData.employee_number`);
+      navigate(`/hr_record/${newParams}`);
     };
 
     return (
@@ -443,19 +409,16 @@ const Edit = memo(
               <TableRow className="cursor-pointer h-[53px]">
                 <TableHead className="w-24 text-left border-r">입사일</TableHead>
                 <TableCell className="p-2">
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant={"outline"}
-                        className={cn("text-left font-normal", !date && "text-muted-foreground")}>
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {date ? format(date, "PPP") : <span>Pick a date</span>}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0">
-                      <Calendar mode="single" selected={date} onSelect={value => onSelectDate(value)} initialFocus />
-                    </PopoverContent>
-                  </Popover>
+                  <Input
+                    type="text"
+                    id={`memberData.date_of_joining`}
+                    {...register(`memberData.date_of_joining`, {
+                      pattern: {
+                        value: /(\d{4})년 (\d{2})월 (\d{2})일$/,
+                        message: "알맞은 형식을 입력해주세요. 예) 2020년 01월 01일",
+                      },
+                    })}
+                  />
                 </TableCell>
               </TableRow>
             </TableBody>
@@ -465,13 +428,6 @@ const Edit = memo(
         <div className="text-right">
           <Button type="submit">수정완료</Button>
         </div>
-
-        <CustomConfirm
-          confirmState={confirmState}
-          setConfirmState={setConfirmState}
-          title="구성원 정보 수정"
-          text="구성원 정보를 수정하시겠습니까?"
-        />
       </form>
     );
   },

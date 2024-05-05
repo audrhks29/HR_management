@@ -47,6 +47,24 @@ module.exports = function (app: any, MemberSalary: any) {
     }
   });
 
+  app.delete("/memberSalary/:id", async (req: any, res: any) => {
+    const { id } = req.params;
+
+    try {
+      const result = await MemberSalary.deleteOne({ employee_number: id });
+
+      if (result) {
+        res
+          .status(200)
+          .json({ message: "memberSalary data deleted successfully" });
+      } else {
+        res.status(404).json({ message: "memberSalary data not found" });
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   app.delete("/memberSalary/:id/:year/:month", async (req: any, res: any) => {
     const { id, year, month } = req.params;
 

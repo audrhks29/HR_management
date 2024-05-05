@@ -16,8 +16,15 @@ import { postMemberData } from "@/server/fetchCreateData";
 
 import CustomConfirm from "@/shared/alert/CustomConfirm";
 import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { getMemberData } from "@/server/fetchReadData";
 
 const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => {
+  const { data, refetch }: { data: MemberDataTypes | undefined; refetch: () => void } = useSuspenseQuery({
+    queryKey: [`memberData}`],
+    queryFn: getMemberData,
+  });
+
   const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
     popup: false,
     confirmResult: undefined,
@@ -59,6 +66,7 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
     if (confirm) {
       postMemberData(data);
       setConfirmState({ popup: false, confirmResult: undefined });
+      refetch();
       navigate("/hr_record");
     }
   };

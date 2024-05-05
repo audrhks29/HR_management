@@ -8,16 +8,6 @@ module.exports = function (app: any, Organization: any) {
     }
   });
 
-  // app.post("/organization", async (req: any, res: any) => {
-  //   try {
-  //     const newOrganization = new Organization(req.body);
-  //     // const result = await newOrganization.save();
-  //     // res.status(201).json(result);
-  //   } catch (err: any) {
-  //     res.status(500).json({ error: err.message });
-  //   }
-  // });
-
   app.put("/organization", async (req: any, res: any) => {
     try {
       const organizationData = req.body.organizationData;

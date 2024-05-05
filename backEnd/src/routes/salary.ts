@@ -111,6 +111,22 @@ module.exports = function (app: any, Salary: any) {
     }
   });
 
+  app.delete("/salary/:id", async (req: any, res: any) => {
+    const { id } = req.params;
+
+    try {
+      const result = await Salary.deleteOne({ employee_number: id });
+
+      if (result) {
+        res.status(200).json({ message: "Salary data deleted successfully" });
+      } else {
+        res.status(404).json({ message: "Salary data not found" });
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   app.delete("/salary/:id/:year/:month", async (req: any, res: any) => {
     const { id, year, month } = req.params;
 

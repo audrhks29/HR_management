@@ -101,4 +101,20 @@ module.exports = function (app: any, Work: any) {
       res.status(500).json({ error: err.message });
     }
   });
+
+  app.delete("/work/:id", async (req: any, res: any) => {
+    const { id } = req.params;
+
+    try {
+      const result = await Work.deleteOne({ employee_number: id });
+
+      if (result) {
+        res.status(200).json({ message: "Work data deleted successfully" });
+      } else {
+        res.status(404).json({ message: "Work data not found" });
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 };
