@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Edit from "./Edit";
 
-const Career = memo(({ personalData }: { personalData: MemberDataTypes | undefined }) => {
+const Career = memo(({ personalData, refetch }: { personalData: MemberDataTypes | undefined; refetch: () => void }) => {
   const { employee_number } = useParams();
   const [editMode, setEditMode] = useState(false);
 
@@ -31,7 +31,11 @@ const Career = memo(({ personalData }: { personalData: MemberDataTypes | undefin
           <Button type="button">삭제</Button>
         </div>
       </PersonalTitle>
-      {editMode ? <Edit personalData={personalData} /> : <Display personalData={personalData} />}
+      {editMode ? (
+        <Edit personalData={personalData} refetch={refetch} setEditMode={setEditMode} />
+      ) : (
+        <Display personalData={personalData} />
+      )}
     </Card>
   );
 });

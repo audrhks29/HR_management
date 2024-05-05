@@ -95,7 +95,6 @@ const Index = memo(() => {
     try {
       await postCommuteTimeData(newData, id);
 
-      // 데이터가 등록된 후에 calculateAttitude 함수 호출
       const updatedCommuteData = await refetchCommuteData();
       const attitudeData = calculateAttitude(updatedCommuteData.data, id);
       await postAttitudeData(attitudeData, id);

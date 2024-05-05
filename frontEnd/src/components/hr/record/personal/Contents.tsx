@@ -12,20 +12,21 @@ import Career from "./menu/career/Career";
 const Contents = memo(() => {
   const { employee_number } = useParams();
 
-  const { data: memberPersonalData }: { data: MemberDataTypes | undefined } = useSuspenseQuery({
-    queryKey: [`memberPersonalData/${employee_number}`],
-    queryFn: () => getMemberPersonalData(employee_number),
-  });
+  const { data: memberPersonalData, refetch }: { data: MemberDataTypes | undefined; refetch: () => void } =
+    useSuspenseQuery({
+      queryKey: [`memberPersonalData/${employee_number}`],
+      queryFn: () => getMemberPersonalData(employee_number),
+    });
 
   return (
     <div className="mt-5">
       <TabsContent value="info" className="grid grid-cols-[2fr_1fr] gap-6">
-        <Privacy personalData={memberPersonalData} />
+        <Privacy personalData={memberPersonalData} refetch={refetch} />
         <MemberList menuLink="hr_record" height="800px" displayAmount={11} />
       </TabsContent>
 
-      <TabsContent value="edu_career" className="">
-        <Career personalData={memberPersonalData} />
+      <TabsContent value="edu_career">
+        <Career personalData={memberPersonalData} refetch={refetch} />
       </TabsContent>
     </div>
   );

@@ -1,17 +1,38 @@
-import { CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import { CardContent, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-const Edit = ({ personalData }: { personalData: MemberDataTypes | undefined }) => {
+import { useParams } from "react-router-dom";
+import { updateEduCareerData } from "@/server/fetchUpdateData";
+import { useState } from "react";
+import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
+import CustomConfirm from "@/shared/alert/CustomConfirm";
+
+const Edit = ({
+  personalData,
+  refetch,
+  setEditMode,
+}: {
+  personalData: MemberDataTypes | undefined;
+  refetch: () => void;
+  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const { employee_number } = useParams();
+
+  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
+    popup: false,
+    confirmResult: undefined,
+  });
+
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
     setValue,
-  } = useForm({
+  } = useForm<MemberEduCareerUpdateFormTypes>({
     defaultValues: {
       memberData: {
         career: personalData?.career.map(career => career),
@@ -38,8 +59,18 @@ const Edit = ({ personalData }: { personalData: MemberDataTypes | undefined }) =
     name: "memberData.career",
   });
 
-  const onSubmit = data => {
-    console.log(data);
+  const showPopup = () => {
+    setConfirmState({ popup: true, confirmResult: undefined });
+  };
+
+  const onSubmit = async (data: MemberEduCareerUpdateFormTypes) => {
+    showPopup();
+    const confirm = await waitForUserConfirmation(confirmState);
+    if (confirm) {
+      await updateEduCareerData(data, employee_number);
+      refetch();
+      setEditMode(false);
+    }
   };
 
   return (
@@ -218,7 +249,7 @@ const Edit = ({ personalData }: { personalData: MemberDataTypes | undefined }) =
 
           <TableBody>
             {careerFields && careerFields.length > 0 ? (
-              careerFields?.map((career, index) => (
+              careerFields?.map((_, index) => (
                 <TableRow key={index} className="cursor-pointer">
                   <TableCell className="p-2">
                     <Input
@@ -295,6 +326,13 @@ const Edit = ({ personalData }: { personalData: MemberDataTypes | undefined }) =
       <div className="text-right">
         <Button type="submit">등록</Button>
       </div>
+
+      <CustomConfirm
+        confirmState={confirmState}
+        setConfirmState={setConfirmState}
+        title="구성원 학력 및 경력 수정"
+        text="구성원의 학력 및 경력을 수정하시겠습니까?"
+      />
     </form>
   );
 };

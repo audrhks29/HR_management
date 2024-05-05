@@ -29,3 +29,11 @@ export const updateSalaryData = async (
   const response = await axios.put(`http://localhost:5000/salary/${id}/${year}/${month}`, updateData);
   return response.data;
 };
+
+export const updateEduCareerData = async (
+  updateData: MemberPrivacyUpdateFormTypes | MemberEduCareerUpdateFormTypes,
+  id: string | undefined,
+) => {
+  const response = await axios.put(`http://localhost:5000/member/${id}`, updateData);
+  return response.data;
+};

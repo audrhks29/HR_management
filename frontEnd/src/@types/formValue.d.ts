@@ -24,3 +24,13 @@ interface MemberSalaryFormTypes {
     };
   };
 }
+
+type MemberPrivacyTypes = Omit<MemberDataTypes, "career" | "edu">;
+interface MemberPrivacyUpdateFormTypes {
+  memberData: MemberPrivacyTypes;
+}
+
+type MemberEduCareerTypes = Pick<MemberDataTypes, "career" | "edu">;
+interface MemberEduCareerUpdateFormTypes {
+  memberData: MemberEduCareerTypes;
+}

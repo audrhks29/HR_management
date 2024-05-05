@@ -28,4 +28,31 @@ module.exports = function (app: any, Member: any) {
       res.status(500).json({ error: err.message });
     }
   });
+
+  app.put("/member/:id", async (req: any, res: any) => {
+    try {
+      const { id } = req.params;
+      const updateData = req.body.memberData;
+
+      const updatedMember = await Member.findOneAndUpdate(
+        { employee_number: id },
+        {
+          $set: updateData,
+        },
+        { new: true }
+      );
+      console.log(updatedMember);
+      if (!updatedMember) {
+        return res.status(404).json({ error: "직원을 찾을 수 없습니다." });
+      }
+      return res.status(200).json({
+        message: "데이터가 업데이트되었습니다.",
+        member: updatedMember,
+      });
+    } catch (error: any) {
+      return res
+        .status(500)
+        .json({ error: "데이터를 업데이트하는 중 오류가 발생했습니다." });
+    }
+  });
 };
