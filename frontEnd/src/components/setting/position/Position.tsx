@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Minus, Plus } from "lucide-react";
@@ -6,11 +6,12 @@ import { Minus, Plus } from "lucide-react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 import { updateSettingPositionData } from "@/server/fetchUpdateData";
-import { Button } from "@/components/ui/button";
-import CustomConfirm from "@/shared/alert/CustomConfirm";
-import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
 
 type FormValues = {
   position_setting: PositionSettingTypes[];
@@ -25,31 +26,41 @@ const Position = memo(({ data, refetch }: { data: PositionSettingTypes[]; refetc
       })),
     },
   });
+  const { toast } = useToast();
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "position_setting",
   });
 
-  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
-    popup: false,
-    confirmResult: undefined,
-  });
-
   const navigate = useNavigate();
 
-  const showPopup = () => {
-    setConfirmState({ popup: true, confirmResult: undefined });
-  };
-
   const onSubmit: SubmitHandler<FormValues> = async updateData => {
-    showPopup();
-    const confirm = await waitForUserConfirmation(confirmState);
-    if (confirm) {
-      await updateSettingPositionData(updateData);
-      refetch();
-      navigate("/setting");
-    }
+    toast({
+      title: "직책 수정",
+      description: "직책 수정을 완료하시겠습니까?",
+      action: (
+        <>
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            onClick={() => submitData(updateData)}
+            altText="확인">
+            확인
+          </ToastAction>
+          <ToastAction className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" altText="취소">
+            취소
+          </ToastAction>
+        </>
+      ),
+    });
+  };
+  const submitData = async (updateData: { position_setting: PositionSettingTypes[] }) => {
+    await updateSettingPositionData(updateData);
+    toast({
+      description: "완료되었습니다",
+    });
+    refetch();
+    navigate("/setting");
   };
 
   return (
@@ -94,13 +105,6 @@ const Position = memo(({ data, refetch }: { data: PositionSettingTypes[]; refetc
           ))}
         </CardContent>
       </Card>
-
-      <CustomConfirm
-        confirmState={confirmState}
-        setConfirmState={setConfirmState}
-        title="직책"
-        text="직책을 저장하시겠습니까?"
-      />
     </form>
   );
 });

@@ -1,22 +1,22 @@
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
-import PersonalTitle from "@/shared/PersonalTitle";
 import { ArrowBigDownDash, ArrowBigUpDashIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
-import { ErrorMessage } from "@hookform/error-message";
-import { postMemberSalaryPersonalData } from "@/server/fetchCreateData";
-import { useParams } from "react-router-dom";
 
-import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
-import CustomConfirm from "@/shared/alert/CustomConfirm";
-import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
+import PersonalTitle from "@/shared/PersonalTitle";
+
+import { postMemberSalaryPersonalData } from "@/server/fetchCreateData";
 import { deleteMemberSalaryData } from "@/server/fetchDeleteData";
-import CustomAlert from "@/shared/alert/CustomAlert";
 
 const Select = ({
   personalData,
@@ -28,18 +28,8 @@ const Select = ({
   refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<MemberSalaryDataTypes, unknown>>;
 }) => {
   const { employee_number } = useParams();
-
   const [isEditMode, setIsEditMode] = useState(false);
-  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
-    popup: false,
-    confirmResult: undefined,
-  });
-
-  const [alertState, setAlertState] = useState(false);
-
-  const showPopup = () => {
-    setConfirmState({ popup: true, confirmResult: undefined });
-  };
+  const { toast } = useToast();
 
   const {
     register,
@@ -69,20 +59,60 @@ const Select = ({
   }, [employee_number]);
 
   const onSubmit = async (data: MemberSalaryFormTypes) => {
-    showPopup();
-    const confirm = await waitForUserConfirmation(confirmState);
-    if (confirm) {
-      await postMemberSalaryPersonalData(data, employee_number);
-      setConfirmState({ popup: false, confirmResult: undefined });
-      setIsEditMode(false);
-      await refetch();
-      reset();
-    }
+    toast({
+      title: "급여 현황 등록",
+      description: "급여 현황을 등록하시겠습니까?",
+      action: (
+        <>
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            onClick={() => submitData(data)}
+            altText="확인">
+            확인
+          </ToastAction>
+          <ToastAction className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" altText="취소">
+            취소
+          </ToastAction>
+        </>
+      ),
+    });
+  };
+
+  const submitData = async (data: MemberSalaryFormTypes) => {
+    await postMemberSalaryPersonalData(data, employee_number);
+    toast({
+      description: "완료되었습니다",
+    });
+    setIsEditMode(false);
+    await refetch();
+    reset();
+  };
+
+  const deleteData = async (year: string, month: string) => {
+    toast({
+      title: "급여 현황",
+      description: "선택된 급여 현황을 삭제하시겠습니까?",
+      action: (
+        <>
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            onClick={() => onDelete(year, month)}
+            altText="확인">
+            확인
+          </ToastAction>
+          <ToastAction className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" altText="취소">
+            취소
+          </ToastAction>
+        </>
+      ),
+    });
   };
 
   const onDelete = async (year: string, month: string) => {
     await deleteMemberSalaryData(employee_number, year, month);
-    setAlertState(true);
+    toast({
+      description: "완료되었습니다",
+    });
     await refetch();
     reset();
   };
@@ -206,7 +236,7 @@ const Select = ({
                       <Button
                         type="button"
                         className="button text-center"
-                        onClick={() => onDelete(item.year, item.month)}>
+                        onClick={() => deleteData(item.year, item.month)}>
                         삭제
                       </Button>
                     </TableCell>
@@ -217,18 +247,6 @@ const Select = ({
           </Table>
         </CardContent>
       </Card>
-      <CustomAlert
-        alertState={alertState}
-        setAlertState={setAlertState}
-        title="삭제 완료"
-        text="데이터가 삭제되었습니다."
-      />
-      <CustomConfirm
-        confirmState={confirmState}
-        setConfirmState={setConfirmState}
-        title="급여 현황 등록"
-        text="급여 현황을 등록하시겠습니까?"
-      />
     </form>
   );
 };

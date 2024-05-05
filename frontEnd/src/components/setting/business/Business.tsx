@@ -9,13 +9,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { updateSettingBusinessData } from "@/server/fetchUpdateData";
-import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 const Business = memo(({ data, refetch }: { data: BusinessSettingTypes; refetch: () => void }) => {
   interface FormValues {
     business_setting: BusinessSettingTypes;
   }
-
+  const { toast } = useToast();
   const { register, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       business_setting: {
@@ -31,25 +32,35 @@ const Business = memo(({ data, refetch }: { data: BusinessSettingTypes; refetch:
     },
   });
 
-  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
-    popup: false,
-    confirmResult: undefined,
-  });
-
   const navigate = useNavigate();
 
-  const showPopup = () => {
-    setConfirmState({ popup: true, confirmResult: undefined });
+  const onSubmit: SubmitHandler<FormValues> = async updateData => {
+    toast({
+      title: "회사정보 수정",
+      description: "회사정보 수정을 완료하시겠습니까?",
+      action: (
+        <>
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            onClick={() => submitData(updateData)}
+            altText="확인">
+            확인
+          </ToastAction>
+          <ToastAction className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" altText="취소">
+            취소
+          </ToastAction>
+        </>
+      ),
+    });
   };
 
-  const onSubmit: SubmitHandler<FormValues> = async updateData => {
-    showPopup();
-    const confirm = await waitForUserConfirmation(confirmState);
-    if (confirm) {
-      await updateSettingBusinessData(updateData);
-      refetch();
-      navigate("/setting");
-    }
+  const submitData = async (updateData: FormValues) => {
+    await updateSettingBusinessData(updateData);
+    toast({
+      description: "완료되었습니다",
+    });
+    refetch();
+    navigate("/setting");
   };
 
   return (

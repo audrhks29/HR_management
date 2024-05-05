@@ -15,10 +15,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useToast } from "@/components/ui/use-toast";
+
 import { calculateAttitude } from "../function/calculateAttitude";
 import { calculateWorkingHours } from "../function/calculateWorkingHours";
+
 import useDateStore from "@/store/date-store";
-import CustomAlert from "@/shared/alert/CustomAlert";
+import { ToastAction } from "@/components/ui/toast";
 
 interface FormValues {
   commuteTime: {
@@ -42,6 +45,7 @@ type SuspenseQueriesResult = [QueryResult<MemberDataTypes[]>, QueryResult<Except
 
 const Index = memo(() => {
   const { todayDate } = useDateStore();
+  const { toast } = useToast();
 
   const [{ data: memberData }, { data: commuteData, refetch: refetchCommuteData }] =
     useSuspenseQueries<SuspenseQueriesResult>({
@@ -61,6 +65,7 @@ const Index = memo(() => {
     handleSubmit,
     setValue,
     formState: { errors },
+    formState: { submitCount },
   } = useForm<FormValues>({
     defaultValues: {
       commuteTime: data.map(member => {
@@ -81,6 +86,23 @@ const Index = memo(() => {
       }),
     },
   });
+
+  useEffect(() => {
+    if (errors.commuteTime) {
+      toast({
+        variant: "destructive",
+        title: "알맞은 형식을 입력해주세요",
+        description: "예) 2020년 01월 01일",
+        action: (
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            altText="재시도">
+            재시도
+          </ToastAction>
+        ),
+      });
+    }
+  }, [submitCount]);
 
   const onSubmit = (index: number, id: string) => async (data: FormValues) => {
     const newCommuteTime = data.commuteTime[index];
@@ -113,9 +135,6 @@ const Index = memo(() => {
       <Card className="h-[850px] relative">
         <CardContent className="py-8">
           <FilterCondition data={memberData} setSearchData={setSearchData} />
-          {errors?.commuteTime && (
-            <p className="text-[12px] text-destructive font-bold">알맞은 형식을 입력해주세요. 예) 2020년 01월 01일</p>
-          )}
           <Table className="text-center">
             <TableHeader className="bg-muted">
               <TableRow>

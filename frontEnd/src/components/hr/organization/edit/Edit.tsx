@@ -1,16 +1,14 @@
-import { memo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { memo } from "react";
 import { useForm } from "react-hook-form";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 import { updateOrganizationData } from "@/server/fetchUpdateData";
-import CustomConfirm from "@/shared/alert/CustomConfirm";
 
 import Quarter from "./Quarter";
-import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
-
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 const Edit = memo(
   ({
     organizationData,
@@ -21,16 +19,7 @@ const Edit = memo(
     refetch: () => void;
     setIsEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   }) => {
-    const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
-      popup: false,
-      confirmResult: undefined,
-    });
-
-    const navigate = useNavigate();
-
-    const showPopup = () => {
-      setConfirmState({ popup: true, confirmResult: undefined });
-    };
+    const { toast } = useToast();
 
     const { register, handleSubmit, control } = useForm<OrganizationFormTypes>({
       defaultValues: {
@@ -47,15 +36,34 @@ const Edit = memo(
     });
 
     const onSubmit = async (data: { organizationData: OrganizationDataTypes[] }) => {
-      showPopup();
-      const confirm = await waitForUserConfirmation(confirmState);
-      if (confirm) {
-        await updateOrganizationData(data);
-        setConfirmState({ popup: false, confirmResult: undefined });
-        setIsEditMode(false);
-        await refetch();
-        navigate("/hr_organization_chart");
-      }
+      toast({
+        title: "조직도 수정",
+        description: "조직도 수정을 완료하시겠습니까?",
+        action: (
+          <>
+            <ToastAction
+              className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+              onClick={() => submitData(data)}
+              altText="확인">
+              확인
+            </ToastAction>
+            <ToastAction
+              className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+              altText="취소">
+              취소
+            </ToastAction>
+          </>
+        ),
+      });
+    };
+
+    const submitData = async (data: { organizationData: OrganizationDataTypes[] }) => {
+      await updateOrganizationData(data);
+      toast({
+        description: "수정되었습니다.",
+      });
+      await refetch();
+      setIsEditMode(false);
     };
 
     return (
@@ -78,13 +86,6 @@ const Edit = memo(
           </Button>
           <Button type="submit">확인</Button>
         </div>
-
-        <CustomConfirm
-          confirmState={confirmState}
-          setConfirmState={setConfirmState}
-          title="조직도 수정"
-          text="수정사항을 반영하시겠습니까?"
-        />
       </form>
     );
   },

@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -10,14 +10,15 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
 import { updateSettingRankData } from "@/server/fetchUpdateData";
-import CustomConfirm from "@/shared/alert/CustomConfirm";
-import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 type FormValues = {
   rank_setting: RankSettingTypes[];
 };
 
 const Rank = memo(({ data, refetch }: { data: RankSettingTypes[]; refetch: () => void }) => {
+  const { toast } = useToast();
   const { register, handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
       rank_setting: data.map(rank => ({
@@ -32,25 +33,35 @@ const Rank = memo(({ data, refetch }: { data: RankSettingTypes[]; refetch: () =>
     name: "rank_setting",
   });
 
-  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
-    popup: false,
-    confirmResult: undefined,
-  });
-
   const navigate = useNavigate();
 
-  const showPopup = () => {
-    setConfirmState({ popup: true, confirmResult: undefined });
+  const onSubmit: SubmitHandler<FormValues> = async updateData => {
+    toast({
+      title: "직급 수정",
+      description: "직급 수정을 완료하시겠습니까?",
+      action: (
+        <>
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            onClick={() => submitData(updateData)}
+            altText="확인">
+            확인
+          </ToastAction>
+          <ToastAction className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" altText="취소">
+            취소
+          </ToastAction>
+        </>
+      ),
+    });
   };
 
-  const onSubmit: SubmitHandler<FormValues> = async updateData => {
-    showPopup();
-    const confirm = await waitForUserConfirmation(confirmState);
-    if (confirm) {
-      await updateSettingRankData(updateData);
-      refetch();
-      navigate("/setting");
-    }
+  const submitData = async (updateData: { rank_setting: RankSettingTypes[] }) => {
+    await updateSettingRankData(updateData);
+    toast({
+      description: "완료되었습니다",
+    });
+    refetch();
+    navigate("/setting");
   };
 
   return (
@@ -90,13 +101,6 @@ const Rank = memo(({ data, refetch }: { data: RankSettingTypes[]; refetch: () =>
           ))}
         </CardContent>
       </Card>
-
-      <CustomConfirm
-        confirmState={confirmState}
-        setConfirmState={setConfirmState}
-        title="직급"
-        text="직급을 저장하시겠습니까?"
-      />
     </form>
   );
 });

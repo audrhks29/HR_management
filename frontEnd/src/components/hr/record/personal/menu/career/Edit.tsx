@@ -10,19 +10,20 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import { updateEduCareerData } from "@/server/fetchUpdateData";
 import { ErrorMessage } from "@hookform/error-message";
 import React from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 const Edit = ({
   personalData,
   refetch,
   setEditMode,
-  setAlertState,
 }: {
   personalData: MemberDataTypes | undefined;
   refetch: () => void;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
-  setAlertState: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { employee_number } = useParams();
+  const { toast } = useToast();
 
   const {
     register,
@@ -58,9 +59,31 @@ const Edit = ({
   });
 
   const onSubmit = async (data: MemberEduCareerUpdateFormTypes) => {
+    toast({
+      title: "학력 및 경력 수정",
+      description: "학력 및 경력을 수정하시겠습니까?",
+      action: (
+        <>
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            onClick={() => submitData(data)}
+            altText="확인">
+            확인
+          </ToastAction>
+          <ToastAction className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" altText="취소">
+            취소
+          </ToastAction>
+        </>
+      ),
+    });
+  };
+
+  const submitData = async (data: MemberEduCareerUpdateFormTypes) => {
     await updateEduCareerData(data, employee_number);
-    setAlertState(true);
     refetch();
+    toast({
+      description: "수정되었습니다.",
+    });
     setEditMode(false);
   };
 
@@ -358,7 +381,7 @@ const Edit = ({
       </CardContent>
 
       <div className="text-right">
-        <Button type="submit">등록</Button>
+        <Button type="submit">수정완료</Button>
       </div>
     </form>
   );

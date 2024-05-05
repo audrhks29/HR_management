@@ -88,7 +88,7 @@ const FilterCondition = memo(
 
         <div className="border-0 w-96 ml-auto relative">
           <div className="text-right">
-            <Button className="w-28" onClick={() => setIsFilterPopup(!isFilterPopup)}>
+            <Button className="w-28" type="button" onClick={() => setIsFilterPopup(!isFilterPopup)}>
               <i className="mr-2">
                 <FaFilter />
               </i>
@@ -132,7 +132,7 @@ const FilterCondition = memo(
                 </Table>
 
                 <div className="text-right">
-                  <Button className="w-28" onClick={handleResetCategory}>
+                  <Button className="w-28" type="button" onClick={handleResetCategory}>
                     <span>초기화</span>
                   </Button>
                 </div>

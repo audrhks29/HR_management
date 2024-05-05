@@ -36,6 +36,7 @@ import Setting from "./pages/setting/Setting";
 import Salary_registration from "./pages/salary/Salary_registration";
 import useDateStore from "./store/date-store";
 import Salary_edit from "./pages/salary/Salary_edit";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   const { setToday } = useDateStore();
@@ -88,6 +89,7 @@ function App() {
               </Routes>
             </Suspense>
           </div>
+          <Toaster />
         </HashRouter>
       </ThemeProvider>
     </QueryClientProvider>

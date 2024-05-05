@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 import PersonalTitle from "@/shared/PersonalTitle";
 import MonthPicker from "@/shared/MonthPicker";
@@ -13,14 +15,12 @@ import Salary from "./table/Salary";
 import Deduct from "./table/Deduct";
 
 import useDateStore from "@/store/date-store";
-import { ScrollArea } from "@/components/ui/scroll-area";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { updateSalaryData } from "@/server/fetchUpdateData";
 import { deleteSalaryData } from "@/server/fetchDeleteData";
-import CustomAlert from "@/shared/alert/CustomAlert";
-import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
-import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
-import CustomConfirm from "@/shared/alert/CustomConfirm";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 const Select = ({
   personalMemberData,
@@ -44,18 +44,9 @@ const Select = ({
     year: year.toString(),
     month: month.toString(),
   });
-  const [alertState, setAlertState] = useState(false);
 
-  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
-    popup: false,
-    confirmResult: undefined,
-  });
+  const { toast } = useToast();
 
-  const showPopup = () => {
-    setConfirmState({ popup: true, confirmResult: undefined });
-  };
-
-  // 해당 년월에 맞는 데이터가 이미 있는지
   const isData = personalSalaryData?.data
     .find(item => item.year === selectedMonth.year)
     ?.salary.find(item => item.month === selectedMonth.month);
@@ -180,18 +171,59 @@ const Select = ({
   ]);
 
   const onsubmit = async (data: SalaryRegistrationFormTypes) => {
-    showPopup();
-    const confirm = await waitForUserConfirmation(confirmState);
-    if (confirm) {
-      await updateSalaryData(data, employee_number, selectedMonth.year, selectedMonth.month);
-      setConfirmState({ popup: false, confirmResult: undefined });
-      await refetch();
-    }
+    toast({
+      title: "급여대장 수정",
+      description: "급여대장을 수정하시겠습니까?",
+      action: (
+        <>
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            onClick={() => submitData(data)}
+            altText="확인">
+            확인
+          </ToastAction>
+          <ToastAction className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" altText="취소">
+            취소
+          </ToastAction>
+        </>
+      ),
+    });
+  };
+
+  const submitData = async (data: SalaryRegistrationFormTypes) => {
+    await updateSalaryData(data, employee_number, selectedMonth.year, selectedMonth.month);
+    toast({
+      description: "완료되었습니다",
+    });
+    await refetch();
   };
 
   const onDelete = async () => {
+    toast({
+      variant: "destructive",
+      title: "급여 대장 삭제",
+      description: "급여 대장을 삭제하시겠습니까?",
+      action: (
+        <>
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            onClick={deleteData}
+            altText="확인">
+            확인
+          </ToastAction>
+          <ToastAction className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" altText="취소">
+            취소
+          </ToastAction>
+        </>
+      ),
+    });
+  };
+
+  const deleteData = async () => {
     await deleteSalaryData(employee_number, selectedMonth.year, selectedMonth.month);
-    setAlertState(true);
+    toast({
+      description: "삭제되었습니다",
+    });
     refetch();
   };
 
@@ -211,7 +243,7 @@ const Select = ({
             {!isData ? (
               <div className="text-center">
                 <div>
-                  {selectedMonth.year}년 {selectedMonth.month}월의 데이터가 등록되어있지 않습니다..
+                  {selectedMonth.year}년 {selectedMonth.month}월의 데이터가 등록되어있지 않습니다
                 </div>
                 <Button
                   type="button"
@@ -242,18 +274,6 @@ const Select = ({
           </CardContent>
         </ScrollArea>
       </Card>
-      <CustomAlert
-        alertState={alertState}
-        setAlertState={setAlertState}
-        title="삭제 완료"
-        text="데이터가 삭제되었습니다."
-      />
-      <CustomConfirm
-        confirmState={confirmState}
-        setConfirmState={setConfirmState}
-        title="급여 대장 수정"
-        text="급여 대장을 수정하시겠습니까?"
-      />
     </form>
   );
 };

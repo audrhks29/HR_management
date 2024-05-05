@@ -14,26 +14,18 @@ import { memberRegisterFormData } from "@/assets/memberRegisterFormData";
 
 import { postMemberData } from "@/server/fetchCreateData";
 
-import CustomConfirm from "@/shared/alert/CustomConfirm";
 import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
 import { getMemberData } from "@/server/fetchReadData";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 const Contents = memo(() => {
   const { data, refetch }: { data: MemberDataTypes | undefined; refetch: () => void } = useSuspenseQuery({
     queryKey: [`memberData}`],
     queryFn: getMemberData,
   });
-
-  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
-    popup: false,
-    confirmResult: undefined,
-  });
-
   const navigate = useNavigate();
-
-  const showPopup = () => {
-    setConfirmState({ popup: true, confirmResult: undefined });
-  };
+  const { toast } = useToast();
 
   const {
     register,
@@ -67,16 +59,33 @@ const Contents = memo(() => {
   });
 
   const onSubmit = async (data: { employeeData: MemberDataTypes }) => {
-    showPopup();
-    const confirm = await waitForUserConfirmation(confirmState);
-    if (confirm) {
-      postMemberData(data);
-      setConfirmState({ popup: false, confirmResult: undefined });
-      refetch();
-      navigate("/hr_record");
-    }
+    toast({
+      title: "구성원 정보 등록",
+      description: "구성원 정보를 등록하시겠습니까?",
+      action: (
+        <>
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            onClick={() => submitData(data)}
+            altText="확인">
+            확인
+          </ToastAction>
+          <ToastAction className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" altText="취소">
+            취소
+          </ToastAction>
+        </>
+      ),
+    });
   };
 
+  const submitData = async (data: { employeeData: MemberDataTypes }) => {
+    postMemberData(data);
+    toast({
+      description: "구성원 정보가 등록되었습니다",
+    });
+    refetch();
+    navigate("/hr_record");
+  };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
       <div className="grid gap-6">
@@ -106,13 +115,6 @@ const Contents = memo(() => {
           <Button type="submit">제출</Button>
         </div>
       </div>
-
-      <CustomConfirm
-        confirmState={confirmState}
-        setConfirmState={setConfirmState}
-        title="구성원 추가"
-        text="구성원을 추가하시겠습니까?"
-      />
     </form>
   );
 });

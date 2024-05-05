@@ -16,9 +16,10 @@ import useDateStore from "@/store/date-store";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { postSalaryData } from "@/server/fetchCreateData";
 import { useNavigate, useParams } from "react-router-dom";
-import CustomConfirm from "@/shared/alert/CustomConfirm";
-import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
+
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 const Select = ({
   personalMemberData,
@@ -40,16 +41,9 @@ const Select = ({
     year: year.toString(),
     month: month.toString(),
   });
-  const [confirmState, setConfirmState] = useState<{ popup: boolean; confirmResult: boolean | undefined }>({
-    popup: false,
-    confirmResult: undefined,
-  });
-
-  const showPopup = () => {
-    setConfirmState({ popup: true, confirmResult: undefined });
-  };
 
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const isData = personalSalaryData?.data
     .find(item => item.year === selectedMonth.year)
@@ -223,14 +217,32 @@ const Select = ({
   ]);
 
   const onsubmit = async (data: SalaryRegistrationFormTypes) => {
-    showPopup();
-    const confirm = await waitForUserConfirmation(confirmState);
-    if (confirm) {
-      await postSalaryData(data, employee_number, selectedMonth.year, selectedMonth.month);
-      setConfirmState({ popup: false, confirmResult: undefined });
-      await refetch();
-      reset();
-    }
+    toast({
+      title: "급여 대장 작성",
+      description: "급여 대장을 작성하시겠습니까?",
+      action: (
+        <>
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            onClick={() => submitData(data)}
+            altText="확인">
+            확인
+          </ToastAction>
+          <ToastAction className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" altText="취소">
+            취소
+          </ToastAction>
+        </>
+      ),
+    });
+  };
+
+  const submitData = async (data: SalaryRegistrationFormTypes) => {
+    await postSalaryData(data, employee_number, selectedMonth.year, selectedMonth.month);
+    toast({
+      description: "완료되었습니다.",
+    });
+    await refetch();
+    reset();
   };
 
   return (
@@ -268,12 +280,6 @@ const Select = ({
           </CardContent>
         </ScrollArea>
       </Card>
-      <CustomConfirm
-        confirmState={confirmState}
-        setConfirmState={setConfirmState}
-        title="급여 현황 등록"
-        text="급여 현황을 등록하시겠습니까?"
-      />
     </form>
   );
 };

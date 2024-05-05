@@ -40,7 +40,7 @@ const MonthPicker = memo(
 
     return (
       <div className={cn("absolute top-8 right-1/2 translate-x-1/2 z-10", className)}>
-        <Button variant="outline" onClick={() => setIsMonthPicker(!isMonthPicker)}>
+        <Button variant="outline" type="button" onClick={() => setIsMonthPicker(!isMonthPicker)}>
           <Calendar className="mr-3" />
           {selectedMonth.year}년 {selectedMonth.month}월
         </Button>

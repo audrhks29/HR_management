@@ -21,11 +21,11 @@ export const deletePersonalWorkData = async (id: string | undefined) => {
 };
 
 export const deletePersonalMemberSalaryData = async (id: string | undefined) => {
-  const response = await axios.delete(`http://localhost:5000//${id}`);
+  const response = await axios.delete(`http://localhost:5000/memberSalary/${id}`);
   return response.data;
 };
 
 export const deletePersonalSalaryData = async (id: string | undefined) => {
-  const response = await axios.delete(`http://localhost:5000/work/${id}`);
+  const response = await axios.delete(`http://localhost:5000/salary/${id}`);
   return response.data;
 };

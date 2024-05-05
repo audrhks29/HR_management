@@ -12,6 +12,8 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from "@/components/u
 import { getOrganizationData, getPositionData, getRankData } from "@/server/fetchReadData";
 import { updateEduCareerData } from "@/server/fetchUpdateData";
 import { ErrorMessage } from "@hookform/error-message";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 type QueryResult<T> = {
   data: T;
@@ -28,15 +30,13 @@ const Edit = memo(
     personalData,
     refetch,
     setEditMode,
-    setAlertState,
   }: {
     personalData: MemberDataTypes | undefined;
     refetch: () => void;
     setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
-    setAlertState: React.Dispatch<React.SetStateAction<boolean>>;
   }) => {
     const { employee_number } = useParams();
-
+    const { toast } = useToast();
     const navigate = useNavigate();
 
     const [defaultArmy, setDefaultArmy] = useState({
@@ -142,9 +142,33 @@ const Edit = memo(
     }, [employee_number]);
 
     const onSubmit = async (data: MemberPrivacyUpdateFormTypes) => {
+      toast({
+        title: "정보 수정",
+        description: "정보 수정을 완료하시겠습니까?",
+        action: (
+          <>
+            <ToastAction
+              className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+              onClick={() => submitData(data)}
+              altText="확인">
+              확인
+            </ToastAction>
+            <ToastAction
+              className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+              altText="취소">
+              취소
+            </ToastAction>
+          </>
+        ),
+      });
+    };
+
+    const submitData = async (data: MemberPrivacyUpdateFormTypes) => {
       await updateEduCareerData(data, employee_number);
       refetch();
-      setAlertState(true);
+      toast({
+        description: "완료되었습니다",
+      });
       setEditMode(false);
       const newParams = watch(`memberData.employee_number`);
       navigate(`/hr_record/${newParams}`);
