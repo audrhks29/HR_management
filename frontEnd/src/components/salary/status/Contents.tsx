@@ -30,7 +30,7 @@ const Contents = memo(() => {
         },
       ],
     });
-  // console.log(memberSalaryPersonalData);
+
   return (
     <div className="grid grid-cols-[2fr_1fr] gap-6">
       {memberPersonalData ? (

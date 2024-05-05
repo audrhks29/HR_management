@@ -19,7 +19,7 @@ const Quarter = memo(
       control,
       name: "organizationData",
     });
-    // console.log(fields);
+
     return (
       <div>
         <Button

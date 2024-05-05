@@ -11,6 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from "@/components/u
 
 import { getOrganizationData, getPositionData, getRankData } from "@/server/fetchReadData";
 import { updateEduCareerData } from "@/server/fetchUpdateData";
+import { ErrorMessage } from "@hookform/error-message";
 
 type QueryResult<T> = {
   data: T;
@@ -70,7 +71,13 @@ const Edit = memo(
         ],
       });
 
-    const { register, handleSubmit, setValue, watch } = useForm<MemberPrivacyUpdateFormTypes>({
+    const {
+      register,
+      handleSubmit,
+      setValue,
+      watch,
+      formState: { errors },
+    } = useForm<MemberPrivacyUpdateFormTypes>({
       defaultValues: {
         memberData: {
           employee_number: "",
@@ -159,28 +166,115 @@ const Edit = memo(
               </TableBody>
             </Table>
           </div>
+
           <Table className="text-center border">
             <TableBody>
               <TableRow className="cursor-pointer h-[53px]">
                 <TableHead className="w-32 text-left border-r">핸드폰 번호</TableHead>
                 <TableCell className="p-2">
-                  <Input id={`memberData.phone_number`} {...register(`memberData.phone_number`, { required: true })} />
+                  <Input
+                    id={`memberData.phone_number`}
+                    {...register(`memberData.phone_number`, {
+                      required: "핸드폰 번호를 입력해주세요",
+                      pattern: {
+                        value: /^\d+$/,
+                        message: "숫자로만 입력해주세요",
+                      },
+                      minLength: {
+                        value: 10,
+                        message: "핸드폰 번호는 10 ~ 11자리 입니다.",
+                      },
+                      maxLength: {
+                        value: 11,
+                        message: "핸드폰 번호는 10 ~ 11자리 입니다.",
+                      },
+                    })}
+                  />
+
+                  <ErrorMessage
+                    errors={errors}
+                    name="memberData.phone_number"
+                    render={({ message }) => <p className="text-destructive font-bold text-[12px]">{message}</p>}
+                  />
                 </TableCell>
               </TableRow>
 
               <TableRow className="cursor-pointer h-[53px]">
                 <TableHead className="w-32 text-left border-r">주민등록번호</TableHead>
-                <TableCell className="p-2 flex items-center">
-                  <Input id={`memberData.rrn_front`} {...register(`memberData.rrn_front`, { required: true })} />
-                  &nbsp;-&nbsp;
-                  <Input id={`memberData.rrn_back`} {...register(`memberData.rrn_back`, { required: true })} />
+                <TableCell className="p-2">
+                  <div className="flex items-center">
+                    <Input
+                      id={`memberData.rrn_front`}
+                      {...register(`memberData.rrn_front`, {
+                        required: "주민등록번호 앞자리를 입력해주세요",
+                        minLength: {
+                          value: 6,
+                          message: "주민등록번호 앞자리는 6자리 입니다.",
+                        },
+                        maxLength: {
+                          value: 6,
+                          message: "주민등록번호 앞자리는 6자리 입니다.",
+                        },
+                        pattern: {
+                          value: /^\d+$/,
+                          message: "숫자로만 입력해주세요",
+                        },
+                      })}
+                    />
+                    &nbsp;-&nbsp;
+                    <Input
+                      id={`memberData.rrn_back`}
+                      {...register(`memberData.rrn_back`, {
+                        required: "주민등록번호 뒷자리를 입력해주세요",
+                        minLength: {
+                          value: 7,
+                          message: "주민등록번호 뒷자리는 7자리 입니다.",
+                        },
+                        maxLength: {
+                          value: 7,
+                          message: "주민등록번호 뒷자리는 7자리 입니다.",
+                        },
+                        pattern: {
+                          value: /^\d+$/,
+                          message: "숫자로만 입력해주세요",
+                        },
+                      })}
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    errors={errors}
+                    name="memberData.rrn_front"
+                    render={({ message }) => <p className="text-destructive font-bold text-[12px]">{message}</p>}
+                  />
+
+                  <ErrorMessage
+                    errors={errors}
+                    name="memberData.rrn_back"
+                    render={({ message }) => <p className="text-destructive font-bold text-[12px]">{message}</p>}
+                  />
                 </TableCell>
               </TableRow>
 
               <TableRow className="cursor-pointer h-[53px]">
                 <TableHead className="w-32 text-left border-r">이메일</TableHead>
                 <TableCell className="p-2">
-                  <Input id={`memberData.email`} {...register(`memberData.email`)} />
+                  <Input
+                    type="email"
+                    id={`memberData.email`}
+                    {...register(`memberData.email`, {
+                      pattern: {
+                        value: /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                        message: "올바른 이메일을 작성해주세요",
+                      },
+                    })}
+                  />
+
+                  <ErrorMessage
+                    errors={errors}
+                    name="memberData.email"
+                    render={({ message }) => <p className="text-destructive font-bold text-[12px]">{message}</p>}
+                  />
                 </TableCell>
               </TableRow>
 
@@ -258,7 +352,19 @@ const Edit = memo(
                 <TableCell className="p-2">
                   <Input
                     id={`memberData.employee_number`}
-                    {...register(`memberData.employee_number`, { required: true })}
+                    {...register(`memberData.employee_number`, {
+                      required: "사원번호를 입력해주세요.",
+                      maxLength: {
+                        value: 16,
+                        message: "16자리 이내로 입력해주세요",
+                      },
+                    })}
+                  />
+
+                  <ErrorMessage
+                    errors={errors}
+                    name="memberData.employee_number"
+                    render={({ message }) => <p className="text-destructive font-bold text-[12px]">{message}</p>}
                   />
                 </TableCell>
               </TableRow>
@@ -415,9 +521,15 @@ const Edit = memo(
                     {...register(`memberData.date_of_joining`, {
                       pattern: {
                         value: /(\d{4})년 (\d{2})월 (\d{2})일$/,
-                        message: "알맞은 형식을 입력해주세요. 예) 2020년 01월 01일",
+                        message: `알맞은 형식을 입력해주세요. 예) 2020년 01월 01일`,
                       },
                     })}
+                  />
+
+                  <ErrorMessage
+                    errors={errors}
+                    name="memberData.date_of_joining"
+                    render={({ message }) => <p className="text-destructive font-bold text-[12px]">{message}</p>}
                   />
                 </TableCell>
               </TableRow>

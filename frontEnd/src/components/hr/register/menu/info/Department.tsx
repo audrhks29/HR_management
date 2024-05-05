@@ -1,20 +1,13 @@
-import { useState } from "react";
+import { useSuspenseQueries } from "@tanstack/react-query";
+import { FieldErrors, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useSuspenseQueries } from "@tanstack/react-query";
 
 import { getOrganizationData, getPositionData, getRankData } from "@/server/fetchReadData";
-import { UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 type QueryResult<T> = {
   data: T;
@@ -30,10 +23,12 @@ const Department = ({
   register,
   setValue,
   watch,
+  errors,
 }: {
   register: UseFormRegister<MemberRegistrationFormTypes>;
   setValue: UseFormSetValue<MemberRegistrationFormTypes>;
   watch: UseFormWatch<MemberRegistrationFormTypes>;
+  errors: FieldErrors<MemberRegistrationFormTypes>;
 }) => {
   const [{ data: rankData }, { data: organizationData }, { data: positionData }] =
     useSuspenseQueries<SuspenseQueriesResult>({
@@ -53,25 +48,11 @@ const Department = ({
       ],
     });
 
-  const [date, setDate] = useState<Date | undefined>(new Date());
-
   const watchQuarter = watch("employeeData.quarter");
   const watchDepart = watch("employeeData.department");
 
-  const handleJoinDate = (value: Date | undefined) => {
-    if (value) {
-      const year = String(value?.getFullYear());
-      const month = String(value?.getMonth() + 1).padStart(2, "0");
-      const date = String(value?.getDate()).padStart(2, "0");
-      const valueDate = `${year}${month}${date}`;
-
-      setDate(value);
-      setValue(`employeeData.date_of_joining`, valueDate);
-    }
-  };
-
   return (
-    <Card className="h-[700px] p-8">
+    <Card className="p-8">
       <CardHeader>
         <CardTitle>부서정보</CardTitle>
       </CardHeader>
@@ -81,10 +62,18 @@ const Department = ({
           <Label htmlFor="employee_number">사원번호</Label>
           <Input
             id="employee_number"
-            {...(register("employeeData.employee_number"),
-            {
-              required: true,
+            {...register("employeeData.employee_number", {
+              required: "사원번호를 입력해주세요.",
+              maxLength: {
+                value: 16,
+                message: "16자리 이내로 입력해주세요",
+              },
             })}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="employeeData.employee_number"
+            render={({ message }) => <p className="text-destructive font-bold text-[12px]">{message}</p>}
           />
         </div>
 
@@ -217,22 +206,26 @@ const Department = ({
         </div>
 
         {/* 입사일자 */}
-        <div>
+        <div className="space-y-1 w-2/5">
           <Label>입사일자</Label>
+          <Input
+            id={`employeeData.date_of_joining`}
+            type="text"
+            placeholder="2020년 01월 01일"
+            {...register(`employeeData.date_of_joining`, {
+              required: "입사일자를 입력해주세요.",
+              pattern: {
+                value: /(\d{4})년 (\d{2})월 (\d{2})일$/,
+                message: "알맞은 형식을 입력해주세요. 예) 2020년 01월 01일",
+              },
+            })}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="employeeData.date_of_joining"
+            render={({ message }) => <p className="text-destructive font-bold text-[12px]">{message}</p>}
+          />
         </div>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant={"outline"}
-              className={cn("w-[280px] justify-start text-left font-normal", !date && "text-muted-foreground")}>
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              {date ? format(date, "PPP") : <span>Pick a date</span>}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0">
-            <Calendar mode="single" selected={date} onSelect={value => handleJoinDate(value)} initialFocus />
-          </PopoverContent>
-        </Popover>
       </CardContent>
     </Card>
   );

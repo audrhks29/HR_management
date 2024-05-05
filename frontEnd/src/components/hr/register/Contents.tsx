@@ -1,8 +1,8 @@
 import { memo, useState } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useFieldArray, useForm } from "react-hook-form";
 
-import { TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 
 import Privacy from "./menu/info/Privacy";
@@ -16,10 +16,9 @@ import { postMemberData } from "@/server/fetchCreateData";
 
 import CustomConfirm from "@/shared/alert/CustomConfirm";
 import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { getMemberData } from "@/server/fetchReadData";
 
-const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => {
+const Contents = memo(() => {
   const { data, refetch }: { data: MemberDataTypes | undefined; refetch: () => void } = useSuspenseQuery({
     queryKey: [`memberData}`],
     queryFn: getMemberData,
@@ -36,7 +35,14 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
     setConfirmState({ popup: true, confirmResult: undefined });
   };
 
-  const { register, control, handleSubmit, setValue, watch } = useForm<MemberRegistrationFormTypes>({
+  const {
+    register,
+    control,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<MemberRegistrationFormTypes>({
     defaultValues: {
       employeeData: memberRegisterFormData,
     },
@@ -73,30 +79,33 @@ const Contents = memo(({ handleNextClick }: { handleNextClick: () => void }) => 
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
-      <TabsContent value="info" className="grid grid-cols-2 gap-6">
-        <Privacy register={register} setValue={setValue} />
-        <Department register={register} setValue={setValue} watch={watch} />
-        <div className="text-right col-span-2">
-          <Button type="button" onClick={handleNextClick}>
-            다음
-          </Button>
+      <div className="grid gap-6">
+        <div className="grid grid-cols-2 gap-6">
+          <Privacy register={register} setValue={setValue} errors={errors} />
+          <Department register={register} setValue={setValue} watch={watch} errors={errors} />
         </div>
-      </TabsContent>
 
-      <TabsContent value="edu_career" className="flex flex-col gap-6">
-        <Education register={register} setValue={setValue} fields={eduFields} append={eduAppend} remove={eduRemove} />
+        <Education
+          register={register}
+          setValue={setValue}
+          fields={eduFields}
+          append={eduAppend}
+          remove={eduRemove}
+          errors={errors}
+        />
         <Career
           register={register}
           setValue={setValue}
           fields={careerFields}
           append={careerAppend}
           remove={careerRemove}
+          errors={errors}
         />
 
         <div className="text-right">
           <Button type="submit">제출</Button>
         </div>
-      </TabsContent>
+      </div>
 
       <CustomConfirm
         confirmState={confirmState}

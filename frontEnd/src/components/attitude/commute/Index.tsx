@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 import { useSuspenseQueries } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
@@ -18,6 +18,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { calculateAttitude } from "../function/calculateAttitude";
 import { calculateWorkingHours } from "../function/calculateWorkingHours";
 import useDateStore from "@/store/date-store";
+import CustomAlert from "@/shared/alert/CustomAlert";
 
 interface FormValues {
   commuteTime: {
@@ -55,8 +56,12 @@ const Index = memo(() => {
 
   const [data, setData] = useState<MemberDataTypes[]>(memberData);
   const [searchData, setSearchData] = useState<MemberDataTypes[]>([]);
-
-  const { register, handleSubmit, setValue } = useForm<FormValues>({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<FormValues>({
     defaultValues: {
       commuteTime: data.map(member => {
         const employeeCommute = commuteData?.find(item => item.employee_number === member.employee_number);
@@ -108,6 +113,9 @@ const Index = memo(() => {
       <Card className="h-[850px] relative">
         <CardContent className="py-8">
           <FilterCondition data={memberData} setSearchData={setSearchData} />
+          {errors?.commuteTime && (
+            <p className="text-[12px] text-destructive font-bold">알맞은 형식을 입력해주세요. 예) 2020년 01월 01일</p>
+          )}
           <Table className="text-center">
             <TableHeader className="bg-muted">
               <TableRow>
@@ -148,7 +156,12 @@ const Index = memo(() => {
                       ) : (
                         <Input
                           id={`commuteTime.${index}.commuteTime.working_time`}
-                          {...register(`commuteTime.${index}.commuteTime.working_time`)}
+                          {...register(`commuteTime.${index}.commuteTime.working_time`, {
+                            pattern: {
+                              value: /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/,
+                              message: "알맞은 형식을 입력해주세요 예)00:00",
+                            },
+                          })}
                           placeholder="예) 09:00"
                         />
                       )}
@@ -181,7 +194,12 @@ const Index = memo(() => {
                       ) : (
                         <Input
                           id={`commuteTime.${index}.commuteTime.quitting_time`}
-                          {...register(`commuteTime.${index}.commuteTime.quitting_time`)}
+                          {...register(`commuteTime.${index}.commuteTime.quitting_time`, {
+                            pattern: {
+                              value: /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/,
+                              message: "알맞은 형식을 입력해주세요 예)00:00",
+                            },
+                          })}
                           type="text"
                           placeholder="예) 18:00"
                         />
