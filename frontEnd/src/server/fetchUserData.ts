@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const postUserData = async (user_id: string, user_password: string) => {
   try {
-    const response = await axios.post("http://localhost:5000/user", {
+    const response = await axios.post("http://localhost:5000/login", {
       user_id,
       user_password,
     });

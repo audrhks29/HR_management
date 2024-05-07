@@ -46,7 +46,7 @@ const LoginForm = memo(() => {
   };
 
   const handleLoginGuest = () => {
-    findUserData("sample", "sample");
+    findUserData("sample", "sample123@");
   };
 
   return (

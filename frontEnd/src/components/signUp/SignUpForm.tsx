@@ -1,17 +1,19 @@
 import { memo, useRef } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { useForm } from "react-hook-form";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { ScrollArea } from "../ui/scroll-area";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { userSignUp } from "@/server/fetchUserData";
-import { ToastAction } from "../ui/toast";
-import { useToast } from "../ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
+
 const SignUpForm = memo(() => {
   const { toast } = useToast();
   const navigate = useNavigate();

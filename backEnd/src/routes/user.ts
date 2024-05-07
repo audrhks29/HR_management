@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 
 module.exports = function (app: any, User: any) {
-  app.post("/user", async (req: any, res: any) => {
+  app.post("/login", async (req: any, res: any) => {
     const { user_id, user_password } = req.body;
     try {
       const user = await User.findOne({ user_id });
