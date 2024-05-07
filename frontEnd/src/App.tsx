@@ -37,6 +37,7 @@ import Salary_registration from "./pages/salary/Salary_registration";
 import useDateStore from "./store/date-store";
 import Salary_edit from "./pages/salary/Salary_edit";
 import { Toaster } from "./components/ui/toaster";
+import SignUp from "./pages/user/SignUp";
 
 function App() {
   const { setToday } = useDateStore();
@@ -56,6 +57,7 @@ function App() {
             <Suspense fallback={<Loading />}>
               <Routes>
                 <Route path="/" index element={<Login />} />
+                <Route path="/signup" index element={<SignUp />} />
                 {/* <Route path="/" index element={<Test />} /> */}
                 <Route path="/home" element={<Home />} />
 

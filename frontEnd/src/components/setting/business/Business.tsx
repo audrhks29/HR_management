@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -75,80 +75,118 @@ const Business = memo(({ data, refetch }: { data: BusinessSettingTypes; refetch:
         <Separator />
         <CardContent className="py-3">
           <div className="grid grid-cols-[130px_1fr] my-2 items-center gap-3">
-            <Button variant="outline">상호</Button>
+            <Button variant="outline" type="button">
+              상호
+            </Button>
             <Input
               id={"business_setting.name_of_company"}
-              {...register("business_setting.name_of_company")}
+              {...register("business_setting.name_of_company", {
+                required: "상호를 입력해주세요",
+                maxLength: {
+                  value: 20,
+                  message: "20글자 내로 입력해주세요",
+                },
+              })}
               type="text"
-              placeholder="상호"
             />
           </div>
 
           <div className="grid grid-cols-[130px_1fr] my-2 items-center gap-3">
-            <Button variant="outline">사업장주소</Button>
+            <Button variant="outline" type="button">
+              사업장주소
+            </Button>
             <Input
               id={"business_setting.business_address"}
-              {...register("business_setting.business_address")}
+              {...register("business_setting.business_address", {
+                required: "사업장 주소를 입력해주세요",
+              })}
               type="text"
-              placeholder="사업장주소"
             />
           </div>
 
           <div className="grid grid-cols-[130px_1fr] my-2 items-center gap-3">
-            <Button variant="outline">사업자등록번호</Button>
+            <Button variant="outline" type="button">
+              사업자등록번호
+            </Button>
             <Input
               id={"business_setting.business_registration_number"}
-              {...register("business_setting.business_registration_number")}
+              {...register("business_setting.business_registration_number", {
+                pattern: {
+                  value: /\d{3}-\d{2}-\d{5}/,
+                  message: "사업자등록번호 형식이 맞지 않습니다. 예)000-00-00000",
+                },
+              })}
               type="text"
-              placeholder="예) 000-00-0000"
             />
           </div>
 
           <div className="grid grid-cols-[130px_1fr] my-2 items-center gap-3">
-            <Button variant="outline">법인등록번호</Button>
+            <Button variant="outline" type="button">
+              법인등록번호
+            </Button>
             <Input
               id={"business_setting.resident_registration_number"}
-              {...register("business_setting.resident_registration_number")}
+              {...register("business_setting.resident_registration_number", {
+                pattern: { value: /\d{6}-\d{7}/, message: "법인등록번호 형식이 맞지 않습니다. 예)000000-0000000" },
+              })}
               type="text"
-              placeholder="예) 000000-0000000"
+              placeholder="000000-0000000"
             />
           </div>
 
           <div className="grid grid-cols-[130px_1fr] my-2 items-center gap-3">
-            <Button variant="outline">개업일</Button>
+            <Button variant="outline" type="button">
+              개업일
+            </Button>
             <Input
               id={"business_setting.date_of_business_commencement"}
-              {...register("business_setting.date_of_business_commencement")}
+              {...register("business_setting.date_of_business_commencement", {
+                pattern: {
+                  value: /(\d{4})년 (\d{2})월 (\d{2})일$/,
+                  message: "입사일에 알맞은 형식을 입력해주세요. 예) 2020년 01월 01일",
+                },
+              })}
               type="text"
               placeholder="0000년 00월 00일"
             />
           </div>
 
           <div className="grid grid-cols-[130px_1fr] my-2 items-center gap-3">
-            <Button variant="outline">사업장 대표번호</Button>
+            <Button variant="outline" type="button">
+              사업장 대표번호
+            </Button>
             <Input
               id={"business_setting.main_number"}
-              {...register("business_setting.main_number")}
+              {...register("business_setting.main_number", {
+                maxLength: { value: 11, message: "11글자 내로 입력해주세요." },
+              })}
               type="text"
               placeholder="000-000-0000"
             />
           </div>
 
           <div className="grid grid-cols-[130px_1fr] my-2 items-center gap-3">
-            <Button variant="outline">사업자 대표</Button>
+            <Button variant="outline" type="button">
+              사업자 대표
+            </Button>
             <Input
               id={"business_setting.name_of_representative"}
-              {...register("business_setting.name_of_representative")}
+              {...register("business_setting.name_of_representative", {
+                maxLength: { value: 20, message: "20글자 내로 입력해주세요." },
+              })}
               type="text"
-              placeholder="사업자 대표"
             />
           </div>
 
           <div className="grid grid-cols-[130px_1fr] my-2 items-center gap-3">
-            <Button variant="outline">업종</Button>
+            <Button variant="outline" type="button">
+              업종
+            </Button>
             <Input
               id={"business_setting.type_of_business"}
-              {...register("business_setting.type_of_business")}
+              {...register("business_setting.type_of_business", {
+                maxLength: { value: 30, message: "30글자 이내로 입력해주세요." },
+              })}
               type="text"
               placeholder="업종"
             />

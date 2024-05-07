@@ -26,6 +26,7 @@ const LoginForm = memo(() => {
 
   const findUserData = async (user_id: string, user_password: string) => {
     const userData = await postUserData(user_id, user_password);
+
     sessionStorage.setItem("user_id", userData.user_id);
     setUserInfo();
     try {
@@ -52,19 +53,15 @@ const LoginForm = memo(() => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Card className="w-[450px] text-center p-8">
         <CardHeader>
-          <CardTitle className="text-2xl">환영합니다</CardTitle>
+          <CardTitle>환영합니다</CardTitle>
         </CardHeader>
         <CardContent className="w-[350px] m-auto grid gap-4">
-          <div className="text-left">
-            <Label className="block mb-2" htmlFor="user_id">
-              아이디
-            </Label>
+          <div className="text-left space-y-1">
+            <Label htmlFor="user_id">아이디</Label>
             <Input id="user_id" type="text" placeholder="아이디" {...register("user_id")} />
           </div>
-          <div className="w-full text-left">
-            <Label className="block mb-2" htmlFor="user_password">
-              비밀번호
-            </Label>
+          <div className="text-left space-y-1">
+            <Label htmlFor="user_password">비밀번호</Label>
             <Input id="user_password" {...register("user_password")} type="password" placeholder="비밀번호" />
             <p className="text-muted-foreground mt-1 text-left text-[12px] cursor-pointer hover:text-primary">
               비밀번호를 잊으셨나요?
@@ -78,7 +75,7 @@ const LoginForm = memo(() => {
         <CardFooter className="text-[12px] w-[350px] m-auto flex-col items-start gap-1 text-muted-foreground">
           <div>
             <span className="mr-3">계정이 필요한가요?</span>
-            <Link to={""} className="hover:text-primary underline underline-offset-2">
+            <Link to={"/signup"} className="hover:text-primary underline underline-offset-2">
               회원가입
             </Link>
           </div>
