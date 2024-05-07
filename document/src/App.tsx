@@ -1,22 +1,61 @@
 /** @jsxImportSource @emotion/react */
 
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { Global } from "@emotion/react";
+import {
+  CssBaseline,
+  Divider,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
+import reset from "emotion-reset";
+import { ColorModeContext } from "./provider/ColorMode";
+
+import Header from "./layout/Header";
+import Home from "./pages/Home";
+import Introduce from "./pages/Introduce";
+import Download from "./pages/Download";
+
 function App() {
+  const [mode, setMode] = React.useState<"light" | "dark">("light");
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+      },
+    }),
+    []
+  );
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode]
+  );
+
   return (
-    <div
-      css={{
-        borderRadius: "6px",
-        border: "1px solid rgba(27, 31, 36, 0.15)",
-        backgroundColor: "rgb(246, 248, 250)",
-        color: "rgb(36, 41, 47)",
-        fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
-        fontWeight: "600",
-        fontSize: "14px",
-        padding: "5px 16px",
-        textAlign: "center",
-      }}
-    >
-      소개페이지 제작 예정
-    </div>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <Global styles={reset} />
+        <CssBaseline />
+
+        <BrowserRouter>
+          <Header />
+          <Divider variant="fullWidth" />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/introduce" element={<Introduce />} />
+            <Route path="/download" element={<Download />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 
