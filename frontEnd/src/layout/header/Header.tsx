@@ -1,10 +1,10 @@
 import { memo } from "react";
-
 import { useLocation } from "react-router-dom";
 
-import PageTitle from "@/layout/header/PageTitle";
-import { includeHashArray, someHashArray } from "@/assets/excludeHashList";
 import Index from "@/components/user/Index";
+import PageTitle from "@/layout/header/PageTitle";
+
+import { includeHashArray, someHashArray } from "@/assets/excludeHashList";
 
 const Header = memo(() => {
   const location = useLocation();

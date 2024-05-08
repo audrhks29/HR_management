@@ -38,6 +38,7 @@ import useDateStore from "./store/date-store";
 import Salary_edit from "./pages/salary/Salary_edit";
 import { Toaster } from "./components/ui/toaster";
 import SignUp from "./pages/user/SignUp";
+import Frame from "./layout/header/Frame";
 
 function App() {
   const { setToday } = useDateStore();
@@ -50,6 +51,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
         <HashRouter>
+          <Frame />
           <Header />
 
           <div className="flex justify-around">
