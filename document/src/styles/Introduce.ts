@@ -2,7 +2,13 @@ import { css } from "@emotion/react";
 
 export const IntroduceArticleGrid = css`
   display: grid;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: 3fr 4fr;
+  gap: 30px;
+`;
+
+export const IntroduceArticleRightGrid = css`
+  display: grid;
+  grid-template-columns: 4fr 3fr;
   gap: 30px;
 `;
 
