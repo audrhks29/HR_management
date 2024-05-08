@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -14,13 +14,12 @@ import { memberRegisterFormData } from "@/assets/memberRegisterFormData";
 
 import { postMemberData } from "@/server/fetchCreateData";
 
-import { waitForUserConfirmation } from "@/shared/alert/function/waitForUserConfirmation";
 import { getMemberData } from "@/server/fetchReadData";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 
 const Contents = memo(() => {
-  const { data, refetch }: { data: MemberDataTypes | undefined; refetch: () => void } = useSuspenseQuery({
+  const { refetch }: { data: MemberDataTypes | undefined; refetch: () => void } = useSuspenseQuery({
     queryKey: [`memberData}`],
     queryFn: getMemberData,
   });

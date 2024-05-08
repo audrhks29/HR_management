@@ -30,7 +30,7 @@ export default defineConfig({
   },
   base: "./",
   build: {
-    target: "electron-renderer",
+    target: "esnext",
     outDir: "dist",
     rollupOptions: {
       external: ["electron"],

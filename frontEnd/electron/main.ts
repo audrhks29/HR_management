@@ -27,13 +27,14 @@ const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
 
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
+    icon: path.join(process.env.VITE_PUBLIC, "/logo/logo_dark.svg"),
 
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,
       contextIsolation: true,
     },
+    resizable:false,
     autoHideMenuBar: true,
     width: 1680,
     height: 1000,
@@ -56,7 +57,7 @@ function createWindow() {
 
   win.once('ready-to-show', () => {
     splashWindow?.destroy();
-    win?.focus(); // 메인 윈도우에 포커스 주기
+    win?.focus(); 
   });
 
   if (VITE_DEV_SERVER_URL) {
@@ -85,8 +86,12 @@ function createSalaryPersonalWindow(url:string) {
     height: 880,
     autoHideMenuBar: true,
   })
-  
-  newWindow.loadURL(`http://localhost:5173/#/salary_history_personal/${url}`)
+ 
+  if (VITE_DEV_SERVER_URL) {
+    newWindow.loadURL(`http://localhost:5173/#/post`)
+  } else {
+    newWindow.loadFile(path.join(process.env.DIST, "index.html"),{hash:`salary_history_personal/${url}`});
+  }
   
   newWindow.on('closed', () => {
     newWindow = null
@@ -119,7 +124,7 @@ function createSalaryPersonalWindow(url:string) {
 //   }
 // });
 
-ipcMain.on('open-salary-personal-window', (event, url) => {
+ipcMain.on('open-salary-personal-window', (_, url) => {
   createSalaryPersonalWindow(url)
 })
 
@@ -129,31 +134,35 @@ function createPostWindow() {
     height: 600,
     autoHideMenuBar: true,
     webPreferences: {
-      nodeIntegration: false,
+      nodeIntegration: true,
       contextIsolation: true,
       preload: path.join(__dirname, "preload.js"),
     },
   })
-  
-  postWindow.loadURL(`http://localhost:5173/#/post`)
-  
+
+  if (VITE_DEV_SERVER_URL) {
+    postWindow.loadURL(`http://localhost:5173/#/post`)
+  } else {
+    postWindow.loadFile(path.join(process.env.DIST, "index.html"),{hash:"post"});
+  }
+
   postWindow.on('closed', () => {
     newWindow = null
   })
 }
 
-ipcMain.on('open-post-window', (event, url) => {
+ipcMain.on('open-post-window', () => {
   createPostWindow()
 })
 
-ipcMain.on('close-post-window', (event, url) => {
+ipcMain.on('close-post-window', () => {
   if (postWindow) {
     postWindow.close();
     postWindow = null;
   }
 });
 
-ipcMain.on("post-data", (event, data) => {
+ipcMain.on("post-data", (_, data) => {
   win?.webContents.send("post-data", data);
 });
 

@@ -11,7 +11,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
   closePostWindow: () => ipcRenderer.send("close-post-window"),
   sendPostData: (data:any) => ipcRenderer.send("post-data", data),
   onPostData: (callback: (data: any) => void) => {
-    ipcRenderer.on("post-data", (event, data) => {
+    ipcRenderer.on("post-data", (_, data) => {
       callback(data);
     });
   },

@@ -39,7 +39,7 @@ const Edit = memo(
     const { toast } = useToast();
     const navigate = useNavigate();
 
-    const [defaultArmy, setDefaultArmy] = useState({
+    const [defaultArmy] = useState({
       division: personalData?.military.division,
       army: personalData?.military.army,
       rank: personalData?.military.rank,
