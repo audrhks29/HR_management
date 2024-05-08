@@ -71,6 +71,7 @@ const createSplashWindow = () => {
     width: 800,
     height: 500,
     frame: false,
+    alwaysOnTop:true,
     backgroundColor: '#2e2c29' 
   });
 
@@ -169,10 +170,10 @@ app.on("window-all-closed", () => {
 
 app.on('ready', () => {
   createSplashWindow();
+  createWindow();
   setTimeout(() => {
-    createWindow();
-    splashWindow?.destroy(); // 3초 후에 스플래시 윈도우 제거
-  }, 3000);
+    splashWindow?.destroy(); 
+  }, 5000);
 });
 
 app.on("activate", () => {
