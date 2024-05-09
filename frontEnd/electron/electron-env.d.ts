@@ -29,14 +29,15 @@ interface Window {
     on(arg0: string, handlePostData: (event: any, data: any) => void): unknown;
     openSalaryPersonalWindow: (url:string) => void;
     openPostWindow:()=>void;
-    closePostWindow:()=>void;
     sendPostData: (data:any)=>void;
     onPostData:(handlePostData)=>void;
   };
-  alertAPI:{
-    loginSuccess:()=>void;
-  };
-  confirmAPI:{
-    register:()=>void;
+  customFrameAPI:{
+    closeSalaryPersonalWindow:()=>void;
+    closePostWindow:()=>void;
+    closeWindow:()=>void;
+    minimizePostWindow: ()=>void;
+    minimizeSalaryPersonalWindow: ()=>void;
+    minimizeWindow:()=>void;
   }
 }

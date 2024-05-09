@@ -7,6 +7,7 @@ import { getOrganizationData } from "@/server/fetchReadData";
 import Contents from "./Contents";
 import Edit from "./edit/Edit";
 import { Card, CardContent } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Index = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -17,9 +18,9 @@ const Index = () => {
   });
 
   return (
-    <>
+    <ScrollArea className="h-[850px] ">
       {organizationData?.length === 0 ? (
-        <Card className="h-[850px] p-8">
+        <Card className="p-8">
           <CardContent className="flex flex-col items-center justify-center h-full">
             <p>데이터가 없습니다</p>
 
@@ -45,13 +46,15 @@ const Index = () => {
           )}
 
           {!isEditMode && (
-            <div className="text-right mt-3">
-              <Button onClick={() => setIsEditMode(true)}>수정</Button>
+            <div className="text-right mt-3 mr-3">
+              <Button type="button" onClick={() => setIsEditMode(true)}>
+                수정
+              </Button>
             </div>
           )}
         </Tabs>
       )}
-    </>
+    </ScrollArea>
   );
 };
 

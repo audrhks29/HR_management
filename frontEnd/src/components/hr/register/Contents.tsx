@@ -17,6 +17,7 @@ import { postMemberData } from "@/server/fetchCreateData";
 import { getMemberData } from "@/server/fetchReadData";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Contents = memo(() => {
   const { refetch }: { data: MemberDataTypes | undefined; refetch: () => void } = useSuspenseQuery({
@@ -85,36 +86,39 @@ const Contents = memo(() => {
     refetch();
     navigate("/hr_record");
   };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
-      <div className="grid gap-6">
-        <div className="grid grid-cols-2 gap-6">
-          <Privacy register={register} setValue={setValue} errors={errors} />
-          <Department register={register} setValue={setValue} watch={watch} errors={errors} />
-        </div>
+    <ScrollArea className="h-[850px]">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
+        <div className="grid gap-6">
+          <div className="grid grid-cols-2 gap-6">
+            <Privacy register={register} setValue={setValue} errors={errors} />
+            <Department register={register} setValue={setValue} watch={watch} errors={errors} />
+          </div>
 
-        <Education
-          register={register}
-          setValue={setValue}
-          fields={eduFields}
-          append={eduAppend}
-          remove={eduRemove}
-          errors={errors}
-        />
-        <Career
-          register={register}
-          setValue={setValue}
-          fields={careerFields}
-          append={careerAppend}
-          remove={careerRemove}
-          errors={errors}
-        />
+          <Education
+            register={register}
+            setValue={setValue}
+            fields={eduFields}
+            append={eduAppend}
+            remove={eduRemove}
+            errors={errors}
+          />
+          <Career
+            register={register}
+            setValue={setValue}
+            fields={careerFields}
+            append={careerAppend}
+            remove={careerRemove}
+            errors={errors}
+          />
 
-        <div className="text-right">
-          <Button type="submit">제출</Button>
+          <div className="text-right mr-3">
+            <Button type="submit">제출</Button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </ScrollArea>
   );
 });
 

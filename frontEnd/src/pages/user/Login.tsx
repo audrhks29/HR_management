@@ -3,7 +3,7 @@ import { memo } from "react";
 
 const Login = memo(() => {
   return (
-    <main className="h-screen flex justify-center items-center">
+    <main className="h-screen-minus-frame flex justify-center items-center">
       <LoginForm />
     </main>
   );

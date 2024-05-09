@@ -20,7 +20,7 @@ process.env.VITE_PUBLIC = app.isPackaged ? process.env.DIST : path.join(process.
 
 let win: BrowserWindow | null;
 let splashWindow:BrowserWindow | null;
-let newWindow: BrowserWindow | null;
+let salaryPersonalWindow: BrowserWindow | null;
 let postWindow: BrowserWindow | null;
 // 🚧 Use ['ENV_NAME'] avoid vite:define plugin - Vite@2.x
 const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
@@ -79,50 +79,25 @@ const createSplashWindow = () => {
   splashWindow.loadURL(`file://${__dirname}/splash.html`);
 };
 
-
 function createSalaryPersonalWindow(url:string) {
-  newWindow = new BrowserWindow({
+  salaryPersonalWindow = new BrowserWindow({
     width: 1000,
     height: 880,
+    frame: false,
     autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: true,
+      preload: path.join(__dirname, "preload.js"),
+    },
   })
  
   if (VITE_DEV_SERVER_URL) {
-    newWindow.loadURL(`http://localhost:5173/#/post`)
+    salaryPersonalWindow.loadURL(`http://localhost:5173/#/salary_history_personal/${url}`)
   } else {
-    newWindow.loadFile(path.join(process.env.DIST, "index.html"),{hash:`salary_history_personal/${url}`});
+    salaryPersonalWindow.loadFile(path.join(process.env.DIST, "index.html"),{hash:`salary_history_personal/${url}`});
   }
-  
-  newWindow.on('closed', () => {
-    newWindow = null
-  })
 }
-
-// ipcMain.on('show-login-success-dialog', (event) => {
-//   try {
-//     dialog.showMessageBox({
-//       type: 'info',
-//       title: '로그인 성공',
-//       message: '로그인되었습니다.',
-//       buttons: ['확인']
-//     });
-//   } catch (error) {
-//     console.error('Error showing login success dialog:', error);
-//   }
-// });
-
-// ipcMain.on('show-member-register-dialog', (event) => {
-//   try {
-//     dialog.showMessageBox({
-//       type: 'question',
-//       title: '제출',
-//       message: '데이터 입력을 완료하시겠습니까?',
-//       buttons: ['Yes', 'No']
-//     });
-//   } catch (error) {
-//     console.error('Error showing login success dialog:', error);
-//   }
-// });
 
 ipcMain.on('open-salary-personal-window', (_, url) => {
   createSalaryPersonalWindow(url)
@@ -145,15 +120,16 @@ function createPostWindow() {
   } else {
     postWindow.loadFile(path.join(process.env.DIST, "index.html"),{hash:"post"});
   }
-
-  postWindow.on('closed', () => {
-    newWindow = null
-  })
 }
 
 ipcMain.on('open-post-window', () => {
   createPostWindow()
 })
+
+
+ipcMain.on("post-data", (_, data) => {
+  win?.webContents.send("post-data", data);
+});
 
 ipcMain.on('close-post-window', () => {
   if (postWindow) {
@@ -162,18 +138,35 @@ ipcMain.on('close-post-window', () => {
   }
 });
 
-ipcMain.on("post-data", (_, data) => {
-  win?.webContents.send("post-data", data);
+ipcMain.on('close-salary-personal-window', () => {
+  if (salaryPersonalWindow) {
+    salaryPersonalWindow.close();
+    salaryPersonalWindow = null;
+  }
 });
 
-
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
-app.on("window-all-closed", () => {
+ipcMain.on('close-window', () => {
   if (process.platform !== "darwin") {
     app.quit();
     win = null;
+  }
+});
+
+ipcMain.on('minimize-post-window', () => {
+  if (postWindow) {
+    postWindow.minimize()
+  }
+});
+
+ipcMain.on('minimize-salary-personal-window', () => {
+  if (salaryPersonalWindow) {
+    salaryPersonalWindow.minimize()
+  }
+});
+
+ipcMain.on('minimize-window', () => {
+  if (win) {
+    win.minimize()
   }
 });
 

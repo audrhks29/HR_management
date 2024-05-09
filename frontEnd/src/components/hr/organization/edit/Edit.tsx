@@ -80,7 +80,7 @@ const Edit = memo(
           </CardContent>
         </Card>
 
-        <div className="text-right mt-3">
+        <div className="text-right mt-3 mr-3">
           <Button type="button" className="mr-3">
             추가
           </Button>

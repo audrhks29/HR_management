@@ -8,7 +8,6 @@ contextBridge.exposeInMainWorld("electronAPI", {
 
   // post
   openPostWindow: () => ipcRenderer.send("open-post-window"),
-  closePostWindow: () => ipcRenderer.send("close-post-window"),
   sendPostData: (data:any) => ipcRenderer.send("post-data", data),
   onPostData: (callback: (data: any) => void) => {
     ipcRenderer.on("post-data", (_, data) => {
@@ -23,12 +22,14 @@ contextBridge.exposeInMainWorld("electronAPI", {
   },
 });
 
-contextBridge.exposeInMainWorld("alertAPI", {
-  loginSuccess: () => ipcRenderer.send("show-login-success-dialog")
-});
+contextBridge.exposeInMainWorld("customFrameAPI", {
+  closePostWindow: () => ipcRenderer.send("close-post-window"),
+  closeSalaryPersonalWindow: () => ipcRenderer.send("close-salary-personal-window"),
+  closeWindow:()=>ipcRenderer.send("close-window"),
 
-contextBridge.exposeInMainWorld("confirmAPI", {
-  register: () => ipcRenderer.send("show-member-register-dialog")
+  minimizePostWindow: () => ipcRenderer.send(" minimize-post-window"),
+  minimizeSalaryPersonalWindow: () => ipcRenderer.send("minimize-salary-personal-window"),
+  minimizeWindow:()=>ipcRenderer.send("minimize-window")
 });
 
 contextBridge.exposeInMainWorld('ipcRenderer', {

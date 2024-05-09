@@ -3,7 +3,7 @@ import { memo } from "react";
 
 const Salary_history_personal = memo(() => {
   return (
-    <main className="col-span-2 h-screen w-screen overflow-hidden">
+    <main className="col-span-2 h-[840px]">
       <Index />
     </main>
   );

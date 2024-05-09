@@ -7,6 +7,7 @@ import Rank from "./rank/Rank";
 
 import { getSettingData } from "@/server/fetchReadData";
 import Position from "./position/Position";
+import { ScrollArea } from "../ui/scroll-area";
 
 const Index = memo(() => {
   const { data: settingData, refetch }: { data: SettingTypes; refetch: () => void } = useSuspenseQuery({
@@ -15,13 +16,15 @@ const Index = memo(() => {
   });
 
   return (
-    <div className="grid gap-6">
-      <Business data={settingData.business_setting} refetch={refetch} />
-      <div className="grid grid-cols-2 gap-6">
-        <Position data={settingData.position_setting} refetch={refetch} />
-        <Rank data={settingData.rank_setting} refetch={refetch} />
+    <ScrollArea className="h-[850px]">
+      <div className="grid gap-6">
+        <Business data={settingData.business_setting} refetch={refetch} />
+        <div className="grid grid-cols-2 gap-6">
+          <Position data={settingData.position_setting} refetch={refetch} />
+          <Rank data={settingData.rank_setting} refetch={refetch} />
+        </div>
       </div>
-    </div>
+    </ScrollArea>
   );
 });
 

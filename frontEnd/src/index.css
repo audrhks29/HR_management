@@ -25,6 +25,10 @@ main {
   flex-grow: 1;
 }
 
+.dragable {
+  -webkit-app-region: drag;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -81,5 +85,11 @@ main {
   }
   main {
     @apply bg-primary-foreground;
+  }
+}
+
+@layer utilities {
+  .h-screen-minus-frame {
+    height: calc(100vh - 40px);
   }
 }

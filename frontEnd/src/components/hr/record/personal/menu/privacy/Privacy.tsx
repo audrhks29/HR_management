@@ -16,6 +16,7 @@ import {
   deletePersonalWorkData,
 } from "@/server/fetchDeleteData";
 import { ToastAction } from "@/components/ui/toast";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Privacy = memo(
   ({ personalData, refetch }: { personalData: MemberDataTypes | undefined; refetch: () => void }) => {
@@ -72,29 +73,31 @@ const Privacy = memo(
     };
 
     return (
-      <Card className="min-h-[800px] p-8">
-        <PersonalTitle personalData={personalData}>
-          <div>
-            {editMode ? (
-              <Button type="button" className="mr-3" onClick={handleClickCancel}>
-                취소
+      <ScrollArea className="h-[790px]">
+        <Card className="h-[790px] p-8">
+          <PersonalTitle personalData={personalData}>
+            <div>
+              {editMode ? (
+                <Button type="button" className="mr-3" onClick={handleClickCancel}>
+                  취소
+                </Button>
+              ) : (
+                <Button type="button" className="mr-3" onClick={handleClickModify}>
+                  수정
+                </Button>
+              )}
+              <Button type="button" className="mr-3" onClick={handleClickDelete}>
+                삭제
               </Button>
-            ) : (
-              <Button type="button" className="mr-3" onClick={handleClickModify}>
-                수정
-              </Button>
-            )}
-            <Button type="button" className="mr-3" onClick={handleClickDelete}>
-              삭제
-            </Button>
-          </div>
-        </PersonalTitle>
-        {editMode ? (
-          <Edit personalData={personalData} refetch={refetch} setEditMode={setEditMode} />
-        ) : (
-          <Display personalData={personalData} />
-        )}
-      </Card>
+            </div>
+          </PersonalTitle>
+          {editMode ? (
+            <Edit personalData={personalData} refetch={refetch} setEditMode={setEditMode} />
+          ) : (
+            <Display personalData={personalData} />
+          )}
+        </Card>
+      </ScrollArea>
     );
   },
 );

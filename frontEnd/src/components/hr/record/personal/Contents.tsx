@@ -22,7 +22,7 @@ const Contents = memo(() => {
     <div className="mt-5">
       <TabsContent value="info" className="grid grid-cols-[2fr_1fr] gap-6">
         <Privacy personalData={memberPersonalData} refetch={refetch} />
-        <MemberList menuLink="hr_record" height="800px" displayAmount={11} />
+        <MemberList menuLink="hr_record" height="790px" displayAmount={11} />
       </TabsContent>
 
       <TabsContent value="edu_career">
