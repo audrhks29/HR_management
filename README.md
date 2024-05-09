@@ -25,13 +25,21 @@
 
 ### 2. UI
 
-#### 1. 로그인 화면
+### 1. Splash
 
-![image](https://github.com/audrhks29/HR_management/assets/130128690/0560ff1c-e8a2-4953-b4ec-7357cfe5cfa2)
+![image](https://github.com/audrhks29/HR_management/assets/130128690/ead6a1a7-69b8-4a62-a961-2eea1189daa8)
 
-#### 2. 메인 화면
+### 2. Custom Frame
 
-![image](https://github.com/audrhks29/HR_management/assets/130128690/b5642fa3-6c81-4bb8-9284-bfbe886fd944)
+![image](https://github.com/audrhks29/HR_management/assets/130128690/a7d27d70-7dcc-4385-b2cd-0d87a3d7d940)
+
+#### 3. 로그인 화면
+
+![image](https://github.com/audrhks29/HR_management/assets/130128690/91a5fa01-10d9-4cc7-a70e-8897b93d09a8)
+
+#### 4. 메인 화면
+
+![image](https://github.com/audrhks29/HR_management/assets/130128690/16e58650-3d8f-4b8b-a632-ff6bb76024b3)
 
 </div>
 </details>
