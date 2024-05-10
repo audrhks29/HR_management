@@ -1,15 +1,12 @@
 import { css } from "@emotion/react";
 
 export const IntroduceArticleGrid = css`
-  display: grid;
-  grid-template-columns: 3fr 4fr;
+  display: flex;
   gap: 30px;
-`;
-
-export const IntroduceArticleRightGrid = css`
-  display: grid;
-  grid-template-columns: 4fr 3fr;
-  gap: 30px;
+  height: 400px;
+  justify-content: center;
+  width: 1000px;
+  margin: auto;
 `;
 
 export const IntroduceContainer = css`

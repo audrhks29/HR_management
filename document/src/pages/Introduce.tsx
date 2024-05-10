@@ -6,7 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
-import Main from "../components/introduce/Main";
+// import Main from "../components/introduce/Main";
 import { InnerStyle } from "../styles/Common";
 
 interface TabPanelProps {
@@ -65,13 +65,12 @@ const Introduce = memo(() => {
           aria-label="Vertical tabs example"
           sx={{ borderRight: 1, borderColor: "divider" }}
         >
-          <Tab label="주요기능" {...a11yProps(0)} />
-          <Tab label="인사" {...a11yProps(1)} />
-          <Tab label="급여" {...a11yProps(2)} />
-          <Tab label="근태" {...a11yProps(3)} />
+          <Tab label="인사" {...a11yProps(0)} />
+          <Tab label="급여" {...a11yProps(1)} />
+          <Tab label="근태" {...a11yProps(2)} />
         </Tabs>
         <TabPanel value={value} index={0}>
-          <Main />
+          {/* <Main /> */}d
         </TabPanel>
         <TabPanel value={value} index={1}>
           Item Two
@@ -79,9 +78,9 @@ const Introduce = memo(() => {
         <TabPanel value={value} index={2}>
           Item Three
         </TabPanel>
-        <TabPanel value={value} index={3}>
+        {/* <TabPanel value={value} index={3}>
           Item Four
-        </TabPanel>
+        </TabPanel> */}
       </Box>
     </div>
   );

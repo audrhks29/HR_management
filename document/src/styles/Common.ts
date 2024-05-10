@@ -15,4 +15,5 @@ export const DividerStyle = () => {
 export const InnerStyle = css`
   margin: auto;
   width: 1600px;
+  padding-top: 60px;
 `;

@@ -2,8 +2,8 @@
 
 import { memo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
-import { Tab, Tabs, useTheme } from "@mui/material";
+import { css } from "@emotion/react";
+import { Divider, Tab, Tabs, useTheme } from "@mui/material";
 
 import ColorMode from "../provider/ColorMode";
 import { Link } from "react-router-dom";
@@ -14,56 +14,82 @@ const Header = memo(() => {
   // console.log(location.pathname);
   const navigate = useNavigate();
   const [value, setValue] = useState(location.pathname);
-  console.log(value);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
     navigate(`${newValue}`);
   };
 
+  // styles
+  const headerStyle = css`
+    width: 100%;
+    background-color: ${theme.palette.background.default};
+    position: fixed;
+    z-index: 100;
+  `;
+
+  const navStyle = css`
+    display: flex;
+    justify-content: space-between;
+    width: 1600px;
+    height: 60px;
+    margin: auto;
+  `;
+
+  const navContainerStyle = css`
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  `;
+
+  const linkStyle = css`
+    display: flex;
+    align-items: center;
+  `;
+
+  const tabsStyle = css`
+    height: 100%;
+    width: 80%;
+  `;
+
+  const tabStyle = css`
+    height: 60px;
+  `;
+
   return (
-    <nav
-      css={{
-        display: "flex",
-        justifyContent: "space-between",
-        width: "1600px",
-        height: "60px",
-        margin: "auto",
-      }}
-    >
-      <div css={{ display: "flex", gap: "32px", alignItems: "center" }}>
-        <Link
-          to={"/"}
-          css={{ display: "flex", alignItems: "center" }}
-          onClick={() => setValue(`/`)}
-        >
-          <img
-            src={`${
-              theme.palette.mode === "light"
-                ? "public/logo_light.svg"
-                : "public/logo_dark.svg"
-            }`}
-            alt="logo"
-            width={80}
-          />
-        </Link>
+    <header css={headerStyle}>
+      <nav css={navStyle}>
+        <div css={navContainerStyle}>
+          <Link to={"/"} css={linkStyle} onClick={() => setValue(`/`)}>
+            <img
+              src={`${
+                theme.palette.mode === "light"
+                  ? "public/logo_light.svg"
+                  : "public/logo_dark.svg"
+              }`}
+              alt="logo"
+              width={80}
+            />
+          </Link>
 
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          textColor="secondary"
-          indicatorColor="secondary"
-          aria-label="secondary tabs example"
-          css={{ height: "100%", width: "80%" }}
-        >
-          <Tab value="/introduce" label="HRM 소개" css={{ height: "60px" }} />
-          <Tab value="/download" label="다운로드" css={{ height: "60px" }} />
-          <Tab value="/three" label="Item Three" css={{ height: "60px" }} />
-        </Tabs>
-      </div>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            textColor="secondary"
+            indicatorColor="secondary"
+            aria-label="secondary tabs example"
+            css={tabsStyle}
+          >
+            <Tab value="/introduce" label="HRM 소개" css={tabStyle} />
+            <Tab value="/download" label="다운로드" css={tabStyle} />
+            <Tab value="/three" label="Item Three" css={tabStyle} />
+          </Tabs>
+        </div>
 
-      <ColorMode />
-    </nav>
+        <ColorMode />
+      </nav>
+      <Divider variant="fullWidth" />
+    </header>
   );
 });
 
