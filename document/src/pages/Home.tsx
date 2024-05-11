@@ -3,11 +3,15 @@
 import { Button, Divider, css, useTheme } from "@mui/material";
 import { memo } from "react";
 import { useNavigate } from "react-router-dom";
-import { DividerStyle, InnerStyle } from "../styles/Common";
+import { DividerStyle } from "../styles/Common";
 import MainIntroduce from "../components/home/MainIntroduce";
 
 const Home = memo(() => {
   const theme = useTheme();
+
+  const mainInnerStyle = css`
+    padding-top: 60px;
+  `;
 
   const buttonStyle = css`
     width: 200px;
@@ -16,7 +20,7 @@ const Home = memo(() => {
 
   const navigate = useNavigate();
   return (
-    <div css={InnerStyle}>
+    <div css={mainInnerStyle}>
       <div
         css={{
           padding: "100px 0",
@@ -30,8 +34,22 @@ const Home = memo(() => {
             gap: "30px",
           }}
         >
-          <img src="public/images/logo/logo_image_light.png" width={300} />
-          <img src="public/images/logo/logo_light.svg" width={200} />
+          <img
+            src={`${
+              theme.palette.mode === "light"
+                ? "public/images/logo/logo_image_light.png"
+                : "public/images/logo/logo_image_dark.png"
+            }`}
+            width={300}
+          />
+          <img
+            src={`${
+              theme.palette.mode === "light"
+                ? "public/images/logo/logo_light.svg"
+                : "public/images/logo/logo_dark.svg"
+            }`}
+            width={200}
+          />
         </div>
 
         <div
