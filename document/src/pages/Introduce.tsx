@@ -7,7 +7,9 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
 // import Main from "../components/introduce/Main";
-import { InnerStyle } from "../styles/Common";
+
+import Hr from "../components/introduce/Hr";
+import { InnerStyle } from "../styles/commonStyles";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -41,7 +43,7 @@ function a11yProps(index: number) {
 const Introduce = memo(() => {
   const [value, setValue] = useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
@@ -70,7 +72,7 @@ const Introduce = memo(() => {
           <Tab label="근태" {...a11yProps(2)} />
         </Tabs>
         <TabPanel value={value} index={0}>
-          {/* <Main /> */}d
+          <Hr />
         </TabPanel>
         <TabPanel value={value} index={1}>
           Item Two

@@ -17,6 +17,7 @@ import PersonalTitle from "@/shared/PersonalTitle";
 
 import { postMemberSalaryPersonalData } from "@/server/fetchCreateData";
 import { deleteMemberSalaryData } from "@/server/fetchDeleteData";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Select = ({
   personalData,
@@ -125,129 +126,131 @@ const Select = ({
   }, [wageWatch]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Card className="h-[850px] p-8 overflow-y-auto">
-        <PersonalTitle personalData={personalData}>
-          <div>
-            <Button type="button" onClick={() => setIsEditMode(!isEditMode)}>
-              {isEditMode ? "취소" : "추가"}
-            </Button>
-          </div>
-        </PersonalTitle>
+    <ScrollArea className="h-[850px]">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Card className="p-8 overflow-y-auto">
+          <PersonalTitle personalData={personalData}>
+            <div>
+              <Button type="button" onClick={() => setIsEditMode(!isEditMode)}>
+                {isEditMode ? "취소" : "추가"}
+              </Button>
+            </div>
+          </PersonalTitle>
 
-        <CardContent className="mt-5">
-          <Table className="text-right text-[12px]">
-            <TableHeader className="text-[14px] text-center">
-              <TableRow className="h-[53px] bg-primary-foreground cursor-default">
-                <TableHead className="p-2 w-[185px]">협상적용 년월</TableHead>
-                <TableHead className="p-2 w-[210px]">기본연봉</TableHead>
-                <TableHead className="p-2 w-[150px]">기본급여</TableHead>
-                <TableHead className="p-2 w-[150px]">인상율</TableHead>
-                <TableHead className="p-2">삭제</TableHead>
-              </TableRow>
-            </TableHeader>
-
-            <TableBody>
-              {isEditMode && (
-                <TableRow className="cursor-pointer h-[53px] border-none">
-                  <TableCell className="text-center flex items-center gap-1">
-                    <Input
-                      type="text"
-                      {...register(`memberSalary.data.year`, {
-                        required: "년도를 입력해주세요",
-                        pattern: { value: /^\d{4}$/, message: "네자리 숫자의 년도를 입력해주세요. 예) 2024년" },
-                      })}
-                    />
-                    년
-                    <Input
-                      type="text"
-                      {...register(`memberSalary.data.month`, {
-                        required: "월을 입력해주세요",
-                        pattern: { value: /^\d{2}$/, message: "두자리 숫자의 월을 입력해주세요. 예) 01월" },
-                      })}
-                    />
-                    월
-                  </TableCell>
-
-                  <TableCell>
-                    <Input
-                      type="number"
-                      {...register(`memberSalary.data.wage`, { valueAsNumber: true })}
-                      className="text-right"
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <span>{wageWatch / 12}</span>
-                  </TableCell>
-                  <TableCell></TableCell>
-                  <TableCell className="flex items-center justify-center">
-                    <Button type="submit">등록</Button>
-                  </TableCell>
+          <CardContent className="mt-5">
+            <Table className="text-right text-[12px]">
+              <TableHeader className="text-[14px] text-center">
+                <TableRow className="h-[53px] bg-primary-foreground cursor-default">
+                  <TableHead className="p-2 w-[185px]">협상적용 년월</TableHead>
+                  <TableHead className="p-2 w-[210px]">기본연봉</TableHead>
+                  <TableHead className="p-2 w-[150px]">기본급여</TableHead>
+                  <TableHead className="p-2 w-[150px]">인상율</TableHead>
+                  <TableHead className="p-2">삭제</TableHead>
                 </TableRow>
-              )}
+              </TableHeader>
 
-              {isEditMode && (
-                <TableRow className="text-left">
-                  <TableCell colSpan={5} className="py-0">
-                    <ErrorMessage
-                      errors={errors}
-                      name="memberSalary.data.year"
-                      render={({ message }) => <p className="text-destructive font-bold">{message}</p>}
-                    />
-
-                    <ErrorMessage
-                      errors={errors}
-                      name="memberSalary.data.month"
-                      render={({ message }) => <p className="text-destructive font-bold">{message}</p>}
-                    />
-                  </TableCell>
-                </TableRow>
-              )}
-
-              {memberSalaryPersonalData?.data.map((item, index) => {
-                const raiseRate =
-                  index < memberSalaryPersonalData.data.length - 1
-                    ? item.salary - memberSalaryPersonalData.data[index + 1]?.salary
-                    : "";
-
-                return (
-                  <TableRow key={index} className="cursor-pointer h-[53px]">
-                    <TableCell className="text-center">
-                      {item.year}년 {item.month}월
+              <TableBody>
+                {isEditMode && (
+                  <TableRow className="cursor-pointer h-[53px] border-none">
+                    <TableCell className="text-center flex items-center gap-1">
+                      <Input
+                        type="text"
+                        {...register(`memberSalary.data.year`, {
+                          required: "년도를 입력해주세요",
+                          pattern: { value: /^\d{4}$/, message: "네자리 숫자의 년도를 입력해주세요. 예) 2024년" },
+                        })}
+                      />
+                      년
+                      <Input
+                        type="text"
+                        {...register(`memberSalary.data.month`, {
+                          required: "월을 입력해주세요",
+                          pattern: { value: /^\d{2}$/, message: "두자리 숫자의 월을 입력해주세요. 예) 01월" },
+                        })}
+                      />
+                      월
                     </TableCell>
-                    <TableCell>{item.wage.toLocaleString()}원</TableCell>
-                    <TableCell>{item.salary.toLocaleString()}원</TableCell>
 
-                    <TableCell className="flex items-center justify-center h-[73px]">
-                      {raiseRate !== "" && raiseRate > 0 && (
-                        <>
-                          <ArrowBigUpDashIcon className="text-[#ff0000]" />
-                          {raiseRate.toLocaleString()}원
-                        </>
-                      )}
-                      {raiseRate !== "" && raiseRate < 0 && (
-                        <>
-                          <ArrowBigDownDash className="text-[#0000ff]" />
-                          {raiseRate.toLocaleString()}원
-                        </>
-                      )}
+                    <TableCell>
+                      <Input
+                        type="number"
+                        {...register(`memberSalary.data.wage`, { valueAsNumber: true })}
+                        className="text-right"
+                      />
                     </TableCell>
                     <TableCell>
-                      <Button
-                        type="button"
-                        className="button text-center"
-                        onClick={() => deleteData(item.year, item.month)}>
-                        삭제
-                      </Button>
+                      <span>{wageWatch / 12}</span>
+                    </TableCell>
+                    <TableCell></TableCell>
+                    <TableCell className="flex items-center justify-center">
+                      <Button type="submit">등록</Button>
                     </TableCell>
                   </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
-    </form>
+                )}
+
+                {isEditMode && (
+                  <TableRow className="text-left">
+                    <TableCell colSpan={5} className="py-0">
+                      <ErrorMessage
+                        errors={errors}
+                        name="memberSalary.data.year"
+                        render={({ message }) => <p className="text-destructive font-bold">{message}</p>}
+                      />
+
+                      <ErrorMessage
+                        errors={errors}
+                        name="memberSalary.data.month"
+                        render={({ message }) => <p className="text-destructive font-bold">{message}</p>}
+                      />
+                    </TableCell>
+                  </TableRow>
+                )}
+
+                {memberSalaryPersonalData?.data.map((item, index) => {
+                  const raiseRate =
+                    index < memberSalaryPersonalData.data.length - 1
+                      ? item.salary - memberSalaryPersonalData.data[index + 1]?.salary
+                      : "";
+
+                  return (
+                    <TableRow key={index} className="cursor-pointer h-[53px]">
+                      <TableCell className="text-center">
+                        {item.year}년 {item.month}월
+                      </TableCell>
+                      <TableCell>{item.wage.toLocaleString()}원</TableCell>
+                      <TableCell>{item.salary.toLocaleString()}원</TableCell>
+
+                      <TableCell className="flex items-center justify-center h-[73px]">
+                        {raiseRate !== "" && raiseRate > 0 && (
+                          <>
+                            <ArrowBigUpDashIcon className="text-[#ff0000]" />
+                            {raiseRate.toLocaleString()}원
+                          </>
+                        )}
+                        {raiseRate !== "" && raiseRate < 0 && (
+                          <>
+                            <ArrowBigDownDash className="text-[#0000ff]" />
+                            {raiseRate.toLocaleString()}원
+                          </>
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          type="button"
+                          className="button text-center"
+                          onClick={() => deleteData(item.year, item.month)}>
+                          삭제
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </form>
+    </ScrollArea>
   );
 };
 

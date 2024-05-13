@@ -1,139 +1,53 @@
 /** @jsxImportSource @emotion/react */
 
-import { memo } from "react";
-import {
-  IntroduceArticleGrid,
-  IntroduceContainer,
-  IntroduceTitle,
-} from "../../styles/mainStyle";
-import { motion } from "framer-motion";
+import React, { memo } from "react";
+import { SectionStyle } from "../../styles/IntroduceStyles";
 import { Divider } from "@mui/material";
-import { css } from "@mui/material/styles";
-import { DividerStyle } from "../../styles/Common";
 
-// styles
-const imageBoxStyle = css`
-  margin: auto;
-`;
+import { DividerStyle } from "../../styles/commonStyles";
+import MotionFromRightArticle from "../shared/MotionFromRightArticle";
+
+import mainList from "../../assets/mainList.json";
+import MotionFromLeftArticle from "../shared/MotionFromLeftArticle";
 
 const MainIntroduce = memo(() => {
   return (
-    <section css={{ display: "grid", gap: "30px" }}>
-      <motion.div
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: false }}
-        transition={{
-          ease: "easeInOut",
-          duration: 2,
-          x: { duration: 1 },
-        }}
-      >
-        <article css={IntroduceArticleGrid}>
-          <div css={IntroduceContainer}>
-            <h3 css={IntroduceTitle}>간편한 기능</h3>
-            <p css={{ fontSize: "18px", lineHeight: "30px" }}>
-              간편하고 직관적인 사용자 경험을 제공합니다.
-              <br /> 복잡한 인사 업무를 간소화하고 <br />
-              중소기업에서도 쉽게 활용할 수 있는 <br />
-              효율적인 HRM 솔루션입니다.
-            </p>
-          </div>
+    <section css={SectionStyle}>
+      {mainList.map((list) => {
+        if (list.id % 2 === 1) {
+          return (
+            <React.Fragment key={list.id}>
+              <MotionFromRightArticle
+                title={list.title}
+                description={list.description}
+                img_src={list.img_src}
+              />
 
-          <div css={imageBoxStyle}>
-            <img src="public/images/main/function.gif" alt="" width={300} />
-          </div>
-        </article>
-      </motion.div>
+              {list.id !== mainList.length && (
+                <Divider>
+                  <div css={DividerStyle}></div>
+                </Divider>
+              )}
+            </React.Fragment>
+          );
+        } else {
+          return (
+            <React.Fragment key={list.id}>
+              <MotionFromLeftArticle
+                title={list.title}
+                description={list.description}
+                img_src={list.img_src}
+              />
 
-      <Divider>
-        <div css={DividerStyle}></div>
-      </Divider>
-
-      <motion.div
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: false }}
-        transition={{
-          ease: "easeInOut",
-          duration: 2,
-          x: { duration: 1 },
-        }}
-      >
-        <article css={IntroduceArticleGrid}>
-          <div css={imageBoxStyle}>
-            <img src="public/images/main/management.gif" alt="" width={300} />
-          </div>
-          <div css={IntroduceContainer}>
-            <h3 css={IntroduceTitle}>통합된 인사관리</h3>
-            <p css={{ fontSize: "18px", lineHeight: "30px" }}>
-              다양한 인사 업무를 한 곳에서 효율적으로 관리할 수 있습니다.
-              <br /> 모든 정보를 통합하여 관리하므로 업무 처리 속도를 높이고
-              <br />
-              오류를 줄일 수 있습니다.
-            </p>
-          </div>
-        </article>
-      </motion.div>
-
-      <Divider>
-        <div css={DividerStyle}></div>
-      </Divider>
-
-      <motion.div
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: false }}
-        transition={{
-          ease: "easeInOut",
-          duration: 2,
-          x: { duration: 1 },
-        }}
-      >
-        <article css={IntroduceArticleGrid}>
-          <div css={IntroduceContainer}>
-            <h3 css={IntroduceTitle}>실시간 데이터 업데이트</h3>
-            <p css={{ fontSize: "18px", lineHeight: "30px" }}>
-              실시간으로 업데이트되는 데이터를 통해 <br />
-              조직 내 인원 상태 및 업무 진행 상황을 신속하게 파악할 수 있습니다.
-              <br />
-              이를 통해 의사 결정을 더욱 빠르고 정확하게 할 수 있습니다.
-            </p>
-          </div>
-          <div css={imageBoxStyle}>
-            <img src="public/images/main/data.gif" alt="" width={300} />
-          </div>
-        </article>
-      </motion.div>
-
-      <Divider>
-        <div css={DividerStyle}></div>
-      </Divider>
-
-      <motion.div
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: false }}
-        transition={{
-          ease: "easeInOut",
-          duration: 2,
-          x: { duration: 1 },
-        }}
-      >
-        <article css={IntroduceArticleGrid}>
-          <div css={imageBoxStyle}>
-            <img src="public/images/main/ux.gif" alt="" width={300} />
-          </div>
-          <div css={IntroduceContainer}>
-            <h3 css={IntroduceTitle}>사용자 친화적 설계</h3>
-            <p css={{ fontSize: "18px", lineHeight: "30px" }}>
-              직관적인 메뉴 구성으로 누구나 쉽게 사용할 수 있습니다.
-              <br /> 별도의 교육 없이도 빠르게 익숙해질 수 있어서
-              <br /> 업무 효율성을 높일 수 있습니다.
-            </p>
-          </div>
-        </article>
-      </motion.div>
+              {list.id !== mainList.length && (
+                <Divider>
+                  <div css={DividerStyle}></div>
+                </Divider>
+              )}
+            </React.Fragment>
+          );
+        }
+      })}
     </section>
   );
 });

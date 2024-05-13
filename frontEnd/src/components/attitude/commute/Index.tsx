@@ -92,7 +92,7 @@ const Index = memo(() => {
       toast({
         variant: "destructive",
         title: "알맞은 형식을 입력해주세요",
-        description: "예) 2020년 01월 01일",
+        description: "예) 2020년 01월 01일 이거나 연차, 결근, 병가",
         action: (
           <ToastAction
             className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
@@ -177,7 +177,7 @@ const Index = memo(() => {
                           id={`commuteTime.${index}.commuteTime.working_time`}
                           {...register(`commuteTime.${index}.commuteTime.working_time`, {
                             pattern: {
-                              value: /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/,
+                              value: /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]|연차|결근|병가$/,
                               message: "알맞은 형식을 입력해주세요 예)00:00",
                             },
                           })}
@@ -215,7 +215,7 @@ const Index = memo(() => {
                           id={`commuteTime.${index}.commuteTime.quitting_time`}
                           {...register(`commuteTime.${index}.commuteTime.quitting_time`, {
                             pattern: {
-                              value: /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/,
+                              value: /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]|연차|결근|병가$/,
                               message: "알맞은 형식을 입력해주세요 예)00:00",
                             },
                           })}

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "img_name": "급여 현황 등록",
+    "src": [
+      { "light": "public/images/introduce/salary_status_light.png" },
+      { "dark": "" }
+    ]
+  },
+  {
+    "id": 2,
+    "img_name": "급여 대장 작성",
+    "src": [
+      { "light": "public/images/introduce/salary_registration_light.png" },
+      { "dark": "" }
+    ]
+  },
+  {
+    "id": 3,
+    "img_name": "급여 대장 수정",
+    "src": [
+      { "light": "public/images/introduce/salary_edit_light.png" },
+      { "dark": "" }
+    ]
+  },
+  {
+    "id": 4,
+    "img_name": "급여 지급 내역",
+    "src": [
+      { "light": "public/images/introduce/salary_history_light.png" },
+      { "dark": "" }
+    ]
+  }
+]

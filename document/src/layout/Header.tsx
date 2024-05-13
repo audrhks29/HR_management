@@ -11,11 +11,11 @@ import { Link } from "react-router-dom";
 const Header = memo(() => {
   const theme = useTheme();
   const location = useLocation();
-  // console.log(location.pathname);
+
   const navigate = useNavigate();
   const [value, setValue] = useState(location.pathname);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
     navigate(`${newValue}`);
   };

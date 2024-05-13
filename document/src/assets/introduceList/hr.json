@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "img_name": "구성원 추가",
+    "src": [
+      { "light": "public/images/introduce/hr_register_light.png" },
+      { "dark": "" }
+    ]
+  },
+  {
+    "id": 2,
+    "img_name": "구성원 기록",
+    "src": [
+      { "light": "public/images/introduce/hr_record_light.png" },
+      { "dark": "" }
+    ]
+  },
+  {
+    "id": 3,
+    "img_name": "구성원 기록 - 정보",
+    "src": [
+      { "light": "public/images/introduce/hr_record_info_light.png" },
+      { "dark": "" }
+    ]
+  },
+  {
+    "id": 4,
+    "img_name": "구성원 기록 - 학력&경력",
+    "src": [
+      { "light": "public/images/introduce/hr_record_career_light.png" },
+      { "dark": "" }
+    ]
+  },
+  {
+    "id": 5,
+    "img_name": "조직도 구성",
+    "src": [
+      { "light": "public/images/introduce/hr_organization_light.png" },
+      { "dark": "" }
+    ]
+  }
+]

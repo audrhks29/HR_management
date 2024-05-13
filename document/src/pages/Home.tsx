@@ -3,8 +3,9 @@
 import { Button, Divider, css, useTheme } from "@mui/material";
 import { memo } from "react";
 import { useNavigate } from "react-router-dom";
-import { DividerStyle } from "../styles/Common";
+
 import MainIntroduce from "../components/home/MainIntroduce";
+import { DividerStyle } from "../styles/commonStyles";
 
 const Home = memo(() => {
   const theme = useTheme();
@@ -19,6 +20,7 @@ const Home = memo(() => {
   `;
 
   const navigate = useNavigate();
+
   return (
     <div css={mainInnerStyle}>
       <div
