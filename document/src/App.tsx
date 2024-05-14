@@ -18,10 +18,10 @@ function App() {
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+        setMode(prevMode => (prevMode === "light" ? "dark" : "light"));
       },
     }),
-    []
+    [],
   );
 
   const theme = React.useMemo(
@@ -31,7 +31,7 @@ function App() {
           mode,
         },
       }),
-    [mode]
+    [mode],
   );
 
   return (

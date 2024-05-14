@@ -1,14 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { memo } from "react";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  css,
-} from "@mui/material";
+import { Button, Card, CardContent, CardMedia, Typography, css } from "@mui/material";
 
 import DownloadIcon from "@mui/icons-material/Download";
 
@@ -38,12 +31,7 @@ const OsCard = memo(({ os_name }: { os_name: string }) => {
   return (
     <Card sx={{ maxWidth: 345, borderRadius: "10px", margin: "auto" }}>
       <CardContent>
-        <Typography
-          gutterBottom
-          variant="h6"
-          component="div"
-          css={typographyStyle}
-        >
+        <Typography gutterBottom variant="h6" component="div" css={typographyStyle}>
           {os_name}
         </Typography>
 

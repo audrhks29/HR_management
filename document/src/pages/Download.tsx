@@ -77,9 +77,7 @@ const Download = memo(() => {
         <div css={buttonContainerStyle}>
           <img
             src={`${
-              theme.palette.mode === "light"
-                ? "public/images/logo/logo_light.svg"
-                : "public/images/logo/logo_dark.svg"
+              theme.palette.mode === "light" ? "public/images/logo/logo_light.svg" : "public/images/logo/logo_dark.svg"
             }`}
             width={200}
           />
@@ -113,7 +111,7 @@ const Download = memo(() => {
       </Divider>
 
       <article css={osContainer}>
-        {osList.map((list) => (
+        {osList.map(list => (
           <OsCard key={list.id} os_name={list.os_name} />
         ))}
       </article>

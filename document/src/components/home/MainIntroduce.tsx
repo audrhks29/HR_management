@@ -14,15 +14,11 @@ import { SectionStyle } from "../../styles/mainStyles";
 const MainIntroduce = memo(() => {
   return (
     <section css={SectionStyle}>
-      {mainList.map((list) => {
+      {mainList.map(list => {
         if (list.id % 2 === 1) {
           return (
             <React.Fragment key={list.id}>
-              <MotionFromRightArticle
-                title={list.title}
-                description={list.description}
-                img_src={list.img_src}
-              />
+              <MotionFromRightArticle title={list.title} description={list.description} img_src={list.img_src} />
 
               {list.id !== mainList.length && (
                 <Divider>
@@ -34,11 +30,7 @@ const MainIntroduce = memo(() => {
         } else {
           return (
             <React.Fragment key={list.id}>
-              <MotionFromLeftArticle
-                title={list.title}
-                description={list.description}
-                img_src={list.img_src}
-              />
+              <MotionFromLeftArticle title={list.title} description={list.description} img_src={list.img_src} />
 
               {list.id !== mainList.length && (
                 <Divider>

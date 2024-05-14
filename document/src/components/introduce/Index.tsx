@@ -38,15 +38,7 @@ const descriptionStyle = css`
 `;
 
 const IntroduceArticle = memo(
-  ({
-    title,
-    img_src,
-    description,
-  }: {
-    title: string;
-    img_src: string;
-    description: string;
-  }) => {
+  ({ title, img_src, description }: { title: string; img_src: string; description: string }) => {
     return (
       <article css={articleStyle}>
         <h3 css={titleStyle}>{title}</h3>
@@ -80,20 +72,18 @@ const IntroduceArticle = memo(
         </div>
       </article>
     );
-  }
+  },
 );
 
 const Index = memo(({ data }: { data: ListTypes[] }) => {
   const theme = useTheme();
   return (
     <section css={SectionStyle}>
-      {data.map((item) => (
+      {data.map(item => (
         <React.Fragment key={item.id}>
           <IntroduceArticle
             title={item.title}
-            img_src={
-              theme.palette.mode === "light" ? item.src.light : item.src.dark
-            }
+            img_src={theme.palette.mode === "light" ? item.src.light : item.src.dark}
             description={item.description}
           />
           {item.id !== data.length && (

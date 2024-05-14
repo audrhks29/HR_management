@@ -53,30 +53,18 @@ const Home = memo(() => {
           />
           <img
             src={`${
-              theme.palette.mode === "light"
-                ? "public/images/logo/logo_light.svg"
-                : "public/images/logo/logo_dark.svg"
+              theme.palette.mode === "light" ? "public/images/logo/logo_light.svg" : "public/images/logo/logo_dark.svg"
             }`}
             width={200}
           />
         </div>
 
         <div css={buttonContainerStyle}>
-          <Button
-            type="button"
-            variant="outlined"
-            css={buttonStyle}
-            onClick={() => navigate("/introduce")}
-          >
+          <Button type="button" variant="outlined" css={buttonStyle} onClick={() => navigate("/introduce")}>
             HRM이란?
           </Button>
 
-          <Button
-            type="button"
-            variant="contained"
-            css={buttonStyle}
-            onClick={() => navigate("/download")}
-          >
+          <Button type="button" variant="contained" css={buttonStyle} onClick={() => navigate("/download")}>
             Download App
           </Button>
         </div>
