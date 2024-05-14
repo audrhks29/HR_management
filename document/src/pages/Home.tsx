@@ -14,6 +14,20 @@ const Home = memo(() => {
     padding-top: 60px;
   `;
 
+  const imageContainerStyle = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  `;
+
+  const buttonContainerStyle = css`
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+  `;
+
   const buttonStyle = css`
     width: 200px;
     height: 40px;
@@ -28,14 +42,7 @@ const Home = memo(() => {
           padding: "100px 0",
         }}
       >
-        <div
-          css={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "30px",
-          }}
-        >
+        <div css={imageContainerStyle}>
           <img
             src={`${
               theme.palette.mode === "light"
@@ -54,14 +61,7 @@ const Home = memo(() => {
           />
         </div>
 
-        <div
-          css={{
-            display: "flex",
-            gap: "20px",
-            justifyContent: "center",
-            marginTop: "30px",
-          }}
-        >
+        <div css={buttonContainerStyle}>
           <Button
             type="button"
             variant="outlined"
@@ -70,16 +70,18 @@ const Home = memo(() => {
           >
             HRM이란?
           </Button>
+
           <Button
             type="button"
             variant="contained"
             css={buttonStyle}
             onClick={() => navigate("/download")}
           >
-            윈도우용 APP 다운로드
+            Download App
           </Button>
         </div>
       </div>
+
       <Divider>
         <div css={DividerStyle}></div>
       </Divider>
