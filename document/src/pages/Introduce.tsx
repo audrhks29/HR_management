@@ -6,10 +6,12 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
-// import Main from "../components/introduce/Main";
-
-import Hr from "../components/introduce/Hr";
+import Index from "../components/introduce/Index";
 import { InnerStyle } from "../styles/commonStyles";
+
+import hrList from "../assets/introduceList/hr.json";
+import salaryList from "../assets/introduceList/salary.json";
+import attitudeList from "../assets/introduceList/attitude.json";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -72,17 +74,14 @@ const Introduce = memo(() => {
           <Tab label="근태" {...a11yProps(2)} />
         </Tabs>
         <TabPanel value={value} index={0}>
-          <Hr />
+          <Index data={hrList} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+          <Index data={salaryList} />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+          <Index data={attitudeList} />
         </TabPanel>
-        {/* <TabPanel value={value} index={3}>
-          Item Four
-        </TabPanel> */}
       </Box>
     </div>
   );

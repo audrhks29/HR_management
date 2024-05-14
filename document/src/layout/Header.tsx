@@ -82,7 +82,6 @@ const Header = memo(() => {
           >
             <Tab value="/introduce" label="HRM 소개" css={tabStyle} />
             <Tab value="/download" label="다운로드" css={tabStyle} />
-            <Tab value="/three" label="Item Three" css={tabStyle} />
           </Tabs>
         </div>
 

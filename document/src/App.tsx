@@ -12,7 +12,6 @@ import Header from "./layout/Header";
 import Home from "./pages/Home";
 import Introduce from "./pages/Introduce";
 import Download from "./pages/Download";
-import "../src/index.css";
 
 function App() {
   const [mode, setMode] = React.useState<"light" | "dark">("light");

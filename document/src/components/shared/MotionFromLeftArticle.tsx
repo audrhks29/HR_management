@@ -8,7 +8,7 @@ import {
   TitleStyle,
   ImageBoxStyle,
   DescriptionStyle,
-} from "../../styles/IntroduceStyles";
+} from "../../styles/mainStyles";
 
 const MotionFromLeftArticle = memo(
   ({
@@ -38,7 +38,10 @@ const MotionFromLeftArticle = memo(
 
           <div css={ContainerStyle}>
             <h3 css={TitleStyle}>{title}</h3>
-            <p css={DescriptionStyle}>{description}</p>
+            <p
+              css={DescriptionStyle}
+              dangerouslySetInnerHTML={{ __html: description }}
+            ></p>
           </div>
         </article>
       </motion.div>

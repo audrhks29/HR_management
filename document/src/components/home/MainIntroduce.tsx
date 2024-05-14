@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import React, { memo } from "react";
-import { SectionStyle } from "../../styles/IntroduceStyles";
+
 import { Divider } from "@mui/material";
 
 import { DividerStyle } from "../../styles/commonStyles";
@@ -9,6 +9,7 @@ import MotionFromRightArticle from "../shared/MotionFromRightArticle";
 
 import mainList from "../../assets/mainList.json";
 import MotionFromLeftArticle from "../shared/MotionFromLeftArticle";
+import { SectionStyle } from "../../styles/mainStyles";
 
 const MainIntroduce = memo(() => {
   return (

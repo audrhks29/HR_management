@@ -1,18 +1,20 @@
 [
   {
     "id": 1,
-    "img_name": "출퇴근시간 등록",
-    "src": [
-      { "light": "public/images/introduce/attitude_commute_light.png" },
-      { "dark": "" }
-    ]
+    "title": "출퇴근시간 등록",
+    "src": {
+      "light": "public/images/introduce/attitude_commute_light.png",
+      "dark": ""
+    },
+    "description": "구성원의 출퇴근시간을 등록할 수 있습니다.<br/> <p class='font_red font14px'>연차, 결근, 병가의 경우<br/>출퇴근 시간에 연차, 결근, 병가 기재</p>"
   },
   {
     "id": 2,
-    "img_name": "근태 기록",
-    "src": [
-      { "light": "public/images/introduce/attitude_record_light.png" },
-      { "dark": "" }
-    ]
+    "title": "근태 기록",
+    "src": {
+      "light": "public/images/introduce/attitude_record_light.png",
+      "dark": ""
+    },
+    "description": "구성원의 근태 내역을 확인할 수 있습니다."
   }
 ]

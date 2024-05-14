@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 export const ArticleStyle = css`
   display: flex;
   gap: 30px;
-  height: 400px;
+  min-height: 400px;
   justify-content: center;
   width: 1000px;
   margin: auto;
