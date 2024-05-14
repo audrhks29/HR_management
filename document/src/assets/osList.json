@@ -1,0 +1,5 @@
+[
+  { "id": 1, "os_name": "windows", "link": "" },
+  { "id": 2, "os_name": "mac", "link": "" },
+  { "id": 3, "os_name": "linux", "link": "" }
+]

@@ -1,20 +1,13 @@
 /** @jsxImportSource @emotion/react */
 
 import { memo, useEffect, useState } from "react";
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Divider,
-  Typography,
-  css,
-  useTheme,
-} from "@mui/material";
+import { Button, Divider, css, useTheme } from "@mui/material";
 
 import DownloadIcon from "@mui/icons-material/Download";
 import { DividerStyle } from "../styles/commonStyles";
+import OsCard from "../components/download/OsCard";
+
+import osList from "../assets/osList.json";
 
 const Download = memo(() => {
   const InnerStyle = css`
@@ -54,6 +47,15 @@ const Download = memo(() => {
     font-size: 14px;
   `;
 
+  const osContainer = css`
+    width: 1600px;
+    padding: 80px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  `;
+
   const [os, setOS] = useState("Unknown");
   const theme = useTheme();
 
@@ -71,7 +73,7 @@ const Download = memo(() => {
 
   return (
     <section css={InnerStyle}>
-      <div css={downloadContainer}>
+      <article css={downloadContainer}>
         <div css={buttonContainerStyle}>
           <img
             src={`${
@@ -86,6 +88,7 @@ const Download = memo(() => {
             <br />
             무료로 HR_Management를 사용해보세요
           </p>
+
           <Button type="button" variant="contained" css={buttonStyle}>
             <DownloadIcon />
 
@@ -103,31 +106,17 @@ const Download = memo(() => {
             width={300}
           />
         </div>
-      </div>
+      </article>
 
       <Divider>
         <div css={DividerStyle}></div>
       </Divider>
 
-      {/* <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="300"
-            image="public/images/os/windows.png"
-            alt="windows"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              WINDOW 전용 APP Download
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card> */}
+      <article css={osContainer}>
+        {osList.map((list) => (
+          <OsCard key={list.id} os_name={list.os_name} />
+        ))}
+      </article>
     </section>
   );
 });

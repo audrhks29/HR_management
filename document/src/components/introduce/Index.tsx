@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { memo } from "react";
+import React, { memo } from "react";
 
 import { Divider, useTheme } from "@mui/material";
 import { SectionStyle } from "../../styles/mainStyles";
@@ -88,7 +88,7 @@ const Index = memo(({ data }: { data: ListTypes[] }) => {
   return (
     <section css={SectionStyle}>
       {data.map((item) => (
-        <>
+        <React.Fragment key={item.id}>
           <IntroduceArticle
             title={item.title}
             img_src={
@@ -101,7 +101,7 @@ const Index = memo(({ data }: { data: ListTypes[] }) => {
               <div css={DividerStyle}></div>
             </Divider>
           )}
-        </>
+        </React.Fragment>
       ))}
     </section>
   );
