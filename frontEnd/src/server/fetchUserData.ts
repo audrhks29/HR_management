@@ -6,15 +6,10 @@ export const postUserData = async (user_id: string, user_password: string) => {
       user_id,
       user_password,
     });
-    if (response.status === 200) {
-      return response.data.user;
-    }
+
+    return response.data.user;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response && error.response.status === 404) {
-      }
-    } else {
-    }
+    console.log("error");
   }
 };
 

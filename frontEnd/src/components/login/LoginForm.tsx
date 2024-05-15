@@ -27,7 +27,7 @@ const LoginForm = memo(() => {
   const findUserData = async (user_id: string, user_password: string) => {
     const userData = await postUserData(user_id, user_password);
 
-    sessionStorage.setItem("user_id", userData.user_id);
+    // sessionStorage.setItem("user_id", userData.user_id);
     setUserInfo();
     try {
       if (userData) {
