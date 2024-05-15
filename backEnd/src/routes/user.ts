@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 module.exports = function (app: any, User: any) {
   app.post("/login", async (req: any, res: any) => {
@@ -10,13 +11,42 @@ module.exports = function (app: any, User: any) {
         return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
       }
 
-      // 저장된 해싱된 비밀번호와 사용자가 제공한 비밀번호 비교
       const passwordMatch = await bcrypt.compare(
         user_password,
         user.user_password
       );
 
+      // access token 발급
       if (passwordMatch) {
+        const accessToken = jwt.sign(
+          {
+            id: user_id,
+          },
+          process.env.ACCESS_SECRET_KEY,
+          { expiresIn: "1m", issuer: "About Tech" }
+        );
+        console.log(accessToken);
+        // refresh token 발급
+        const refreshToken = jwt.sign(
+          {
+            id: user_id,
+          },
+          process.env.REFRESH_SECRET_KEY,
+          { expiresIn: "24h", issuer: "About Tech" }
+        );
+
+        // access token 전송
+        res.cookie("accessToken", accessToken, {
+          secure: false,
+          httpOnly: true,
+        });
+
+        // access token 전송
+        res.cookie("refreshToken", refreshToken, {
+          secure: false,
+          httpOnly: true,
+        });
+
         return res.status(200).json({ message: "로그인 성공!", user });
       } else {
         return res

@@ -6,7 +6,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const jwt = require("jsonwebtoken");
+
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const port = 5000;
@@ -16,8 +17,6 @@ mongoose
   .connect(`${process.env.DB_URL}/BASE_DB`)
   .then(() => console.log("MongoDB가 연결되었습니다...!"))
   .catch((err: any) => console.error("MongoDB 연결 실패:", err));
-
-app.use(cors());
 
 // app.use(
 //   async (
@@ -56,6 +55,13 @@ userConnection.on("error", (err: any) => {
 app.use(express.json());
 app.use(bodyParser.json());
 
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 // 스키마 require
 const Salary = require("../models/schemas/salary").default;
 const Member = require("../models/schemas/member").default;
