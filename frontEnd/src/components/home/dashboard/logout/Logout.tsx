@@ -5,12 +5,9 @@ import { Button } from "@/components/ui/button";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 
-import useUserStore from "@/store/user-store";
 import { userLogout } from "@/server/fetchUserData";
 
 const Logout = memo(() => {
-  const { setUserInfo } = useUserStore();
-
   const navigate = useNavigate();
 
   const { toast } = useToast();
@@ -41,7 +38,6 @@ const Logout = memo(() => {
     toast({
       description: "로그아웃 되었습니다",
     });
-    setUserInfo();
     navigate("/");
   };
 

@@ -1,8 +1,6 @@
 import { memo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import useUserStore from "@/store/user-store";
-
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 
@@ -19,7 +17,6 @@ interface FormValues {
 
 const LoginForm = memo(() => {
   const [findUser, setFindUser] = useState(true);
-  const { setUserInfo } = useUserStore();
   const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm<FormValues>();
@@ -27,8 +24,6 @@ const LoginForm = memo(() => {
   const findUserData = async (user_id: string, user_password: string) => {
     const userData = await postUserData(user_id, user_password);
 
-    // sessionStorage.setItem("user_id", userData.user_id);
-    setUserInfo();
     try {
       if (userData) {
         await accessToken();
