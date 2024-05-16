@@ -27,3 +27,33 @@ export const userSignUp = async (data: SignDataTypes) => {
     }
   } catch {}
 };
+
+export const accessToken = async () => {
+  try {
+    await axios.get("http://localhost:5000/accessToken", {
+      withCredentials: true,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const refreshToken = async () => {
+  try {
+    await axios.get("http://localhost:5000/refreshToken", {
+      withCredentials: true,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const userLogout = async () => {
+  try {
+    await axios.get("http://localhost:5000/logout", {
+      withCredentials: true,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};

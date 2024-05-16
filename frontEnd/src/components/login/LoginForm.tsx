@@ -6,7 +6,7 @@ import useUserStore from "@/store/user-store";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 
-import { postUserData } from "@/server/fetchUserData";
+import { accessToken, postUserData } from "@/server/fetchUserData";
 
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -31,6 +31,7 @@ const LoginForm = memo(() => {
     setUserInfo();
     try {
       if (userData) {
+        await accessToken();
         navigate("/home");
       } else {
         setFindUser(false);

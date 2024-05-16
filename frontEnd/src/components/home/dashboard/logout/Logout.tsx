@@ -6,6 +6,7 @@ import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 
 import useUserStore from "@/store/user-store";
+import { userLogout } from "@/server/fetchUserData";
 
 const Logout = memo(() => {
   const { setUserInfo } = useUserStore();
@@ -35,7 +36,8 @@ const Logout = memo(() => {
     });
   };
 
-  const submitData = () => {
+  const submitData = async () => {
+    await userLogout();
     toast({
       description: "로그아웃 되었습니다",
     });

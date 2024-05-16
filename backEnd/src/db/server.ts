@@ -13,29 +13,10 @@ const app = express();
 const port = 5000;
 
 // MongoDB 연결
-mongoose
-  .connect(`${process.env.DB_URL}/BASE_DB`)
-  .then(() => console.log("MongoDB가 연결되었습니다...!"))
-  .catch((err: any) => console.error("MongoDB 연결 실패:", err));
-
-// app.use(
-//   async (
-//     req: { headers: { authorization: string } },
-//     res: {
-//       status: (arg0: number) => {
-//         (): any;
-//         new (): any;
-//         json: { (arg0: { message: string }): void; new (): any };
-//       };
-//     },
-//     next: () => void
-//   ) => {
-//     mongoose
-//       .connect(`${process.env.DB_URL}/BASE_DB`)
-//       .then(() => console.log("MongoDB가 연결되었습니다...!"))
-//       .catch((err: any) => console.error("MongoDB 연결 실패:", err));
-//   }
-// );
+// mongoose
+//   .connect(`${process.env.DB_URL}/BASE_DB`)
+//   .then(() => console.log("MongoDB가 연결되었습니다...!"))
+//   .catch((err: any) => console.error("MongoDB 연결 실패:", err));
 
 export const userConnection = mongoose.createConnection(
   `${process.env.DB_URL}/user`
