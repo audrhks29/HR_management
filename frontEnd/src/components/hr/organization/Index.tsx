@@ -19,12 +19,14 @@ const Index = () => {
 
   return (
     <ScrollArea className="h-[850px] ">
-      {organizationData?.length === 0 ? (
+      {!isEditMode && organizationData?.length === 0 ? (
         <Card className="p-8">
           <CardContent className="flex flex-col items-center justify-center h-full">
             <p>데이터가 없습니다</p>
 
-            <Button className="w-[100px] mt-3">등록</Button>
+            <Button type="button" onClick={() => setIsEditMode(true)} className="w-[100px] mt-3">
+              등록
+            </Button>
           </CardContent>
         </Card>
       ) : (
