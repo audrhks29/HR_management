@@ -1,13 +1,7 @@
 import { memo, useEffect, useState } from "react";
 import { useSuspenseQueries } from "@tanstack/react-query";
 
-import {
-  getBusinessData,
-  getMemberData,
-  getOrganizationData,
-  getSalaryData,
-  getSettingData,
-} from "@/server/fetchReadData";
+import { getMemberData, getOrganizationData, getSalaryData, getSettingData } from "@/server/fetchReadData";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import TotalSalary from "./chart/TotalSalary";
@@ -19,6 +13,9 @@ import Logout from "./logout/Logout";
 import CommuteTime from "./chart/CommuteTime";
 import { getCurrentLoggedUser } from "@/server/fetchUserData";
 import { postSettingBusinessData } from "@/server/fetchCreateData";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 type QueryResult<T> = {
   data: T;
@@ -34,6 +31,8 @@ type SuspenseQueriesResult = [
 
 const Dashboard = memo(() => {
   const [date, setDate] = useState<Date | undefined>(new Date());
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const [
     { data: settingData, refetch },
@@ -66,6 +65,21 @@ const Dashboard = memo(() => {
     if (!hasBusinessSetting) {
       postSettingBusinessData(currentUserData.business);
       refetch();
+    }
+
+    if (organizationData.length === 0) {
+      toast({
+        title: "조직도가 등록되지 않았습니다.",
+        description: "원할한 사용을 위해 조직도를 등록해주세요",
+        action: (
+          <ToastAction
+            className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            onClick={() => navigate("/hr_organization_chart")}
+            altText="확인">
+            확인
+          </ToastAction>
+        ),
+      });
     }
   }, []);
 
