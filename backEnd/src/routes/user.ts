@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+const cookieP = require("cookie-parser");
 const {
   db: dbMiddleware,
   dbClose: closeDbConnection,
@@ -65,14 +67,29 @@ module.exports = function (app: any, User: any) {
     }
   });
 
+  app.get("/currentUser", async (req: any, res: any) => {
+    try {
+      const token = req.cookies.accessToken;
+      const decoded = jwt.verify(token, process.env.ACCESS_SECRET_KEY);
+      const user_id = decoded.id;
+
+      const user = await User.findOne({ user_id });
+
+      res.status(200).json(user);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   app.post("/signup", async (req: any, res: any) => {
     try {
-      const { user } = req.body;
-      const hashedPassword = await bcrypt.hash(user.user_password, 10);
+      const { user_id, user_password, business } = req.body;
+      const hashedPassword = await bcrypt.hash(user_password, 10);
 
       const newUser = new User({
-        user_id: user.user_id,
+        user_id: user_id,
         user_password: hashedPassword,
+        business,
       });
 
       const result = await newUser.save();

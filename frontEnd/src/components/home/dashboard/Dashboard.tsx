@@ -1,7 +1,13 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useSuspenseQueries } from "@tanstack/react-query";
 
-import { getMemberData, getSalaryData, getSettingData } from "@/server/fetchReadData";
+import {
+  getBusinessData,
+  getMemberData,
+  getOrganizationData,
+  getSalaryData,
+  getSettingData,
+} from "@/server/fetchReadData";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import TotalSalary from "./chart/TotalSalary";
@@ -11,6 +17,8 @@ import EmployeeBirthday from "./board/EmployeeBirthday";
 import { Calendar } from "@/components/ui/calendar";
 import Logout from "./logout/Logout";
 import CommuteTime from "./chart/CommuteTime";
+import { getCurrentLoggedUser } from "@/server/fetchUserData";
+import { postSettingBusinessData } from "@/server/fetchCreateData";
 
 type QueryResult<T> = {
   data: T;
@@ -20,25 +28,48 @@ type SuspenseQueriesResult = [
   QueryResult<SettingTypes>,
   QueryResult<MemberDataTypes[]>,
   QueryResult<SalaryDataTypes[]>,
+  QueryResult<OrganizationDataTypes[]>,
+  QueryResult<SignDataTypes>,
 ];
 
 const Dashboard = memo(() => {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
-  const [{ data: settingData }, { data: memberData }, { data: salaryData }] = useSuspenseQueries<SuspenseQueriesResult>(
-    {
-      queries: [
-        { queryKey: ["settingData"], queryFn: getSettingData },
-        { queryKey: ["memberData"], queryFn: getMemberData },
-        {
-          queryKey: ["salaryData"],
-          queryFn: getSalaryData,
-        },
-      ],
-    },
-  );
+  const [
+    { data: settingData, refetch },
+    { data: memberData },
+    { data: salaryData },
+    { data: organizationData },
+    { data: currentUserData },
+  ] = useSuspenseQueries<SuspenseQueriesResult>({
+    queries: [
+      { queryKey: ["settingData"], queryFn: getSettingData },
+      { queryKey: ["memberData"], queryFn: getMemberData },
+      {
+        queryKey: ["salaryData"],
+        queryFn: getSalaryData,
+      },
+      {
+        queryKey: ["organizationData"],
+        queryFn: getOrganizationData,
+      },
+      {
+        queryKey: ["currentUserData"],
+        queryFn: getCurrentLoggedUser,
+      },
+    ],
+  });
 
-  const companyName = settingData?.business_setting.name_of_company;
+  useEffect(() => {
+    const hasBusinessSetting = settingData?.business_setting;
+
+    if (!hasBusinessSetting) {
+      postSettingBusinessData(currentUserData.business);
+      refetch();
+    }
+  }, []);
+
+  const companyName = settingData?.business_setting?.name_of_company;
 
   return (
     <Card className="col-span-2 p-5">

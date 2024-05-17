@@ -17,12 +17,36 @@ module.exports = function (app: any, Setting: any) {
     }
   });
 
+  app.get("/setting/business", async (req: any, res: any) => {
+    try {
+      const data = await Setting.findOne({}, "business_setting");
+      res.json(data.business_setting);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   app.get("/setting/position", async (req: any, res: any) => {
     try {
       const data = await Setting.findOne({}, "position_setting");
       res.json(data.position_setting);
     } catch (err: any) {
       res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/setting/business", async (req: any, res: any) => {
+    try {
+      const newSetting = new Setting({
+        business_setting: req.body,
+      });
+      await newSetting.save();
+
+      res
+        .status(200)
+        .json({ message: "Business setting created successfully" });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message }); // 에러 발생 시 500 상태 코드와 에러 메시지를 응답으로 전송
     }
   });
 

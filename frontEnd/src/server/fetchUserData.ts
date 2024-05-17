@@ -14,8 +14,8 @@ export const postUserData = async (user_id: string, user_password: string) => {
     );
 
     return response.data.user;
-  } catch (error) {
-    console.log("error");
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -23,9 +23,23 @@ export const userSignUp = async (data: SignDataTypes) => {
   try {
     const response = await axios.post("http://localhost:5000/signup", data);
     if (response.status === 200) {
-      return response.data.user;
+      return response.data;
     }
-  } catch {}
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getCurrentLoggedUser = async () => {
+  try {
+    const response = await axios.get("http://localhost:5000/currentUser", {
+      withCredentials: true,
+    });
+
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const accessToken = async () => {

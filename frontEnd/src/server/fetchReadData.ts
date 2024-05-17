@@ -84,3 +84,8 @@ export const getPositionData = async () => {
   const response = await axios.get("http://localhost:5000/setting/position");
   return response.data;
 };
+
+export const getBusinessData = async () => {
+  const response = await axios.get("http://localhost:5000/setting/business");
+  return response.data;
+};

@@ -1,5 +1,3 @@
-// app.js
-
 require("dotenv").config();
 
 const express = require("express");
@@ -30,12 +28,10 @@ userConnection.on("error", (err: any) => {
   console.error("user 연결 실패:", err);
 });
 
-// cors 허용
-
-// 미들웨어 설정
 app.use(express.json());
 app.use(bodyParser.json());
 
+// cors 허용
 app.use(
   cors({
     origin: true,
@@ -43,6 +39,7 @@ app.use(
   })
 );
 app.use(cookieParser());
+
 // 스키마 require
 const Salary = require("../models/schemas/salary").default;
 const Member = require("../models/schemas/member").default;

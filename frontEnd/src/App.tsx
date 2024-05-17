@@ -1,3 +1,4 @@
+import { Suspense, useEffect } from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 
 import { ThemeProvider } from "@/components/mode/theme-provider";
@@ -13,6 +14,7 @@ const queryClient = new QueryClient({
 });
 
 import Header from "./layout/header/Header";
+import Frame from "./layout/header/Frame";
 import Menu from "./layout/header/Menu";
 
 import Home from "./pages/Home";
@@ -27,18 +29,21 @@ import Salary_history from "./pages/salary/Salary_history";
 
 import Attitude_commute_time from "./pages/attitude/Attitude_commute_time";
 import Attitude_record from "./pages/attitude/Attitude_record";
-import { Suspense, useEffect } from "react";
-import Loading from "./shared/Loading";
+
+import Salary_registration from "./pages/salary/Salary_registration";
+import Salary_edit from "./pages/salary/Salary_edit";
+
 import Salary_history_personal from "./window/Salary_history_personal";
 import Post from "./components/hr/register/menu/info/Post";
+
+import Loading from "./shared/Loading";
+
 import Login from "./pages/user/Login";
-import Setting from "./pages/setting/Setting";
-import Salary_registration from "./pages/salary/Salary_registration";
-import useDateStore from "./store/date-store";
-import Salary_edit from "./pages/salary/Salary_edit";
-import { Toaster } from "./components/ui/toaster";
 import SignUp from "./pages/user/SignUp";
-import Frame from "./layout/header/Frame";
+
+import Setting from "./pages/setting/Setting";
+import useDateStore from "./store/date-store";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   const { setToday } = useDateStore();

@@ -14,7 +14,7 @@ const Index = memo(() => {
     queryFn: getSettingData,
   });
 
-  const companyName = settingData?.business_setting.name_of_company;
+  const companyName = settingData?.business_setting?.name_of_company;
 
   return (
     <div className="flex border-r border-primary/20 items-center px-4 w-[250px]">

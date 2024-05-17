@@ -25,11 +25,10 @@ const SignUpForm = memo(() => {
     watch,
   } = useForm<SignDataTypes>({
     defaultValues: {
-      user: {
-        user_id: "",
-        user_password: "",
-        user_password_confirm: "",
-      },
+      user_id: "",
+      user_password: "",
+      user_password_confirm: "",
+
       business: {
         name_of_company: "",
         business_address: "",
@@ -72,7 +71,7 @@ const SignUpForm = memo(() => {
   };
 
   const passwordRef = useRef<string | null>(null);
-  passwordRef.current = watch(`user.user_password`);
+  passwordRef.current = watch(`user_password`);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -91,11 +90,11 @@ const SignUpForm = memo(() => {
           <Separator />
           <CardContent className="w-[450px] grid gap-2 p-6">
             <div className="text-left grid grid-cols-[110px_1fr_80px] grid-rows-[1fr_auto] gap-x-2 gap-y-1 items-center">
-              <Label htmlFor="user.user_id">아이디</Label>
+              <Label htmlFor="user_id">아이디</Label>
               <Input
-                id="user.user_id"
+                id="user_id"
                 type="text"
-                {...register("user.user_id", {
+                {...register("user_id", {
                   required: "아이디를 입력해주세요",
                   maxLength: { value: 20, message: "20글자 내로 입력해주세요" },
                 })}
@@ -105,7 +104,7 @@ const SignUpForm = memo(() => {
 
               <ErrorMessage
                 errors={errors}
-                name={`user.user_id`}
+                name={`user_id`}
                 render={({ message }) => (
                   <div className="text-destructive font-bold text-[12px] col-span-2 col-start-2">{message}</div>
                 )}
@@ -113,10 +112,10 @@ const SignUpForm = memo(() => {
             </div>
 
             <div className="text-left grid grid-cols-[110px_1fr_80px] grid-rows-[1fr_auto] gap-x-2 gap-y-1 items-center">
-              <Label htmlFor="user.user_password">비밀번호</Label>
+              <Label htmlFor="user_password">비밀번호</Label>
               <Input
-                id="user.user_password"
-                {...register("user.user_password", {
+                id="user_password"
+                {...register("user_password", {
                   required: "비밀번호를 입력해주세요",
                   pattern: {
                     value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/,
@@ -131,7 +130,7 @@ const SignUpForm = memo(() => {
 
               <ErrorMessage
                 errors={errors}
-                name={`user.user_password`}
+                name={`user_password`}
                 render={({ message }) => (
                   <div className="text-destructive font-bold text-[12px] col-span-2 col-start-2">{message}</div>
                 )}
@@ -139,23 +138,23 @@ const SignUpForm = memo(() => {
             </div>
 
             <div className="text-left grid grid-cols-[110px_1fr_80px] grid-rows-[1fr_auto] gap-x-2 gap-y-1 items-center">
-              <Label htmlFor="user.user_password_confirm">비밀번호 확인</Label>
+              <Label htmlFor="user_password_confirm">비밀번호 확인</Label>
               <Input
-                id="user.user_password_confirm"
-                {...register("user.user_password_confirm", {
+                id="user_password_confirm"
+                {...register("user_password_confirm", {
                   required: "비밀번호를 확인해주세요.",
                   validate: value => value === passwordRef.current,
                 })}
                 type="password"
               />
 
-              {errors?.user?.user_password_confirm?.type === "required" && (
+              {errors?.user_password_confirm?.type === "required" && (
                 <div className="text-destructive font-bold text-[12px] col-span-2 col-start-2">
                   비밀번호를 확인해주세요.
                 </div>
               )}
 
-              {errors?.user?.user_password_confirm?.type === "validate" && (
+              {errors?.user_password_confirm?.type === "validate" && (
                 <div className="text-destructive font-bold text-[12px] col-span-2 col-start-2">
                   비밀번호가 일치하지 않습니다.
                 </div>

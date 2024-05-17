@@ -30,3 +30,7 @@ export const postSalaryData = async (
 ) => {
   await axios.post(`http://localhost:5000/salary/${id}/${year}/${month}`, data);
 };
+
+export const postSettingBusinessData = async (data: BusinessSettingTypes | undefined) => {
+  await axios.post(`http://localhost:5000/setting/business`, data);
+};
