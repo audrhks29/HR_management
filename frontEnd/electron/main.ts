@@ -93,7 +93,7 @@ function createSalaryPersonalWindow(url:string) {
   })
  
   if (VITE_DEV_SERVER_URL) {
-    salaryPersonalWindow.loadURL(`http://localhost:5173/#/salary_history_personal/${url}`)
+    salaryPersonalWindow.loadURL(`http://ec2-43-200-8-134.ap-northeast-2.compute.amazonaws.com:5173/#/salary_history_personal/${url}`)
   } else {
     salaryPersonalWindow.loadFile(path.join(process.env.DIST, "index.html"),{hash:`salary_history_personal/${url}`});
   }
@@ -116,7 +116,7 @@ function createPostWindow() {
   })
 
   if (VITE_DEV_SERVER_URL) {
-    postWindow.loadURL(`http://localhost:5173/#/post`)
+    postWindow.loadURL(`http://ec2-43-200-8-134.ap-northeast-2.compute.amazonaws.com:5173/#/post`)
   } else {
     postWindow.loadFile(path.join(process.env.DIST, "index.html"),{hash:"post"});
   }

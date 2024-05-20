@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const postMemberData = async (data: { employeeData: MemberDataTypes }) => {
-  await axios.post("http://localhost:5000/member", data);
+  await axios.post("http://15.164.166.86/member", data);
 };
 
 export const postMemberSalaryPersonalData = async (data: MemberSalaryFormTypes, id: string | undefined) => {
-  await axios.post(`http://localhost:5000/memberSalary/${id}`, data);
+  await axios.post(`http://15.164.166.86/memberSalary/${id}`, data);
 };
 
 export const postCommuteTimeData = async (
@@ -15,11 +15,11 @@ export const postCommuteTimeData = async (
   },
   id: string,
 ) => {
-  await axios.post(`http://localhost:5000/work/commute/${id}`, data);
+  await axios.post(`http://15.164.166.86/work/commute/${id}`, data);
 };
 
 export const postAttitudeData = async (data: AttitudeDataTypes | undefined, id: string) => {
-  await axios.post(`http://localhost:5000/work/attitude/${id}`, data);
+  await axios.post(`http://15.164.166.86/work/attitude/${id}`, data);
 };
 
 export const postSalaryData = async (
@@ -28,9 +28,9 @@ export const postSalaryData = async (
   year: string,
   month: string,
 ) => {
-  await axios.post(`http://localhost:5000/salary/${id}/${year}/${month}`, data);
+  await axios.post(`http://15.164.166.86/salary/${id}/${year}/${month}`, data);
 };
 
 export const postSettingBusinessData = async (data: BusinessSettingTypes | undefined) => {
-  await axios.post(`http://localhost:5000/setting/business`, data);
+  await axios.post(`http://15.164.166.86/setting/business`, data);
 };

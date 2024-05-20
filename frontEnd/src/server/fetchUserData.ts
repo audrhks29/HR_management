@@ -3,7 +3,7 @@ import axios from "axios";
 export const postUserData = async (user_id: string, user_password: string) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/login",
+      "http://15.164.166.86/login",
       {
         user_id,
         user_password,
@@ -21,7 +21,7 @@ export const postUserData = async (user_id: string, user_password: string) => {
 
 export const userSignUp = async (data: SignDataTypes) => {
   try {
-    const response = await axios.post("http://localhost:5000/signup", data);
+    const response = await axios.post("http://15.164.166.86/signup", data);
     if (response.status === 200) {
       return response.data;
     }
@@ -32,7 +32,7 @@ export const userSignUp = async (data: SignDataTypes) => {
 
 export const getCurrentLoggedUser = async () => {
   try {
-    const response = await axios.get("http://localhost:5000/currentUser", {
+    const response = await axios.get("http://15.164.166.86/currentUser", {
       withCredentials: true,
     });
 
@@ -44,7 +44,7 @@ export const getCurrentLoggedUser = async () => {
 
 export const accessToken = async () => {
   try {
-    await axios.get("http://localhost:5000/accessToken", {
+    await axios.get("http://15.164.166.86/accessToken", {
       withCredentials: true,
     });
   } catch (err) {
@@ -54,7 +54,7 @@ export const accessToken = async () => {
 
 export const refreshToken = async () => {
   try {
-    await axios.get("http://localhost:5000/refreshToken", {
+    await axios.get("http://15.164.166.86/refreshToken", {
       withCredentials: true,
     });
   } catch (err) {
@@ -64,7 +64,7 @@ export const refreshToken = async () => {
 
 export const userLogout = async () => {
   try {
-    await axios.get("http://localhost:5000/logout", {
+    await axios.get("http://15.164.166.86/logout", {
       withCredentials: true,
     });
   } catch (err) {
