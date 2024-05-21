@@ -138,7 +138,10 @@
   1. 클라이언트의 form에서 입력하여 전송한 user_id와 일치하는 id가 `user`에 있는지 확인하여, 없다면 status를 404로 return 한다.
   2. `bcrypt.compare` 메소드를 이용하여 form에서 입력한 비밀번호와 `Hashed Text`가 일치하는지 확인한다.
 
-### 2. JWT를 이용한 토큰발급
+### ~~2. JWT를 이용한 토큰 발급~~ => sessionStorage사용으로 코드 수정
+
+<details>
+  <summary>jwt 토큰발급</summary>
 
 1.  미들웨어 설정
 
@@ -226,51 +229,73 @@
 
 3.  accessToken, refreshToken
 
-    ```js
-    app.get("/accessToken", dbMiddleware, async (req: any, res: any) => {
-      try {
-        const token = req.cookies.accessToken;
-        const data = jwt.verify(token, process.env.ACCESS_SECRET_KEY);
+        ```js
+        app.get("/accessToken", dbMiddleware, async (req: any, res: any) => {
+          try {
+            const token = req.cookies.accessToken;
+            const data = jwt.verify(token, process.env.ACCESS_SECRET_KEY);
 
-        const user = await User.findOne({ user_id: data.id });
+            const user = await User.findOne({ user_id: data.id });
 
-        const { password, ...others } = user;
-          res.status(200).json(others);
-        } catch (err: any) {
-          res.status(500).json({ error: err.message });
-        }
-    });
-
-    app.get("/refreshToken", dbMiddleware, async (req: any, res: any) => {
-      try {
-        const token = req.cookies.refreshToken;
-        const data = jwt.verify(token, process.env.REFRESH_SECRET_KEY);
-
-        const user = await User.findOne({ user_id: data.id });
-
-        // accessToken 발급 로직을 추가해준다.
-        const accessToken = jwt.sign(
-          {
-            id: user.id,
-          },
-          process.env.ACCESS_SECRET_KEY,
-          { expiresIn: "5h", issuer: "Hr" }
-        );
-
-        res.cookie("accessToken", accessToken, {
-          secure: false,
-          httpOnly: true,
+            const { password, ...others } = user;
+              res.status(200).json(others);
+            } catch (err: any) {
+              res.status(500).json({ error: err.message });
+            }
         });
 
-        res.status(200).json("AccessToken Recreated");
-      } catch (err: any) {
-        res.status(500).json({ error: err.message });
-      }
-    });
-    ```
+        app.get("/refreshToken", dbMiddleware, async (req: any, res: any) => {
+          try {
+            const token = req.cookies.refreshToken;
+            const data = jwt.verify(token, process.env.REFRESH_SECRET_KEY);
 
-    1.  `const token = req.cookies.토큰명;`를 통해 쿠키를 읽어온다.
-    2.  `jwt.verify(token, process.env.ACCESS_SECRET_KEY)`를 이용하여 유효성을 검사한다.
-        > `token` : 검증할 엑세스 토큰
-        >
-        > `process.env.ACCESS_SECRET_KEY`: 토큰을 생성할 때 사용한 비밀 키
+            const user = await User.findOne({ user_id: data.id });
+
+            // accessToken 발급 로직을 추가해준다.
+            const accessToken = jwt.sign(
+              {
+                id: user.id,
+              },
+              process.env.ACCESS_SECRET_KEY,
+              { expiresIn: "5h", issuer: "Hr" }
+            );
+
+            res.cookie("accessToken", accessToken, {
+              secure: false,
+              httpOnly: true,
+            });
+
+            res.status(200).json("AccessToken Recreated");
+          } catch (err: any) {
+            res.status(500).json({ error: err.message });
+          }
+        });
+        ```
+
+        1.  `const token = req.cookies.토큰명;`를 통해 쿠키를 읽어온다.
+        2.  `jwt.verify(token, process.env.ACCESS_SECRET_KEY)`를 이용하여 유효성을 검사한다.
+            > `token` : 검증할 엑세스 토큰
+            >
+            > `process.env.ACCESS_SECRET_KEY`: 토큰을 생성할 때 사용한 비밀 키
+
+    </details>
+
+## ❌ Trouble Shooting
+
+### 1. jwt 관련
+
+- 발생문제
+
+  1. `jwt`를 이용하여 user 정보를 담은 토큰 발급 후 `decode`하여 dbName을 추출하여 연결하는 코드 작성.
+  2. aws ec2에 server 가동시, client와 server의 도메인이 다른 이유로 쿠키 공유에 실패로 DB연결이 실패함.
+
+- 해결방안
+
+  1.  서로 같은 도메인으로 연결
+      > `electron`은 `local`환경에서 구동되기 때문에 `server`와 같은 도메인을 사용할 수 없다.
+  2.  `http` 프로토콜을 `https` 프로토콜로 변경한 후 `cookie` 옵션을 변경하여 `cookie` 를 공유한다.
+      > `localhost` 프로토콜을 `https`로 변경하는데 상당히 복잡하며, `server`의 경우 도메인을 구매하여야 한다.
+
+- 해결 방법
+
+  1.  `sessionStorage`에 `user_id`를 저장하여 DB에 연결하는 방식을 사용(`user_id`와 DB이름이 같다.)
