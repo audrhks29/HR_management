@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 
-import { accessToken, postUserData } from "@/server/fetchUserData";
+// import { accessToken, postUserData } from "@/server/fetchUserData";
+import { postUserData } from "@/server/fetchUserData";
 
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,8 @@ const LoginForm = memo(() => {
 
     try {
       if (userData) {
-        await accessToken();
+        // await accessToken();
+        sessionStorage.setItem("user_id", user_id);
         navigate("/home");
       } else {
         setFindUser(false);

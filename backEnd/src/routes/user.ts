@@ -1,11 +1,12 @@
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
+const mongooseDB = require("mongoose");
 
-const cookieP = require("cookie-parser");
-const {
-  db: dbMiddleware,
-  dbClose: closeDbConnection,
-} = require("../middlewares/db");
+// const cookieP = require("cookie-parser");
+// const {
+//   db: dbMiddleware,
+//   dbClose: closeDbConnection,
+// } = require("../middlewares/db");
 
 module.exports = function (app: any, User: any) {
   app.post("/login", async (req: any, res: any) => {
@@ -25,36 +26,42 @@ module.exports = function (app: any, User: any) {
       // access token 발급
       if (passwordMatch) {
         const dbName = user_id === "sample" ? `BASE_DB` : user_id;
-        const accessToken = jwt.sign(
-          {
-            id: user_id,
-            dbName,
-          },
-          process.env.ACCESS_SECRET_KEY,
-          { expiresIn: "5h", issuer: "Hr" }
-        );
+        await mongooseDB
+          .connect(`${process.env.DB_URL}/${dbName}`)
+          .then(() => console.log("MongoDB가 연결되었습니다...!"))
+          .catch((err: any) => console.error("MongoDB 연결 실패:", err));
+        // const accessToken = jwt.sign(
+        //   {
+        //     id: user_id,
+        //     dbName,
+        //   },
+        //   process.env.ACCESS_SECRET_KEY,
+        //   { expiresIn: "5h", issuer: "Hr" }
+        // );
 
-        // refresh token 발급
-        const refreshToken = jwt.sign(
-          {
-            id: user_id,
-            dbName,
-          },
-          process.env.REFRESH_SECRET_KEY,
-          { expiresIn: "24h", issuer: "Hr" }
-        );
+        // // refresh token 발급
+        // const refreshToken = jwt.sign(
+        //   {
+        //     id: user_id,
+        //     dbName,
+        //   },
+        //   process.env.REFRESH_SECRET_KEY,
+        //   { expiresIn: "24h", issuer: "Hr" }
+        // );
 
-        // access token 전송
-        res.cookie("accessToken", accessToken, {
-          secure: false,
-          httpOnly: true,
-        });
+        // // access token 전송
+        // res.cookie("accessToken", accessToken, {
+        //   secure: true,
+        //   sameSite: "none",
+        //   httpOnly: true,
+        // });
 
-        // refresh token 전송
-        res.cookie("refreshToken", refreshToken, {
-          secure: false,
-          httpOnly: true,
-        });
+        // // refresh token 전송
+        // res.cookie("refreshToken", refreshToken, {
+        //   secure: true,
+        //   sameSite: "none",
+        //   httpOnly: true,
+        // });
 
         return res.status(200).json({ message: "로그인 성공!", user });
       } else {
@@ -67,11 +74,12 @@ module.exports = function (app: any, User: any) {
     }
   });
 
-  app.get("/currentUser", async (req: any, res: any) => {
+  app.get("/currentUser/:user_id", async (req: any, res: any) => {
+    const { user_id } = req.params;
     try {
-      const token = req.cookies.accessToken;
-      const decoded = jwt.verify(token, process.env.ACCESS_SECRET_KEY);
-      const user_id = decoded.id;
+      // const token = req.cookies.accessToken;
+      // const decoded = jwt.verify(token, process.env.ACCESS_SECRET_KEY);
+      // const user_id = decoded.id;
 
       const user = await User.findOne({ user_id });
 
@@ -99,51 +107,54 @@ module.exports = function (app: any, User: any) {
     }
   });
 
-  app.get("/accessToken", dbMiddleware, async (req: any, res: any) => {
-    try {
-      const token = req.cookies.accessToken;
-      const data = jwt.verify(token, process.env.ACCESS_SECRET_KEY);
+  // app.get("/accessToken", dbMiddleware, async (req: any, res: any) => {
+  //   try {
+  //     const token = req.cookies.accessToken;
+  //     const data = jwt.verify(token, process.env.ACCESS_SECRET_KEY);
 
-      const user = await User.findOne({ user_id: data.id });
-      const { password, ...others } = user;
-      res.status(200).json(others);
-    } catch (err: any) {
-      res.status(500).json({ error: err.message });
-    }
-  });
+  //     const user = await User.findOne({ user_id: data.id });
+  //     const { password, ...others } = user;
+  //     res.status(200).json(others);
+  //   } catch (err: any) {
+  //     res.status(500).json({ error: err.message });
+  //   }
+  // });
 
-  app.get("/refreshToken", dbMiddleware, async (req: any, res: any) => {
-    try {
-      const token = req.cookies.refreshToken;
-      const data = jwt.verify(token, process.env.REFRESH_SECRET_KEY);
+  // app.get("/refreshToken", dbMiddleware, async (req: any, res: any) => {
+  //   try {
+  //     const token = req.cookies.refreshToken;
+  //     const data = jwt.verify(token, process.env.REFRESH_SECRET_KEY);
 
-      const user = await User.findOne({ user_id: data.id });
+  //     const user = await User.findOne({ user_id: data.id });
 
-      const accessToken = jwt.sign(
-        {
-          id: user.id,
-        },
-        process.env.ACCESS_SECRET_KEY,
-        { expiresIn: "5h", issuer: "Hr" }
-      );
+  //     const accessToken = jwt.sign(
+  //       {
+  //         id: user.id,
+  //       },
+  //       process.env.ACCESS_SECRET_KEY,
+  //       { expiresIn: "5h", issuer: "Hr" }
+  //     );
 
-      res.cookie("accessToken", accessToken, {
-        secure: false,
-        httpOnly: true,
-      });
+  //     res.cookie("accessToken", accessToken, {
+  //       secure: true,
+  //       sameSite: "none",
+  //       httpOnly: true,
+  //     });
 
-      res.status(200).json("AccessToken Recreated");
-    } catch (err: any) {
-      res.status(500).json({ error: err.message });
-    }
-  });
+  //     res.status(200).json("AccessToken Recreated");
+  //   } catch (err: any) {
+  //     res.status(500).json({ error: err.message });
+  //   }
+  // });
 
   app.get("/logout", async (req: any, res: any) => {
     try {
-      await closeDbConnection();
-      res.cookie("accessToken", "", { maxAge: 0 });
-      res.cookie("refreshToken", "", { maxAge: 0 });
-
+      // await closeDbConnection();
+      // res.cookie("accessToken", "", { maxAge: 0 });
+      // res.cookie("refreshToken", "", { maxAge: 0 });
+      await mongooseDB.connections
+        .filter((con: any) => con.name !== "user")
+        .forEach((con: any) => con.close());
       res.status(200).json("Logout Success");
     } catch (err: any) {
       res.status(500).json({ error: err.message });

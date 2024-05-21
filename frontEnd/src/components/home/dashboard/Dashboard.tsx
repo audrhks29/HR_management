@@ -33,6 +33,7 @@ const Dashboard = memo(() => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const navigate = useNavigate();
   const { toast } = useToast();
+  const user_id = sessionStorage.getItem("user_id");
 
   const [
     { data: settingData, refetch },
@@ -54,7 +55,7 @@ const Dashboard = memo(() => {
       },
       {
         queryKey: ["currentUserData"],
-        queryFn: getCurrentLoggedUser,
+        queryFn: () => getCurrentLoggedUser(user_id),
       },
     ],
   });
