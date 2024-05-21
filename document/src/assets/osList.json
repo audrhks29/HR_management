@@ -1,5 +1,9 @@
 [
-  { "id": 1, "os_name": "windows", "link": "" },
-  { "id": 2, "os_name": "mac", "link": "" },
-  { "id": 3, "os_name": "linux", "link": "" }
+  {
+    "id": 1,
+    "os_name": "windows",
+    "link": "https://hrmanagementexe-bucket.s3.ap-northeast-2.amazonaws.com/HR_Management-Windows-1.0.0-Setup.exe"
+  },
+  { "id": 2, "os_name": "mac", "link": null },
+  { "id": 3, "os_name": "linux", "link": null }
 ]

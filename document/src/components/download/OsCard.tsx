@@ -5,7 +5,7 @@ import { Button, Card, CardContent, CardMedia, Typography, css } from "@mui/mate
 
 import DownloadIcon from "@mui/icons-material/Download";
 
-const OsCard = memo(({ os_name }: { os_name: string }) => {
+const OsCard = memo(({ os_name, link }: { os_name: string; link: string | null }) => {
   const typographyStyle = css`
     padding: 16px;
     text-align: center;
@@ -28,6 +28,14 @@ const OsCard = memo(({ os_name }: { os_name: string }) => {
     font-weight: bold;
   `;
 
+  const handleDownload = () => {
+    if (link) {
+      window.location.href = link;
+    } else {
+      alert("준비중입니다.");
+    }
+  };
+
   return (
     <Card sx={{ maxWidth: 345, borderRadius: "10px", margin: "auto" }}>
       <CardContent>
@@ -36,7 +44,7 @@ const OsCard = memo(({ os_name }: { os_name: string }) => {
         </Typography>
 
         <div css={buttonContainer}>
-          <Button type="button" variant="outlined" css={buttonStyle}>
+          <Button type="button" variant="outlined" css={buttonStyle} onClick={handleDownload}>
             <DownloadIcon />
             <span>Download</span>
           </Button>

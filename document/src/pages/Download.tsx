@@ -71,6 +71,12 @@ const Download = memo(() => {
     }
   }, []);
 
+  const handleDownload = () => {
+    const osName = osList.find(item => item.os_name === os.toLowerCase());
+    const downloadLink = osName?.link;
+    downloadLink ? (window.location.href = downloadLink) : alert("준비중입니다.");
+  };
+
   return (
     <section css={InnerStyle}>
       <article css={downloadContainer}>
@@ -87,7 +93,7 @@ const Download = memo(() => {
             무료로 HR_Management를 사용해보세요
           </p>
 
-          <Button type="button" variant="contained" css={buttonStyle}>
+          <Button type="button" variant="contained" css={buttonStyle} onClick={handleDownload}>
             <DownloadIcon />
 
             <span>{os} 전용 APP Download</span>
@@ -112,7 +118,7 @@ const Download = memo(() => {
 
       <article css={osContainer}>
         {osList.map(list => (
-          <OsCard key={list.id} os_name={list.os_name} />
+          <OsCard key={list.id} os_name={list.os_name} link={list.link} />
         ))}
       </article>
     </section>
