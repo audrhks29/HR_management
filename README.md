@@ -23,25 +23,33 @@
 
 ![image](https://github.com/audrhks29/HR_management/assets/130128690/a7d27d70-7dcc-4385-b2cd-0d87a3d7d940)
 
-#### 3. 로그인 화면
+### 3. 로그인 화면
 
 ![image](https://github.com/audrhks29/HR_management/assets/130128690/91a5fa01-10d9-4cc7-a70e-8897b93d09a8)
 
-#### 4. 메인 화면
+### 4. 메인 화면
 
 ![image](https://github.com/audrhks29/HR_management/assets/130128690/16e58650-3d8f-4b8b-a632-ff6bb76024b3)
 
-</div>
-</details>
-
-## 🛠 주요 기능 구현
+## 🛠 주요 기능
 
 ### 1. Custom Frame
 
-### 2. IPC Renderer
+- 기본값으로 설정되어있는 `Eletron`의 `Frame`을 제거하고 새로운 Custom Frame 구현
 
-### 3. React Form
+### 2. 라이트모드/다크모드
 
-### 4. Shadcn/Ui Theme
+- https://ui.shadcn.com/docs/dark-mode/vite
+- shadcn에서 제공하는 `ThemeProvider`와 `ModeToggle` 를 사용한 테마 제작
 
-### 5. Chart
+## ❌ Trouble Shooting
+
+### 1. Custom Frame
+
+- Drag 관련
+
+  > 문제
+  > `-webkit-app-region` 적용 이 후, event들이 적용이 되지 않아서 `minimize`와 `close` 가 작동하지 않음.
+
+  > 해결
+  > `-` 버튼과 `x` 버튼영역을 제외한 영역에 드래그 할 수 있도록 컴포넌트 및 스타일을 수정
