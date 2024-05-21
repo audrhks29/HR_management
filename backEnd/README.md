@@ -139,164 +139,29 @@
   1. 클라이언트의 form에서 입력하여 전송한 user_id와 일치하는 id가 `user`에 있는지 확인하여, 없다면 status를 404로 return 한다.
   2. `bcrypt.compare` 메소드를 이용하여 form에서 입력한 비밀번호와 `Hashed Text`가 일치하는지 확인한다.
 
-### ~~2. JWT를 이용한 토큰 발급~~ => sessionStorage사용으로 코드 수정
+### 2. JWT를 이용한 토큰 발급
 
-<details>
-  <summary>jwt 토큰발급</summary>
-
-1.  미들웨어 설정
-
-    ```js
-    app.use(
-      cors({
-        origin: true, // cors요청을 모든 출처에서 허용
-        credentials: true, // 요청시 쿠키를 함께 보냄을 허용
-      })
-    );
-
-    app.use(cookieParser());
-    ```
-
-2.  login
-
-    ```js
-    if (passwordMatch) {
-      const dbName = user_id === "sample" ? `BASE_DB` : user_id;
-      const accessToken = jwt.sign(
-        {
-          id: user_id,
-          dbName,
-        },
-        process.env.ACCESS_SECRET_KEY,
-        { expiresIn: "5h", issuer: "Hr" }
-      );
-
-      // refresh token 발급
-      const refreshToken = jwt.sign(
-        {
-          id: user_id,
-          dbName,
-        },
-        process.env.REFRESH_SECRET_KEY,
-        { expiresIn: "24h", issuer: "Hr" }
-      );
-
-      // access token 전송
-      res.cookie("accessToken", accessToken, {
-        secure: false,
-        httpOnly: true,
-      });
-
-      // refresh token 전송
-      res.cookie("refreshToken", refreshToken, {
-        secure: false,
-        httpOnly: true,
-      });
-
-      return res.status(200).json({ message: "로그인 성공!", user });
-    }
-    ```
-
-    1. 비밀번호가 일치하는 경우, 사용자의 id를 기준으로 데이터베이스를 선택한다.
-    2. `jwt sign` 메소드로, 선택된 데이터베이스 이름과 사용자 id를 포함하여 accessToken과 refreshToken을 생성한다.
-
-       ```js
-       const accessToken = jwt.sign(
-         {
-           id: user_id,
-           dbName,
-         },
-         process.env.ACCESS_SECRET_KEY,
-         { expiresIn: "5h", issuer: "Hr" }
-       );
-       ```
-
-       `jwt.sign(payload, secretOrPrivateKey, [options])`
-
-       > `payload` : 액세스 토큰에 포함할 정보를 담은 객체이며, 위 코드에서 사용자의 id와 데이터베이스 이름(dbName)이 포함되어 있다.
-
-       > `secretOrPrivateKey` : 서명에 사용할 비밀 키, 이 키를 통해 토큰이 변경되었는지 확인할 수 있다. 이 코드에서는 환경 변수인 ACCESS_SECRET_KEY가 사용된다.
-
-       > `options` (선택 사항) : 토큰의 옵션을 지정하는 객체. 위 코드에서는 토큰의 유효 기간(expiresIn)을 5시간으로 설정하였으며, 발행자(issuer)를 설정하였다.
-
-    3. 생성된 accessToken과 refreshToken을 쿠키에 저장하여 클라이언트에게 전달한다.
-
-       ```js
-       res.cookie("accessToken", accessToken, {
-         secure: false, // HTTP 패킷을 하이재킹 당해 쿠키를 탈취 당할 수 있는 경우를 막는 옵션이다. 개발모드이기 때문에 false로 설정하였다.
-         httpOnly: true, //쿠키 접근방법을 http통신으로만 가능하도록 한다
-       });
-       ```
-
-3.  accessToken, refreshToken
-
-        ```js
-        app.get("/accessToken", dbMiddleware, async (req: any, res: any) => {
-          try {
-            const token = req.cookies.accessToken;
-            const data = jwt.verify(token, process.env.ACCESS_SECRET_KEY);
-
-            const user = await User.findOne({ user_id: data.id });
-
-            const { password, ...others } = user;
-              res.status(200).json(others);
-            } catch (err: any) {
-              res.status(500).json({ error: err.message });
-            }
-        });
-
-        app.get("/refreshToken", dbMiddleware, async (req: any, res: any) => {
-          try {
-            const token = req.cookies.refreshToken;
-            const data = jwt.verify(token, process.env.REFRESH_SECRET_KEY);
-
-            const user = await User.findOne({ user_id: data.id });
-
-            // accessToken 발급 로직을 추가해준다.
-            const accessToken = jwt.sign(
-              {
-                id: user.id,
-              },
-              process.env.ACCESS_SECRET_KEY,
-              { expiresIn: "5h", issuer: "Hr" }
-            );
-
-            res.cookie("accessToken", accessToken, {
-              secure: false,
-              httpOnly: true,
-            });
-
-            res.status(200).json("AccessToken Recreated");
-          } catch (err: any) {
-            res.status(500).json({ error: err.message });
-          }
-        });
-        ```
-
-        1.  `const token = req.cookies.토큰명;`를 통해 쿠키를 읽어온다.
-        2.  `jwt.verify(token, process.env.ACCESS_SECRET_KEY)`를 이용하여 유효성을 검사한다.
-            > `token` : 검증할 엑세스 토큰
-            >
-            > `process.env.ACCESS_SECRET_KEY`: 토큰을 생성할 때 사용한 비밀 키
-
-    </details>
+- 토큰 발급 및 dbName 추출
+- 로그인 유지
+- [Trouble Shooting](#1-jwt-관련)으로 인하여 sessionStorage사용으로 수정
+- [개발블로그에 JWT 정리](https://frontendmk.tistory.com/16)
 
 ## ❌ Trouble Shooting
 
-### 1. jwt 관련
+### 1. jwt cookie 공유 불가
 
-- 발생문제
+> **문제**
+>
+> 1. `jwt`를 이용하여 user 정보를 담은 토큰 발급 후 `decode`하여 dbName을 추출하여 연결하는 코드 작성
+> 2. aws ec2에 server 가동시, client와 server의 도메인이 다른 이유로 쿠키 공유에 실패로 DB연결이 실패함.
 
-  1. `jwt`를 이용하여 user 정보를 담은 토큰 발급 후 `decode`하여 dbName을 추출하여 연결하는 코드 작성.
-  2. aws ec2에 server 가동시, client와 server의 도메인이 다른 이유로 쿠키 공유에 실패로 DB연결이 실패함.
+> **해결방안**
+>
+> 1. 서로 같은 도메인으로 연결
+>    > `electron`은 `local`환경에서 구동되기 때문에 `server`와 같은 도메인을 사용할 수 없다.
+> 2. `http` 프로토콜을 `https` 프로토콜로 변경한 후 `cookie` 옵션을 변경하여 `cookie` 를 공유한다.
+>    > `localhost` 프로토콜을 `https`로 변경하는데 상당히 복잡하며, `server`의 경우 도메인을 구매하여야 한다.
 
-- 해결방안
-
-  1.  서로 같은 도메인으로 연결
-      > `electron`은 `local`환경에서 구동되기 때문에 `server`와 같은 도메인을 사용할 수 없다.
-  2.  `http` 프로토콜을 `https` 프로토콜로 변경한 후 `cookie` 옵션을 변경하여 `cookie` 를 공유한다.
-      > `localhost` 프로토콜을 `https`로 변경하는데 상당히 복잡하며, `server`의 경우 도메인을 구매하여야 한다.
-
-- 해결 방법
-
-  1.  `sessionStorage`에 `user_id`를 저장하여 DB에 연결하는 방식을 사용(`user_id`와 DB이름이 같다.)
+> **해결**
+>
+> `sessionStorage`에 `user_id`를 저장하여 DB에 연결하는 방식을 사용(`user_id`와 DB이름이 같다.)

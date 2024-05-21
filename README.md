@@ -1,13 +1,6 @@
 # [Electron] 20240326 인사관리 데스크탑앱(Fullstack) 및 다운로드 페이지
 
-## 📚 목차
-
-- [프로젝트 정보](#프로젝트-정보)
-- [UI](#ui)
-- [주요 기능](#주요-기능)
-- [Trouble Shooting](#trouble-shooting)
-
-## 프로젝트 정보
+## 🌐프로젝트 정보
 
 |            | 설명                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -20,43 +13,28 @@
 | 런타임     | <img src="https://img.shields.io/badge/Nodejs-339933?style=flat-square&logo=nodedotjs&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | 서버       | <img src="https://img.shields.io/badge/Amazon_EC2-FF9900?style=flat-square&logo=nodedotjs&logoColor=white"> <img src="https://img.shields.io/badge/Amazone_S3-569A31?style=flat-square&logo=amazons3&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-## UI
+## 🛞 로고
 
-### 1. Splash
+<div style="display: flex; justify-content: space-around;">
+<div style="display: flex; flex-direction:column; justify-content: space-between; align-items:center;">
+  <h2>Light Mode</h2>
+  <img src="https://github.com/audrhks29/HR_management/assets/130128690/c63f1be7-6d79-4913-bcb4-130cf5fad814" alt="logo_image_light" width="200">
+  </div>
 
-![image](https://github.com/audrhks29/HR_management/assets/130128690/ead6a1a7-69b8-4a62-a961-2eea1189daa8)
+<div style="display: flex; flex-direction:column; justify-content: space-between; align-items:center;">
+  <h2>Dark Mode</h2>
+  <img src="https://github.com/audrhks29/HR_management/assets/130128690/57e230fe-6a68-4bcc-b46f-1063b098149e" alt="logo_image_dark" width="200">
+  </div>
+</div>
 
-### 2. Custom Frame
+<div style="display: flex; justify-content: space-around;">
+<div style="display: flex; flex-direction:column; justify-content: space-between; align-items:center;">
+  <h2>Light Mode</h2>
+  <img src="https://github.com/audrhks29/HR_management/assets/130128690/5deb4f6e-3fbb-4e79-946a-e4667d280760" alt="logo_image_light" width="200">
+  </div>
 
-![image](https://github.com/audrhks29/HR_management/assets/130128690/a7d27d70-7dcc-4385-b2cd-0d87a3d7d940)
-
-### 3. 로그인 화면
-
-![image](https://github.com/audrhks29/HR_management/assets/130128690/91a5fa01-10d9-4cc7-a70e-8897b93d09a8)
-
-### 4. 메인 화면
-
-![image](https://github.com/audrhks29/HR_management/assets/130128690/16e58650-3d8f-4b8b-a632-ff6bb76024b3)
-
-## 주요 기능
-
-### 1. Custom Frame
-
-- 기본값으로 설정되어있는 `Eletron`의 `Frame`을 제거하고 새로운 Custom Frame 구현
-
-### 2. 라이트모드/다크모드
-
-- https://ui.shadcn.com/docs/dark-mode/vite
-- shadcn에서 제공하는 `ThemeProvider`와 `ModeToggle` 를 사용한 테마 제작
-
-## Trouble Shooting
-
-### 1. Custom Frame
-
-> 문제
->
-> `-webkit-app-region` 적용 이 후, event들이 적용이 되지 않아서 `minimize`와 `close` 가 작동하지 않음.
-
-> 해결
->
-> `-` 버튼과 `x` 버튼영역을 제외한 영역에 드래그 할 수 있도록 컴포넌트 및 스타일을 수정
+<div style="display: flex; flex-direction:column; justify-content: space-between; align-items:center;">
+  <h2>Dark Mode</h2>
+  <img src="https://github.com/audrhks29/HR_management/assets/130128690/f1e7ea52-a8dc-47a3-ab4e-2924348b4234" alt="logo_image_dark" width="200">
+  </div>
+</div>
