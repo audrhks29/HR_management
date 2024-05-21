@@ -62,11 +62,7 @@ const Header = memo(() => {
         <div css={navContainerStyle}>
           <Link to={"/"} css={linkStyle} onClick={() => setValue(`/`)}>
             <img
-              src={`${
-                theme.palette.mode === "light"
-                  ? "public/images/logo/logo_light.svg"
-                  : "public/images/logo/logo_dark.svg"
-              }`}
+              src={`${theme.palette.mode === "light" ? "images/logo/logo_light.svg" : "images/logo/logo_dark.svg"}`}
               alt="logo"
               width={80}
             />
@@ -78,8 +74,7 @@ const Header = memo(() => {
             textColor="secondary"
             indicatorColor="secondary"
             aria-label="secondary tabs example"
-            css={tabsStyle}
-          >
+            css={tabsStyle}>
             <Tab value="/introduce" label="HRM 소개" css={tabStyle} />
             <Tab value="/download" label="다운로드" css={tabStyle} />
           </Tabs>

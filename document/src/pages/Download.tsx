@@ -82,9 +82,7 @@ const Download = memo(() => {
       <article css={downloadContainer}>
         <div css={buttonContainerStyle}>
           <img
-            src={`${
-              theme.palette.mode === "light" ? "public/images/logo/logo_light.svg" : "public/images/logo/logo_dark.svg"
-            }`}
+            src={`${theme.palette.mode === "light" ? "images/logo/logo_light.svg" : "images/logo/logo_dark.svg"}`}
             width={200}
           />
           <p>
@@ -103,9 +101,7 @@ const Download = memo(() => {
         <div css={imageContainerStyle}>
           <img
             src={`${
-              theme.palette.mode === "light"
-                ? "public/images/logo/logo_image_light.png"
-                : "public/images/logo/logo_image_dark.png"
+              theme.palette.mode === "light" ? "images/logo/logo_image_light.png" : "images/logo/logo_image_dark.png"
             }`}
             width={300}
           />

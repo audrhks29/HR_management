@@ -3,7 +3,7 @@
     "id": 1,
     "title": "급여 현황 등록",
     "src": {
-      "light": "public/images/introduce/salary_status_light.png",
+      "light": "images/introduce/salary_status_light.png",
       "dark": ""
     },
     "description": "선택한 구성원의<br/>급여 변동 내역을 작성할 수 있습니다."
@@ -12,7 +12,7 @@
     "id": 2,
     "title": "급여 대장 작성",
     "src": {
-      "light": "public/images/introduce/salary_registration_light.png",
+      "light": "images/introduce/salary_registration_light.png",
       "dark": ""
     },
     "description": "선택한 구성원의<br/>급여 대장을 작성할 수 있습니다."
@@ -21,7 +21,7 @@
     "id": 3,
     "title": "급여 대장 수정",
     "src": {
-      "light": "public/images/introduce/salary_edit_light.png",
+      "light": "images/introduce/salary_edit_light.png",
       "dark": ""
     },
     "description": "선택한 구성원의<br/>급여 대장을 수정할 수 있습니다."
@@ -30,7 +30,7 @@
     "id": 4,
     "title": "급여 지급 내역",
     "src": {
-      "light": "public/images/introduce/salary_history_light.png",
+      "light": "images/introduce/salary_history_light.png",
       "dark": ""
     },
     "description": "선택한 구성원의<br/>급여 지급 내역을 작성할 수 있습니다."

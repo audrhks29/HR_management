@@ -54,7 +54,7 @@ const OsCard = memo(({ os_name, link }: { os_name: string; link: string | null }
           css={{ padding: "80px" }}
           component="img"
           height="300"
-          image={`public/images/os/${os_name}.png`}
+          image={`images/os/${os_name}.png`}
           alt={os_name}
         />
       </CardContent>
