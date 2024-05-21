@@ -2,7 +2,8 @@
 
 import React, { memo } from "react";
 
-import { Divider, useTheme } from "@mui/material";
+import { Divider } from "@mui/material";
+// import { Divider, useTheme } from "@mui/material";
 import { SectionStyle } from "../../styles/mainStyles";
 import { DividerStyle } from "../../styles/commonStyles";
 import { motion } from "framer-motion";
@@ -52,8 +53,7 @@ const IntroduceArticle = memo(
               ease: "easeInOut",
               duration: 2,
               y: { duration: 1 },
-            }}
-          >
+            }}>
             <img src={img_src} width={800} />
           </motion.div>
 
@@ -67,8 +67,7 @@ const IntroduceArticle = memo(
               duration: 2,
               x: { duration: 1 },
             }}
-            dangerouslySetInnerHTML={{ __html: description }}
-          ></motion.div>
+            dangerouslySetInnerHTML={{ __html: description }}></motion.div>
         </div>
       </article>
     );
@@ -76,14 +75,15 @@ const IntroduceArticle = memo(
 );
 
 const Index = memo(({ data }: { data: ListTypes[] }) => {
-  const theme = useTheme();
+  // const theme = useTheme();
   return (
     <section css={SectionStyle}>
       {data.map(item => (
         <React.Fragment key={item.id}>
           <IntroduceArticle
             title={item.title}
-            img_src={theme.palette.mode === "light" ? item.src.light : item.src.dark}
+            // img_src={theme.palette.mode === "light" ? item.src.light : item.src.dark}
+            img_src={item.src.light}
             description={item.description}
           />
           {item.id !== data.length && (
