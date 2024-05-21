@@ -1,8 +1,6 @@
 # [Electron] 20240326 인사관리 데스크탑앱(Fullstack) 및 다운로드 페이지
 
-## 1. 프로젝트 정보
-
-### 1. 앱 사용 기술
+## 🌐 프로젝트 정보
 
 |            | 설명                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -13,8 +11,9 @@
 | 언어       | <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | DB         | <img src="https://img.shields.io/badge/Mongodb-47A248?style=flat-square&logo=mongodb&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | 런타임     | <img src="https://img.shields.io/badge/Nodejs-339933?style=flat-square&logo=nodedotjs&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| 서버       | <img src="https://img.shields.io/badge/Amazon_EC2-FF9900?style=flat-square&logo=nodedotjs&logoColor=white"> <img src="https://img.shields.io/badge/Amazone_S3-569A31?style=flat-square&logo=amazons3&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-## 2. UI
+## 👀 UI
 
 ### 1. Splash
 
@@ -34,3 +33,15 @@
 
 </div>
 </details>
+
+## 🛠 주요 기능 구현
+
+### 1. Custom Frame
+
+### 2. IPC Renderer
+
+### 3. React Form
+
+### 4. Shadcn/Ui Theme
+
+### 5. Chart
