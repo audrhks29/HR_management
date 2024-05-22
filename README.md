@@ -13,7 +13,7 @@
 | 런타임     | <img src="https://img.shields.io/badge/Nodejs-339933?style=flat-square&logo=nodedotjs&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | 서버       | <img src="https://img.shields.io/badge/Amazon_EC2-FF9900?style=flat-square&logo=nodedotjs&logoColor=white"> <img src="https://img.shields.io/badge/Amazone_S3-569A31?style=flat-square&logo=amazons3&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-## 🛞 로고
+## 🛞로고
 
 <div style="display: flex; justify-content: space-around;">
 <div style="display: flex; flex-direction:column; justify-content: space-between; align-items:center;">
