@@ -49,6 +49,10 @@
 - https://ui.shadcn.com/docs/dark-mode/vite
 - shadcn에서 제공하는 `ThemeProvider`와 `ModeToggle` 를 사용한 테마 제작
 
+### 3. Dashboard chart
+
+- `chart.js`와 `react-chartjs-2`를 사용하여 메인화면 dashboard에 chart기능 제공
+
 ## ❌Trouble Shooting
 
 ### 1. Custom Frame
