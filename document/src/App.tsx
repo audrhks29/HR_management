@@ -1,20 +1,22 @@
 /** @jsxImportSource @emotion/react */
 
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Global } from "@emotion/react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import reset from "emotion-reset";
+
 import { ColorModeContext } from "./provider/ColorMode";
 
 import Header from "./layout/Header";
+
 import Home from "./pages/Home";
 import Introduce from "./pages/Introduce";
 import Download from "./pages/Download";
+import NotFound from "./NotFound";
 
 function App() {
   const [mode, setMode] = React.useState<"light" | "dark">("light");
+
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -34,21 +36,33 @@ function App() {
     [mode],
   );
 
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Header />,
+      errorElement: <NotFound />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "introduce",
+          children: [{ index: true, element: <Introduce /> }],
+        },
+        {
+          path: "download",
+          children: [{ index: true, element: <Download /> }],
+        },
+      ],
+    },
+  ]);
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <Global styles={reset} />
         <CssBaseline />
-
-        <BrowserRouter>
-          <Header />
-
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/introduce" element={<Introduce />} />
-            <Route path="/download" element={<Download />} />
-          </Routes>
-        </BrowserRouter>
+        <RouterProvider router={router} />;
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

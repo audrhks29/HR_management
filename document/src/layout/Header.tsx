@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { memo, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { css } from "@emotion/react";
 import { Divider, Tab, Tabs, useTheme } from "@mui/material";
 
@@ -57,33 +57,36 @@ const Header = memo(() => {
   `;
 
   return (
-    <header css={headerStyle}>
-      <nav css={navStyle}>
-        <div css={navContainerStyle}>
-          <Link to={"/"} css={linkStyle} onClick={() => setValue(`/`)}>
-            <img
-              src={`${theme.palette.mode === "light" ? "images/logo/logo_light.svg" : "images/logo/logo_dark.svg"}`}
-              alt="logo"
-              width={80}
-            />
-          </Link>
+    <>
+      <header css={headerStyle}>
+        <nav css={navStyle}>
+          <div css={navContainerStyle}>
+            <Link to={"/"} css={linkStyle} onClick={() => setValue(`/`)}>
+              <img
+                src={`${theme.palette.mode === "light" ? "images/logo/logo_light.svg" : "images/logo/logo_dark.svg"}`}
+                alt="logo"
+                width={80}
+              />
+            </Link>
 
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            textColor="secondary"
-            indicatorColor="secondary"
-            aria-label="secondary tabs example"
-            css={tabsStyle}>
-            <Tab value="/introduce" label="HRM 소개" css={tabStyle} />
-            <Tab value="/download" label="다운로드" css={tabStyle} />
-          </Tabs>
-        </div>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              textColor="secondary"
+              indicatorColor="secondary"
+              aria-label="secondary tabs example"
+              css={tabsStyle}>
+              <Tab value="/introduce" label="HRM 소개" css={tabStyle} />
+              <Tab value="/download" label="다운로드" css={tabStyle} />
+            </Tabs>
+          </div>
 
-        <ColorMode />
-      </nav>
-      <Divider variant="fullWidth" />
-    </header>
+          <ColorMode />
+        </nav>
+        <Divider variant="fullWidth" />
+      </header>
+      <Outlet />
+    </>
   );
 });
 

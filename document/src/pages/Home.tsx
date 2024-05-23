@@ -47,10 +47,12 @@ const Home = memo(() => {
               theme.palette.mode === "light" ? "images/logo/logo_image_light.png" : "images/logo/logo_image_dark.png"
             }`}
             width={300}
+            height={300}
           />
           <img
             src={`${theme.palette.mode === "light" ? "images/logo/logo_light.svg" : "images/logo/logo_dark.svg"}`}
             width={200}
+            height={60}
           />
         </div>
 
