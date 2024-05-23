@@ -51,7 +51,7 @@
       |`DOMContentLoaded`|434ms|105ms|약 75%감소|
 
       1. https://ezgif.com/ 에서 크기가 큰 gif파일 resize및 확장자 avif로 변경
-      2. 기존 browserRoute기능을 createRouter로 변경 및 컴포넌트에 대한 lazy loading 적용
+      2. 기존 browserRoute기능을 createBrowserRouter 변경 및 컴포넌트에 대한 lazy loading 적용
 
    2. 개선 전
       ![gifsize_before](https://github.com/audrhks29/HR_management/assets/130128690/2cd14658-b6cf-40b9-b5eb-76efbcac8d6b)
