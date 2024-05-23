@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
@@ -9,9 +9,10 @@ import { ColorModeContext } from "./provider/ColorMode";
 
 import Header from "./layout/Header";
 
-import Home from "./pages/Home";
-import Introduce from "./pages/Introduce";
-import Download from "./pages/Download";
+const Home = lazy(() => import("./pages/Home"));
+const Introduce = lazy(() => import("./pages/Introduce"));
+const Download = lazy(() => import("./pages/Download"));
+
 import NotFound from "./NotFound";
 
 function App() {
@@ -44,15 +45,37 @@ function App() {
       children: [
         {
           index: true,
-          element: <Home />,
+          element: (
+            <Suspense fallback={<p>로딩중</p>}>
+              <Home />
+            </Suspense>
+          ),
         },
         {
           path: "introduce",
-          children: [{ index: true, element: <Introduce /> }],
+          children: [
+            {
+              index: true,
+              element: (
+                <Suspense fallback={<p>로딩중</p>}>
+                  <Introduce />
+                </Suspense>
+              ),
+            },
+          ],
         },
         {
           path: "download",
-          children: [{ index: true, element: <Download /> }],
+          children: [
+            {
+              index: true,
+              element: (
+                <Suspense fallback={<p>로딩중</p>}>
+                  <Download />
+                </Suspense>
+              ),
+            },
+          ],
         },
       ],
     },

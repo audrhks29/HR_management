@@ -15,11 +15,10 @@ const MotionFromLeftArticle = memo(
           ease: "easeInOut",
           duration: 2,
           x: { duration: 1 },
-        }}
-      >
+        }}>
         <article css={ArticleStyle}>
           <div css={ImageBoxStyle}>
-            <img src={img_src} alt="" width={300} />
+            <img src={img_src} alt="" width={300} height={300} />
           </div>
 
           <div css={ContainerStyle}>

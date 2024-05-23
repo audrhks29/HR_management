@@ -15,8 +15,7 @@ const MotionFromRightArticle = memo(
           ease: "easeInOut",
           duration: 2,
           x: { duration: 1 },
-        }}
-      >
+        }}>
         <article css={ArticleStyle}>
           <div css={ContainerStyle}>
             <h3 css={TitleStyle}>{title}</h3>
@@ -24,7 +23,7 @@ const MotionFromRightArticle = memo(
           </div>
 
           <div css={ImageBoxStyle}>
-            <img src={img_src} alt="" width={300} />
+            <img src={img_src} alt="" width={300} height={300} />
           </div>
         </article>
       </motion.div>
