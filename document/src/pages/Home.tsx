@@ -44,7 +44,7 @@ const Home = memo(() => {
         <div css={imageContainerStyle}>
           <img
             src={`${
-              theme.palette.mode === "light" ? "images/logo/logo_image_light.png" : "images/logo/logo_image_dark.png"
+              theme.palette.mode === "light" ? "images/logo/logo_image_light.webp" : "images/logo/logo_image_dark.webp"
             }`}
             width={300}
             height={300}
