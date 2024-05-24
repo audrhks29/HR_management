@@ -66,6 +66,7 @@ const Header = memo(() => {
                 src={`${theme.palette.mode === "light" ? "images/logo/logo_light.svg" : "images/logo/logo_dark.svg"}`}
                 alt="logo"
                 width={80}
+                height={24}
               />
             </Link>
 
