@@ -65,8 +65,6 @@
 > 모든 경로에 대해 정규 표현식 `/.*`을 사용하여 매칭되는 모든 요청을 `index.html`로 리디렉션한다.
 > 따라서 SPA에서 어떤 경로로 접근하더라도 항상 `index.html`이 반환되며 클라이언트 측 라우터가 요청을 처리하도록 한다.
 
-### 2. layout shift
-
 ## 기능 개선
 
 ### 1. 초기 로딩 리소스 크기 개선
@@ -78,10 +76,38 @@
     |`complete`|1.94s|299ms|약 84% 감소|
     |`DOMContentLoaded`|434ms|105ms|약 75%감소|
 
-    1. https://ezgif.com/ 에서 크기가 큰 gif파일 resize및 확장자 avif로 변경
-    2. 기존 browserRoute기능을 createBrowserRouter 변경 및 컴포넌트에 대한 lazy loading 적용
+    1. https://ezgif.com/ 에서 크기가 큰 `.gif`파일 resize및 확장자 `.avif`로 변경
+    2. https://cloudconvert.com/png-to-webp 에서 `.png`확장자를 `.webp`로 변경
+    3. 기존 `browserRoute`기능을 `createBrowserRouter`로 변경 및 컴포넌트에 대한 `lazy loading` 적용
 
 2.  개선 전
     ![gifsize_before](https://github.com/audrhks29/HR_management/assets/130128690/2cd14658-b6cf-40b9-b5eb-76efbcac8d6b)
 3.  개선 후
     ![gifsize_after](https://github.com/audrhks29/HR_management/assets/130128690/780c5aac-c73e-4c71-a29b-915bdefb4163)
+
+### 2. LightHouse 점수 개선
+
+1. 접근성
+
+   1. image에 `alt`속성 지정
+   2. image에 `width`, `height` 지정
+
+2. SEO 최적화
+
+   1. `react-helmet-async` 라이브러리를 사용하여 각 페이지에 대한 메타태그 설정
+   2. 크롤링을 위한 `robots.txt` 생성
+
+3. 개선 전
+   1. 메인
+      ![lighthouse_main](https://github.com/audrhks29/HR_management/assets/130128690/e889b915-6d89-4ecf-8c21-4e260a173d3f)
+   2. HRM 소개
+      ![lighthouse_introduce](https://github.com/audrhks29/HR_management/assets/130128690/ff854b69-7ca9-403e-8173-1f8b476822a9)
+   3. 다운로드
+      ![lighthouse_download](https://github.com/audrhks29/HR_management/assets/130128690/27263354-75cc-4136-a870-80a48e884ee1)
+4. 개선 후
+   1. 메인
+      ![lighthouse_main_after](https://github.com/audrhks29/HR_management/assets/130128690/c86ac4d3-6927-4005-a692-918fa1715de1)
+   2. HRM 소개
+      ![lighthouse_introduce_after](https://github.com/audrhks29/HR_management/assets/130128690/351c100e-651b-4fb5-9ab3-3e913853ec59)
+   3. 다운로드
+      ![lighthouse_download_after](https://github.com/audrhks29/HR_management/assets/130128690/4675470c-6c2f-4b76-9c42-c7bcb8e250aa)
