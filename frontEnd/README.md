@@ -6,6 +6,7 @@
 2. [UI](#ui)
 3. [주요 기능](#주요-기능)
 4. [Trouble Shooting](#trouble-shooting)
+5. [블로그 정리](#블로그-정리)
 
 ## 🌐프로젝트 정보
 
@@ -42,7 +43,7 @@
 
 ### 1. Custom Frame
 
-- 기본값으로 설정되어있는 `Eletron`의 `Frame`을 제거하고 새로운 Custom Frame 구현
+- 기본값으로 설정되어있는 `Electron`의 `Frame`을 제거하고 새로운 Custom Frame 구현
 
 ### 2. 라이트모드/다크모드
 
@@ -64,3 +65,25 @@
 > **해결**
 >
 > `-` 버튼과 `x` 버튼영역을 제외한 영역에 드래그 할 수 있도록 컴포넌트 및 스타일을 수정
+
+[해당 이슈 블로그 정리](https://frontendmk.tistory.com/15)
+
+### 2. Electron에서 alert, confirm 사용
+
+> **문제**
+>
+> Electron에서 `alert`이나 `confirm` 사용 후 input이 읽기전용이 되어버리는 현상 발생
+
+> **해결**
+>
+> Electron에는 `alert`, `confirm` 대신 `dialog` 라는 대체 API를 사용하도록 권장한다.
+> `dialog`는 디자인적으로 만족스럽지 않기 때문에 `shadcn/ui`의 `toast`를 사용
+> [공식문서](https://www.electronjs.org/docs/latest/api/dialog)
+
+[해당 이슈 블로그 정리](https://frontendmk.tistory.com/13)
+
+## 📑블로그 정리
+
+[[Electron] Custom Frame 만들기](https://frontendmk.tistory.com/15)
+[[Electron] alert, confirm 후 input 클릭이 안되는 문제](https://frontendmk.tistory.com/13)
+[[Electron] HashRouter에서 loadfile문제](https://frontendmk.tistory.com/14)

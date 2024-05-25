@@ -1,6 +1,20 @@
 # [Electron] 20240326 인사관리 데스크탑앱(Fullstack) 및 다운로드 페이지
 
+## 📚목차
+
+1. [프로젝트 정보](#프로젝트-정보)
+2. [API Endpoints](#api-endpoints)
+3. [주요 기능](#주요-기능)
+4. [Trouble Shooting](#trouble-shooting)
+5. [블로그 정리](#블로그-정리)
+
 ## 🌐프로젝트 정보
+
+#### 프로젝트별 README
+
+1. [다운로드 페이지](https://github.com/audrhks29/HR_management/tree/main/document)
+2. [데스크탑 앱 FrontEnd](https://github.com/audrhks29/HR_management/tree/main/frontEnd)
+3. [데스크탑 앱 BackEnd](https://github.com/audrhks29/HR_management/tree/main/backEnd)
 
 #### 프로젝트 소개 페이지
 
@@ -19,6 +33,7 @@
 | `DB` | <img src="https://img.shields.io/badge/Mongodb-47A248?style=flat-square&logo=mongodb&logoColor=white"> |
 | `런타임` | <img src="https://img.shields.io/badge/Nodejs-339933?style=flat-square&logo=nodedotjs&logoColor=white"> |
 | `AWS` | <img src="https://img.shields.io/badge/Amazon_EC2-FF9900?style=flat-square&logo=nodedotjs&logoColor=white"> <img src="https://img.shields.io/badge/Amazone_S3-569A31?style=flat-square&logo=amazons3&logoColor=white"> |
+| `배포` | <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=Netlify&logoColor=white"> |
 
 ## 🛞로고
 

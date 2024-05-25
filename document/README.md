@@ -7,6 +7,7 @@
 3. [주요 기능](#주요-기능)
 4. [Trouble Shooting](#trouble-shooting)
 5. [기능 개선](#기능-개선)
+6. [블로그 정리](#블로그-정리)
 
 ## 🌐프로젝트 정보
 
@@ -14,14 +15,14 @@
 
 [프로젝트 주소](http://hr-management-three.vercel.app/)
 
-|            | 설명                                                                                                                                                                                                                                                                                |
-| :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 작업기간   | 2024.05.07 ~                                                                                                                                                                                                                                                                        |
-| 작업인원   | 1                                                                                                                                                                                                                                                                                   |
-| 라이브러리 | <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/Emotion-C43BAD?style=flat-square"> <img src="https://img.shields.io/badge/Material UI-007FFF?style=flat-square&logo=mui&logoColor=white"> |
-| 언어       | <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white">                                                                                                                                                                        |
-| 서버       | <img src="https://img.shields.io/badge/Amazone_S3-569A31?style=flat-square&logo=amazons3&logoColor=white">                                                                                                                                                                          |
-| 배포       | <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=Netlify&logoColor=white">                                                                                                                                                                               |
+|              | 설명                                                                                                                                                                                                                                                                                |
+| :----------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `작업기간`   | 2024.05.07 ~                                                                                                                                                                                                                                                                        |
+| `작업인원`   | 1                                                                                                                                                                                                                                                                                   |
+| `라이브러리` | <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/Emotion-C43BAD?style=flat-square"> <img src="https://img.shields.io/badge/Material UI-007FFF?style=flat-square&logo=mui&logoColor=white"> |
+| `언어`       | <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white">                                                                                                                                                                        |
+| `서버`       | <img src="https://img.shields.io/badge/Amazone_S3-569A31?style=flat-square&logo=amazons3&logoColor=white">                                                                                                                                                                          |
+| `배포`       | <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=Netlify&logoColor=white">                                                                                                                                                                               |
 
 ## 👀UI
 
@@ -111,3 +112,7 @@
       ![lighthouse_introduce_after](https://github.com/audrhks29/HR_management/assets/130128690/351c100e-651b-4fb5-9ab3-3e913853ec59)
    3. 다운로드
       ![lighthouse_download_after](https://github.com/audrhks29/HR_management/assets/130128690/4675470c-6c2f-4b76-9c42-c7bcb8e250aa)
+
+## 📑블로그 정리
+
+[[React-Helmet] React에서 SEO 최적화](https://frontendmk.tistory.com/18)

@@ -102,5 +102,5 @@
 
 ## 📑블로그 정리
 
-- [Bcrypt](https://frontendmk.tistory.com/17)
-- [JWT](https://frontendmk.tistory.com/16)
+- [[bcrypt] 회원가입 시 비밀번호 암호화](https://frontendmk.tistory.com/17)
+- [[JWT] jwt를 이용한 로그인 쿠키 설정](https://frontendmk.tistory.com/16)
