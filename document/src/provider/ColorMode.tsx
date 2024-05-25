@@ -18,9 +18,8 @@ function ColorMode() {
         bgcolor: "background.default",
         color: "text.primary",
         borderRadius: 1,
-      }}
-    >
-      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+      }}>
+      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit" aria-label="theme button">
         {theme.palette.mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>
     </Box>

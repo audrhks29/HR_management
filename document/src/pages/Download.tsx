@@ -85,6 +85,7 @@ const Download = memo(() => {
             src={`${theme.palette.mode === "light" ? "images/logo/logo_light.svg" : "images/logo/logo_dark.svg"}`}
             width={200}
             height={60}
+            alt="logo_image"
           />
           <p>
             {os} 전용 APP을 다운로드 하시고
@@ -106,6 +107,7 @@ const Download = memo(() => {
             }`}
             width={300}
             height={300}
+            alt="logo"
           />
         </div>
       </article>

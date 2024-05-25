@@ -54,7 +54,7 @@ const IntroduceArticle = memo(
               duration: 2,
               y: { duration: 1 },
             }}>
-            <img src={img_src} width={800} />
+            <img src={img_src} width={800} alt={title} />
           </motion.div>
 
           <motion.div
