@@ -8,6 +8,7 @@ import { DividerStyle } from "../styles/commonStyles";
 import OsCard from "../components/download/OsCard";
 
 import osList from "../assets/osList.json";
+import SEOMetaTag from "../SEOMetaTag";
 
 const Download = memo(() => {
   const InnerStyle = css`
@@ -78,50 +79,60 @@ const Download = memo(() => {
   };
 
   return (
-    <section css={InnerStyle}>
-      <article css={downloadContainer}>
-        <div css={buttonContainerStyle}>
-          <img
-            src={`${theme.palette.mode === "light" ? "images/logo/logo_light.svg" : "images/logo/logo_dark.svg"}`}
-            width={200}
-            height={60}
-            alt="logo_image"
-          />
-          <p>
-            {os} 전용 APP을 다운로드 하시고
-            <br />
-            무료로 HR_Management를 사용해보세요
-          </p>
+    <>
+      <SEOMetaTag
+        title="Download"
+        description="HR_Management의 다운로드 페이지 입니다."
+        keywords="HR_Management Download"
+        url="https://hr-management-three.vercel.app/download"
+      />
+      <section css={InnerStyle}>
+        <article css={downloadContainer}>
+          <div css={buttonContainerStyle}>
+            <img
+              src={`${theme.palette.mode === "light" ? "images/logo/logo_light.svg" : "images/logo/logo_dark.svg"}`}
+              width={200}
+              height={60}
+              alt="logo_image"
+            />
+            <p>
+              {os} 전용 APP을 다운로드 하시고
+              <br />
+              무료로 HR_Management를 사용해보세요
+            </p>
 
-          <Button type="button" variant="contained" css={buttonStyle} onClick={handleDownload}>
-            <DownloadIcon />
+            <Button type="button" variant="contained" css={buttonStyle} onClick={handleDownload}>
+              <DownloadIcon />
 
-            <span>{os} 전용 APP Download</span>
-          </Button>
-        </div>
+              <span>{os} 전용 APP Download</span>
+            </Button>
+          </div>
 
-        <div css={imageContainerStyle}>
-          <img
-            src={`${
-              theme.palette.mode === "light" ? "images/logo/logo_image_light.webp" : "images/logo/logo_image_dark.webp"
-            }`}
-            width={300}
-            height={300}
-            alt="logo"
-          />
-        </div>
-      </article>
+          <div css={imageContainerStyle}>
+            <img
+              src={`${
+                theme.palette.mode === "light"
+                  ? "images/logo/logo_image_light.webp"
+                  : "images/logo/logo_image_dark.webp"
+              }`}
+              width={300}
+              height={300}
+              alt="logo"
+            />
+          </div>
+        </article>
 
-      <Divider>
-        <div css={DividerStyle}></div>
-      </Divider>
+        <Divider>
+          <div css={DividerStyle}></div>
+        </Divider>
 
-      <article css={osContainer}>
-        {osList.map(list => (
-          <OsCard key={list.id} os_name={list.os_name} link={list.link} />
-        ))}
-      </article>
-    </section>
+        <article css={osContainer}>
+          {osList.map(list => (
+            <OsCard key={list.id} os_name={list.os_name} link={list.link} />
+          ))}
+        </article>
+      </section>
+    </>
   );
 });
 

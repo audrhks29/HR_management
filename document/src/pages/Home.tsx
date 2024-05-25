@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import MainIntroduce from "../components/home/MainIntroduce";
 import { DividerStyle } from "../styles/commonStyles";
+import SEOMetaTag from "../SEOMetaTag";
 
 const Home = memo(() => {
   const theme = useTheme();
@@ -36,45 +37,55 @@ const Home = memo(() => {
   const navigate = useNavigate();
 
   return (
-    <div css={mainInnerStyle}>
-      <div
-        css={{
-          padding: "100px 0",
-        }}>
-        <div css={imageContainerStyle}>
-          <img
-            src={`${
-              theme.palette.mode === "light" ? "images/logo/logo_image_light.webp" : "images/logo/logo_image_dark.webp"
-            }`}
-            width={300}
-            height={300}
-            alt="logo_image"
-          />
-          <img
-            src={`${theme.palette.mode === "light" ? "images/logo/logo_light.svg" : "images/logo/logo_dark.svg"}`}
-            width={200}
-            height={60}
-            alt="logo"
-          />
+    <>
+      <SEOMetaTag
+        title="Home"
+        description="HR_Management의 홈페이지 입니다."
+        keywords="Home"
+        url="https://hr-management-three.vercel.app/"
+      />
+      <div css={mainInnerStyle}>
+        <div
+          css={{
+            padding: "100px 0",
+          }}>
+          <div css={imageContainerStyle}>
+            <img
+              src={`${
+                theme.palette.mode === "light"
+                  ? "images/logo/logo_image_light.webp"
+                  : "images/logo/logo_image_dark.webp"
+              }`}
+              width={300}
+              height={300}
+              alt="logo_image"
+            />
+            <img
+              src={`${theme.palette.mode === "light" ? "images/logo/logo_light.svg" : "images/logo/logo_dark.svg"}`}
+              width={200}
+              height={60}
+              alt="logo"
+            />
+          </div>
+
+          <div css={buttonContainerStyle}>
+            <Button type="button" variant="outlined" css={buttonStyle} onClick={() => navigate("/introduce")}>
+              HRM이란?
+            </Button>
+
+            <Button type="button" variant="contained" css={buttonStyle} onClick={() => navigate("/download")}>
+              Download App
+            </Button>
+          </div>
         </div>
 
-        <div css={buttonContainerStyle}>
-          <Button type="button" variant="outlined" css={buttonStyle} onClick={() => navigate("/introduce")}>
-            HRM이란?
-          </Button>
+        <Divider>
+          <div css={DividerStyle}></div>
+        </Divider>
 
-          <Button type="button" variant="contained" css={buttonStyle} onClick={() => navigate("/download")}>
-            Download App
-          </Button>
-        </div>
+        <MainIntroduce />
       </div>
-
-      <Divider>
-        <div css={DividerStyle}></div>
-      </Divider>
-
-      <MainIntroduce />
-    </div>
+    </>
   );
 });
 

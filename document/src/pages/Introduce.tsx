@@ -12,6 +12,7 @@ import { InnerStyle } from "../styles/commonStyles";
 import hrList from "../assets/introduceList/hr.json";
 import salaryList from "../assets/introduceList/salary.json";
 import attitudeList from "../assets/introduceList/attitude.json";
+import SEOMetaTag from "../SEOMetaTag";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -28,8 +29,7 @@ function TabPanel(props: TabPanelProps) {
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
+      {...other}>
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
@@ -50,40 +50,46 @@ const Introduce = memo(() => {
   };
 
   return (
-    <div css={InnerStyle}>
-      <Box
-        sx={{
-          flexGrow: 1,
-          bgcolor: "background.paper",
-          display: "grid",
-          gridTemplateColumns: "200px 2fr",
-        }}
-      >
-        <Tabs
-          orientation="vertical"
-          variant="scrollable"
-          value={value}
-          onChange={handleChange}
-          textColor="secondary"
-          indicatorColor="secondary"
-          aria-label="Vertical tabs example"
-          sx={{ borderRight: 1, borderColor: "divider" }}
-        >
-          <Tab label="인사" {...a11yProps(0)} />
-          <Tab label="급여" {...a11yProps(1)} />
-          <Tab label="근태" {...a11yProps(2)} />
-        </Tabs>
-        <TabPanel value={value} index={0}>
-          <Index data={hrList} />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <Index data={salaryList} />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <Index data={attitudeList} />
-        </TabPanel>
-      </Box>
-    </div>
+    <>
+      <SEOMetaTag
+        title="Introduce"
+        description="HR_Management의 소개 페이지 입니다."
+        keywords="HR_Management Introduce"
+        url="https://hr-management-three.vercel.app/Introduce"
+      />
+      <div css={InnerStyle}>
+        <Box
+          sx={{
+            flexGrow: 1,
+            bgcolor: "background.paper",
+            display: "grid",
+            gridTemplateColumns: "200px 2fr",
+          }}>
+          <Tabs
+            orientation="vertical"
+            variant="scrollable"
+            value={value}
+            onChange={handleChange}
+            textColor="secondary"
+            indicatorColor="secondary"
+            aria-label="Vertical tabs example"
+            sx={{ borderRight: 1, borderColor: "divider" }}>
+            <Tab label="인사" {...a11yProps(0)} />
+            <Tab label="급여" {...a11yProps(1)} />
+            <Tab label="근태" {...a11yProps(2)} />
+          </Tabs>
+          <TabPanel value={value} index={0}>
+            <Index data={hrList} />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <Index data={salaryList} />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <Index data={attitudeList} />
+          </TabPanel>
+        </Box>
+      </div>
+    </>
   );
 });
 

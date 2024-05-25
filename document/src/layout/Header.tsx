@@ -68,6 +68,7 @@ const Header = memo(() => {
                 width={80}
                 height={24}
               />
+              <span css={{ display: "none" }}>Home</span>
             </Link>
 
             <Tabs

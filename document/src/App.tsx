@@ -14,6 +14,7 @@ const Introduce = lazy(() => import("./pages/Introduce"));
 const Download = lazy(() => import("./pages/Download"));
 
 import NotFound from "./NotFound";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
   const [mode, setMode] = React.useState<"light" | "dark">("light");
@@ -83,10 +84,12 @@ function App() {
 
   return (
     <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <RouterProvider router={router} />;
-      </ThemeProvider>
+      <HelmetProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </HelmetProvider>
     </ColorModeContext.Provider>
   );
 }
