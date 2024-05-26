@@ -1,12 +1,20 @@
 {
   "name": "hr-management",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && electron-builder",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "package": "yarn build && electron-builder build --publish never",
+    "package-s3": "yarn build && electron-builder build --publish always"
+  },
+  "publish": {
+    "provider": "s3",
+    "bucket": "hrmanagementexe-bucket",
+    "region": "ap-northeast-2",
+    "acl": "public-read"
   },
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
@@ -31,6 +39,8 @@
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
     "electron-localshortcut": "^3.2.1",
+    "electron-log": "^5.1.5",
+    "electron-updater": "^6.1.8",
     "lucide-react": "^0.363.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
