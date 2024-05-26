@@ -6,6 +6,12 @@
   appId: "HR_Management",
   asar: true,
   productName: "HR_Management",
+  publish: {
+    provider: "s3",
+    bucket: "hrmanagementexe-bucket",
+    region: "ap-northeast-2",
+  },
+
   directories: {
     output: "release/${version}",
   },

@@ -2,6 +2,8 @@
   "name": "hr-management",
   "private": true,
   "version": "1.0.1",
+  "description": "app",
+  "author": "audrhks29",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && electron-builder",
@@ -9,12 +11,6 @@
     "preview": "vite preview",
     "package": "yarn build && electron-builder build --publish never",
     "package-s3": "yarn build && electron-builder build --publish always"
-  },
-  "publish": {
-    "provider": "s3",
-    "bucket": "hrmanagementexe-bucket",
-    "region": "ap-northeast-2",
-    "acl": "public-read"
   },
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
