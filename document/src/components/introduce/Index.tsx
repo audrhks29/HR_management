@@ -14,6 +14,24 @@ const articleStyle = css`
   flex-direction: column;
   min-height: 400px;
   width: 1340px;
+  @media (max-width: 1680px) {
+    width: 1200px;
+  }
+  @media (max-width: 1350px) {
+    width: 1000px;
+  }
+  @media (max-width: 1150px) {
+    width: 850px;
+  }
+  @media (max-width: 1000px) {
+    width: 650px;
+  }
+  @media (max-width: 820px) {
+    width: 500px;
+  }
+  @media (max-width: 685px) {
+    width: 300px;
+  }
 `;
 
 const titleStyle = css`
@@ -25,6 +43,9 @@ const titleStyle = css`
 
 const containerStyle = css`
   display: flex;
+  @media (max-width: 1150px) {
+    flex-direction: column;
+  }
 `;
 
 const descriptionStyle = css`
@@ -32,10 +53,35 @@ const descriptionStyle = css`
   font-weight: bold;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: 100%;
+  @media (max-width: 1150px) {
+    padding: 60px 0;
+  }
+`;
+
+const imageStyle = css`
+  width: 800px;
+  @media (max-width: 1680px) {
+    width: 700px;
+  }
+  @media (max-width: 1350px) {
+    width: 600px;
+  }
+  @media (max-width: 1150px) {
+    width: 850px;
+  }
+  @media (max-width: 1000px) {
+    width: 650px;
+  }
+  @media (max-width: 820px) {
+    width: 500px;
+  }
+  @media (max-width: 685px) {
+    width: 300px;
+  }
 `;
 
 const IntroduceArticle = memo(
@@ -54,7 +100,7 @@ const IntroduceArticle = memo(
               duration: 2,
               y: { duration: 1 },
             }}>
-            <img src={img_src} width={800} alt={title} />
+            <img src={img_src} css={imageStyle} alt={title} />
           </motion.div>
 
           <motion.div

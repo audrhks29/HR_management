@@ -60,10 +60,15 @@ const Introduce = memo(() => {
       <div css={InnerStyle}>
         <Box
           sx={{
-            flexGrow: 1,
             bgcolor: "background.paper",
             display: "grid",
-            gridTemplateColumns: "200px 2fr",
+            gridTemplateColumns: "120px 1fr",
+            "@media (max-width: 1680px)": {
+              width: "1300px",
+            },
+            "@media (max-width: 1200px)": {
+              width: "1000px",
+            },
           }}>
           <Tabs
             orientation="vertical"

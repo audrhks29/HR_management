@@ -7,6 +7,24 @@ export const ArticleStyle = css`
   justify-content: center;
   width: 1000px;
   margin: auto;
+  @media (max-width: 1200px) {
+    width: 900px;
+  }
+
+  @media (max-width: 992px) {
+    width: 750px;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (max-width: 576px) {
+    gap: 15px;
+    min-height: 300px;
+  }
 `;
 
 export const ContainerStyle = css`
@@ -25,7 +43,7 @@ export const ImageBoxStyle = css`
 `;
 
 export const SectionStyle = css`
-  display: grid;
+  /* display: grid; */
   gap: 30px;
   overflow: hidden;
 `;

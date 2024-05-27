@@ -34,6 +34,18 @@ const Header = memo(() => {
     width: 1600px;
     height: 60px;
     margin: auto;
+    @media (max-width: 1680px) {
+      width: 1100px;
+    }
+    @media (max-width: 1200px) {
+      width: 900px;
+    }
+    @media (max-width: 992px) {
+      width: 750px;
+    }
+    @media (max-width: 768px) {
+      width: 90%;
+    }
   `;
 
   const navContainerStyle = css`

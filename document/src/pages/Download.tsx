@@ -22,6 +22,10 @@ const Download = memo(() => {
     gap: 150px;
     justify-content: center;
     padding: 80px;
+    @media (max-width: 815px) {
+      flex-direction: column;
+      gap: 0;
+    }
   `;
 
   const imageContainerStyle = css`
@@ -48,15 +52,24 @@ const Download = memo(() => {
     font-size: 14px;
   `;
 
-  const osContainer = css`
-    width: 1600px;
+  const osContainerStyle = css`
+    width: 100%;
     padding: 80px;
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
+    @media (max-width: 1150px) {
+      grid-template-columns: none;
+      grid-template-rows: 1fr 1fr 1fr;
+    }
   `;
 
+  const imageStyle = css`
+    @media (max-width: 815px) {
+      display: none;
+    }
+  `;
   const [os, setOS] = useState("Unknown");
   const theme = useTheme();
 
@@ -118,6 +131,7 @@ const Download = memo(() => {
               width={300}
               height={300}
               alt="logo"
+              css={imageStyle}
             />
           </div>
         </article>
@@ -126,7 +140,7 @@ const Download = memo(() => {
           <div css={DividerStyle}></div>
         </Divider>
 
-        <article css={osContainer}>
+        <article css={osContainerStyle}>
           {osList.map(list => (
             <OsCard key={list.id} os_name={list.os_name} link={list.link} />
           ))}
