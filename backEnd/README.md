@@ -12,7 +12,7 @@
 
 |              | `설명`                                                                                                                                                                                                          |
 | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `작업기간`   | 2024.03.26 ~                                                                                                                                                                                                    |
+| `작업기간`   | 2024.03.26 ~ 2024.05.27                                                                                                                                                                                         |
 | `작업인원`   | 1                                                                                                                                                                                                               |
 | `라이브러리` | <img src="https://img.shields.io/badge/Mongoose-F04D35?style=flat-square&logo=mongoose&logoColor=white">                                                                                                        |
 | `프레임워크` | <img src="https://img.shields.io/badge/Electron-47848F?style=flat-square&logo=Electron&logoColor=white"> <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white"> |
@@ -79,6 +79,8 @@
 - 토큰 발급 및 dbName 추출
 - 로그인 유지
 - [Trouble Shooting](#1-jwt-관련)으로 인하여 sessionStorage사용으로 수정
+
+### 4. AWS EC2 서버 업로드
 
 ## ❌Trouble Shooting
 
