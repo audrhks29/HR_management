@@ -23,8 +23,8 @@ const Frame = memo(() => {
     <div className="grid grid-cols-[1fr_auto] bg-primary-foreground border-b border-primary/20 select-none">
       <div className="h-10 flex items-center dragable">
         <div className="text-[14px] flex gap-3 items-center pl-4">
-          <img src={`public/logo/logo_image_${theme === "light" ? "light" : "dark"}.png`} alt="" className="h-[22px]" />
-          <img src={`public/logo/logo_${theme === "light" ? "light" : "dark"}.svg`} alt="" className="h-[16px]" />
+          <img src={`logo/logo_image_${theme === "light" ? "light" : "dark"}.png`} alt="" className="h-[22px]" />
+          <img src={`logo/logo_${theme === "light" ? "light" : "dark"}.svg`} alt="" className="h-[16px]" />
         </div>
       </div>
 
