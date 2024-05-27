@@ -17,7 +17,7 @@
 
 |              | 설명                                                                                                                                                                                                                                                                                |
 | :----------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `작업기간`   | 2024.05.07 ~                                                                                                                                                                                                                                                                        |
+| `작업기간`   | 2024.05.07 ~ 2024.05.27                                                                                                                                                                                                                                                             |
 | `작업인원`   | 1                                                                                                                                                                                                                                                                                   |
 | `라이브러리` | <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/Emotion-C43BAD?style=flat-square"> <img src="https://img.shields.io/badge/Material UI-007FFF?style=flat-square&logo=mui&logoColor=white"> |
 | `언어`       | <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white">                                                                                                                                                                        |
@@ -46,6 +46,7 @@
 
 1. <img src="https://img.shields.io/badge/Amazone_S3-569A31?style=flat-square&logo=amazons3&logoColor=white">에 SETUP 파일 업로드하여 다운로드 기능 구현
 2. <img src="https://img.shields.io/badge/Material UI-007FFF?style=flat-square&logo=mui&logoColor=white"> ThemeProvider를 이용하여 light/dark mode Theme 제공
+3. 반응형 웹
 
 ## ❌Trouble Shooting
 
