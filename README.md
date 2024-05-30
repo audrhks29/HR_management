@@ -3,10 +3,7 @@
 ## 📚목차
 
 1. [프로젝트 정보](#프로젝트-정보)
-2. [API Endpoints](#api-endpoints)
-3. [주요 기능](#주요-기능)
-4. [Trouble Shooting](#trouble-shooting)
-5. [블로그 정리](#블로그-정리)
+2. [로고](#로고)
 
 ## 🌐프로젝트 정보
 
